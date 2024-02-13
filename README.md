@@ -6,7 +6,7 @@ An online U-Fund system built in Java 17=> and ___ _replace with other platform 
 ## Team
 
 - Isaac Soares
-- MEMBER2
+- Nadeem Mustafa
 - MEMBER3
 - MEMBER4
 
