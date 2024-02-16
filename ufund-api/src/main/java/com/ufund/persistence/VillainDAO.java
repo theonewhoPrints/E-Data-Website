@@ -21,5 +21,7 @@ public interface VillainDAO {
 
     VillainSchemeNeed[] findSchemesByTitle(String title) throws IOException;
 
+    VillainSchemeNeed[] findSchemesByName(String name) throws IOException;
+
     boolean deleteScheme(int id) throws IOException;
 }

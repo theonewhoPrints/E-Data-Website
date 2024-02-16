@@ -169,6 +169,22 @@ public class VillainFileDAO implements VillainDAO {
     ** {@inheritDoc}
      */
     @Override
+    public VillainSchemeNeed[] findSchemesByName(String name) throws IOException {
+        synchronized (schemes) {
+            ArrayList<VillainSchemeNeed> schemeList = new ArrayList<>();
+            for (VillainSchemeNeed scheme : schemes.values()) {
+                if(scheme.getName() != null && scheme.getName().contains(name)) {
+                    schemeList.add(scheme);
+                }   
+            }
+            return schemeList.toArray(new VillainSchemeNeed[0]);
+        }
+    }
+
+    /**
+    ** {@inheritDoc}
+     */
+    @Override
     public boolean deleteScheme(int id) throws IOException {
         synchronized (schemes) {
             if (schemes.containsKey(id)) {

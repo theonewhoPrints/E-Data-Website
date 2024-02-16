@@ -100,7 +100,6 @@ public class VillainController {
         }
     }
 
-    // Added by nm
     // GET /villians/search?name={name}
     @GetMapping("/SearchByName")
     public ResponseEntity<VillainSchemeNeed[]> searchVillainSchemesByName(@RequestParam String name) {
