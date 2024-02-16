@@ -100,6 +100,19 @@ public class VillainController {
         }
     }
 
+    // Added by nm
+    // GET /villians/search?name={name}
+    @GetMapping("/SearchByName")
+    public ResponseEntity<VillainSchemeNeed[]> searchVillainSchemesByName(@RequestParam String name) {
+        LOG.info("GET /villians/search?name=" + name);
+        try {
+            VillainSchemeNeed[] villains = villainDao.findSchemesByName(name);
+            return new ResponseEntity<>(villains, HttpStatus.OK);
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     // POST /villains
     @PostMapping("")
