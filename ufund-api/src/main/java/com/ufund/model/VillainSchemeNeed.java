@@ -12,7 +12,7 @@ public class VillainSchemeNeed {
     @JsonProperty("name") private String name;
     @JsonProperty("title") private String title;
 
-    public VillainSchemeNeed(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty String title) {
+    public VillainSchemeNeed(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("title") String title) {
         this.id = id;
         this.name = name;
         this.title = title;
