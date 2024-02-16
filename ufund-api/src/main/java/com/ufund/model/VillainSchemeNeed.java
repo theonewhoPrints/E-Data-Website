@@ -1,5 +1,6 @@
 package com.ufund.model;
 import java.util.logging.Logger;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class VillainSchemeNeed {
@@ -28,4 +29,18 @@ public class VillainSchemeNeed {
     public String getTitle() {
         return title;
     }
+
+    public void setName() {
+        this.name = name;
+    }
+
+    public void setTitle() {
+        this.title = title;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(STRING_FORMAT, id, name, title);
+    }
+
 }
