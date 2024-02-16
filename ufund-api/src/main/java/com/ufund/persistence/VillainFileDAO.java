@@ -112,6 +112,20 @@ public class VillainFileDAO implements VillainDAO {
         }
     }
 
+    // VillainFileDAO class
+    @Override
+    public VillainSchemeNeed[] findSchemesByTitle(String title) {  ///remove if not needed.
+        synchronized (schemes) {
+            ArrayList<VillainSchemeNeed> schemeList = new ArrayList<>();
+            for (VillainSchemeNeed scheme : schemes.values()) {
+                if (scheme.getTitle() != null && scheme.getTitle().contains(title)) {
+                    schemeList.add(scheme);
+                }
+            }
+            return schemeList.toArray(new VillainSchemeNeed[0]);
+        }
+    }
+
     /**
     ** {@inheritDoc}
      */
