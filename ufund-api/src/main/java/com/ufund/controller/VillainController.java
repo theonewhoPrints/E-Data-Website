@@ -106,6 +106,12 @@ public class VillainController {
     public ResponseEntity<VillainSchemeNeed> createVillain(@RequestBody VillainSchemeNeed villain) {
         LOG.info("POST /villains " + villain);
         try {
+
+            VillainSchemeNeed existingVillain = villainDao.getScheme(villain.getId());
+            if (existingVillain != null) {
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
+
             VillainSchemeNeed createdVillain = villainDao.createScheme(villain);
             return new ResponseEntity<>(createdVillain, HttpStatus.CREATED);
         } catch (IOException e) {
