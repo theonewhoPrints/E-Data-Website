@@ -8,7 +8,7 @@ import static org.mockito.Mockito.when;
 import java.io.IOException;
 
 import com.ufund.api.ufundapi.persistence.VillainDAO;
-import com.ufund.api.ufundapi.model.VillainSchemeNeed;
+import com.ufund.api.ufundapi.model.Scheme;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -37,30 +37,30 @@ public class VillainControllerTest {
     }
 
     @Test
-    public void testGetHeroes() throws IOException { // getHeroes may throw IOException
+    public void testGetSchemes() throws IOException { // getSchemes may throw IOException
         // Setup
-        VillainSchemeNeed[] heroes = new Hero[2];
-        heroes[0] = new Hero(99,"Bolt");
-        heroes[1] = new Hero(100,"The Great Iguana");
-        // When getHeroes is called return the heroes created above
-        when(mockHeroDAO.getHeroes()).thenReturn(heroes);
+        Scheme[] schemes = new Scheme[2];
+        schemes[0] = new Scheme(99,"Dr. Silly", "I want to drop banana peels everywhere");
+        schemes[1] = new Scheme(100,"Dr. Man", "I DON'T want world peace");
+        // When getSchemes is called return the schemes created above
+        when(mockVillainDAO.getSchemes()).thenReturn(schemes);
 
         // Invoke
-        ResponseEntity<Hero[]> response = heroController.getHeroes();
+        ResponseEntity<Scheme[]> response = villainController.getVillains();
 
         // Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertEquals(heroes,response.getBody());
+        assertEquals(schemes,response.getBody());
     }
 
     @Test
-    public void testGetHeroesHandleException() throws IOException { // getHeroes may throw IOException
+    public void testGetSchemesHandleException() throws IOException { // getSchemes may throw IOException
         // Setup
-        // When getHeroes is called on the Mock Hero DAO, throw an IOException
-        doThrow(new IOException()).when(mockHeroDAO).getHeroes();
+        // When getSchemes is called on the Mock Villain DAO, throw an IOException
+        doThrow(new IOException()).when(mockVillainDAO).getSchemes();
 
         // Invoke
-        ResponseEntity<Hero[]> response = heroController.getHeroes();
+        ResponseEntity<Scheme[]> response = villainController.getVillains();
 
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
