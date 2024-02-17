@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.ufund.api.ufundapi.model.VillainSchemeNeed;
+import com.ufund.api.ufundapi.model.Scheme;
 import com.ufund.api.ufundapi.persistence.VillainDAO;
 
 import org.springframework.http.HttpStatus;
@@ -46,10 +46,10 @@ public class VillainController {
 
     // GET /villains/{id}
     @GetMapping("/{id}")
-    public ResponseEntity<VillainSchemeNeed> getVillain(@PathVariable int id) {
+    public ResponseEntity<Scheme> getVillain(@PathVariable int id) {
         LOG.info("GET /villains/" + id);
         try {
-            VillainSchemeNeed villain = villainDao.getScheme(id);
+            Scheme villain = villainDao.getScheme(id);
             if (villain != null)
                 return new ResponseEntity<>(villain, HttpStatus.OK);
             else
@@ -62,10 +62,10 @@ public class VillainController {
 
     // GET /villains
     @GetMapping("")
-    public ResponseEntity<VillainSchemeNeed[]> getVillains() {
+    public ResponseEntity<Scheme[]> getVillains() {
         LOG.info("GET /villains");
         try {
-            VillainSchemeNeed[] villains = villainDao.getSchemes();
+            Scheme[] villains = villainDao.getSchemes();
             return new ResponseEntity<>(villains, HttpStatus.OK);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
@@ -75,10 +75,10 @@ public class VillainController {
 
     // GET /villains/?name={name}
     @GetMapping("/")
-    public ResponseEntity<VillainSchemeNeed[]> searchVillains(@RequestParam String name) {
+    public ResponseEntity<Scheme[]> searchVillains(@RequestParam String name) {
         LOG.info("GET /villains/?name=" + name);
         try {
-            VillainSchemeNeed[] villains = villainDao.findSchemes(name);
+            Scheme[] villains = villainDao.findSchemes(name);
             return new ResponseEntity<>(villains, HttpStatus.OK);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
@@ -106,10 +106,10 @@ public class VillainController {
     // curl.exe -X GET "http://localhost:8080/villains/SearchByName/?name=Dr.+Nefarious"
     // GET /villians/search?name={name}
     @GetMapping("/SearchByName")
-    public ResponseEntity<VillainSchemeNeed[]> searchVillainSchemesByName(@RequestParam String name) {
+    public ResponseEntity<Scheme[]> searchVillainSchemesByName(@RequestParam String name) {
         LOG.info("GET /villians/search?name=" + name);
         try {
-            VillainSchemeNeed[] villains = villainDao.findSchemesByName(name);
+            Scheme[] villains = villainDao.findSchemesByName(name);
             return new ResponseEntity<>(villains, HttpStatus.OK);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
@@ -119,16 +119,16 @@ public class VillainController {
 
     // POST /villains
     @PostMapping("")
-    public ResponseEntity<VillainSchemeNeed> createVillain(@RequestBody VillainSchemeNeed villain) {
+    public ResponseEntity<Scheme> createVillain(@RequestBody Scheme villain) {
         LOG.info("POST /villains " + villain);
         try {
 
-            VillainSchemeNeed existingVillain = villainDao.getScheme(villain.getId());
+            Scheme existingVillain = villainDao.getScheme(villain.getId());
             if (existingVillain != null) {
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
             }
 
-            VillainSchemeNeed createdVillain = villainDao.createScheme(villain);
+            Scheme createdVillain = villainDao.createScheme(villain);
             return new ResponseEntity<>(createdVillain, HttpStatus.CREATED);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
@@ -138,10 +138,10 @@ public class VillainController {
 
     // PUT /villains
     @PutMapping("")
-    public ResponseEntity<VillainSchemeNeed> updateVillain(@RequestBody VillainSchemeNeed villain) {
+    public ResponseEntity<Scheme> updateVillain(@RequestBody Scheme villain) {
         LOG.info("PUT /villains " + villain);
         try {
-            VillainSchemeNeed updatedVillain = villainDao.updateScheme(villain);
+            Scheme updatedVillain = villainDao.updateScheme(villain);
             if (updatedVillain != null)
                 return new ResponseEntity<>(updatedVillain, HttpStatus.OK);
             else

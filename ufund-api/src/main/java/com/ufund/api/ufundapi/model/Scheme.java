@@ -3,8 +3,8 @@ import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class VillainSchemeNeed {
-    private static final Logger LOG = Logger.getLogger(VillainSchemeNeed.class.getName());
+public class Scheme {
+    private static final Logger LOG = Logger.getLogger(Scheme.class.getName());
     
     static final String STRING_FORMAT = "Scheme [id=%d, name=%s, title=%s]";
     
@@ -12,7 +12,7 @@ public class VillainSchemeNeed {
     @JsonProperty("name") private String name;
     @JsonProperty("title") private String title;
 
-    public VillainSchemeNeed(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("title") String title) {
+    public Scheme(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("title") String title) {
         this.id = id;
         this.name = name;
         this.title = title;
