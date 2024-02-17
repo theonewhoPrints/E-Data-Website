@@ -60,7 +60,19 @@ public class VillainController {
         }
     }
 
-    // GET /villains
+    /**
+     * Responds to the GET request for all {@linkplain VillainSchemeNeed schemes}
+     * 
+     * @return ResponseEntity with array of {@link VillainSchemeNeed schemes} objects (may be empty) and
+     * HTTP status of OK<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * 
+     * Example usage in cURL: curl.exe -X GET 'http://localhost:8080/villains'
+     * 
+     * @author Evan Kinsey
+     * 
+     * test
+     */
     @GetMapping("")
     public ResponseEntity<Scheme[]> getVillains() {
         LOG.info("GET /villains");
@@ -167,4 +179,5 @@ public class VillainController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 }
