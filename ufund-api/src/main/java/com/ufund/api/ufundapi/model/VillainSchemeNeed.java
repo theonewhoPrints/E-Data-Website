@@ -1,4 +1,4 @@
-package com.ufund.model;
+package com.ufund.api.ufundapi.model;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonProperty;

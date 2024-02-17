@@ -1,11 +1,11 @@
-package com.ufund.controller;
+package com.ufund.api.ufundapi.controller;
 
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.ufund.model.VillainSchemeNeed;
-import com.ufund.persistence.VillainDAO;
+import com.ufund.api.ufundapi.model.VillainSchemeNeed;
+import com.ufund.api.ufundapi.persistence.VillainDAO;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -88,6 +88,7 @@ public class VillainController {
 
 
     // GET /villains/?title={title}
+    /*
     @GetMapping("/")
     public ResponseEntity<VillainSchemeNeed[]> searchVillainsByTitle(@RequestParam String title) {
         LOG.info("GET /villains/?title=" + title);
@@ -99,6 +100,7 @@ public class VillainController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    */
 
     // GET /villians/search?name={name}
     @GetMapping("/SearchByName")

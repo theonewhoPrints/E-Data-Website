@@ -1,4 +1,4 @@
-package com.ufund.persistence;
+package com.ufund.api.ufundapi.persistence;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,11 +7,10 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Logger;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ufund.api.ufundapi.model.VillainSchemeNeed;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import com.ufund.model.VillainSchemeNeed;
 
 /**
  * Implements the functionality for JSON file-based persistence for Villain Schemes

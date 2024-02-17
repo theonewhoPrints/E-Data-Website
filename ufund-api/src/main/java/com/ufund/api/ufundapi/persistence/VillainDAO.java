@@ -1,10 +1,8 @@
-package com.ufund.persistence;
+package com.ufund.api.ufundapi.persistence;
 
 import java.io.IOException;
 
-//where this come from ? import org.springframework.boot.autoconfigure.couchbase.CouchbaseProperties.Io;
-
-import com.ufund.model.VillainSchemeNeed;
+import com.ufund.api.ufundapi.model.VillainSchemeNeed;
 
 // INTERFACE 
 public interface VillainDAO {
