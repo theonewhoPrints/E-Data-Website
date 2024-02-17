@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Logger;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ufund.api.ufundapi.model.VillainSchemeNeed;
+import com.ufund.api.ufundapi.model.Scheme;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -23,9 +23,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class VillainFileDAO implements VillainDAO {
     private static final Logger LOG = Logger.getLogger(VillainFileDAO.class.getName());
-    private static final Logger LOG1 = Logger.getLogger(VillainSchemeNeed.class.getSimpleName());
+    private static final Logger LOG1 = Logger.getLogger(Scheme.class.getSimpleName());
 
-    private Map<Integer, VillainSchemeNeed> schemes;
+    private Map<Integer, Scheme> schemes;
     private ObjectMapper objectMapper;
    
     private static int nextId;
@@ -52,25 +52,25 @@ public class VillainFileDAO implements VillainDAO {
         return id;
     }
 
-    private VillainSchemeNeed[] getSchemesArray() {
-        return schemes.values().toArray(new VillainSchemeNeed[0]);
+    private Scheme[] getSchemesArray() {
+        return schemes.values().toArray(new Scheme[0]);
     }
 
-    private VillainSchemeNeed[] findSchemesArray(String containsScheme) {
-        ArrayList<VillainSchemeNeed> schemeList = new ArrayList<>();
+    private Scheme[] findSchemesArray(String containsScheme) {
+        ArrayList<Scheme> schemeList = new ArrayList<>();
 
-        for (VillainSchemeNeed scheme : schemes.values()) {
+        for (Scheme scheme : schemes.values()) {
             if (containsScheme == null || scheme.getName().contains(containsScheme)) {
                 schemeList.add(scheme);
             }
         }
-        VillainSchemeNeed[] schemeArray = new VillainSchemeNeed[schemeList.size()]; //not used(for now I guess)
+        Scheme[] schemeArray = new Scheme[schemeList.size()]; //not used(for now I guess)
 
-        return schemeList.toArray(new VillainSchemeNeed[0]);
+        return schemeList.toArray(new Scheme[0]);
     }
 
     private boolean save() throws IOException {
-        VillainSchemeNeed[] schemeArray = getSchemesArray();
+        Scheme[] schemeArray = getSchemesArray();
         objectMapper.writeValue(new File(filename), schemeArray);
         return true;
     }
@@ -79,9 +79,9 @@ public class VillainFileDAO implements VillainDAO {
         schemes = new TreeMap<>();
         nextId = 0;
 
-        VillainSchemeNeed[] schemeArray = objectMapper.readValue(new File(filename), VillainSchemeNeed[].class);
+        Scheme[] schemeArray = objectMapper.readValue(new File(filename), Scheme[].class);
 
-        for (VillainSchemeNeed scheme : schemeArray) {
+        for (Scheme scheme : schemeArray) {
             schemes.put(scheme.getId(), scheme);
             if (scheme.getId() > nextId)
                 nextId = scheme.getId();
@@ -95,7 +95,7 @@ public class VillainFileDAO implements VillainDAO {
     ** {@inheritDoc}
      */
     @Override
-    public VillainSchemeNeed[] getSchemes() {
+    public Scheme[] getSchemes() {
         synchronized (schemes) {
             return getSchemesArray();
         }
@@ -105,7 +105,7 @@ public class VillainFileDAO implements VillainDAO {
     ** {@inheritDoc}
      */
     @Override
-    public VillainSchemeNeed[] findSchemes(String containsScheme) {
+    public Scheme[] findSchemes(String containsScheme) {
         synchronized (schemes) {
             return findSchemesArray(containsScheme);
         }
@@ -113,15 +113,15 @@ public class VillainFileDAO implements VillainDAO {
 
     // VillainFileDAO class
     @Override
-    public VillainSchemeNeed[] findSchemesByTitle(String title) {  ///remove if not needed.
+    public Scheme[] findSchemesByTitle(String title) {  ///remove if not needed.
         synchronized (schemes) {
-            ArrayList<VillainSchemeNeed> schemeList = new ArrayList<>();
-            for (VillainSchemeNeed scheme : schemes.values()) {
+            ArrayList<Scheme> schemeList = new ArrayList<>();
+            for (Scheme scheme : schemes.values()) {
                 if (scheme.getTitle() != null && scheme.getTitle().contains(title)) {
                     schemeList.add(scheme);
                 }
             }
-            return schemeList.toArray(new VillainSchemeNeed[0]);
+            return schemeList.toArray(new Scheme[0]);
         }
     }
 
@@ -129,7 +129,7 @@ public class VillainFileDAO implements VillainDAO {
     ** {@inheritDoc}
      */
     @Override
-    public VillainSchemeNeed getScheme(int id) {
+    public Scheme getScheme(int id) {
         synchronized (schemes) {
             return schemes.get(id);
         }
@@ -139,9 +139,9 @@ public class VillainFileDAO implements VillainDAO {
     ** {@inheritDoc}
      */
     @Override
-    public VillainSchemeNeed createScheme(VillainSchemeNeed scheme) throws IOException {
+    public Scheme createScheme(Scheme scheme) throws IOException {
         synchronized (schemes) {
-            VillainSchemeNeed newScheme = new VillainSchemeNeed(nextId(), scheme.getName(), scheme.getTitle());
+            Scheme newScheme = new Scheme(nextId(), scheme.getName(), scheme.getTitle());
             schemes.put(newScheme.getId(), newScheme);
             save();
             return newScheme;
@@ -152,7 +152,7 @@ public class VillainFileDAO implements VillainDAO {
     ** {@inheritDoc}
      */
     @Override
-    public VillainSchemeNeed updateScheme(VillainSchemeNeed scheme) throws IOException {
+    public Scheme updateScheme(Scheme scheme) throws IOException {
         synchronized (schemes) {
             if (schemes.containsKey(scheme.getId())) {
                 schemes.put(scheme.getId(), scheme);
@@ -168,15 +168,15 @@ public class VillainFileDAO implements VillainDAO {
     ** {@inheritDoc}
      */
     @Override
-    public VillainSchemeNeed[] findSchemesByName(String name) throws IOException {
+    public Scheme[] findSchemesByName(String name) throws IOException {
         synchronized (schemes) {
-            ArrayList<VillainSchemeNeed> schemeList = new ArrayList<>();
-            for (VillainSchemeNeed scheme : schemes.values()) {
+            ArrayList<Scheme> schemeList = new ArrayList<>();
+            for (Scheme scheme : schemes.values()) {
                 if(scheme.getName() != null && scheme.getName().contains(name)) {
                     schemeList.add(scheme);
                 }   
             }
-            return schemeList.toArray(new VillainSchemeNeed[0]);
+            return schemeList.toArray(new Scheme[0]);
         }
     }
 

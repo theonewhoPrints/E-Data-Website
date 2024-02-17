@@ -2,24 +2,24 @@ package com.ufund.api.ufundapi.persistence;
 
 import java.io.IOException;
 
-import com.ufund.api.ufundapi.model.VillainSchemeNeed;
+import com.ufund.api.ufundapi.model.Scheme;
 
 // INTERFACE 
 public interface VillainDAO {
 
-    VillainSchemeNeed[] getSchemes() throws IOException;
+    Scheme[] getSchemes() throws IOException;
 
-    VillainSchemeNeed[] findSchemes(String containsScheme) throws IOException;
+    Scheme[] findSchemes(String containsScheme) throws IOException;
 
-    VillainSchemeNeed getScheme(int id) throws IOException;
+    Scheme getScheme(int id) throws IOException;
 
-    VillainSchemeNeed createScheme(VillainSchemeNeed scheme) throws IOException;
+    Scheme createScheme(Scheme scheme) throws IOException;
 
-    VillainSchemeNeed updateScheme(VillainSchemeNeed scheme) throws IOException;
+    Scheme updateScheme(Scheme scheme) throws IOException;
 
-    VillainSchemeNeed[] findSchemesByTitle(String title) throws IOException;
+    Scheme[] findSchemesByTitle(String title) throws IOException;
 
-    VillainSchemeNeed[] findSchemesByName(String name) throws IOException;
+    Scheme[] findSchemesByName(String name) throws IOException;
 
     boolean deleteScheme(int id) throws IOException;
 }
