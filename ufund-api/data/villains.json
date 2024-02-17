@@ -1,1 +1,12 @@
-[{"id":11,"name":"Dr. Nefarious","title":"I want to kill people"},{"id":12,"name":"Mr Wonderful","title":"hello"}]
+[
+    {
+        "id": 11,
+        "name": "Dr. Nefarious",
+        "title": "I want to kill people"
+    },
+    {
+        "id": 12,
+        "name": "Mr Wonderful",
+        "title": "hello"
+    }
+]

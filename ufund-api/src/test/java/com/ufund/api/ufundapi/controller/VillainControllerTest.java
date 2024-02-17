@@ -65,4 +65,49 @@ public class VillainControllerTest {
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
+
+    @Test
+    public void testGetScheme() throws IOException {  // getScheme may throw IOException
+        // Setup
+        Scheme scheme = new Scheme(99,"Mr. Frozen", "I must freeze all of the people on earth!!");
+        // When the same id is passed in, our mock Villain DAO will return the Scheme object
+        when(mockVillainDAO.getScheme(scheme.getId())).thenReturn(scheme);
+
+        // Invoke
+        ResponseEntity<Scheme> response = villainController.getVillain(scheme.getId());
+
+        // Analyze
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals(scheme,response.getBody());
+    }
+
+    @Test
+    public void testGetSchemeNotFound() throws Exception { // createScheme may throw IOException
+        // Setup
+        int schemeID = 99;
+        // When the same id is passed in, our mock Villain DAO will return null, simulating
+        // no scheme found
+        when(mockVillainDAO.getScheme(schemeID)).thenReturn(null);
+
+        // Invoke
+        ResponseEntity<Scheme> response = villainController.getVillain(schemeID);
+
+        // Analyze
+        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
+    }
+
+    @Test
+    public void testGetSchemeHandleException() throws Exception { // createHero may throw IOException
+        // Setup
+        int schemeID = 99;
+        // When getScheme is called on the Mock Villain DAO, throw an IOException
+        doThrow(new IOException()).when(mockVillainDAO).getScheme(schemeID);
+
+        // Invoke
+        ResponseEntity<Scheme> response = villainController.getVillain(schemeID);
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
+    }
+
 }
