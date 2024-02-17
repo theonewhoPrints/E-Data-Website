@@ -102,6 +102,8 @@ public class VillainController {
     }
     */
 
+    // Add + when running the curl command. See below example
+    // curl.exe -X GET "http://localhost:8080/villains/SearchByName/?name=Dr.+Nefarious"
     // GET /villians/search?name={name}
     @GetMapping("/SearchByName")
     public ResponseEntity<VillainSchemeNeed[]> searchVillainSchemesByName(@RequestParam String name) {
