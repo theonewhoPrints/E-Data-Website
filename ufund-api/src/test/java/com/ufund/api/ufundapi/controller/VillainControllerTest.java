@@ -65,4 +65,60 @@ public class VillainControllerTest {
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
+
+    @Test
+    public void testCreateScheme() throws IOException {  // createScheme may throw IOException
+        // Setup
+        Scheme schemes = new Scheme(13,"Sukuna","Save me Mahoraga!");
+        // when createScheme is called, return true simulating successful
+        // creation and save
+        when(mockVillainDAO.createScheme(schemes)).thenReturn(schemes);
+
+
+        // Invoke
+        ResponseEntity<Scheme> response = villainController.createVillain(schemes);
+
+
+        // Analyze
+        assertEquals(HttpStatus.CREATED,response.getStatusCode());
+        assertEquals(schemes,response.getBody());
+    }
+
+
+    @Test
+    public void testCreateSchemeFailed() throws IOException {  // createScheme may throw IOException
+        // Setup
+        Scheme schemes = new Scheme(99,"Gojo", "Nah I'd win");
+        // when createScheme is called, return false simulating failed
+        // creation and save
+        when(mockVillainDAO.createScheme(schemes)).thenReturn(null);
+
+
+        // Invoke
+        ResponseEntity<Scheme> response = villainController.createVillain(schemes);
+
+
+        // Analyze
+        assertEquals(HttpStatus.CONFLICT,response.getStatusCode());
+    }
+
+
+    @Test
+    public void testCreateSchemeHandleException() throws IOException {  // createScheme may throw IOException
+        // Setup
+        Scheme schemes = new Scheme(99,"Aizen","Part of the plan");
+
+
+        // When createScheme is called on the Mock Villain DAO, throw an IOException
+        doThrow(new IOException()).when(mockVillainDAO).createScheme(schemes);
+
+
+        // Invoke
+        ResponseEntity<Scheme> response = villainController.createVillain(schemes);
+
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
+    }
+
 }
