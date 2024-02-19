@@ -65,4 +65,26 @@ public class VillainControllerTest {
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
+
+    @Test
+    public void testSearchVillainSchemesByName() throws IOException { // findSchemesByName may throw IOException
+        // Setup
+        // when findSchemesByName is called, it will return the name created below
+        String searchName = "Dr. Sin";
+        Scheme[] schemes = {
+            new Scheme(141, "Dr. Sin", "I like to tp houses"),
+            new Scheme(12, "Wonderful", "hello"),
+            new Scheme(11, "Dr. Nefarious", "I want to kill people")
+        };
+    
+        // Mock behavior of findSchemesByName method
+        when(mockVillainDAO.findSchemesByName(searchName)).thenReturn(schemes);
+
+        // Invoke the method under test
+        ResponseEntity<Scheme[]> response = villainController.searchVillainSchemesByName(searchName);
+
+        // Analyze
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(schemes, response.getBody());
+    }
 }
