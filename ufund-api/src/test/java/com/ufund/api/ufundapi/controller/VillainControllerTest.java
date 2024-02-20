@@ -120,7 +120,8 @@ public class VillainControllerTest {
         // Invoke
         ResponseEntity<Scheme> response = villainController.createVillain(schemes);
 
-      
+    }
+    
     @Test
     public void testDeleteScheme() throws IOException { // deleteScheme may throw IOException
         // Setup
