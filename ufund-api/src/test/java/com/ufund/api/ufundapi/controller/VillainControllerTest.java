@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 /**
  * Test the Hero Controller class
  * 
+ * /
  * @author SWEN Faculty
  */
 @Tag("Controller-tier")
@@ -36,6 +37,7 @@ public class VillainControllerTest {
         villainController = new VillainController(mockVillainDAO);
     }
 
+  
     @Test
     public void testGetSchemes() throws IOException { // getSchemes may throw IOException
         // Setup
@@ -53,6 +55,7 @@ public class VillainControllerTest {
         assertEquals(schemes,response.getBody());
     }
 
+  
     @Test
     public void testGetSchemesHandleException() throws IOException { // getSchemes may throw IOException
         // Setup
@@ -91,6 +94,107 @@ public class VillainControllerTest {
 
         // Invoke
         ResponseEntity<Scheme> response = villainController.getVillain(schemeID);
+    }
+
+    @Test
+    public void testSearchVillainSchemesByName() throws IOException { // findSchemesByName may throw IOException
+        // Setup
+        // when findSchemesByName is called, it will return the name created below
+        String searchName = "Dr. Sin";
+        Scheme[] schemes = {
+            new Scheme(141, "Dr. Sin", "I like to tp houses"),
+            new Scheme(12, "Wonderful", "hello"),
+            new Scheme(11, "Dr. Nefarious", "I want to kill people")
+        };
+    
+        // Mock behavior of findSchemesByName method
+        when(mockVillainDAO.findSchemesByName(searchName)).thenReturn(schemes);
+
+        // Invoke the method under test
+        ResponseEntity<Scheme[]> response = villainController.searchVillainSchemesByName(searchName);
+
+        // Analyze
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(schemes, response.getBody());
+    }
+  
+  
+    @Test
+    public void testCreateScheme() throws IOException {  // createScheme may throw IOException
+        // Setup
+        Scheme schemes = new Scheme(13,"Sukuna","Save me Mahoraga!");
+        // when createScheme is called, return true simulating successful
+        // creation and save
+        when(mockVillainDAO.createScheme(schemes)).thenReturn(schemes);
+
+
+        // Invoke
+        ResponseEntity<Scheme> response = villainController.createVillain(schemes);
+
+
+        // Analyze
+        assertEquals(HttpStatus.CREATED,response.getStatusCode());
+        assertEquals(schemes,response.getBody());
+    }
+
+
+    @Test
+    public void testCreateSchemeFailed() throws IOException {  // createScheme may throw IOException
+        // Setup
+        Scheme schemes = new Scheme(99,"Gojo", "Nah I'd win");
+        // when createScheme is called, return false simulating failed
+        // creation and save
+        when(mockVillainDAO.createScheme(schemes)).thenReturn(null);
+
+
+        // Invoke
+        ResponseEntity<Scheme> response = villainController.createVillain(schemes);
+
+
+        // Analyze
+        assertEquals(HttpStatus.CONFLICT,response.getStatusCode());
+    }
+
+
+    @Test
+    public void testCreateSchemeHandleException() throws IOException {  // createScheme may throw IOException
+        // Setup
+        Scheme schemes = new Scheme(99,"Aizen","Part of the plan");
+
+
+        // When createScheme is called on the Mock Villain DAO, throw an IOException
+        doThrow(new IOException()).when(mockVillainDAO).createScheme(schemes);
+
+
+        // Invoke
+        ResponseEntity<Scheme> response = villainController.createVillain(schemes);
+
+    }
+    
+    @Test
+    public void testDeleteScheme() throws IOException { // deleteScheme may throw IOException
+        // Setup
+        int schemeId = 99;
+        // when deleteScheme is called return true, simulating successful deletion
+        when(mockVillainDAO.deleteScheme(schemeId)).thenReturn(true);
+
+        // Invoke
+        ResponseEntity<Void> response = villainController.deleteVillain(schemeId);
+
+        // Analyze
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+    }
+
+      
+    @Test
+    public void testDeleteHeroNotFound() throws IOException { // deleteScheme may throw IOException
+        // Setup
+        int schemeId = 99;
+        // when deleteScheme is called return false, simulating failed deletion
+        when(mockVillainDAO.deleteScheme(schemeId)).thenReturn(false);
+
+        // Invoke
+        ResponseEntity<Void> response = villainController.deleteVillain(schemeId);
 
         // Analyze
         assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
@@ -105,6 +209,17 @@ public class VillainControllerTest {
 
         // Invoke
         ResponseEntity<Scheme> response = villainController.getVillain(schemeID);
+    }
+
+    @Test
+    public void testDeleteHeroHandleException() throws IOException { // deleteScheme may throw IOException
+        // Setup
+        int schemeId = 99;
+        // When deleteHero is called on the Mock Hero DAO, throw an IOException
+        doThrow(new IOException()).when(mockVillainDAO).deleteScheme(schemeId);
+
+        // Invoke
+        ResponseEntity<Void> response = villainController.deleteVillain(schemeId);
 
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
