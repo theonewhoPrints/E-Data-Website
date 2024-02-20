@@ -55,9 +55,20 @@ public interface VillainDAO {
      * @throws IOException if an issue with underlying storage
      */
     Scheme createScheme(Scheme scheme) throws IOException;
-    
 
+    /**
+     * Updates and saves a {@linkplain Scheme villan}
+     * 
+     * @param {@link Scheme villan} object to be updated and saved
+     * 
+     * @return updated {@link Scheme villan} if successful, null if
+     * {@link Scheme villan} could not be found
+     * 
+     * @throws IOException if underlying storage cannot be accessed
+     */
     Scheme updateScheme(Scheme scheme) throws IOException;
+
+    
 
     Scheme[] findSchemesByTitle(String title) throws IOException;
 
