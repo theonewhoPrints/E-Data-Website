@@ -30,11 +30,11 @@ public class Scheme {
         return title;
     }
 
-    public void setName() {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public void setTitle() {
+    public void setTitle(String title) {
         this.title = title;
     }
 

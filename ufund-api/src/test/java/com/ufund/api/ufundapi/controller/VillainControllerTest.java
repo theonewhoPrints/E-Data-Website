@@ -110,4 +110,51 @@ public class VillainControllerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
+    @Test
+    public void testUpdateScheme() throws IOException { // updateScheme may throw IOException
+        // Setup
+        Scheme scheme = new Scheme(99,"Wi-Fire", "I'm going to destroy the internet");
+        // when updateScheme is called, return true simulating successful
+        // update and save
+        when(mockVillainDAO.updateScheme(scheme)).thenReturn(scheme);
+        ResponseEntity<Scheme> response = villainController.updateVillain(scheme);
+        scheme.setName("Wiki-don't");
+
+        // Invoke
+        response = villainController.updateVillain(scheme);
+
+        // Analyze
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals(scheme,response.getBody());
+    }
+
+    @Test
+    public void testUpdateSchemeFailed() throws IOException { // updateScheme may throw IOException
+        // Setup
+        Scheme scheme = new Scheme(99,"Galactic Agent", "I will eat the galaxy");
+        // when updateScheme is called, return true simulating successful
+        // update and save
+        when(mockVillainDAO.updateScheme(scheme)).thenReturn(null);
+
+        // Invoke
+        ResponseEntity<Scheme> response = villainController.updateVillain(scheme);
+
+        // Analyze
+        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
+    }
+
+    @Test
+    public void testUpdateSchemeHandleException() throws IOException { // updateScheme may throw IOException
+        // Setup
+        Scheme hero = new Scheme(99,"Galactic Agent", "I will eat the galaxy");
+        // When updateScheme is called on the Mock Villain DAO, throw an IOException
+        doThrow(new IOException()).when(mockVillainDAO).updateScheme(hero);
+
+        // Invoke
+        ResponseEntity<Scheme> response = villainController.updateVillain(hero);
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
+    }
+
 }
