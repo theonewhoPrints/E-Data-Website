@@ -65,4 +65,46 @@ public class VillainControllerTest {
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
+
+    @Test
+    public void testDeleteScheme() throws IOException { // deleteScheme may throw IOException
+        // Setup
+        int schemeId = 99;
+        // when deleteScheme is called return true, simulating successful deletion
+        when(mockVillainDAO.deleteScheme(schemeId)).thenReturn(true);
+
+        // Invoke
+        ResponseEntity<Void> response = villainController.deleteVillain(schemeId);
+
+        // Analyze
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+    }
+
+    @Test
+    public void testDeleteHeroNotFound() throws IOException { // deleteScheme may throw IOException
+        // Setup
+        int schemeId = 99;
+        // when deleteScheme is called return false, simulating failed deletion
+        when(mockVillainDAO.deleteScheme(schemeId)).thenReturn(false);
+
+        // Invoke
+        ResponseEntity<Void> response = villainController.deleteVillain(schemeId);
+
+        // Analyze
+        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
+    }
+
+    @Test
+    public void testDeleteHeroHandleException() throws IOException { // deleteScheme may throw IOException
+        // Setup
+        int schemeId = 99;
+        // When deleteHero is called on the Mock Hero DAO, throw an IOException
+        doThrow(new IOException()).when(mockVillainDAO).deleteScheme(schemeId);
+
+        // Invoke
+        ResponseEntity<Void> response = villainController.deleteVillain(schemeId);
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
+    }
 }
