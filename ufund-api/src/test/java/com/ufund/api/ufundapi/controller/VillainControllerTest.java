@@ -209,6 +209,9 @@ public class VillainControllerTest {
 
         // Invoke
         ResponseEntity<Scheme> response = villainController.getVillain(schemeID);
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
     @Test
