@@ -209,8 +209,14 @@ public class VillainControllerTest {
 
         // Invoke
         ResponseEntity<Scheme> response = villainController.getVillain(schemeID);
+>>>>>>>>> Temporary merge branch 2
+
+        // Analyze
+        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
     }
 
+<<<<<<<<< Temporary merge branch 1
+      
     @Test
     public void testDeleteHeroHandleException() throws IOException { // deleteScheme may throw IOException
         // Setup
@@ -273,3 +279,4 @@ public class VillainControllerTest {
     }
 
 }
+>>>>>>>>> Temporary merge branch 2
