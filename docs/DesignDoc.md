@@ -9,12 +9,13 @@ geometry: margin=1in
 > and appear in the generated PDF in italics but do so only **after** all team members agree that the requirements for that section and current Sprint have been met. **Do not** delete future Sprint expectations._
 
 ## Team Information
-* Team name: TEAMNAME
+* Team name: Mansfield Minions
 * Team members
-  * MEMBER1
-  * MEMBER2
-  * MEMBER3
-  * MEMBER4
+  * Isaac Soares
+  * Nadeem Mustafa
+  * Evan Kinsey
+  * Jacky Chan
+  * Anthony Visiko
 
 ## Executive Summary
 
@@ -54,7 +55,7 @@ This section describes the features of the application.
 
 This section describes the application domain.
 
-![Domain Model](domain-model-placeholder.png)
+![Domain Model](DomainAnalysis2.png)
 
 > _**[Sprint 2 & 4]** Provide a high-level overview of the domain for this application. You
 > can discuss the more important domain entities and their relationship
@@ -108,7 +109,7 @@ This section describes the web interface flow; this is how the user views and in
  >* _Include other details such as attributes and method signatures that you think are needed to support the level of detail in your discussion._
 
 ### ViewModel Tier
-> _**[Sprint 1]** List the classes supporting this tier and provide a description of there purpose._
+- VillainController: Directs VillainDAO to manipulate data
 
 > _**[Sprint 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
@@ -120,7 +121,9 @@ This section describes the web interface flow; this is how the user views and in
 ![Replace with your ViewModel Tier class diagram 1, etc.](model-placeholder.png)
 
 ### Model Tier
-> _**[Sprint 1]** List the classes supporting this tier and provide a description of there purpose._
+- Scheme: Logic for a Scheme object 
+- VillainDAO: Interface for VillainFileDAO
+- VillainFileDAO: Lgic to get and manipulate data in villains.json
 
 > _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
@@ -133,7 +136,16 @@ This section describes the web interface flow; this is how the user views and in
 
 ## OO Design Principles
 
-> _**[Sprint 1]** Name and describe the initial OO Principles that your team has considered in support of your design (and implementation) for this first Sprint._
+- Single Responsibility: Each class in our architecture has a clear and singular purpose; for instance, the ViewModel solely manages the presentation logic, while the Model handles data manipulation and storage.
+- High Cohesion: Components within the ViewModel and Model are closely related and work together efficiently to achieve specific functionalities, promoting better maintainability and readability of the codebase.
+- Information Expert: Responsibilities are assigned to the classes that possess the necessary information and expertise to fulfill them; for instance, the VillainDAO handles database interactions, leveraging its knowledge of data access.
+- Low Coupling: Our design minimizes the dependencies between classes, ensuring changes in one component do not heavily impact others, enhancing the system's flexibility and scalability.
+- Law of Demeter: Objects interact with closely-related neighbors only, reducing the ripple effects of changes and promoting a more modular and maintainable design.
+- Dependency Inversion: Higher-level modules depend on abstractions rather than concrete implementations, facilitating easier integration and testing while promoting code reusability and flexibility.
+- Controller: The VillainController acts as an intermediary between the ViewModel and Model, facilitating user interactions and ensuring separation of concerns.
+- Open/Closed: Our design allows for extension through inheritance or composition without modifying existing code, promoting code reuse and ensuring stability.
+- Pure Fabrication: When necessary, we introduce classes that do not represent real-world concepts but are created solely to enable separation of concerns and enhance maintainability.
+- Polymorphism: Through interfaces and inheritance, our design allows objects of different types to be treated uniformly, promoting flexibility and extensibility in handling various data types and behaviors.
 
 > _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
 
