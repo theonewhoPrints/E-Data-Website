@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  * {@literal @}RestController Spring annotation identifies this class as a REST API
  * method handler to the Spring framework
  * 
- * @author [Your Name]
+ * @author Isaac Soares & Jacky Chan 
  */
 @RestController
 @RequestMapping("villains")
@@ -44,7 +44,16 @@ public class VillainController {
         this.villainDao = villainDao;
     }
 
-    // GET /villains/{id}
+    /**
+     * Responds to the GET request for a {@linkplain Scheme villain} for the given id
+     * 
+     * @param id The id used to locate the {@link Scheme villain}
+     * 
+     * @return ResponseEntity with {@link Scheme villain} object and HTTP status of OK if found<br>
+     * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * 
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Scheme> getVillain(@PathVariable int id) {
         LOG.info("GET /villains/" + id);
@@ -61,9 +70,9 @@ public class VillainController {
     }
 
     /**
-     * Responds to the GET request for all {@linkplain VillainSchemeNeed schemes}
+     * Responds to the GET request for all {@linkplain Scheme villains}
      * 
-     * @return ResponseEntity with array of {@link VillainSchemeNeed schemes} objects (may be empty) and
+     * @return ResponseEntity with array of {@link Scheme villain} objects (may be empty) and
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      * 
@@ -85,7 +94,19 @@ public class VillainController {
         }
     }
 
-    // GET /villains/?name={name}
+    /**
+     * Responds to the GET request for all {@linkplain Scheme villains} whose name contains
+     * the text in name
+     * 
+     * @param name The name parameter which contains the text used to find the {@link Hero heroes}
+     * 
+     * @return ResponseEntity with array of {@link Scheme villain} objects (may be empty) and
+     * HTTP status of OK<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * <p>
+     * Example: Find all heroes that contain the text "ma"
+     * GET http://localhost:8080/heroes/?name=ma
+     */
     @GetMapping("/")
     public ResponseEntity<Scheme[]> searchVillains(@RequestParam String name) {
         LOG.info("GET /villains/?name=" + name);
@@ -99,24 +120,6 @@ public class VillainController {
     }
 
 
-    // GET /villains/?title={title}
-    /*
-    @GetMapping("/")
-    public ResponseEntity<VillainSchemeNeed[]> searchVillainsByTitle(@RequestParam String title) {
-        LOG.info("GET /villains/?title=" + title);
-        try {
-            VillainSchemeNeed[] villains = villainDao.findSchemesByTitle(title);
-            return new ResponseEntity<>(villains, HttpStatus.OK);
-        } catch (IOException e) {
-            LOG.log(Level.SEVERE, e.getLocalizedMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-    */
-
-    // Add + when running the curl command. See below example
-    // curl.exe -X GET "http://localhost:8080/villains/SearchByName/?name=Dr.+Nefarious"
-    // GET /villians/search?name={name}
     @GetMapping("/SearchByName")
     public ResponseEntity<Scheme[]> searchVillainSchemesByName(@RequestParam String name) {
         LOG.info("GET /villians/search?name=" + name);
@@ -129,7 +132,15 @@ public class VillainController {
         }
     }
 
-    // POST /villains
+    /**
+     * Creates a {@linkplain Scheme villain} with the provided hero object
+     * 
+     * @param hero - The {@link Scheme villain} to create
+     * 
+     * @return ResponseEntity with created {@link Scheme villain} object and HTTP status of CREATED<br>
+     * ResponseEntity with HTTP status of CONFLICT if {@link Scheme villain} object already exists<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
     @PostMapping("")
     public ResponseEntity<Scheme> createVillain(@RequestBody Scheme villain) {
         LOG.info("POST /villains " + villain);
@@ -148,7 +159,15 @@ public class VillainController {
         }
     }
 
-    // PUT /villains
+    /**
+     * Updates the {@linkplain Scheme villain} with the provided {@linkplain Scheme villain} object, if it exists
+     * 
+     * @param hero The {@link Scheme villain} to update
+     * 
+     * @return ResponseEntity with updated {@link Scheme villain} object and HTTP status of OK if updated<br>
+     * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
     @PutMapping("")
     public ResponseEntity<Scheme> updateVillain(@RequestBody Scheme villain) {
         LOG.info("PUT /villains " + villain);
@@ -164,7 +183,15 @@ public class VillainController {
         }
     }
 
-    // DELETE /villains/{id}
+    /**
+     * Deletes a {@linkplain Scheme villain} with the given id
+     * 
+     * @param id The id of the {@link Scheme villain} to deleted
+     * 
+     * @return ResponseEntity HTTP status of OK if deleted<br>
+     * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteVillain(@PathVariable int id) {
         LOG.info("DELETE /villains/" + id);
