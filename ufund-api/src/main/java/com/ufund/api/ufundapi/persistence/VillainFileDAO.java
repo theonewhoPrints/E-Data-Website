@@ -25,12 +25,17 @@ public class VillainFileDAO implements VillainDAO {
     private static final Logger LOG = Logger.getLogger(VillainFileDAO.class.getName());
     private static final Logger LOG1 = Logger.getLogger(Scheme.class.getSimpleName());
 
-    private Map<Integer, Scheme> schemes;
-    private ObjectMapper objectMapper;
+    private Map<Integer, Scheme> schemes;  // Provides a local cache of the Scheme objects
+    // so that we don't need to read from the file
+    // each time
+
+    private ObjectMapper objectMapper;  // Provides conversion between Scheme
+    // objects and JSON text format written
+    // to the file
    
-    private static int nextId;
+    private static int nextId;  // The next Id to assign to a new Scheme
    
-    private String filename;
+    private String filename; // Filename to read from and write to
 
     /**
      * Creates a Villain File Data Access Object
@@ -46,16 +51,35 @@ public class VillainFileDAO implements VillainDAO {
         load();  // load the schemes from the file
     }
 
+    /**
+     * Generates the next id for a new {@linkplain Scheme villain}
+     * 
+     * @return The next id
+     */
     private synchronized static int nextId() {
         int id = nextId;
         ++nextId;
         return id;
     }
 
+    /**
+     * Generates an array of {@linkplain Scheme villains} from the tree map
+     * 
+     * @return  The array of {@link Scheme villains}, may be empty
+     */
     private Scheme[] getSchemesArray() {
         return schemes.values().toArray(new Scheme[0]);
     }
 
+    /**
+     * Finds an array from {@linkplain Scheme villains} from the tree map
+     * 
+     * @param containsScheme The text to match against
+     * 
+     * @return An array of {@link Scheme villains} whose names contains the given text, may be empty
+     * 
+     * @throws IOException if an issue with underlying storage
+     */
     private Scheme[] findSchemesArray(String containsScheme) {
         ArrayList<Scheme> schemeList = new ArrayList<>();
 
@@ -69,12 +93,28 @@ public class VillainFileDAO implements VillainDAO {
         return schemeList.toArray(new Scheme[0]);
     }
 
+    /**
+     * Saves the {@linkplain Scheme villains} from the map into the file as an array of JSON objects
+     * 
+     * @return true if the {@link Scheme villains} were written successfully
+     * 
+     * @throws IOException when file cannot be accessed or written to
+     */
     private boolean save() throws IOException {
         Scheme[] schemeArray = getSchemesArray();
         objectMapper.writeValue(new File(filename), schemeArray);
         return true;
     }
 
+    /**
+     * Loads {@linkplain Scheme villains} from the JSON file into the map
+     * <br>
+     * Also sets next id to one more than the greatest id found in the file
+     * 
+     * @return true if the file was read successfully
+     * 
+     * @throws IOException when file cannot be accessed or read from
+     */
     private boolean load() throws IOException {
         schemes = new TreeMap<>();
         nextId = 0;
@@ -111,7 +151,9 @@ public class VillainFileDAO implements VillainDAO {
         }
     }
 
-    // VillainFileDAO class
+    /**
+    ** {@inheritDoc}
+     */
     @Override
     public Scheme[] findSchemesByTitle(String title) {  ///remove if not needed.
         synchronized (schemes) {

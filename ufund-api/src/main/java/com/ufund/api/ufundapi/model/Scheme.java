@@ -3,7 +3,7 @@ import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 /**
- * Represents a Hero entity
+ * Represents a villain entity
  * 
  * @author Isaac Soares, Jacy Chan, Nadeem Mustafa, 
  * Evan Kinsey, Anthony Anthony Visiko
@@ -18,10 +18,10 @@ public class Scheme {
     @JsonProperty("title") private String title;
 
     /**
-     * Create a hero with the given id and name
-     * @param id The id of the hero
-     * @param name The name of the hero
-     * @param title
+     * Create a Scheme with the given id, name, and title. 
+     * @param id The id of the villain
+     * @param name The name of the villain
+     * @param title The title of the villain's scheme
      * 
      * {@literal @}JsonProperty is used in serialization and deserialization
      * of the JSON object to the Java object in mapping the fields.  If a field
@@ -35,40 +35,49 @@ public class Scheme {
     }
 
     /**
-     * Retrieves the id of the hero
-     * @return The id of the hero
+     * Retrieves the id of the villain
+     * @return The id of the villain
      */
     public int getId() {
         return id;
     }
 
     /**
-     * Retrieves the name of the hero
-     * @return The name of the hero
+     * Retrieves the name of the villain
+     * @return The name of the villain
      */
     public String getName() {
         return name;
     }
 
+    /**
+     * Retrieves the title of the villain scheme
+     * @return The title of the villain scheme
+     */
     public String getTitle() {
         return title;
     }
 
      /**
-     * Sets the name of the hero - necessary for JSON object to Java object deserialization
-     * @param name The name of the hero
+     * Sets the name of the villain - necessary for JSON object to Java object deserialization
+     * @param name The name of the villain
      */
     public void setName() {
         this.name = name;
     }
 
+    /**
+     * Sets the title of the villain scheme - necessary for JSON object to Java object deserialization
+     * @param title The title of the villain scheme
+     */
     public void setTitle() {
         this.title = title;
     }
-    /**
-     * {@inheritDoc}
-     */
 
+    /**
+     * Returns a string representation of the configuration.
+     * @return string representation.
+     */
     @Override
     public String toString() {
         return String.format(STRING_FORMAT, id, name, title);
