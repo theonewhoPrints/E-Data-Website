@@ -80,7 +80,6 @@ public class VillainController {
      * 
      * @author Evan Kinsey
      * 
-     * test
      */
     @GetMapping("")
     public ResponseEntity<Scheme[]> getVillains() {
@@ -98,14 +97,14 @@ public class VillainController {
      * Responds to the GET request for all {@linkplain Scheme villains} whose name contains
      * the text in name
      * 
-     * @param name The name parameter which contains the text used to find the {@link Hero heroes}
+     * @param name The name parameter which contains the text used to find the {@link Scheme Villains}
      * 
      * @return ResponseEntity with array of {@link Scheme villain} objects (may be empty) and
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      * <p>
-     * Example: Find all heroes that contain the text "ma"
-     * GET http://localhost:8080/heroes/?name=ma
+     * Example: Find all villains that contain the text "ma"
+     * GET http://localhost:8080/villains/?name=ma
      */
     @GetMapping("/")
     public ResponseEntity<Scheme[]> searchVillains(@RequestParam String name) {
@@ -119,7 +118,16 @@ public class VillainController {
         }
     }
 
-
+    /**
+     * Responds to the GET request for a {@linkplain Scheme villain} for the given name
+     * 
+     * @param name The name used to locate the {@link Scheme villain}
+     * 
+     * @return ResponseEntity with {@link Scheme villain} object and HTTP status of OK if found<br>
+     * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
+     * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * 
+     */
     @GetMapping("/SearchByName")
     public ResponseEntity<Scheme[]> searchVillainSchemesByName(@RequestParam String name) {
         LOG.info("GET /villians/search?name=" + name);
@@ -133,13 +141,18 @@ public class VillainController {
     }
 
     /**
-     * Creates a {@linkplain Scheme villain} with the provided hero object
+     * Creates a {@linkplain Scheme villain} with the provided scheme object
      * 
-     * @param hero - The {@link Scheme villain} to create
+     * @param Scheme - The {@link Scheme villain} to create
      * 
      * @return ResponseEntity with created {@link Scheme villain} object and HTTP status of CREATED<br>
      * ResponseEntity with HTTP status of CONFLICT if {@link Scheme villain} object already exists<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     * 
+     * Example usage in cURL: curl.exe -X POST -H "Content-Type: application/json" -d '{"id":4,"name":"Dr. Freeze","Title":"Freeze Gotham"}' http://localhost:8080/villains
+     * 
+     * @author Isaac Soares & Jacky Chan 
+     * 
      */
     @PostMapping("")
     public ResponseEntity<Scheme> createVillain(@RequestBody Scheme villain) {
@@ -162,7 +175,7 @@ public class VillainController {
     /**
      * Updates the {@linkplain Scheme villain} with the provided {@linkplain Scheme villain} object, if it exists
      * 
-     * @param hero The {@link Scheme villain} to update
+     * @param Scheme The {@link Scheme villain} to update
      * 
      * @return ResponseEntity with updated {@link Scheme villain} object and HTTP status of OK if updated<br>
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
