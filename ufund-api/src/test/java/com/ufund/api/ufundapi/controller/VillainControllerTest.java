@@ -69,7 +69,33 @@ public class VillainControllerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
-  
+    @Test
+    public void testGetScheme() throws IOException {  // getScheme may throw IOException
+        // Setup
+        Scheme scheme = new Scheme(99,"Mr. Frozen", "I must freeze all of the people on earth!!");
+        // When the same id is passed in, our mock Villain DAO will return the Scheme object
+        when(mockVillainDAO.getScheme(scheme.getId())).thenReturn(scheme);
+
+        // Invoke
+        ResponseEntity<Scheme> response = villainController.getVillain(scheme.getId());
+
+        // Analyze
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals(scheme,response.getBody());
+    }
+
+    @Test
+    public void testGetSchemeNotFound() throws Exception { // createScheme may throw IOException
+        // Setup
+        int schemeID = 99;
+        // When the same id is passed in, our mock Villain DAO will return null, simulating
+        // no scheme found
+        when(mockVillainDAO.getScheme(schemeID)).thenReturn(null);
+
+        // Invoke
+        ResponseEntity<Scheme> response = villainController.getVillain(schemeID);
+    }
+
     @Test
     public void testSearchVillainSchemesByName() throws IOException { // findSchemesByName may throw IOException
         // Setup
@@ -174,7 +200,20 @@ public class VillainControllerTest {
         assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
     }
 
-      
+    @Test
+    public void testGetSchemeHandleException() throws Exception { // createHero may throw IOException
+        // Setup
+        int schemeID = 99;
+        // When getScheme is called on the Mock Villain DAO, throw an IOException
+        doThrow(new IOException()).when(mockVillainDAO).getScheme(schemeID);
+
+        // Invoke
+        ResponseEntity<Scheme> response = villainController.getVillain(schemeID);
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
+    }
+
     @Test
     public void testDeleteHeroHandleException() throws IOException { // deleteScheme may throw IOException
         // Setup
@@ -188,5 +227,52 @@ public class VillainControllerTest {
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
-    
+
+    @Test
+    public void testUpdateScheme() throws IOException { // updateScheme may throw IOException
+        // Setup
+        Scheme scheme = new Scheme(99,"Wi-Fire", "I'm going to destroy the internet");
+        // when updateScheme is called, return true simulating successful
+        // update and save
+        when(mockVillainDAO.updateScheme(scheme)).thenReturn(scheme);
+        ResponseEntity<Scheme> response = villainController.updateVillain(scheme);
+        scheme.setName("Wiki-don't");
+
+        // Invoke
+        response = villainController.updateVillain(scheme);
+
+        // Analyze
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals(scheme,response.getBody());
+    }
+
+    @Test
+    public void testUpdateSchemeFailed() throws IOException { // updateScheme may throw IOException
+        // Setup
+        Scheme scheme = new Scheme(99,"Galactic Agent", "I will eat the galaxy");
+        // when updateScheme is called, return true simulating successful
+        // update and save
+        when(mockVillainDAO.updateScheme(scheme)).thenReturn(null);
+
+        // Invoke
+        ResponseEntity<Scheme> response = villainController.updateVillain(scheme);
+
+        // Analyze
+        assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
+    }
+
+    @Test
+    public void testUpdateSchemeHandleException() throws IOException { // updateScheme may throw IOException
+        // Setup
+        Scheme hero = new Scheme(99,"Galactic Agent", "I will eat the galaxy");
+        // When updateScheme is called on the Mock Villain DAO, throw an IOException
+        doThrow(new IOException()).when(mockVillainDAO).updateScheme(hero);
+
+        // Invoke
+        ResponseEntity<Scheme> response = villainController.updateVillain(hero);
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
+    }
+
 }

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Represents a villain entity
  * 
  * @author Isaac Soares, Jacy Chan, Nadeem Mustafa, 
- * Evan Kinsey, Anthony Anthony Visiko
+ * Evan Kinsey, Anthony Visiko
  */
 public class Scheme {
     private static final Logger LOG = Logger.getLogger(Scheme.class.getName());
@@ -62,7 +62,7 @@ public class Scheme {
      * Sets the name of the villain - necessary for JSON object to Java object deserialization
      * @param name The name of the villain
      */
-    public void setName() {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -70,7 +70,7 @@ public class Scheme {
      * Sets the title of the villain scheme - necessary for JSON object to Java object deserialization
      * @param title The title of the villain scheme
      */
-    public void setTitle() {
+    public void setTitle(String title) {
         this.title = title;
     }
 

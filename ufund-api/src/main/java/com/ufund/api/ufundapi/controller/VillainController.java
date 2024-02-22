@@ -163,7 +163,6 @@ public class VillainController {
             if (existingVillain != null) {
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
             }
-
             Scheme createdVillain = villainDao.createScheme(villain);
             return new ResponseEntity<>(createdVillain, HttpStatus.CREATED);
         } catch (IOException e) {
@@ -196,7 +195,7 @@ public class VillainController {
         }
     }
 
-    /**
+   /**
      * Deletes a {@linkplain Scheme villain} with the given id
      * 
      * @param id The id of the {@link Scheme villain} to deleted
@@ -204,7 +203,7 @@ public class VillainController {
      * @return ResponseEntity HTTP status of OK if deleted<br>
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
-     */
+     */    
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteVillain(@PathVariable int id) {
         LOG.info("DELETE /villains/" + id);
