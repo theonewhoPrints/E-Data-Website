@@ -181,12 +181,29 @@ public class VillainFileDAO implements VillainDAO {
     ** {@inheritDoc}
      */
     @Override
-    public Scheme createScheme(Scheme scheme) throws IOException {
+    public Scheme getScheme_str(String name) {
         synchronized (schemes) {
-            Scheme newScheme = new Scheme(nextId(), scheme.getName(), scheme.getTitle());
-            schemes.put(newScheme.getId(), newScheme);
-            save();
-            return newScheme;
+            return schemes.get(name);    
+        }
+    }
+
+    /**
+    ** {@inheritDoc}
+     */
+    @Override
+    public Scheme createScheme(Scheme scheme) throws IOException {
+        synchronized(schemes){
+            Scheme exists = getScheme(scheme.getId());
+            Scheme exists_name = getScheme_str(scheme.getName());
+            
+            if(exists == null || exists_name == null ){
+                Scheme newScheme = new Scheme(nextId(), scheme.getName(), scheme.getTitle());
+                schemes.put(newScheme.getId(), newScheme);
+                save();
+                return newScheme;
+            }else{
+                return null;
+            }
         }
     }
 

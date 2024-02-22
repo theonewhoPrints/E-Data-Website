@@ -45,6 +45,19 @@ public interface VillainDAO {
     Scheme getScheme(int id) throws IOException;
 
     /**
+     * Retrieves a {@linkplain Scheme villan} with the given name
+     * 
+     * @param name The name of the {@link Scheme villan} to get
+     * 
+     * @return a {@link Scheme villan} object with the matching name
+     * <br>
+     * null if no {@link Scheme villan} with a matching name is found
+     * 
+     * @throws IOException if an issue with underlying storage
+     */
+    Scheme getScheme_str(String name) throws IOException;
+
+    /**
      * Creates and saves a {@linkplain Scheme villan}
      * 
      * @param Scheme {@linkplain Scheme villan} object to be created and saved
