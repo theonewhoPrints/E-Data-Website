@@ -20,7 +20,7 @@ import org.springframework.http.ResponseEntity;
  * Test the Hero Controller class
  * 
  * /
- * @author SWEN Faculty
+ * @author Isaac Soares 
  */
 @Tag("Controller-tier")
 public class VillainControllerTest {
