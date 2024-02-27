@@ -158,12 +158,10 @@ public class VillainController {
     public ResponseEntity<Scheme> createVillain(@RequestBody Scheme villain) {
         LOG.info("POST /villains " + villain);
         try {
-
-            Scheme existingVillain = villainDao.getScheme(villain.getId());
-            if (existingVillain != null) {
+            Scheme createdVillain = villainDao.createScheme(villain);
+            if (createdVillain == null){
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
             }
-            Scheme createdVillain = villainDao.createScheme(villain);
             return new ResponseEntity<>(createdVillain, HttpStatus.CREATED);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
