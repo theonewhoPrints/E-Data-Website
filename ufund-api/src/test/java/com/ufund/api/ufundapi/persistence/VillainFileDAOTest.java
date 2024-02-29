@@ -83,7 +83,7 @@ public class VillainFileDAOTest {
     }
 
     @Test
-    public void testDeleteScheme() {
+    public void testDeleteScheme() {  //changed schemes to public to make this work, see if this does anything.
         // Invoke
         boolean result = assertDoesNotThrow(() -> VillainFileDAO.deleteScheme(99),
                             "Unexpected exception thrown");
@@ -94,8 +94,26 @@ public class VillainFileDAOTest {
         // of the test heroes array - 1 (because of the delete)
         // Because heroes attribute of HeroFileDAO is package private
         // we can access it directly
-        assertEquals(VIllainFileDAO.schemes.size(),testSchemes.length-1);
+        assertEquals(VillainFileDAO.schemes.size(),testSchemes.length-1);
     }
+
+    @Test
+    public void testCreateVillain() {
+        // Setup
+        Scheme scheme = new Scheme(102,"clayman", "world to clay");
+
+        // Invoke
+        Scheme result = assertDoesNotThrow(() -> VillainFileDAO.createScheme(scheme),
+                                "Unexpected exception thrown");
+
+        // Analyze
+        assertNotNull(result);
+        Scheme actual = VillainFileDAO.getScheme(scheme.getId());
+        assertEquals(actual.getId(),scheme.getId());
+        assertEquals(actual.getName(),scheme.getName());
+    }
+
+
 
 
 

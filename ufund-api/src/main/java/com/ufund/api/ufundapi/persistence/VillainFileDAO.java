@@ -25,7 +25,7 @@ public class VillainFileDAO implements VillainDAO {
     private static final Logger LOG = Logger.getLogger(VillainFileDAO.class.getName());
     private static final Logger LOG1 = Logger.getLogger(Scheme.class.getSimpleName());
 
-    private Map<Integer, Scheme> schemes;  // Provides a local cache of the Scheme objects
+    Map<Integer, Scheme> schemes;  // Provides a local cache of the Scheme objects
     // so that we don't need to read from the file
     // each time
 
