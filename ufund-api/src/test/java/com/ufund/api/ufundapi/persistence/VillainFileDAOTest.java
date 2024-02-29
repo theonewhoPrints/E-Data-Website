@@ -20,7 +20,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-
+/**
+ * Test the Hero File DAO class
+ * 
+ * @author Isaac Soares & Nadeem Mustafa 
+ */
 
 
 @Tag("Persistence-tier")
@@ -112,6 +116,91 @@ public class VillainFileDAOTest {
         assertEquals(actual.getId(),scheme.getId());
         assertEquals(actual.getName(),scheme.getName());
     }
+
+    @Test
+    public void testUpdateScheme() {
+        // Setup
+        Scheme scheme = new Scheme(99,"Omni-Man", "Conquer Earth");
+
+        // Invoke
+        Scheme result = assertDoesNotThrow(() -> VillainFileDAO.updateScheme(scheme),
+                                "Unexpected exception thrown");
+
+        // Analyze
+        assertNotNull(result);
+        Scheme actual = VillainFileDAO.getScheme(scheme.getId());
+        assertEquals(actual,scheme);
+    }
+
+    @Test
+    public void testSaveException() throws IOException{
+        doThrow(new IOException())
+            .when(mockObjectMapper)
+                .writeValue(any(File.class),any(Scheme[].class));
+
+        Scheme scheme = new Scheme(102,"Wi-Fire", "spread fire");
+
+        assertThrows(IOException.class,
+                        () -> VillainFileDAO.createScheme(scheme),
+                        "IOException not thrown");
+    }
+
+    @Test
+    public void testGetSchemeNotFound() {
+        // Invoke
+        Scheme scheme = VillainFileDAO.getScheme(98);
+
+        // Analyze
+        assertEquals(scheme,null);
+    }
+
+    @Test
+    public void testDeleteSchemeNotFound() {
+        // Invoke
+        boolean result = assertDoesNotThrow(() -> VillainFileDAO.deleteScheme(98),
+                                                "Unexpected exception thrown");
+
+        // Analyze
+        assertEquals(result,false);
+        assertEquals(VillainFileDAO.schemes.size(),testSchemes.length);
+    }
+
+    @Test
+    public void testUpdateSchemeNotFound() {
+        // Setup
+        Scheme scheme = new Scheme(98,"Bolt", "Destroy cats");
+
+        // Invoke
+        Scheme result = assertDoesNotThrow(() -> VillainFileDAO.updateScheme(scheme),
+                                                "Unexpected exception thrown");
+
+        // Analyze
+        assertNull(result);
+    }
+
+    @Test
+    public void testConstructorException() throws IOException {
+        // Setup
+        ObjectMapper mockObjectMapper = mock(ObjectMapper.class);
+        // We want to simulate with a Mock Object Mapper that an
+        // exception was raised during JSON object deseerialization
+        // into Java objects
+        // When the Mock Object Mapper readValue method is called
+        // from the HeroFileDAO load method, an IOException is
+        // raised
+        doThrow(new IOException())
+            .when(mockObjectMapper)
+                .readValue(new File("doesnt_matter.txt"),Scheme[].class);
+
+        // Invoke & Analyze
+        assertThrows(IOException.class,
+                        () -> new VillainFileDAO("doesnt_matter.txt",mockObjectMapper),
+                        "IOException not thrown");
+    }
+
+
+    
+
 
 
 
