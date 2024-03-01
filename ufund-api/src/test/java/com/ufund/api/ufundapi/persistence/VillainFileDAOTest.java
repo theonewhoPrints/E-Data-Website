@@ -55,6 +55,10 @@ public class VillainFileDAOTest {
 
     }
 
+    /**
+    * Test method to verify the behavior of {@code getSchemes()} method in {@code VillainFileDAO}.
+    * It invokes the method and compares the returned schemes with the test schemes.
+    */
     @Test
     public void testGetSchemes() {
         // Invoke
@@ -66,6 +70,10 @@ public class VillainFileDAOTest {
             assertEquals(schemes[i],testSchemes[i]);
     }
 
+    /**
+    * Test method to verify the behavior of {@code findSchemes(String)} method in {@code VillainFileDAO}.
+    * It invokes the method with a search term and verifies the returned schemes.
+    */
     @Test
     public void testFindSchemes() {   //may have to make more for different finds in each text.
         // Invoke
@@ -77,6 +85,10 @@ public class VillainFileDAOTest {
         assertEquals(schemes[1],testSchemes[2]);
     }
 
+    /**
+    * Test method to verify the behavior of {@code getScheme(int)} method in {@code VillainFileDAO}.
+    * It invokes the method with a scheme ID and checks the returned scheme.
+    */
     @Test
     public void testGetScheme() {
         // Invoke
@@ -86,6 +98,10 @@ public class VillainFileDAOTest {
         assertEquals(scheme,testSchemes[0]);
     }
 
+    /**
+    * Test method to verify the behavior of {@code deleteScheme(int)} method in {@code VillainFileDAO}.
+    * It invokes the method to delete a scheme and checks the result and internal state.
+    */
     @Test
     public void testDeleteScheme() {  //changed schemes to public to make this work, see if this does anything.
         // Invoke
@@ -101,6 +117,10 @@ public class VillainFileDAOTest {
         assertEquals(VillainFileDAO.schemes.size(),testSchemes.length-1);
     }
 
+    /**
+    * Test method to verify the behavior of {@code createScheme(Scheme)} method in {@code VillainFileDAO}.
+    * It creates a new scheme, invokes the method, and checks the result and the scheme's presence.
+    */
     @Test
     public void testCreateVillain() {
         // Setup
@@ -117,6 +137,10 @@ public class VillainFileDAOTest {
         assertEquals(actual.getName(),scheme.getName());
     }
 
+    /**
+    * Test method to verify the behavior of {@code updateScheme(Scheme)} method in {@code VillainFileDAO}.
+    * It updates an existing scheme, invokes the method, and checks the result and the updated scheme.
+    */
     @Test
     public void testUpdateScheme() {
         // Setup
@@ -132,6 +156,11 @@ public class VillainFileDAOTest {
         assertEquals(actual,scheme);
     }
 
+    /**
+    * Test method to verify the exception handling in {@code createScheme(Scheme)} method of {@code VillainFileDAO}.
+    * It simulates an IOException during saving and verifies that the exception is properly thrown.
+    * @throws IOException if an error occurs during the test
+    */
     @Test
     public void testSaveException() throws IOException{
         doThrow(new IOException())
@@ -144,7 +173,10 @@ public class VillainFileDAOTest {
                         () -> VillainFileDAO.createScheme(scheme),
                         "IOException not thrown");
     }
-
+    /**
+     * Test method to verify the behavior when a scheme is not found in {@code VillainFileDAO}.
+     * It invokes the method to retrieve a scheme with a non-existing ID and checks the result.
+     */
     @Test
     public void testGetHeroNotFound() {
         // Invoke
@@ -154,6 +186,10 @@ public class VillainFileDAOTest {
         assertEquals(scheme,null);
     }
 
+    /**
+     * Test method to verify the behavior when deleting a non-existing scheme in {@code VillainFileDAO}.
+     * It invokes the method to delete a scheme with a non-existing ID and checks the result and internal state.
+     */
     @Test
     public void testDeleteHeroNotFound() {
         // Invoke
@@ -165,6 +201,10 @@ public class VillainFileDAOTest {
         assertEquals(VillainFileDAO.schemes.size(),testSchemes.length);
     }
 
+    /**
+     * Test method to verify the behavior when updating a non-existing scheme in {@code VillainFileDAO}.
+     * It invokes the method to update a scheme with a non-existing ID and checks the result.
+     */
     @Test
     public void testUpdateHeroNotFound() {
         // Setup
@@ -177,6 +217,11 @@ public class VillainFileDAOTest {
         assertNull(result);
     }
 
+    /**
+     * Test method to verify the exception handling in the constructor of {@code VillainFileDAO}.
+     * It simulates an IOException during initialization and verifies that the exception is properly thrown.
+     * @throws IOException if an error occurs during the test
+     */
     @Test
     public void testConstructorException() throws IOException {
         // Setup
