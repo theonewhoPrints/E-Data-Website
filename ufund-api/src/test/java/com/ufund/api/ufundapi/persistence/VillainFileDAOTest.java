@@ -43,8 +43,8 @@ public class VillainFileDAOTest {
         mockObjectMapper = mock(ObjectMapper.class);
         testSchemes = new Scheme[3];
         testSchemes[0] = new Scheme(99,"Dr. Freeze", "Freeze America");
-        testSchemes[1] = new Scheme(100,"Agent00", "Freeze 2K20");
-        testSchemes[2] = new Scheme(101,"TSift", "waste all carbon emissions");
+        testSchemes[1] = new Scheme(100,"Agental00", "Freeze 2K20");
+        testSchemes[2] = new Scheme(101,"TSiftal", "waste all carbon emissions");
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the hero array above
@@ -77,7 +77,7 @@ public class VillainFileDAOTest {
     @Test
     public void testFindSchemes() {   //may have to make more for different finds in each text.
         // Invoke
-        Scheme[] schemes = VillainFileDAO.findSchemes("Freeze");
+        Scheme[] schemes = VillainFileDAO.findSchemes("al");
 
         // Analyze
         assertEquals(schemes.length,2);
