@@ -146,7 +146,7 @@ public class VillainFileDAOTest {
     }
 
     @Test
-    public void testGetSchemeNotFound() {
+    public void testGetHeroNotFound() {
         // Invoke
         Scheme scheme = VillainFileDAO.getScheme(98);
 
@@ -155,7 +155,7 @@ public class VillainFileDAOTest {
     }
 
     @Test
-    public void testDeleteSchemeNotFound() {
+    public void testDeleteHeroNotFound() {
         // Invoke
         boolean result = assertDoesNotThrow(() -> VillainFileDAO.deleteScheme(98),
                                                 "Unexpected exception thrown");
@@ -166,13 +166,12 @@ public class VillainFileDAOTest {
     }
 
     @Test
-    public void testUpdateSchemeNotFound() {
+    public void testUpdateHeroNotFound() {
         // Setup
         Scheme scheme = new Scheme(98,"Bolt", "Destroy cats");
 
         // Invoke
-        Scheme result = assertDoesNotThrow(() -> VillainFileDAO.updateScheme(scheme),
-                                                "Unexpected exception thrown");
+        Scheme result = assertDoesNotThrow(() -> VillainFileDAO.updateScheme(scheme), "Unexpected exception thrown");
 
         // Analyze
         assertNull(result);
@@ -197,16 +196,4 @@ public class VillainFileDAOTest {
                         () -> new VillainFileDAO("doesnt_matter.txt",mockObjectMapper),
                         "IOException not thrown");
     }
-
-
-    
-
-
-
-
-
-
-
-
-
 }
