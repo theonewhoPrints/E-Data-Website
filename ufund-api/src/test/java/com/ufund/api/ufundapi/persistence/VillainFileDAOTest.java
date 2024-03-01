@@ -122,9 +122,9 @@ public class VillainFileDAOTest {
     * It creates a new scheme, invokes the method, and checks the result and the scheme's presence.
     */
     @Test
-    public void testCreateVillain() {
+    public void testCreateScheme() {
         // Setup
-        Scheme scheme = new Scheme(102,"clayman", "world to clay");
+        Scheme scheme = new Scheme(102, "clayman", "world to clay");
 
         // Invoke
         Scheme result = assertDoesNotThrow(() -> VillainFileDAO.createScheme(scheme),
@@ -132,9 +132,13 @@ public class VillainFileDAOTest {
 
         // Analyze
         assertNotNull(result);
-        Scheme actual = VillainFileDAO.getScheme(scheme.getId());
-        assertEquals(actual.getId(),scheme.getId());
-        assertEquals(actual.getName(),scheme.getName());
+
+        // Verify the existence of the created scheme by name
+        Scheme actual = VillainFileDAO.getScheme_str(scheme.getName());
+        assertNotNull(actual);
+        assertEquals(scheme.getId(), actual.getId());
+        assertEquals(scheme.getName(), actual.getName());
+        assertEquals(scheme.getTitle(), actual.getTitle());
     }
 
     /**
@@ -173,6 +177,7 @@ public class VillainFileDAOTest {
                         () -> VillainFileDAO.createScheme(scheme),
                         "IOException not thrown");
     }
+    
     /**
      * Test method to verify the behavior when a scheme is not found in {@code VillainFileDAO}.
      * It invokes the method to retrieve a scheme with a non-existing ID and checks the result.

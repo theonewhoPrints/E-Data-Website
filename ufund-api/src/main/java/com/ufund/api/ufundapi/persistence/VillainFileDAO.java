@@ -183,7 +183,13 @@ public class VillainFileDAO implements VillainDAO {
     @Override
     public Scheme getScheme_str(String name) {
         synchronized (schemes) {
-            return schemes.get(name);    
+            for (Scheme scheme : schemes.values()) {
+                if (scheme.getName().equals(name)) {
+                    return scheme;
+                }
+            }
+            // If scheme not found, return null or throw an exception
+            return null;
         }
     }
 
