@@ -25,7 +25,7 @@ public class VillainFileDAO implements VillainDAO {
     private static final Logger LOG = Logger.getLogger(VillainFileDAO.class.getName());
     private static final Logger LOG1 = Logger.getLogger(Scheme.class.getSimpleName());
 
-    private Map<Integer, Scheme> schemes;  // Provides a local cache of the Scheme objects
+    Map<Integer, Scheme> schemes;  // Provides a local cache of the Scheme objects
     // so that we don't need to read from the file
     // each time
 
@@ -183,7 +183,13 @@ public class VillainFileDAO implements VillainDAO {
     @Override
     public Scheme getScheme_str(String name) {
         synchronized (schemes) {
-            return schemes.get(name);    
+            for (Scheme scheme : schemes.values()) {
+                if (scheme.getName().equals(name)) {
+                    return scheme;
+                }
+            }
+            // If scheme not found, return null or throw an exception
+            return null;
         }
     }
 
