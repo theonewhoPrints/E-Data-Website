@@ -1,0 +1,10 @@
+<div *ngIf="scheme">
+  <h2>{{scheme.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{scheme.id}}</div>
+  <div>
+    <label for="scheme-name">Scheme name: </label>
+    <input id="scheme-name" [(ngModel)]="scheme.name" placeholder="Scheme name"/>
+  </div>
+  <button type="button" (click)="goBack()">go back</button>
+  <button type="button" (click)="save()">save</button>
+</div>
