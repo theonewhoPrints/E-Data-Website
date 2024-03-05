@@ -1,0 +1,21 @@
+<h2>My Schemes</h2>
+
+<div>
+  <label for="new-scheme">Scheme name: </label>
+  <input id="new-schemes" #schemeName />
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button type="button" class="add-button" (click)="add(schemeName.value); schemeName.value=''">
+    Add scheme
+  </button>
+</div>
+
+<ul class="schemes">
+  <li *ngFor="let scheme of schemes">
+    <a routerLink="/detail/{{scheme.id}}">
+      <span class="badge">{{scheme.id}}</span> {{scheme.name}}
+    </a>
+    <button type="button" class="delete" title="delete scheme"
+      (click)="delete(scheme)">x</button>
+  </li>
+</ul>

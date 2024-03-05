@@ -2,13 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { HeroesComponent } from './heroes/heroes.component';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
+import { SchemesComponent } from './schemes/schemes.component';
+import { SchemeDetailComponent } from './scheme-detail/scheme-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HeroSearchComponent } from './hero-search/hero-search.component';
+import { SchemeSearchComponent } from './scheme-search/scheme-search.component';
 
 @NgModule({
   imports: [
@@ -20,10 +20,10 @@ import { HeroSearchComponent } from './hero-search/hero-search.component';
   declarations: [
     AppComponent,
     DashboardComponent,
-    HeroesComponent,
-    HeroDetailComponent,
+    SchemesComponent,
+    SchemeDetailComponent,
     MessagesComponent,
-    HeroSearchComponent
+    SchemeSearchComponent
   ],
   providers: [
     // no need to place any providers due to the `providedIn` flag...

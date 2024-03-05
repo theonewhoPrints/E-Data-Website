@@ -1,14 +1,14 @@
-<a *ngFor="let hero of heroes"
-  routerLink="/detail/{{hero.id}}">
-  {{hero.name}}
+<a *ngFor="let scheme of schemes"
+  routerLink="/detail/{{scheme.id}}">
+  {{scheme.name}}
 </a>
 
-<h2>Top Heroes</h2>
-<div class="heroes-menu">
-  <a *ngFor="let hero of heroes"
-      routerLink="/detail/{{hero.id}}">
-      {{hero.name}}
+<h2>Top Schemes</h2>
+<div class="schemes-menu">
+  <a *ngFor="let scheme of schemes"
+      routerLink="/detail/{{scheme.id}}">
+      {{scheme.name}}
   </a>
 </div>
 
-<app-hero-search></app-hero-search>
+<app-scheme-search></app-scheme-search>
