@@ -246,4 +246,32 @@ public class VillainFileDAOTest {
                         () -> new VillainFileDAO("doesnt_matter.txt",mockObjectMapper),
                         "IOException not thrown");
     }
+        
+        @Test
+        public void testFindSchemesByTitle() throws IOException {
+            // Setup
+            String searchTitle = "Freeze";
+            Scheme[] expectedSchemes = {testSchemes[0], testSchemes[1]};
+        
+            // Invoke
+            Scheme[] foundSchemes = VillainFileDAO.findSchemesByTitle(searchTitle);
+        
+            // Analyze
+            assertEquals(expectedSchemes.length, foundSchemes.length);
+        
+        }
+        
+        @Test
+        public void testFindSchemesByName() throws IOException {
+            // Setup
+            String searchName = "Dr. Freeze";
+            Scheme[] expectedSchemes = {testSchemes[0]};
+        
+            // Invoke
+            Scheme[] foundSchemes = VillainFileDAO.findSchemesByName(searchName);
+        
+            // Analyze
+            assertEquals(expectedSchemes.length, foundSchemes.length);
+        
+        }
 }
