@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 /**
- * Test the Hero File DAO class
+ * Test the Villain File DAO class
  * 
  * @author Isaac Soares & Nadeem Mustafa 
  */
@@ -39,7 +39,7 @@ public class VillainFileDAOTest {
      * @throws IOException
      */
     @BeforeEach
-    public void setupHeroFileDAO() throws IOException {
+    public void setupVillainFileDAO() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
         testSchemes = new Scheme[3];
         testSchemes[0] = new Scheme(99,"Dr. Freeze", "Freeze America");
@@ -47,7 +47,7 @@ public class VillainFileDAOTest {
         testSchemes[2] = new Scheme(101,"TSiftal", "waste all carbon emissions");
 
         // When the object mapper is supposed to read from the file
-        // the mock object mapper will return the hero array above
+        // the mock object mapper will return the villain array above
         when(mockObjectMapper
             .readValue(new File("doesnt_matter.txt"),Scheme[].class))
                 .thenReturn(testSchemes);
@@ -111,8 +111,8 @@ public class VillainFileDAOTest {
         // Analzye
         assertEquals(result,true);
         // We check the internal tree map size against the length
-        // of the test heroes array - 1 (because of the delete)
-        // Because heroes attribute of HeroFileDAO is package private
+        // of the test villain array - 1 (because of the delete)
+        // Because villain attribute of VillainFileDAO is package private
         // we can access it directly
         assertEquals(VillainFileDAO.schemes.size(),testSchemes.length-1);
     }
@@ -183,7 +183,7 @@ public class VillainFileDAOTest {
      * It invokes the method to retrieve a scheme with a non-existing ID and checks the result.
      */
     @Test
-    public void testGetHeroNotFound() {
+    public void testGetSchemeNotFound() {
         // Invoke
         Scheme scheme = VillainFileDAO.getScheme(98);
 
@@ -196,7 +196,7 @@ public class VillainFileDAOTest {
      * It invokes the method to delete a scheme with a non-existing ID and checks the result and internal state.
      */
     @Test
-    public void testDeleteHeroNotFound() {
+    public void testDeleteSchemeNotFound() {
         // Invoke
         boolean result = assertDoesNotThrow(() -> VillainFileDAO.deleteScheme(98),
                                                 "Unexpected exception thrown");
@@ -211,7 +211,7 @@ public class VillainFileDAOTest {
      * It invokes the method to update a scheme with a non-existing ID and checks the result.
      */
     @Test
-    public void testUpdateHeroNotFound() {
+    public void testUpdateSchemeNotFound() {
         // Setup
         Scheme scheme = new Scheme(98,"Bolt", "Destroy cats");
 
@@ -235,7 +235,7 @@ public class VillainFileDAOTest {
         // exception was raised during JSON object deseerialization
         // into Java objects
         // When the Mock Object Mapper readValue method is called
-        // from the HeroFileDAO load method, an IOException is
+        // from the VillainFileDAO load method, an IOException is
         // raised
         doThrow(new IOException())
             .when(mockObjectMapper)
