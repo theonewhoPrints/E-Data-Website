@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SchemeSearchComponent } from './scheme-search/scheme-search.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { SchemeSearchComponent } from './scheme-search/scheme-search.component';
     SchemesComponent,
     SchemeDetailComponent,
     MessagesComponent,
-    SchemeSearchComponent
+    SchemeSearchComponent,
+    LoginComponent
   ],
   providers: [
     // no need to place any providers due to the `providedIn` flag...
