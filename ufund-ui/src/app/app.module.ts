@@ -12,7 +12,6 @@ import { SchemeSearchComponent } from './scheme-search/scheme-search.component';
 
 // log in
 import { LoginComponent } from './login/login.component';
-import { userBackendProvider } from './user.service';
 
 @NgModule({
   imports: [

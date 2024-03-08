@@ -1,36 +1,38 @@
 import {Component, OnInit} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 
-import { Scheme } from '../scheme';
-import { SchemeService } from '../scheme.service';
+import { User } from '../user';
+import { UserService } from '../user.service';
+import { MessageService } from '../message.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit{
-  scheme: Scheme | undefined;
+export class LoginComponent{
+  user: User | undefined;
 
   constructor(
-    private route: ActivatedRoute,
-    private schemeService: SchemeService,
-    private location: Location
+    private userService: UserService,
+    private messageService: MessageService,
+    private router: Router
   ) {}
-
-  ngOnInit(): void {
-    this.getScheme();
-  }
-  
-  getScheme(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    this.schemeService.getScheme(id)
-      .subscribe(scheme => this.scheme = scheme);
-  }
 
   login(name: string): void {
     name = name.trim();
     if (!name) { return; }
+    this.userService.getUserName(name).subscribe(result => {
+      if (result === name) {
+        // User found, perform the login logic here
+        this.messageService.add('User found:' + this.userService.searchUsers(name));
+        this.messageService.add(`Login successful`);
+        this.router.navigate(['/dashboard']);
+      } else {
+        // User not found, display a message
+        this.messageService.add(`Login failed: user not found`);
+      }
+    });
   }
+
 }

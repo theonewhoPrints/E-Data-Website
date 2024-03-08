@@ -1,9 +1,7 @@
-<!-- login.component.html -->
-
 <h1>Login</h1>
 
-<form (submit)="login()">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" [(ngModel)]="username" required>
+<form (ngSubmit)="login(name.value)">
+    <label for="name">Name:</label>
+    <input type="text" id="name" #name required>
     <button type="submit">Login</button>
-</form>
+  </form>
