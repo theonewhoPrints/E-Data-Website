@@ -11,16 +11,17 @@ import { MessageService } from './message.service';
 
 export class AppComponent implements OnInit{
   title = 'Only Villains';
-  private roles: string[] = [];
+  private role = '';
   isLoggedIn = false;
-  //showAdminBoard = false;
-  //showModeratorBoard = false;
+  showAdminBoard = false;
+  showModeratorBoard = false;
   username?: string;
 
   constructor(public router: Router, private storageService: StorageService, private messageService: MessageService) {}
 
   ngOnInit(): void {
     this.isLoggedIn = this.storageService.isLoggedIn();
+    this.messageService.add('Logged in: '+ this.isLoggedIn);
 
     if(!this.isLoggedIn) 
     {
@@ -28,15 +29,18 @@ export class AppComponent implements OnInit{
       this.router.navigate(['/login']);
     }
 
-    if (this.isLoggedIn) {
+    if (this.isLoggedIn) 
+    {
       const user = this.storageService.getUser();
-      this.roles = user.roles;
+      this.messageService.add('User: ' + user);
+      this.role = user[2];
 
-      //this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      //this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-
+      this.showAdminBoard = this.role.includes('ROLE_ADMIN');
+      this.showModeratorBoard = this.role.includes('ROLE_MODERATOR');
+      this.messageService.add('Current Role: ' + this.role);
       this.username = user.username;
     }
+
   }
 
   logout(): void {

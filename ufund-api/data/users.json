@@ -1,1 +1,1 @@
-[{"id": 1, "name": "Evan"},{"id":2, "name": "Jacky"}]
+[{"id": 1, "name": "Evan", "role": "ROLE_ADMIN"},{"id":2, "name": "Jacky", "role": "ROLE_USER"}]

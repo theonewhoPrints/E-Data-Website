@@ -38,7 +38,9 @@ export class LoginComponent implements OnInit{
         // User found, perform the login logic here
         this.messageService.add('Login successful, user: ' + result);
         this.router.navigate(['/dashboard']);
-        this.storageService.saveUser(result);
+        this.userService.getUser(name).subscribe(user => {
+          this.storageService.saveUser(user);
+        });
       } else {
         // User not found, display a message
         this.messageService.add(`Login failed: user not found`);
