@@ -1,8 +1,7 @@
 <h1>{{title}}</h1>
-<nav>
+<nav *ngIf="router.url !== '/login'">
   <a routerLink="/dashboard">Dashboard</a><br>
-  <a routerLink="/schemes">Scheme</a><br>
-  <a routerLink="/login">Login</a>
+  <a routerLink="/schemes">Scheme</a>
 </nav>
 <router-outlet></router-outlet>
 <app-messages></app-messages>

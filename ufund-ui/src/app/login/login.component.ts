@@ -22,11 +22,11 @@ export class LoginComponent{
   login(name: string): void {
     name = name.trim();
     if (!name) { return; }
+    
     this.userService.getUserName(name).subscribe(result => {
       if (result === name) {
         // User found, perform the login logic here
-        this.messageService.add('User found:' + this.userService.searchUsers(name));
-        this.messageService.add(`Login successful`);
+        this.messageService.add('Login successful, user: ' + result);
         this.router.navigate(['/dashboard']);
       } else {
         // User not found, display a message
