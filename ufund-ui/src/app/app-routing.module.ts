@@ -6,7 +6,7 @@ import { SchemeDetailComponent } from './scheme-detail/scheme-detail.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'detail/:id', component: SchemeDetailComponent },
   { path: 'schemes', component: SchemesComponent },
