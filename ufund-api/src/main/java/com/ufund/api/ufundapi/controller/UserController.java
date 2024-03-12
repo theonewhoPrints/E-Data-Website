@@ -78,13 +78,13 @@ public class UserController {
      * <br>
      * null if no {@link User user} with a matching name is found
      * 
-     * Example usage in cURL: curl.exe -X GET 'http://localhost:8080/users?name=Evan'
+     * Example usage in cURL: curl.exe -X GET 'http://localhost:8080/users/query?name=Evan'
      * 
      * @author Evan Kinsey
      */
-    @GetMapping("/")
+    @GetMapping("/query")
     public ResponseEntity<User> findUser(@RequestParam String name) {
-        LOG.info("GET /users?name=" + name);
+        LOG.info("GET /users/query?name=" + name);
         try {
             User user = userDao.findUser(name);
             return new ResponseEntity<>(user, HttpStatus.OK);
