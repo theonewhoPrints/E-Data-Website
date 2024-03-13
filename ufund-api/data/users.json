@@ -1,1 +1,1 @@
-[{"id": 1, "name": "Evan", "role": "ROLE_ADMIN"},{"id":2, "name": "Jacky", "role": "ROLE_USER"}]
+[{"id": 1, "name": "Admin", "role": "ROLE_ADMIN"},{"id":2, "name": "Dr. Nefarious", "role": "ROLE_VILLAIN"}, {"id": 3, "name": "Evan", "role": "ROLE_HELPER"}]

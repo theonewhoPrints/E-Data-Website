@@ -5,6 +5,7 @@ import { UserService } from '../user.service';
 import { MessageService } from '../message.service';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/_services/storage.service';
+import { ProfileService } from '../profile.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit{
     private userService: UserService,
     private messageService: MessageService,
     private router: Router,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private profileService: ProfileService,
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +35,16 @@ export class LoginComponent implements OnInit{
     name = name.trim();
     if (!name) { return; }
     
+    this.userService.getUser(name).subscribe(user => {
+      if (user[1] === name) {
+        this.router.navigate(['/dashboard']);
+        this.storageService.saveUser(user);
+        this.profileService.updateProfile();
+      } else {
+        this.messageService.add(`Login failed: user not found`);
+      }
+    });
+    /*
     this.userService.getUserName(name).subscribe(result => {
       if (result === name) {
         // User found, perform the login logic here
@@ -41,11 +53,12 @@ export class LoginComponent implements OnInit{
         this.userService.getUser(name).subscribe(user => {
           this.storageService.saveUser(user);
         });
+        this.profileService.updateProfile();
       } else {
         // User not found, display a message
         this.messageService.add(`Login failed: user not found`);
       }
     });
+    */
   }
-
 }

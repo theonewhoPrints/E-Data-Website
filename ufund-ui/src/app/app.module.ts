@@ -12,6 +12,7 @@ import { SchemeSearchComponent } from './scheme-search/scheme-search.component';
 
 // log in
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { LoginComponent } from './login/login.component';
     SchemeDetailComponent,
     MessagesComponent,
     SchemeSearchComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent,
   ],
   providers: [],
   bootstrap: [ AppComponent ]
