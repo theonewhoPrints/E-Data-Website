@@ -18,6 +18,7 @@ import { CartService } from '../cart.service';
 export class SchemeSearchComponent implements OnInit {
   schemes$!: Observable<Scheme[]>;
   private searchTerms = new Subject<string>();
+  message: string = ""
 
   constructor(private schemeService: SchemeService, private cartService: CartService) {}
 
@@ -27,7 +28,22 @@ export class SchemeSearchComponent implements OnInit {
   }
 
   addToCart(scheme: Scheme): void {
-    this.cartService.addToCart(scheme);
+    const existingScheme = this.cartService.getCart().find(s => s.id === scheme.id);
+
+    if (existingScheme) {
+      console.log(`Scheme "${scheme.name}" is already in the cart.`);
+      this.message = "Already added to cart";
+    } else {
+      this.cartService.addToCart(scheme);
+      scheme.addedToCart = true
+    }
+  
+    // Set the addedToCart flag for all schemes in the cart
+    this.schemes$.subscribe(schemes => {
+      schemes.forEach(s => {
+        s.addedToCart = this.cartService.getCart().some(item => item.id === s.id);
+      });
+    });
   }
 
   ngOnInit(): void {
