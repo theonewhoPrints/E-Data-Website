@@ -8,7 +8,12 @@
   <a *ngFor="let scheme of schemes"
       routerLink="/detail/{{scheme.id}}">
       {{scheme.name}}
-      <button (click)="addToCart(scheme)">Add to cart</button>
+      <!--If you want to make it so that the 
+        button "add to cart" appears next to the scheme,
+        use the following:
+        <button (click)="addToCart(scheme)">Add to cart</button>
+        -->
+      
   </a>
 </div>
 
