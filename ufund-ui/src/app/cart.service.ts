@@ -10,7 +10,13 @@ export class CartService {
   constructor() { }
 
   addToCart(scheme: Scheme): void {
-    this.cart.push(scheme);
+    //this.cart.push(scheme);
+    const existingScheme = this.cart.find(s => s.id === scheme.id);
+    if (existingScheme) {
+      existingScheme.addedToCart = true;
+    } else {
+      this.cart.push({ ...scheme, addedToCart: false });
+    }
   }
 
   removeFromCart(scheme: Scheme): void {
