@@ -8,6 +8,7 @@
   <a *ngFor="let scheme of schemes"
       routerLink="/detail/{{scheme.id}}">
       {{scheme.name}}
+      <button (click)="addToCart(scheme)">Add to cart</button>
   </a>
 </div>
 

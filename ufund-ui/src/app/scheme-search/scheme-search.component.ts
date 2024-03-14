@@ -8,6 +8,7 @@ import {
 
 import { Scheme } from '../scheme';
 import { SchemeService } from '../scheme.service';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-scheme-search',
@@ -18,11 +19,15 @@ export class SchemeSearchComponent implements OnInit {
   schemes$!: Observable<Scheme[]>;
   private searchTerms = new Subject<string>();
 
-  constructor(private schemeService: SchemeService) {}
+  constructor(private schemeService: SchemeService, private cartService: CartService) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {
     this.searchTerms.next(term);
+  }
+
+  addToCart(scheme: Scheme): void {
+    this.cartService.addToCart(scheme);
   }
 
   ngOnInit(): void {
