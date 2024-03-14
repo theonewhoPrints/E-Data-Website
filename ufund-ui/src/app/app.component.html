@@ -1,14 +1,14 @@
 <header>
-  <div class="container">
-    <div class="title-and-cart">
-      <h1>{{title}}</h1>
-      <nav>
-        <a routerLink="/dashboard">Dashboard</a>
-        <a routerLink="/schemes">Scheme</a>
-        <a routerLink="/cart"><i class="fas fa-shopping-cart"></i></a> <!-- Cart icon -->
-      </nav>
+  <div class="title-container">
+    <h1>{{title}}</h1>
+    <div class="cart-icon">
+      <a routerLink="/cart"><i class="fas fa-shopping-cart"></i></a>
     </div>
   </div>
+  <nav>
+    <a routerLink="/dashboard">Dashboard</a>
+    <a routerLink="/schemes">Scheme</a>
+  </nav>
 </header>
 <router-outlet></router-outlet>
 <app-messages></app-messages>

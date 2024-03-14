@@ -10,7 +10,7 @@ export class CartComponent implements OnInit {
   constructor(private titleService: Title) { }
 
   ngOnInit(): void {
-    // Set the title for the browser cart page!!!
+    // Sets the title for the browser cart page!!!
     this.titleService.setTitle('Villain Cart');
   }
 }

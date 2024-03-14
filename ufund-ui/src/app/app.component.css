@@ -1,0 +1,24 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+  }
+  
+  .title-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .cart-icon {
+    margin-left: 1000px; /* Adjust as needed */
+  }
+  
+  nav {
+    display: flex;
+  }
+  
+  nav a {
+    margin-right: 10px; /* Adjust as needed */
+  }
+  
