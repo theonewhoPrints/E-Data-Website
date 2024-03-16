@@ -1,7 +1,23 @@
-<h1>{{title}}</h1>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/schemes">Scheme</a>
-</nav>
-<router-outlet></router-outlet>
-<app-messages></app-messages>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
+
+  <!-- Other meta tags, CSS links, or JavaScript imports can go here -->
+</head>
+<body>
+  <!-- Your HTML structure, including placeholders for specific content -->
+  <h1 id="custom-title">{{title}}</h1>
+  <nav>
+    <a routerLink="/dashboard" id = "custom-dashboard">Our Villains</a>
+    <a routerLink="/schemes">   Scheme</a>
+  </nav>
+  <router-outlet></router-outlet>
+  <app-messages></app-messages>
+  
+  <!-- Additional scripts or other content -->
+</body>
+</html>
