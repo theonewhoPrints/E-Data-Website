@@ -3,7 +3,7 @@ import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 /**
- * Represents a user user entity
+ * Represents a user entity
  * 
  * @author Evan Kinsey
  */
@@ -18,9 +18,9 @@ public class User {
 
     /**
      * Create a user with the given id and name. 
-     * @param id The id of the villain
-     * @param name The name of the villain
-     * @param role The role of the villain
+     * @param id The id of the user
+     * @param name The name of the user
+     * @param role The role of the user
      *
      * 
      * {@literal @}JsonProperty is used in serialization and deserialization
@@ -50,6 +50,14 @@ public class User {
         return name;
     }
 
+    /**
+     * Retrieves the role of the user
+     * @return The role of the user
+     */
+    public String getRole() {
+        return role;
+    }
+
      /**
      * Sets the name of the user - necessary for JSON object to Java object deserialization
      * @param name The name of the user
@@ -59,12 +67,20 @@ public class User {
     }
 
     /**
+     * Sets the role of the user - necessary for JSON object to Java object deserialization
+     * @param role The role of the user
+     */
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    /**
      * Returns a string representation of the configuration.
      * @return string representation.
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT, id, name);
+        return String.format(STRING_FORMAT, id, name, role);
     }
 
 }
