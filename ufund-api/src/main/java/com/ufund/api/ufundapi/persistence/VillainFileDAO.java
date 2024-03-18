@@ -71,6 +71,27 @@ public class VillainFileDAO implements VillainDAO {
         return schemes.values().toArray(new Scheme[0]);
     }
 
+    // private Scheme[] getSchemesTitlesArray() {
+    //     return schemes.values().toArray(new Scheme[0]);
+    // }
+
+
+    /**
+ * Retrieves an array of scheme titles from the stored schemes
+ * 
+ * @return An array of scheme titles
+ */
+// public String[] getSchemeTitles() {
+//     synchronized (schemes) {
+//         ArrayList<String> titles = new ArrayList<>();
+//         for (Scheme scheme : schemes.values()) {
+//             titles.add(scheme.getTitle());
+//         }
+//         return titles.toArray(new String[0]);
+//     }
+// }
+
+
     /**
      * Finds an array from {@linkplain Scheme villains} from the tree map
      * 
@@ -141,6 +162,12 @@ public class VillainFileDAO implements VillainDAO {
         }
     }
 
+    // @Override
+    // public Scheme[] getSchemesTitles() {
+    //     synchronized(schemes) {
+    //         return getSchemesTitlesArray();
+    //     }
+    // }
     /**
     ** {@inheritDoc}
      */
