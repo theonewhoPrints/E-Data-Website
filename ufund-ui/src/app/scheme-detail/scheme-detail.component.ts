@@ -6,6 +6,7 @@ import { Scheme } from '../scheme';
 import { SchemeService } from '../scheme.service';
 import { CartService } from '../cart.service';
 import { Observable, Subject } from 'rxjs';
+import { StorageService } from 'src/_services/storage.service';
 
 @Component({
   selector: 'app-scheme-detail',
@@ -16,16 +17,22 @@ export class SchemeDetailComponent implements OnInit{
   scheme: Scheme | undefined;
   message: string = ""
   schemes$!: Observable<Scheme[]>;
+  role = '';
 
   constructor(
     private route: ActivatedRoute,
     private schemeService: SchemeService,
     private location: Location,
-    private cartService: CartService
+    private cartService: CartService,
+    private storageService: StorageService
   ) {}
 
   ngOnInit(): void {
     this.getScheme();
+    
+    this.storageService.user$.subscribe(user => {
+      this.role = user[2];
+  });
   }
   
   getScheme(): void {

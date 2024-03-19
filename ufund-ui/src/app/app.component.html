@@ -4,10 +4,9 @@
   <div class="title-container">
   <nav *ngIf="router.url !== '/login'">
     <a routerLink="/dashboard">Dashboard</a><br>
-    <a routerLink="/schemes">Scheme</a><br>
   <a (click) = "logout()" href>Logout</a>
   </nav>
-  <div class="cart-icon" *ngIf="router.url !== '/login'">
+  <div class="cart-icon" *ngIf="role == 'ROLE_HELPER' && router.url !== '/login'" >
     <a routerLink="/cart"><i class="fas fa-shopping-cart"></i></a>
   </div>
 </div>

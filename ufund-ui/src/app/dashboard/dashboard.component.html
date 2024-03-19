@@ -1,17 +1,2 @@
-
-
-<h2>Top Schemes</h2>
-<div class="schemes-menu">
-  <a *ngFor="let scheme of schemes"
-      routerLink="/detail/{{scheme.id}}">
-      {{scheme.name}}
-      <!--If you want to make it so that the 
-        button "add to cart" appears next to the scheme,
-        use the following:
-        <button (click)="addToCart(scheme)">Add to cart</button>
-        -->
-      
-  </a>
-</div>
-
 <app-scheme-search></app-scheme-search>
+<app-schemes></app-schemes>
