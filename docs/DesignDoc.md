@@ -71,7 +71,6 @@ This section describes the application architecture.
 
 The following Tiers/Layers model shows a high-level view of the webapp's architecture. 
 **NOTE**: detailed diagrams are required in later sections of this document.
-> _**[Sprint 1]** (Augment this diagram with your **own** rendition and representations of sample system classes, placing them into the appropriate M/V/VM (orange rectangle) tier section. Focus on what is currently required to support **Sprint 1 - Demo requirements**. Make sure to describe your design choices in the corresponding _**Tier Section**_ and also in the _**OO Design Principles**_ section below.)_
 
 ![The Tiers & Layers of the Architecture](architecture-tiers-and-layers.png)
 
@@ -111,6 +110,7 @@ This section describes the web interface flow; this is how the user views and in
 
 ### ViewModel Tier
 - VillainController: Directs VillainDAO to manipulate data
+- UserController: Directs UserDAO to manipulate data
 
 > _**[Sprint 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
@@ -124,7 +124,10 @@ This section describes the web interface flow; this is how the user views and in
 ### Model Tier
 - Scheme: Logic for a Scheme object 
 - VillainDAO: Interface for VillainFileDAO
-- VillainFileDAO: Lgic to get and manipulate data in villains.json
+- VillainFileDAO: Logic to get and manipulate data in villains.json
+- User: Logic for a User object, used for log in
+- UserDAO: Interface for UserFileDAO
+- UserFileDAO: Logic to get data in users.json
 
 > _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View

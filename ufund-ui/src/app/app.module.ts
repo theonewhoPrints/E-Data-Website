@@ -9,6 +9,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SchemeSearchComponent } from './scheme-search/scheme-search.component';
+
+// log in
+import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+
+//cupboard
 import { CupboardComponent } from './cupboard/cupboard.component';
 
 @NgModule({
@@ -25,11 +31,12 @@ import { CupboardComponent } from './cupboard/cupboard.component';
     SchemeDetailComponent,
     MessagesComponent,
     SchemeSearchComponent,
+    LoginComponent,
+    ProfileComponent,
     CupboardComponent
   ],
-  providers: [
-    // no need to place any providers due to the `providedIn` flag...
-  ],
+  providers: [],
   bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {
+ }
