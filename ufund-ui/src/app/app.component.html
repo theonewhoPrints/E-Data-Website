@@ -1,12 +1,12 @@
 <h1>{{title}}</h1>
 
-<header>
+<header *ngIf="router.url !== '/login'">
   <div class="title-container">
-  <nav *ngIf="router.url !== '/login'">
+  <nav>
     <a routerLink="/dashboard">Dashboard</a><br>
   <a (click) = "logout()" href>Logout</a>
   </nav>
-  <div class="cart-icon" *ngIf="role == 'ROLE_HELPER' && router.url !== '/login'" >
+  <div class="cart-icon" *ngIf="role == 'ROLE_HELPER'">
     <a routerLink="/cart"><i class="fas fa-shopping-cart"></i></a>
   </div>
 </div>
