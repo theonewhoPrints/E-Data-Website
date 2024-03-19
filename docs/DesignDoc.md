@@ -23,8 +23,9 @@ OnlyVillains is a client-for website! Changing the direction of power and fairne
 
 
 ### Purpose
->  _**[Sprint 2 & 4]** Provide a very brief statement about the project and the most
-> important user group and user goals._
+>  _**[Sprint 2 & 4]** 
+Provide a very brief statement about the project and the most important user group and user goals._
+The goal of this project is to create a functional website that enables users to register an account and log in. The primary purpose of the website is to assist villainous schemes by allowing users to add items to their cart and proceed to checkout by making donations. Additionally, the website should provide functionality for villains to establish their own accounts, enabling them to create schemes directly on the platform. These schemes will then be managed by administrators who also have their own accounts. Each user account will have specific permissions, with administrators possessing the highest level of access among the three user.
 
 ### Glossary and Acronyms
 > _**[Sprint 2 & 4]** Provide a table of terms and acronyms._
@@ -44,6 +45,11 @@ This section describes the features of the application.
 
 ### Definition of MVP
 > _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
+The MVP of this onlyvillains website includes the following core features:
+* User registration and login functionality
+* A search bar enabling users to find schemes by name
+* Capability to create their schemes and add them to the website
+* Notifications alerting users if they already have a scheme in their cart or when they add a scheme to the cart
 
 ### MVP Features
 >  _**[Sprint 4]** Provide a list of top-level Epics and/or Stories of the MVP._
@@ -59,8 +65,29 @@ This section describes the application domain.
 ![Domain Model](DomainAnalysis2.png)
 
 > _**[Sprint 2 & 4]** Provide a high-level overview of the domain for this application. You
-> can discuss the more important domain entities and their relationship
-> to each other._
+> can discuss the more important domain entities and their relationship to each other._
+
+Domain Entities
+* Evil Basket: This entity is a container that holds a collection of schemes.
+* Schemes: This is a entity that represents a plan of malicious purpose.
+* Evil Cupboard: This entity is a storage location for all the schemes in the system.
+* Manager: This is a type of user with access who reviews submitted schemes, manages Evil Baskets, and has full access to the Evil Cupboard.
+* Villiain: This is a type of user who can submit schemes.
+* Helper: This is a type of user who can search schemes and check them out in the Evil Basket.
+* Server: This entity is the backend system that stores information about users, schemes, Evil Baskets, and other aspects of the system.
+* File: This entity is the files on the server that store the data used by the system.
+
+Relationship 
+* Manager adds/removes schemes to/from Evil Basket: A manager can add schemes to and remove schemes from Evil Baskets.
+* Manager has all schemes in Evil Cupboard: A manager has all the schemes in the Evil Cupboard.
+* Manager checks schemes: A manager checks schemes.
+* Manager/Villiain/Helper identifies with username: All three users have usernames that they use to identify themselves with the system.
+* Scheme is a type of ranking profile: A scheme can be ranked that can be viewed by users.
+* Villiain submits schemes: Villiains can submit schemes.
+* Helper searches through schemes: A Helper can search through schemes.
+* Helper checks out Evil Basket: A Helper can checkout schemes in their Evil Basket.
+* Evil Basket has schemes: An Evil Basket contains Schemes.
+* Server saves to/loads from File: The server saves information to files and loads information from files.
 
 
 ## Architecture and Design
