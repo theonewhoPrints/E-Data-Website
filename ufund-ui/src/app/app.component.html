@@ -1,7 +1,20 @@
 <h1>{{title}}</h1>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/schemes">Scheme</a>
+<nav *ngIf="router.url !== '/login'">
+  <a routerLink="/dashboard">Dashboard</a><br>
+  <a routerLink="/schemes">Scheme</a><br>
+  <a (click) = "logout()" href>Logout</a>
 </nav>
+
+<div *ngIf="role == 'ROLE_ADMIN'">
+  <p>Here's how I would display admin tools, check app.component.html and good luck</p>
+</div>
+<div *ngIf="role == 'ROLE_VILLAIN'">
+  <p>Here's how I would display villain tools, check app.component.html and good luck</p>
+</div>
+<div *ngIf="role == 'ROLE_HELPER'">
+  <p>Here's how I would display helper tools, check app.component.html and good luck</p>
+</div>
+
 <router-outlet></router-outlet>
 <app-messages></app-messages>
+<app-profile></app-profile>
