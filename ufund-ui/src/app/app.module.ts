@@ -11,6 +11,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { SchemeSearchComponent } from './scheme-search/scheme-search.component';
 import { CartComponent } from './cart/cart.component';
 
+// log in
+import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -25,11 +29,12 @@ import { CartComponent } from './cart/cart.component';
     SchemeDetailComponent,
     MessagesComponent,
     SchemeSearchComponent,
-    CartComponent
+    CartComponent,
+    LoginComponent,
+    ProfileComponent,
   ],
-  providers: [
-    // no need to place any providers due to the `providedIn` flag...
-  ],
+  providers: [],
   bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {
+ }
