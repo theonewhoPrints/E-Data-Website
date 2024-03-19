@@ -2,7 +2,9 @@
 <nav *ngIf="router.url !== '/login'">
   <a routerLink="/dashboard">Dashboard</a><br>
   <a routerLink="/schemes">Scheme</a><br>
-  <a routerLink="/cupboard">Cupboard</a>
+  <div *ngIf="role !== 'ROLE_HELPER'">
+    <a routerLink="/cupboard">Cupboard</a><br>
+  </div>
   <a (click) = "logout()" href>Logout</a>
 </nav>
 
