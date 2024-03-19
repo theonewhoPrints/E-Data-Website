@@ -1,9 +1,16 @@
 <h1>{{title}}</h1>
-<nav *ngIf="router.url !== '/login'">
-  <a routerLink="/dashboard">Dashboard</a><br>
-  <a routerLink="/schemes">Scheme</a><br>
+
+<header *ngIf="router.url !== '/login'">
+  <div class="title-container">
+  <nav>
+    <a routerLink="/dashboard">Dashboard</a><br>
   <a (click) = "logout()" href>Logout</a>
-</nav>
+  </nav>
+  <div class="cart-icon" *ngIf="role == 'ROLE_HELPER'">
+    <a routerLink="/cart"><i class="fas fa-shopping-cart"></i></a>
+  </div>
+</div>
+</header>
 
 <div *ngIf="role == 'ROLE_ADMIN'">
   <p>Here's how I would display admin tools, check app.component.html and good luck</p>

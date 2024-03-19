@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Scheme } from '../scheme';
 import { SchemeService } from '../scheme.service';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +11,7 @@ import { SchemeService } from '../scheme.service';
 export class DashboardComponent implements OnInit {
   schemes: Scheme[] = [];
 
-  constructor(private schemeService: SchemeService) { }
+  constructor(private schemeService: SchemeService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.getSchemes();
@@ -19,5 +20,9 @@ export class DashboardComponent implements OnInit {
   getSchemes(): void {
     this.schemeService.getSchemes()
       .subscribe(schemes => this.schemes = schemes.slice(1, 5));
+  }
+
+  addToCart(scheme : Scheme): void {
+    this.cartService.addToCart(scheme);
   }
 }

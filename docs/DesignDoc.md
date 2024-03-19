@@ -17,7 +17,7 @@ geometry: margin=1in
   * Jacky Chan
   * Anthony Visiko
 
-## Executive Summary   Purpose- developing a website for villain donations acronyms: 
+## Executive Summary   
 
 OnlyVillains is a client-for website! Changing the direction of power and fairness us villains have in our schemes, solving the inequality they have when versing 'heroes' and 'figures of authority', by giving a way for people to help support our cause of sinisterness through donating to villain schemes so they can be more successful! This platform will be open to use for all people who want to donate to a villain's schemes, and villains as well who pass through the admin's requirements to post their schemes to get funding for.
 
