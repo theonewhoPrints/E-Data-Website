@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
@@ -259,6 +260,9 @@ public class VillainFileDAOTest {
         
         // Analyze
         assertArrayEquals(expectedSchemes, foundSchemes);
+        for (int i = 0; i < expectedSchemes.length; i++) {
+            assertEquals(expectedSchemes[i], foundSchemes[i]); // Assert each element of the arrays
+        }
     }
 
     @Test
@@ -272,6 +276,9 @@ public class VillainFileDAOTest {
         
         // Analyze
         assertArrayEquals(expectedSchemes, foundSchemes);
+        for (int i = 0; i < expectedSchemes.length; i++) {
+            assertEquals(expectedSchemes[i], foundSchemes[i]); // Assert each element of the arrays
+        }
     }
 
     @Test
@@ -285,18 +292,24 @@ public class VillainFileDAOTest {
         
         // Analyze
         assertArrayEquals(expectedSchemes, foundSchemes);
+        for (int i = 0; i < expectedSchemes.length; i++) {
+            assertEquals(expectedSchemes[i], foundSchemes[i]); // Assert each element of the arrays
+        }
     }
 
     @Test
     public void testFindSchemesByName_NullName() throws IOException {
         // Setup
         String searchName = null;
-        Scheme[] expectedSchemes = {}; // No schemes with a null name
+        Scheme[] expectedSchemes = new Scheme[0]; // No schemes with a null name
         
         // Invoke
         Scheme[] foundSchemes = VillainFileDAO.findSchemesByName(searchName);
         
         // Analyze
         assertArrayEquals(expectedSchemes, foundSchemes);
+        for (int i = 0; i < expectedSchemes.length; i++) {
+            assertEquals(expectedSchemes[i], foundSchemes[i]); // Assert each element of the arrays
+        }
     }
 }
