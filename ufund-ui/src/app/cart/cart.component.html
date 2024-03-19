@@ -1,0 +1,7 @@
+<h2>Shopping Cart</h2>
+<div class="cart-items">
+  <div *ngFor="let scheme of cart">
+    {{scheme.name}}
+    <button (click)="removeFromCart(scheme)">Remove</button>
+  </div>
+</div>
