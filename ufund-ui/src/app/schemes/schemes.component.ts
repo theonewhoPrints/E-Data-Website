@@ -21,19 +21,5 @@ export class SchemesComponent implements OnInit {
     this.schemeService.getSchemes()
     .subscribe(scheme => this.schemes = scheme);
   }
-
-  add(name: string): void {
-    name = name.trim();
-    if (!name) { return; }
-    this.schemeService.addScheme({ name } as Scheme)
-      .subscribe(scheme => {
-        this.schemes.push(scheme);
-      });
-  }
-
-  delete(scheme: Scheme): void {
-    this.schemes = this.schemes.filter(s => s !== scheme);
-    this.schemeService.deleteScheme(scheme.id).subscribe();
-  }
   
 }
