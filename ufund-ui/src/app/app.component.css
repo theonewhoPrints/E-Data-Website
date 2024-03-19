@@ -11,7 +11,9 @@ header {
   }
   
   .cart-icon {
-    margin-left: 1000px; /* Adjust as needed */
+    position: fixed;
+    top: 100px;
+    right: 20px;
   }
   
   nav {
