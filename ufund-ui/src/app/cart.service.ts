@@ -29,4 +29,9 @@ export class CartService {
   getCart(): Scheme[] {
     return this.cart;
   }
+
+  clearCart(): void {
+    this.cart.splice(0, this.cart.length);
+  }
+  
 }
