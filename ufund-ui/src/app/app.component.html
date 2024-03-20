@@ -8,16 +8,32 @@
 
   <!-- Other meta tags, CSS links, or JavaScript imports can go here -->
 </head>
-<body>
-  <!-- Your HTML structure, including placeholders for specific content -->
-  <h1 id="custom-title">{{title}}</h1>
+
+<h1 id="custom-title">{{title}}</h1>
+
+<header *ngIf="router.url !== '/login'">
+  <div class="title-container">
   <nav>
     <a routerLink="/dashboard" id = "custom-dashboard">Our Villains</a>
-    <a routerLink="/schemes">   Scheme</a>
+  <a (click) = "logout()" href>Logout</a>
   </nav>
-  <router-outlet></router-outlet>
-  <app-messages></app-messages>
-  
-  <!-- Additional scripts or other content -->
-</body>
-</html>
+  <div class="cart-icon" *ngIf="role == 'ROLE_HELPER'">
+    <a routerLink="/cart"><i class="fas fa-shopping-cart"></i></a>
+  </div>
+</div>
+</header>
+
+<div *ngIf="role == 'ROLE_ADMIN'">
+  <p>Here's how I would display admin tools, check app.component.html and good luck</p>
+</div>
+<div *ngIf="role == 'ROLE_VILLAIN'">
+  <p>Here's how I would display villain tools, check app.component.html and good luck</p>
+</div>
+<div *ngIf="role == 'ROLE_HELPER'">
+  <p>Here's how I would display helper tools, check app.component.html and good luck</p>
+</div>
+
+<router-outlet></router-outlet>
+<app-messages></app-messages>
+<app-profile></app-profile>
+

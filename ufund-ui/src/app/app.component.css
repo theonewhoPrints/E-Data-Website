@@ -1,3 +1,4 @@
+
 #custom-title {
     font-family: 'Great Vibes', cursive;
     color: #990000;
@@ -20,5 +21,31 @@
   #custom-dashboard::after{
     content: '\2620';
     font-size: 40px;
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+  }
+  
+  .title-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .cart-icon {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+  }
+  
+  nav {
+    display: flex;
+  }
+  
+  nav a {
+    margin-right: 10px; /* Adjust as needed */
+
   }
   

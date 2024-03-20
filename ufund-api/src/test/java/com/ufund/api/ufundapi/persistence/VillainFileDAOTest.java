@@ -1,10 +1,12 @@
 package com.ufund.api.ufundapi.persistence;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
@@ -246,32 +248,68 @@ public class VillainFileDAOTest {
                         () -> new VillainFileDAO("doesnt_matter.txt",mockObjectMapper),
                         "IOException not thrown");
     }
+
+    @Test
+    public void testFindSchemesByTitle() throws IOException {
+        // Setup
+        String searchTitle = "Freeze";
+        Scheme[] expectedSchemes = {testSchemes[0], testSchemes[1]}; // Schemes with titles containing "Freeze"
         
-        @Test
-        public void testFindSchemesByTitle() throws IOException {
-            // Setup
-            String searchTitle = "Freeze";
-            Scheme[] expectedSchemes = {testSchemes[0], testSchemes[1]};
+        // Invoke
+        Scheme[] foundSchemes = VillainFileDAO.findSchemesByTitle(searchTitle);
         
-            // Invoke
-            Scheme[] foundSchemes = VillainFileDAO.findSchemesByTitle(searchTitle);
-        
-            // Analyze
-            assertEquals(expectedSchemes.length, foundSchemes.length);
-        
+        // Analyze
+        assertArrayEquals(expectedSchemes, foundSchemes);
+        for (int i = 0; i < expectedSchemes.length; i++) {
+            assertEquals(expectedSchemes[i], foundSchemes[i]); // Assert each element of the arrays
         }
+    }
+
+    @Test
+    public void testFindSchemesByTitle_NullTitle() throws IOException {
+        // Setup
+        String searchTitle = null;
+        Scheme[] expectedSchemes = {}; // No schemes with a null title
         
-        @Test
-        public void testFindSchemesByName() throws IOException {
-            // Setup
-            String searchName = "Dr. Freeze";
-            Scheme[] expectedSchemes = {testSchemes[0]};
+        // Invoke
+        Scheme[] foundSchemes = VillainFileDAO.findSchemesByTitle(searchTitle);
         
-            // Invoke
-            Scheme[] foundSchemes = VillainFileDAO.findSchemesByName(searchName);
-        
-            // Analyze
-            assertEquals(expectedSchemes.length, foundSchemes.length);
-        
+        // Analyze
+        assertArrayEquals(expectedSchemes, foundSchemes);
+        for (int i = 0; i < expectedSchemes.length; i++) {
+            assertEquals(expectedSchemes[i], foundSchemes[i]); // Assert each element of the arrays
         }
+    }
+
+    @Test
+    public void testFindSchemesByName() throws IOException {
+        // Setup
+        String searchName = "Dr. Freeze";
+        Scheme[] expectedSchemes = {testSchemes[0]}; // Schemes with names exactly "Dr. Freeze"
+        
+        // Invoke
+        Scheme[] foundSchemes = VillainFileDAO.findSchemesByName(searchName);
+        
+        // Analyze
+        assertArrayEquals(expectedSchemes, foundSchemes);
+        for (int i = 0; i < expectedSchemes.length; i++) {
+            assertEquals(expectedSchemes[i], foundSchemes[i]); // Assert each element of the arrays
+        }
+    }
+
+    @Test
+    public void testFindSchemesByName_NullName() throws IOException {
+        // Setup
+        String searchName = null;
+        Scheme[] expectedSchemes = new Scheme[0]; // No schemes with a null name
+        
+        // Invoke
+        Scheme[] foundSchemes = VillainFileDAO.findSchemesByName(searchName);
+        
+        // Analyze
+        assertArrayEquals(expectedSchemes, foundSchemes);
+        for (int i = 0; i < expectedSchemes.length; i++) {
+            assertEquals(expectedSchemes[i], foundSchemes[i]); // Assert each element of the arrays
+        }
+    }
 }

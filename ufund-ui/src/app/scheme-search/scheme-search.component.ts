@@ -8,6 +8,7 @@ import {
 
 import { Scheme } from '../scheme';
 import { SchemeService } from '../scheme.service';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-scheme-search',
@@ -17,12 +18,32 @@ import { SchemeService } from '../scheme.service';
 export class SchemeSearchComponent implements OnInit {
   schemes$!: Observable<Scheme[]>;
   private searchTerms = new Subject<string>();
+  message: string = ""
 
-  constructor(private schemeService: SchemeService) {}
+  constructor(private schemeService: SchemeService, private cartService: CartService) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {
     this.searchTerms.next(term);
+  }
+
+  addToCart(scheme: Scheme): void {
+    const existingScheme = this.cartService.getCart().find(s => s.id === scheme.id);
+
+    if (existingScheme) {
+      console.log(`Scheme "${scheme.name}" is already in the cart.`);
+      this.message = "Already added to cart";
+    } else {
+      this.cartService.addToCart(scheme);
+      scheme.addedToCart = true
+    }
+  
+    // Set the addedToCart flag for all schemes in the cart
+    this.schemes$.subscribe(schemes => {
+      schemes.forEach(s => {
+        s.addedToCart = this.cartService.getCart().some(item => item.id === s.id);
+      });
+    });
   }
 
   ngOnInit(): void {
