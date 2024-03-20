@@ -113,7 +113,7 @@ export class SchemeService {
       tap(filteredSchemes => {
         const message = filteredSchemes && filteredSchemes.length ?
           `found schemes matching "${term}"` :
-          `no schemes matching "${term}"`;
+          `no results for "${term}"`;
         this.log(message);
       }),
       catchError(this.handleError<Scheme[]>('searchSchemes', []))
