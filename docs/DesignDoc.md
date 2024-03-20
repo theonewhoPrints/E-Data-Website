@@ -160,9 +160,47 @@ This section describes the web interface flow; this is how the user views and in
 > section will follow the same instructions that are given for the View
 > Tier above._
 
+* The Model tier represents the business logic and data access layer of the application. It's responsible for managing data models like Scheme and User, defining interfaces for data access like VillainDAO and UserDAO, and implementing concrete data access logic like VillainFileDAO and UserFileDAO.
+* Here's a breakdown of its functionalities:
+* Data Modeling:
+The Scheme and User classes represents the core data structures of the application. These classes encapsulate the attributes and behaviors associated with a scheme or a user.
+* Data Access Abstraction:
+The VillainDAO and UserDAO interfaces define contracts for accessing and manipulating villain and user data. This separation allows loose coupling and easier implementation changes without affecting dependent parts of the application.
+* Data Access Implementation:
+The VillainFileDAO and UserFileDAO classes implement the data access logic specific to the JSON files. These classes handle reading from and writing to the respective JSON files villains.json and users.json.
+
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
-> 
+
+classDiagram
+class Scheme {
+    // Attributes and methods related to Scheme data
+}
+
+class User {
+    // Attributes and methods related to User data
+}
+
+interface VillainDAO {
+    // Methods for accessing and manipulating Villain data
+}
+
+interface UserDAO {
+    // Methods for accessing and manipulating User data
+}
+
+class VillainFileDAO implements VillainDAO {
+    // Methods for accessing and manipulating villains.json
+}
+
+class UserFileDAO implements UserDAO {
+    // Methods for accessing and manipulating users.json
+}
+
+Scheme <--> |Uses| User
+VillainDAO <|-- |Interface Implemented by| VillainFileDAO
+UserDAO <|-- |Interface Implemented by| UserFileDAO
+
 ![Replace with your Model Tier class diagram 1, etc.](model-placeholder.png)
 
 ## OO Design Principles
@@ -179,6 +217,14 @@ This section describes the web interface flow; this is how the user views and in
 - Polymorphism: Through interfaces and inheritance, our design allows objects of different types to be treated uniformly, promoting flexibility and extensibility in handling various data types and behaviors.
 
 > _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
+
+* Single Responsibility: Each class represent a single entity such as Manager, Helper, Funding Basket, Scheme, Evil Basket. It has a clear responsibility like Manager class handles user authentication and managing Funding Baskets).
+
+* High Cohesion: This aligns with the way entities relate in the ER diagrams. Classes representing entities Manager and Funding Basket, Helper and Scheme are together to achieve specific functionalities like creating funding baskets, submitting schemes.
+
+* Information Expert: Assigning functionalities based on information ownership. For example, FundingBasket class would own methods to add/remove Needs requests because it has the information about what Needs are associated with it.
+
+* Low Coupling: Minimizing dependencies between classes is crucial in an OO design. Classes like Manager shouldn't cause major changes in another class like Funding Basket.
 
 
 > _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
