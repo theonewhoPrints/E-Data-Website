@@ -107,10 +107,10 @@ public class VillainController {
      * GET http://localhost:8080/villains/?name=ma
      */
     @GetMapping("/")
-    public ResponseEntity<Scheme[]> searchVillains(@RequestParam String name) {
-        LOG.info("GET /villains/?name=" + name);
+    public ResponseEntity<Scheme[]> searchVillains(@RequestParam String name, @RequestParam String title) {
+        LOG.info("GET /villains/?name=" + name + title);
         try {
-            Scheme[] villains = villainDao.findSchemes(name);
+            Scheme[] villains = villainDao.findSchemes(name+title);
             return new ResponseEntity<>(villains, HttpStatus.OK);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
