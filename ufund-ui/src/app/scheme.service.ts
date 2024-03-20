@@ -25,13 +25,7 @@ export class SchemeService {
       );
   }
 
-  // getSchemesTitles(): Observable<Scheme[]> {
-  //   return this.http.get<Scheme[]>(this.schemesUrl)
-  //     .pipe(
-  //       tap(_ => this.log('fetched scheme Titles')),
-  //       catchError(this.handleError<Scheme[]>('getSchemesTitles', []))
-  //     );
-  // }
+  
 
   /** GET scheme by id. Will 404 if id not found */
   getScheme(id: number): Observable<Scheme> {
@@ -42,23 +36,7 @@ export class SchemeService {
     );
   }
 
-  // getSchemesTitles(id: number): Observable<Scheme> {
-  //   const url = `${this.schemesUrl}/${id}`;
-  //   return this.http.get<Scheme>(url).pipe(
-  //     tap(_ => this.log(`fetched scheme id=${id}`)),
-  //     catchError(this.handleError<Scheme>(`getScheme id=${id}`))
-  //   );
-  // }
-
-  /** GET scheme titles from the server */
-  // getSchemeTitles(): Observable<string[]> {
-  //   return this.http.get<string[]>(`${this.schemesUrl}/titles`)
-  //     .pipe(
-  //       tap(_ => this.log('fetched scheme titles')),
-  //       catchError(this.handleError<string[]>('getSchemeTitles', []))
-  //     );
-  // }
-
+  
 
   /** Log a SchemeService message with the MessageService */
   private log(message: string) {
