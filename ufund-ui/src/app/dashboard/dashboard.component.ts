@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSchemes();
-    // this.getSchemesTitles();
+    
   }
 
   getSchemes(): void {
