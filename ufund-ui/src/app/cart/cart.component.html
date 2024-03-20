@@ -4,4 +4,5 @@
     {{scheme.name}}
     <button (click)="removeFromCart(scheme)">Remove</button>
   </div>
+  <button *ngIf="cart.length > 0" routerLink="/checkout">Checkout</button>
 </div>

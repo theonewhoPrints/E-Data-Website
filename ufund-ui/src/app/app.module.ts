@@ -14,6 +14,7 @@ import { CartComponent } from './cart/cart.component';
 // log in
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { ProfileComponent } from './profile/profile.component';
     CartComponent,
     LoginComponent,
     ProfileComponent,
+    CheckoutComponent,
   ],
   providers: [],
   bootstrap: [ AppComponent ]
