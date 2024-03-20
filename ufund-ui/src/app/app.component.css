@@ -1,3 +1,27 @@
+
+#custom-title {
+    font-family: 'Great Vibes', cursive;
+    color: #990000;
+    text-decoration: none;
+    font-size: 24px; /* Adjust font size as needed */
+  }
+  
+  #custom-title::after {
+    content: '  \1F608'; /* Unicode for heart symbol */
+  }
+
+#custom-dashboard{
+    font-family: 'Nosifer';
+    color: #990000;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 20px;
+  }
+
+  #custom-dashboard::after{
+    content: '\2620';
+    font-size: 40px;
+  }
 header {
     display: flex;
     align-items: center;
@@ -22,5 +46,6 @@ header {
   
   nav a {
     margin-right: 10px; /* Adjust as needed */
+
   }
   

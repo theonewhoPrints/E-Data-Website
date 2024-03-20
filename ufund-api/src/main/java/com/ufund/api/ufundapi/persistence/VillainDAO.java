@@ -20,6 +20,10 @@ public interface VillainDAO {
      */
     Scheme[] getSchemes() throws IOException;
 
+    Scheme[] findSchemesByNameAndTitle(String name, String title) throws IOException;
+
+
+   
     /**
      * Finds all {@linkplain Scheme villains} whose scheme contains the given text
      * 
