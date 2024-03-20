@@ -39,10 +39,10 @@ export class CupboardComponent {
     .subscribe(scheme => this.schemes = scheme);
   }
 
-  add(name: string): void {
-    name = name.trim();
-    if (!name) { return; }
-    this.schemeService.addScheme({ name } as Scheme)
+  add(title: string): void {
+    title = title.trim();
+    if (!title) { return; }
+    this.schemeService.addScheme({ name: this.username, title: title } as Scheme)
       .subscribe(scheme => {
         this.schemes.push(scheme);
       });

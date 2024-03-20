@@ -13,10 +13,10 @@
 
 <ul class="schemes">
   <li *ngFor="let scheme of schemes">
-    <a routerLink="/detail/{{scheme.id}}">
-      <span class="badge">{{scheme.id}}</span>{{scheme.name}}
+    <a routerLink="/detail/{{scheme.id}}" *ngIf="scheme.name == this.username">
+      <span class="badge">{{scheme.id}}</span>{{scheme.title}}
     </a>
-    <button type="button" class="delete" title="delete scheme"
+    <button type="button" class="delete" title="delete scheme" *ngIf="scheme.name == this.username"
       (click)="delete(scheme)">x</button>
   </li>
 </ul>

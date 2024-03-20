@@ -4,8 +4,7 @@
   <div class="title-container">
   <nav>
     <a routerLink="/dashboard">Dashboard</a><br>
-    <a routerLink="/dashboard">Dashboard</a><br>
-    <div *ngIf="role !== 'ROLE_HELPER'">
+    <div *ngIf="role == 'ROLE_VILLAIN'">
       <a routerLink="/cupboard">Cupboard</a><br>
     </div>
     <a (click) = "logout()" href>Logout</a>
