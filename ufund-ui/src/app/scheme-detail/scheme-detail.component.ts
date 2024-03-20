@@ -18,6 +18,7 @@ export class SchemeDetailComponent implements OnInit{
   message: string = ""
   schemes$!: Observable<Scheme[]>;
   role = '';
+  username?: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,6 +32,7 @@ export class SchemeDetailComponent implements OnInit{
     this.getScheme();
     
     this.storageService.user$.subscribe(user => {
+      this.username = user[1];
       this.role = user[2];
   });
   }

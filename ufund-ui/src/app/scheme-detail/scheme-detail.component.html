@@ -1,15 +1,15 @@
 <div *ngIf="scheme">
   <h2>{{scheme.title}}</h2>
   <div><span>Villain: </span>{{scheme.name}}</div>
-  <div *ngIf="role !== 'ROLE_HELPER'">
+  <div *ngIf="role !== 'ROLE_HELPER' && this.username == scheme.name">
     <label for="name-of-villain">Name of Villain: </label>
     <input id="name-of-villain" [(ngModel)]="scheme.name" placeholder="Scheme name"/><br>
     <label for="scheme-title">Title of Scheme: </label>
     <input id="scheme-title" [(ngModel)]="scheme.title" placeholder="Scheme title"/>
   </div>
   <button type="button" (click)="goBack()">go back</button>
-  <button type="button" (click)="save()" *ngIf="role !== 'ROLE_HELPER'">save</button>
-  <button (click)="addToCart(scheme)" [disabled]="scheme.addedToCart" *ngIf="role == 'ROLE_HELPER'">
+  <button type="button" (click)="save()" *ngIf="role == 'ROLE_ADMIN' || (role == 'ROLE_VILLAIN' && this.username == scheme.name)">save</button>
+  <button (click)="addToCart(scheme)" [disabled]="scheme.addedToCart" *ngIf="role == 'ROLE_HELPER' || (role == 'ROLE_VILLAIN' && this.username !== scheme.name)">
     {{ scheme.addedToCart ? 'Added' : 'Add to cart' }}
   </button>
   <p>{{ message }}</p>
