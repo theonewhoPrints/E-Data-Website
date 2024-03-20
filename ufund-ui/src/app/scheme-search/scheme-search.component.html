@@ -7,6 +7,10 @@
         <a routerLink="/detail/{{scheme.id}}">
           {{scheme.name}}
         </a>
+        <button (click)="addToCart(scheme)" [disabled]="scheme.addedToCart">
+          {{ scheme.addedToCart ? 'Added' : 'Add to cart' }}
+        </button>
+        <p>{{ message }}</p>
       </li>
     </ul>
   </div>

@@ -16,6 +16,7 @@ public class Scheme {
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
     @JsonProperty("title") private String title;
+    private boolean addedToCart;
 
     /**
      * Create a Scheme with the given id, name, and title. 
@@ -32,6 +33,7 @@ public class Scheme {
         this.id = id;
         this.name = name;
         this.title = title;
+        this.addedToCart = false;
     }
 
     /**
@@ -72,6 +74,14 @@ public class Scheme {
      */
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public boolean isAddedToCart() {
+        return addedToCart;
+    }
+
+    public void setAddedToCart(boolean addedToCart) {
+        this.addedToCart = addedToCart;
     }
 
     /**

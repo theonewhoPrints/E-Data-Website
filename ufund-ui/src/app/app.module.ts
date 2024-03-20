@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SchemeSearchComponent } from './scheme-search/scheme-search.component';
+import { CartComponent } from './cart/cart.component';
 
 // log in
 import { LoginComponent } from './login/login.component';
@@ -31,6 +32,7 @@ import { CupboardComponent } from './cupboard/cupboard.component';
     SchemeDetailComponent,
     MessagesComponent,
     SchemeSearchComponent,
+    CartComponent,
     LoginComponent,
     ProfileComponent,
     CupboardComponent

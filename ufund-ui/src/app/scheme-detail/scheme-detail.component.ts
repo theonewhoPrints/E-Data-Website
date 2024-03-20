@@ -4,6 +4,9 @@ import { Location } from '@angular/common';
 
 import { Scheme } from '../scheme';
 import { SchemeService } from '../scheme.service';
+import { CartService } from '../cart.service';
+import { Observable, Subject } from 'rxjs';
+import { StorageService } from 'src/_services/storage.service';
 
 @Component({
   selector: 'app-scheme-detail',
@@ -12,15 +15,24 @@ import { SchemeService } from '../scheme.service';
 })
 export class SchemeDetailComponent implements OnInit{
   scheme: Scheme | undefined;
+  message: string = ""
+  schemes$!: Observable<Scheme[]>;
+  role = '';
 
   constructor(
     private route: ActivatedRoute,
     private schemeService: SchemeService,
-    private location: Location
+    private location: Location,
+    private cartService: CartService,
+    private storageService: StorageService
   ) {}
 
   ngOnInit(): void {
     this.getScheme();
+    
+    this.storageService.user$.subscribe(user => {
+      this.role = user[2];
+  });
   }
   
   getScheme(): void {
@@ -38,5 +50,24 @@ export class SchemeDetailComponent implements OnInit{
       this.schemeService.updateScheme(this.scheme)
         .subscribe(() => this.goBack());
     }
+  }
+
+  addToCart(scheme: Scheme): void {
+    const existingScheme = this.cartService.getCart().find(s => s.id === scheme.id);
+
+    if (existingScheme) {
+      console.log(`Scheme "${scheme.name}" is already in the cart.`);
+      this.message = "Already added to cart";
+    } else {
+      this.cartService.addToCart(scheme);
+      scheme.addedToCart = true
+    }
+  
+    // Set the addedToCart flag for all schemes in the cart
+    this.schemes$.subscribe(schemes => {
+      schemes.forEach(s => {
+        s.addedToCart = this.cartService.getCart().some(item => item.id === s.id);
+      });
+    });
   }
 }

@@ -155,11 +155,14 @@ public class VillainFileDAO implements VillainDAO {
     ** {@inheritDoc}
      */
     @Override
-    public Scheme[] findSchemesByTitle(String title) {  ///remove if not needed.
+    public Scheme[] findSchemesByTitle(String title) {
+        if (title == null) {
+            return new Scheme[0]; // Return an empty array if title is null
+        }
         synchronized (schemes) {
             ArrayList<Scheme> schemeList = new ArrayList<>();
             for (Scheme scheme : schemes.values()) {
-                if (scheme.getTitle() != null && scheme.getTitle().contains(title)) {
+                if (scheme.getTitle() != null && scheme.getTitle().toLowerCase().contains(title.toLowerCase())) {
                     schemeList.add(scheme);
                 }
             }
@@ -234,6 +237,9 @@ public class VillainFileDAO implements VillainDAO {
      */
     @Override
     public Scheme[] findSchemesByName(String name) throws IOException {
+        if (name == null) {
+            return new Scheme[0]; // Return an empty array if name is null
+        }
         synchronized (schemes) {
             ArrayList<Scheme> schemeList = new ArrayList<>();
             for (Scheme scheme : schemes.values()) {
