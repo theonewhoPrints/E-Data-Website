@@ -99,14 +99,25 @@ export class SchemeService {
   /* GET schemes whose name contains search term */
   searchSchemes(term: string): Observable<Scheme[]> {
     if (!term.trim()) {
-      // if not search term, return empty scheme array.
+      // If no search term provided, return empty scheme array.
       return of([]);
     }
-    return this.http.get<Scheme[]>(`${this.schemesUrl}/?name=${term}`).pipe(
-      tap(x => x.length ?
-        this.log(`found schemes matching "${term}"`) :
-        this.log(`no schemes matching "${term}"`)),
+  
+    return this.http.get<Scheme[]>(this.schemesUrl).pipe(
+      map(schemes => {
+        // Filter schemes where either name or title contains the search term
+        return schemes.filter(scheme => {
+          return scheme.name.includes(term) || scheme.title.includes(term);
+        });
+      }),
+      tap(filteredSchemes => {
+        const message = filteredSchemes && filteredSchemes.length ?
+          `found schemes matching "${term}"` :
+          `no schemes matching "${term}"`;
+        this.log(message);
+      }),
       catchError(this.handleError<Scheme[]>('searchSchemes', []))
     );
   }
+  
 }

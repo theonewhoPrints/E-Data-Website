@@ -51,6 +51,22 @@ public class VillainFileDAO implements VillainDAO {
         load();  // load the schemes from the file
     }
 
+
+    @Override
+public Scheme[] findSchemesByNameAndTitle(String name, String title) throws IOException {
+    synchronized (schemes) {
+        ArrayList<Scheme> schemeList = new ArrayList<>();
+        for (Scheme scheme : schemes.values()) {
+            if ((scheme.getName() != null && scheme.getName().contains(name)) &&
+                (scheme.getTitle() != null && scheme.getTitle().contains(title))) {
+                schemeList.add(scheme);
+            }
+        }
+        return schemeList.toArray(new Scheme[0]);
+    }
+}
+
+
     /**
      * Generates the next id for a new {@linkplain Scheme villain}
      * 

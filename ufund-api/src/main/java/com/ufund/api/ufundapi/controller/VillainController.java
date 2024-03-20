@@ -106,17 +106,31 @@ public class VillainController {
      * Example: Find all villains that contain the text "ma"
      * GET http://localhost:8080/villains/?name=ma
      */
-    @GetMapping("/")
-    public ResponseEntity<Scheme[]> searchVillains(@RequestParam String name, @RequestParam String title) {
-        LOG.info("GET /villains/?name=" + name + title);
-        try {
-            Scheme[] villains = villainDao.findSchemes(name+title);
-            return new ResponseEntity<>(villains, HttpStatus.OK);
-        } catch (IOException e) {
-            LOG.log(Level.SEVERE, e.getLocalizedMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+
+     @GetMapping("/")
+     public ResponseEntity<Scheme[]> searchVillains(@RequestParam(required = false) String name,
+                                                    @RequestParam(required = false) String title) {
+         LOG.info("GET /villains/?name=" + name + "&title=" + title);
+         try {
+             Scheme[] villains;
+             if (name != null && title != null) {
+                 villains = villainDao.findSchemesByNameAndTitle(name, title);
+             } else if (name != null) {
+                 villains = villainDao.findSchemesByName(name);
+             } else if (title != null) {
+                 villains = villainDao.findSchemesByTitle(title);
+             } else {
+                 villains = villainDao.getSchemes(); // sub-in method().
+             }
+             return new ResponseEntity<>(villains, HttpStatus.OK);
+         } catch (IOException e) {
+             LOG.log(Level.SEVERE, e.getLocalizedMessage());
+             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+         }
+     }
+     
+
+    
 
     /**
      * Responds to the GET request for a {@linkplain Scheme villain} for the given name
