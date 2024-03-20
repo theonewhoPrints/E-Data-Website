@@ -21,7 +21,7 @@
   #custom-dashboard::after{
     content: '\2620';
     font-size: 40px;
-
+  }
 header {
     display: flex;
     align-items: center;
