@@ -36,7 +36,7 @@ import { CupboardComponent } from './cupboard/cupboard.component';
     CartComponent,
     LoginComponent,
     ProfileComponent,
-    CupboardComponent
+    CupboardComponent,
     CheckoutComponent,
   ],
   providers: [],
