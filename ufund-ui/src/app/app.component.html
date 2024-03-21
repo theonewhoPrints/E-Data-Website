@@ -1,4 +1,15 @@
-<h1>{{title}}</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet">
+
+  <!-- Other meta tags, CSS links, or JavaScript imports can go here -->
+</head>
+
+<h1 id="custom-title">{{title}}</h1>
 
 <header *ngIf="router.url !== '/login'">
   <div class="title-container">
@@ -8,9 +19,14 @@
       <a routerLink="/cupboard">Cupboard</a><br>
     </div>
     <a (click) = "logout()" href>Logout</a>
+    <a routerLink="/dashboard" id = "custom-dashboard">Our Villains</a>
+  <a (click) = "logout()" href>Logout</a>
   </nav>
   <div class="cart-icon" *ngIf="role == 'ROLE_HELPER'">
     <a routerLink="/cart"><i class="fas fa-shopping-cart"></i></a>
+  </div>
+  <div *ngIf="role == 'ROLE_HELPER'" class="checkout-button">
+    <!-- Placeholder for checkout button -->
   </div>
 </div>
 </header>
@@ -28,3 +44,4 @@
 <router-outlet></router-outlet>
 <app-messages></app-messages>
 <app-profile></app-profile>
+

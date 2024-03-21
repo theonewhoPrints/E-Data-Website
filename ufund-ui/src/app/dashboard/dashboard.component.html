@@ -1,2 +1,15 @@
+
+
+
+<h2>Scheme      |          Villain</h2>        
+<div class="schemes-menu">
+  <div *ngFor="let scheme of schemes">
+    <a routerLink="/detail/{{scheme.id}}">
+      <span>{{ scheme.title }}  </span> | <span>{{ scheme.name}}</span>
+    </a>
+  </div>
+</div>
+
 <app-scheme-search></app-scheme-search>
 <app-schemes></app-schemes>
+

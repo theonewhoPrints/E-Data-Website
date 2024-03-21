@@ -1,1 +1,4 @@
-[{"id":11,"name":"Dr. Update Succesful","title":"I want to kill people","addedToCart":false},{"id":19,"name":"Dr. Bomb","title":"BOMBS","addedToCart":false},{"id":20,"name":"Evil Firefighter","title":"I want to remove all the city's fire hydrants","addedToCart":false},{"id":21,"name":"Dr. Nefarious","title":"I want to make the New England area smell like hot garbage.","addedToCart":false},{"id":22,"name":"Dr. Nefarious","title":"I want to put Toronto to sleep","addedToCart":false}]
+[
+  {"id":11,"name":"Dr. Update Successful","title":"I want to kill people","addedToCart":false},
+  {"id":19,"name":"Dr. Bomb","title":"BOMBS"}
+]

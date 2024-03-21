@@ -10,19 +10,23 @@ import { CartService } from '../cart.service';
 })
 export class DashboardComponent implements OnInit {
   schemes: Scheme[] = [];
+  schemeTitles: string[] = [];
 
   constructor(private schemeService: SchemeService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.getSchemes();
+    
   }
 
   getSchemes(): void {
     this.schemeService.getSchemes()
-      .subscribe(schemes => this.schemes = schemes.slice(1, 5));
+      .subscribe(schemes => this.schemes = schemes.slice(0, 5));
   }
+
 
   addToCart(scheme : Scheme): void {
     this.cartService.addToCart(scheme);
   }
 }
+

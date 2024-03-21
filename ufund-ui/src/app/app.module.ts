@@ -14,6 +14,7 @@ import { CartComponent } from './cart/cart.component';
 // log in
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 //cupboard
 import { CupboardComponent } from './cupboard/cupboard.component';
@@ -36,6 +37,7 @@ import { CupboardComponent } from './cupboard/cupboard.component';
     LoginComponent,
     ProfileComponent,
     CupboardComponent
+    CheckoutComponent,
   ],
   providers: [],
   bootstrap: [ AppComponent ]
