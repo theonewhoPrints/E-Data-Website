@@ -247,6 +247,8 @@ UserDAO <|-- |Interface Implemented by| UserFileDAO
 > criteria tests failing, and the number of user stories that
 > have not had any testing yet. Highlight the issues found during
 > acceptance testing and if there are any concerns._
+* All the user stories has passed all their acceptance criteria tests. The only issue found during acceptance testing were
+incompleted methods but was later fixed. 
 
 ### Unit Testing and Code Coverage
 > _**[Sprint 4]** Discuss your unit testing strategy. Report on the code coverage
@@ -256,6 +258,7 @@ UserDAO <|-- |Interface Implemented by| UserFileDAO
 
 >_**[Sprint 2 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
 > those._
+
 
 ## Ongoing Rationale
 >_**[Sprint 1, 2, 3 & 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**mayor**_ team decisions or design milestones/changes and corresponding justification._

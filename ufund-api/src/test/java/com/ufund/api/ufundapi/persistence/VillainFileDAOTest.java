@@ -312,4 +312,60 @@ public class VillainFileDAOTest {
             assertEquals(expectedSchemes[i], foundSchemes[i]); // Assert each element of the arrays
         }
     }
+
+    @Test
+    public void testFindSchemesByNameAndTitle_BothMatch() throws IOException {
+        // Setup
+        String searchName = "Dr. Freeze";
+        String searchTitle = "Freeze America";
+        Scheme[] expectedSchemes = {testSchemes[0]}; // Only this scheme has both name and title matching
+        
+        // Invoke
+        Scheme[] foundSchemes = VillainFileDAO.findSchemesByNameAndTitle(searchName, searchTitle);
+        
+        // Analyze
+        assertArrayEquals(expectedSchemes, foundSchemes);
+    }
+
+    @Test
+    public void testFindSchemesByNameAndTitle_OnlyNameMatches() throws IOException {
+        // Setup
+        String searchName = "Agental00";
+        String searchTitle = "NonExistingTitle";
+        Scheme[] expectedSchemes = {}; // No schemes should match as title doesn't match
+        
+        // Invoke
+        Scheme[] foundSchemes = VillainFileDAO.findSchemesByNameAndTitle(searchName, searchTitle);
+        
+        // Analyze
+        assertArrayEquals(expectedSchemes, foundSchemes);
+    }
+
+    @Test
+    public void testFindSchemesByNameAndTitle_OnlyTitleMatches() throws IOException {
+        // Setup
+        String searchName = "NonExistingName";
+        String searchTitle = "Freeze America";
+        Scheme[] expectedSchemes = {}; // No schemes should match as name doesn't match
+        
+        // Invoke
+        Scheme[] foundSchemes = VillainFileDAO.findSchemesByNameAndTitle(searchName, searchTitle);
+        
+        // Analyze
+        assertArrayEquals(expectedSchemes, foundSchemes);
+    }
+
+    @Test
+    public void testFindSchemesByNameAndTitle_NeitherMatches() throws IOException {
+        // Setup
+        String searchName = "NonExistingName";
+        String searchTitle = "NonExistingTitle";
+        Scheme[] expectedSchemes = {}; // No schemes should match as neither name nor title matches
+        
+        // Invoke
+        Scheme[] foundSchemes = VillainFileDAO.findSchemesByNameAndTitle(searchName, searchTitle);
+        
+        // Analyze
+        assertArrayEquals(expectedSchemes, foundSchemes);
+    }
 }
