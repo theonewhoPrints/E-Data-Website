@@ -117,6 +117,51 @@ public class VillainControllerTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(schemes, response.getBody());
     }
+
+    @Test
+    public void testSearchVillainSchemesByNameSuccess() throws IOException {
+        // Setup
+        String searchName = "Dr. Evil";
+        Scheme[] expectedSchemes = { new Scheme(1, "Dr. Evil", "World domination") };
+        when(mockVillainDAO.findSchemesByName(searchName)).thenReturn(expectedSchemes);
+
+        // Invoke
+        ResponseEntity<Scheme[]> response = villainController.searchVillainSchemesByName(searchName);
+
+        // Analyze
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(expectedSchemes, response.getBody());
+    }
+
+    @Test
+    public void testSearchVillainSchemesByNameNotFound() throws IOException {
+        // Setup
+        String searchName = "Unknown";
+        when(mockVillainDAO.findSchemesByName(searchName)).thenReturn(new Scheme[0]);
+
+        // Invoke
+        ResponseEntity<Scheme[]> response = villainController.searchVillainSchemesByName(searchName);
+
+        // Analyze
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(0, response.getBody().length);
+    }
+
+    @Test
+    public void testSearchVillainSchemesByNameException() throws IOException {
+        // Setup
+        String searchName = "Dr. Chaos";
+        doThrow(new IOException("Database error")).when(mockVillainDAO).findSchemesByName(searchName);
+
+        // Invoke
+        ResponseEntity<Scheme[]> response = villainController.searchVillainSchemesByName(searchName);
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    }
+
+
+
   
   
     @Test
@@ -275,4 +320,61 @@ public class VillainControllerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
+    @Test
+    public void testSearchVillainsByName() throws IOException {
+        // Setup
+        String name = "Dr. Evil";
+        Scheme[] expectedVillains = { new Scheme(1, name, "Take over the world") };
+        when(mockVillainDAO.findSchemesByName(name)).thenReturn(expectedVillains);
+
+        // Invoke
+        ResponseEntity<Scheme[]> response = villainController.searchVillains(name, null);
+
+        // Analyze
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(expectedVillains, response.getBody());
+    }
+
+    @Test
+    public void testSearchVillainsByTitle() throws IOException {
+        // Setup
+        String title = "World Domination";
+        Scheme[] expectedVillains = { new Scheme(1, "Dr. Evil", title) };
+        when(mockVillainDAO.findSchemesByTitle(title)).thenReturn(expectedVillains);
+
+        // Invoke
+        ResponseEntity<Scheme[]> response = villainController.searchVillains(null, title);
+
+        // Analyze
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(expectedVillains, response.getBody());
+    }
+
+    @Test
+    public void testSearchVillainsByNameAndTitle() throws IOException {
+        // Setup
+        String name = "Dr. Evil";
+        String title = "World Domination";
+        Scheme[] expectedVillains = { new Scheme(1, name, title) };
+        when(mockVillainDAO.findSchemesByNameAndTitle(name, title)).thenReturn(expectedVillains);
+
+        // Invoke
+        ResponseEntity<Scheme[]> response = villainController.searchVillains(name, title);
+
+        // Analyze
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(expectedVillains, response.getBody());
+    }
+
+    @Test
+    public void testSearchVillainsException() throws IOException {
+        // Setup
+        doThrow(new IOException("Database error")).when(mockVillainDAO).getSchemes();
+
+        // Invoke
+        ResponseEntity<Scheme[]> response = villainController.searchVillains(null, null);
+
+        // Analyze
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+    }
 }
