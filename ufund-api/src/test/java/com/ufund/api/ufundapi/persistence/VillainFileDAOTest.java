@@ -143,6 +143,18 @@ public class VillainFileDAOTest {
         assertEquals(scheme.getTitle(), actual.getTitle());
     }
 
+    @Test
+    public void testCreateSchemeWithExistingIdAndName() throws IOException {
+        // Assuming that the ID 99 and name "Dr. Freeze" already exist
+        Scheme existingScheme = new Scheme(99, "Dr. Freeze", "Freeze America");
+
+        // Invoke
+        Scheme result = VillainFileDAO.createScheme(existingScheme);
+
+        // Analyze
+        assertNull(result, "Expected null as the scheme with the same ID and name already exists");
+    }
+
     /**
     * Test method to verify the behavior of {@code updateScheme(Scheme)} method in {@code VillainFileDAO}.
     * It updates an existing scheme, invokes the method, and checks the result and the updated scheme.
