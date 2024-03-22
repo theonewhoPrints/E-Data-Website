@@ -326,6 +326,32 @@ public class VillainFileDAOTest {
     }
 
     @Test
+    public void testFindSchemesByName_NotFound() throws IOException {
+        // Setup: a name that does not exist in any Scheme
+        String searchName = "NonExistingName";
+        Scheme[] expectedSchemes = {}; // No schemes with this name exist
+
+        // Invoke
+        Scheme[] foundSchemes = VillainFileDAO.findSchemesByName(searchName);
+
+        // Analyze
+        assertArrayEquals(expectedSchemes, foundSchemes, "Expected an empty array when no schemes with the given name are found");
+    }
+
+    @Test
+    public void testFindSchemesByName_UniqueStringNotFound() throws IOException {
+        // Setup: Use a highly unique search string that is guaranteed not to be in any scheme names
+        String searchName = "XYZ123NonExistingName";
+        Scheme[] expectedSchemes = {}; // No schemes with this unique string in their names
+
+        // Invoke
+        Scheme[] foundSchemes = VillainFileDAO.findSchemesByName(searchName);
+
+        // Analyze
+        assertArrayEquals(expectedSchemes, foundSchemes, "Expected an empty array when no schemes with the given unique string are found");
+    }
+    
+    @Test
     public void testFindSchemesByNameAndTitle_BothMatch() throws IOException {
         // Setup
         String searchName = "Dr. Freeze";
