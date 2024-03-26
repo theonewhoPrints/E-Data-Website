@@ -1,1 +1,1 @@
-[{"id": 1, "name": "Admin", "role": "ROLE_ADMIN"},{"id":2, "name": "Dr. Nefarious", "role": "ROLE_VILLAIN"}, {"id": 3, "name": "Evan", "role": "ROLE_HELPER"}]
+[{"id": 1, "name": "Admin", "role": "ROLE_ADMIN", "imgUrl": "default.jpg"},{"id":2, "name": "Dr. Nefarious", "role": "ROLE_VILLAIN", "imgUrl": "nefario.jpg"}, {"id": 3, "name": "Evan", "role": "ROLE_HELPER", "imgUrl": "mario.jpg"}]

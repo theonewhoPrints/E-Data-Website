@@ -10,28 +10,30 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class User {
     private static final Logger LOG = Logger.getLogger(User.class.getName());
     // Package private for tests
-    static final String STRING_FORMAT = "User [id=%d, name=%s, role=%s]";
+    static final String STRING_FORMAT = "User [id=%d, name=%s, role=%s, imgUrl=%s]";
     
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
     @JsonProperty("role") private String role;
+    @JsonProperty("imgUrl") private String imgUrl;
 
     /**
      * Create a user with the given id and name. 
      * @param id The id of the user
      * @param name The name of the user
      * @param role The role of the user
-     *
+     * @param imgUrl The image URL of the user
      * 
      * {@literal @}JsonProperty is used in serialization and deserialization
      * of the JSON object to the Java object in mapping the fields.  If a field
      * is not provided in the JSON object, the Java field gets the default Java
      * value, i.e. 0 for int
      */
-    public User(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("role") String role) {
+    public User(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("role") String role, @JsonProperty("imgUrl") String imgUrl){
         this.id = id;
         this.name = name;
         this.role = role;
+        this.imgUrl = imgUrl;
     }
 
     /**
@@ -72,6 +74,14 @@ public class User {
      */
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     /**
