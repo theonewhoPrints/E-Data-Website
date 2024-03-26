@@ -1,7 +1,19 @@
-<h2>Login</h2>
+<div class="slideshow-container">
+  <div class="slides">
+    <div class="image" style="background-image: url(assets/Asura.jpg);"></div>
+    <div class="image" style="background-image: url(assets/Yujiro.jpg);"></div>
+    <div class="image" style="background-image: url(assets/Zamasu.jpg);"></div>
+    <div class="image" style="background-image: url(assets/Toji.jpg);"></div>
+    <div class="image" style="background-image: url(assets/PerfectCell.jpg);"></div>
+    <div class="image" style="background-image: url(assets/Garou.jpg);"></div>
+  </div>
+</div>
 
-<form (ngSubmit)="login(name.value)">
-    <label for="name">Name:</label>
+<div class="login-container">
+  <h2 id="custom-title">Only Villains</h2>
+  <form (ngSubmit)="login(name.value)">
+    <label for="name">UserName:</label>
     <input type="text" id="name" #name required>
     <button type="submit">Login</button>
   </form>
+</div>

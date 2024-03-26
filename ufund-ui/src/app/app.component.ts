@@ -10,7 +10,6 @@ import { MessageService } from './message.service';
 })
 
 export class AppComponent implements OnInit{
-  title = 'Only Villains';
   username?: string;
   role = '';
 

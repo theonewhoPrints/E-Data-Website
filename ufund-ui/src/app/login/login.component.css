@@ -1,0 +1,95 @@
+/* Adjust the styles for the slideshow container */
+.slideshow-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.slides {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+
+.image {
+  flex: 0 0 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+  /* login.component.css */
+  #custom-title {
+    font-family: 'Great Vibes', cursive;
+    color: #fff;
+    text-decoration: none;
+    font-size: 50px; /* Adjust font size as needed */
+  }
+  
+  .login-container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin-top: 25vh;
+    padding: 40px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: transparent; /* Set background color to transparent */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: fit-content;
+    margin: auto;
+    margin-top: 20vh;
+    backdrop-filter: blur(10px); /* Adds a blur effect */
+    opacity: 0.9; /* Adjust the opacity as needed */
+    mix-blend-mode: screen; /* Adjust blend mode for better blending */
+}
+
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  input, button {
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+    width: 200px; /* This width now includes any border or padding */
+    margin: 10px 0; /* Adds space between form elements */
+  }
+  
+  input {
+    padding: 10px; /* This padding is now inside the 100px width */
+    border: 1px solid #990000; /* Example border */
+    font-size: 20px; /* Font size for readability */
+  }
+  
+  button {
+    padding: 10px; /* Adjust this as needed, keeping in mind it's inside the 100px width */
+    font-size: 24px; /* Larger font size */
+    background-color: #990000; /* Example: a shade of blue */
+    color: #fff; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+  }
+  
+  label {
+    margin-top: 10px;
+    color: #fff; /* Dark grey color for the text */
+    font-size: 24px; /* Increased font size */
+    font-family: Arial, sans-serif; /* Example font family */
+  }
+
