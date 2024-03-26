@@ -13,7 +13,7 @@ import { CartComponent } from './cart/cart.component';
 
 // log in
 import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileBarComponent } from './profile-bar/profile-bar.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 
 //cupboard
@@ -37,7 +37,7 @@ import { SortFilterComponent } from './sort-filter/sort-filter.component';
     SchemeSearchComponent,
     CartComponent,
     LoginComponent,
-    ProfileComponent,
+    ProfileBarComponent,
     CupboardComponent,
     CheckoutComponent,
     SortFilterComponent,
