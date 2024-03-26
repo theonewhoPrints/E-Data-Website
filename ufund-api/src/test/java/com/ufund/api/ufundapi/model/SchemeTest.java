@@ -22,7 +22,7 @@ public class SchemeTest {
     @Test
     public void testToString() {
         Scheme scheme = new Scheme(100,"Spike Spiegel", "See You Space Cowboy", 32000);
-        String expectedString = "Scheme [id=100, name=Spike Spiegel, title=See You Space Cowboy]";
+        String expectedString = "Scheme [id=100, name=Spike Spiegel, title=See You Space Cowboy, fundgoal= 32000]";
         assertEquals(expectedString, scheme.toString());
     }
 }
