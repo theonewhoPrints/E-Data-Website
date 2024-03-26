@@ -18,4 +18,6 @@ export class SortFilterComponent {
       this.sortEvent.emit(`priceRange:${this.priceRange}`);
     }
   }
+
+  
 }
