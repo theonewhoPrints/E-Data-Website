@@ -3,8 +3,6 @@ import { UserService } from '../user.service';
 import { MessageService } from '../message.service';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/_services/storage.service';
-import { ElementRef, ViewChild } from '@angular/core';
-
 
 @Component({
   selector: 'app-login',
@@ -19,18 +17,13 @@ export class LoginComponent implements OnInit, OnDestroy{
   // Assuming you have already duplicated the first image at the end of your array
   imageSets: string[][] = [
   [
-    'assets/Asura.jpg',
-    'assets/Yujiro.jpg',
-    'assets/Zamasu.jpg',
-    'assets/Toji.jpg',
-    'assets/Perfect Cell.jpg',
-    'assets/Garou.jpg',
+    'assets/Af.jpg',
+    'assets/Dv.jpg',
+    'assets/Gf.jpg',
+    'assets/Pc.jpg',
   ],
   // Repeat for other sets as needed
 ];
-
-
-
 
   constructor(
     private userService: UserService,
