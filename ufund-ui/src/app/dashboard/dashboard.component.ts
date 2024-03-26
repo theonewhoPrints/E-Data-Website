@@ -28,5 +28,18 @@ export class DashboardComponent implements OnInit {
   addToCart(scheme : Scheme): void {
     this.cartService.addToCart(scheme);
   }
+
+
+  onSortEvent(event: string): void {
+    // Handle sorting logic based on the emitted event
+    console.log('Sort event received:', event);
+    // Implement your sorting logic here, for example, call a service method with sort parameters
+    // You can implement sorting logic here based on the event received from the sort filter component
+  }
+
+
+
+
+
 }
 

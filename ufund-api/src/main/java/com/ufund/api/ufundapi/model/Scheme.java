@@ -11,11 +11,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Scheme {
     private static final Logger LOG = Logger.getLogger(Scheme.class.getName());
     // Package private for tests
-    static final String STRING_FORMAT = "Scheme [id=%d, name=%s, title=%s]";
+    static final String STRING_FORMAT = "Scheme [id=%d, name=%s, title=%s, fundgoal= %d]";
     
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
     @JsonProperty("title") private String title;
+    @JsonProperty("fundgoal") private int fundgoal;
     private boolean addedToCart;
 
     /**
@@ -29,10 +30,11 @@ public class Scheme {
      * is not provided in the JSON object, the Java field gets the default Java
      * value, i.e. 0 for int
      */
-    public Scheme(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("title") String title) {
+    public Scheme(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("title") String title, @JsonProperty("fundgoal") int fundgoal) {
         this.id = id;
         this.name = name;
         this.title = title;
+        this.fundgoal = fundgoal;
         this.addedToCart = false;
     }
 
@@ -60,6 +62,11 @@ public class Scheme {
         return title;
     }
 
+
+    public int getfundgoal() {
+        return fundgoal;
+    }
+
      /**
      * Sets the name of the villain - necessary for JSON object to Java object deserialization
      * @param name The name of the villain
@@ -76,6 +83,10 @@ public class Scheme {
         this.title = title;
     }
 
+    public void setFundgoal(int fundgoal) {
+        this.fundgoal = fundgoal;
+    }
+
     public boolean isAddedToCart() {
         return addedToCart;
     }
@@ -90,7 +101,7 @@ public class Scheme {
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT, id, name, title);
+        return String.format(STRING_FORMAT, id, name, title, fundgoal);
     }
 
 }

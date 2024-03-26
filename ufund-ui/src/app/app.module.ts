@@ -18,6 +18,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 
 //cupboard
 import { CupboardComponent } from './cupboard/cupboard.component';
+import { SortFilterComponent } from './sort-filter/sort-filter.component';
+
 
 @NgModule({
   imports: [
@@ -38,6 +40,8 @@ import { CupboardComponent } from './cupboard/cupboard.component';
     ProfileComponent,
     CupboardComponent,
     CheckoutComponent,
+    SortFilterComponent,
+    
   ],
   providers: [],
   bootstrap: [ AppComponent ]

@@ -226,7 +226,7 @@ public Scheme[] findSchemesByNameAndTitle(String name, String title) throws IOEx
             Scheme exists_name = getScheme_str(scheme.getName());
             
             if(exists == null || exists_name == null ){
-                Scheme newScheme = new Scheme(nextId(), scheme.getName(), scheme.getTitle());
+                Scheme newScheme = new Scheme(nextId(), scheme.getName(), scheme.getTitle(), scheme.getfundgoal());
                 schemes.put(newScheme.getId(), newScheme);
                 save();
                 return newScheme;
