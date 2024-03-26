@@ -16,11 +16,19 @@ export class LoginComponent implements OnInit, OnDestroy{
   currentImageIndex: number = 0;
   currentSetIndex: number = 0;
 
-  // Define your image sets
+  // Assuming you have already duplicated the first image at the end of your array
   imageSets: string[][] = [
-    ['assets/Asura.jpg', 'assets/Yujiro.jpg', 'assets/Zamasu.jpg', 'assets/Toji.jpg', 'assets/Perfect Cell.jpg', 'assets/Garou.jpg'],
-    // Add more sets as needed
-  ];
+  [
+    'assets/Asura.jpg',
+    'assets/Yujiro.jpg',
+    'assets/Zamasu.jpg',
+    'assets/Toji.jpg',
+    'assets/Perfect Cell.jpg',
+    'assets/Garou.jpg',
+  ],
+  // Repeat for other sets as needed
+];
+
 
 
 
@@ -52,25 +60,26 @@ export class LoginComponent implements OnInit, OnDestroy{
   startSlideshow(): void {
     this.slideshowInterval = setInterval(() => {
       this.currentImageIndex++;
+      // Check if we need to loop back to the first image
       if (this.currentImageIndex >= this.imageSets[this.currentSetIndex].length) {
-        this.currentImageIndex = 0;
-        this.currentSetIndex++;
+        this.currentImageIndex = 0; // Reset to the first image
+        this.currentSetIndex++; // Move to the next set
         if (this.currentSetIndex >= this.imageSets.length) {
-          this.currentSetIndex = 0;
+          this.currentSetIndex = 0; // Loop back to the first set
         }
       }
-      this.setBackgroundImage(this.imageSets[this.currentSetIndex][this.currentImageIndex]);
-    }, 5000); // Adjust interval timing as needed
-  }
-
-  setBackgroundImage(imageUrl: string): void {
-    const backgroundImages = document.querySelector('.slides') as HTMLElement;
-    if (backgroundImages) {
-      backgroundImages.style.transform = `translateX(-${this.currentImageIndex * 100}%)`;
-    }
+      this.slideToImage(this.currentImageIndex);
+    }, 3000); // Adjust interval timing as needed
   }
   
-
+  slideToImage(index: number): void {
+    const backgroundImages = document.querySelector('.slides') as HTMLElement;
+    if (backgroundImages) {
+      const newPosition = -index * 100; // Calculate the new position for the transition
+      backgroundImages.style.transition = 'transform 0.5s ease'; // Ensure transition is always enabled
+      backgroundImages.style.transform = `translateX(${newPosition}%)`; // Move to the new position
+    }
+  }
 
   login(name: string): void {
     name = name.trim();
