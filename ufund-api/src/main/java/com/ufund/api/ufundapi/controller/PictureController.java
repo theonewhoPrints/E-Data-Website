@@ -109,14 +109,17 @@ public class PictureController {
         }
     }
 
-    @PostMapping("/{imageName}")
-    public ResponseEntity<byte[]> uploadPicture(@PathVariable String imageName, @RequestPart("image") MultipartFile image) {
+    @PostMapping("/{username}/{imageName}")
+    public ResponseEntity<byte[]> changeUserPicture(@PathVariable String username, @PathVariable String imageName, @RequestPart("image") MultipartFile image) {
         LOG.info("POST /picture/" + imageName);
         try {
             Picture uploadedPicture = pictureDao.savePicture(imageName, image);
             byte[] data;
             if (uploadedPicture != null) {
                 data = uploadedPicture.getData();
+
+                User user = userDao.findUser(username);
+                user.setImgUrl(imageName);
                 // Return the image
                 return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(data);
             }
@@ -126,4 +129,6 @@ public class PictureController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }

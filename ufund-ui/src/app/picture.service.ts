@@ -55,11 +55,11 @@ export class PictureService {
     return this.http.get(this.pictureURL + '/' + username, { responseType: 'blob' });
   }
 
-  uploadPicture(imageName: string, formData: FormData): Observable<any> {
+  uploadPicture(username: string, imageName: string, formData: FormData): Observable<any> {
     this.messageService.add('PictureService: uploading picture...');
     this.messageService.add('URL: ' + this.pictureURL + '/' + imageName);
     this.messageService.add('formData: ' + formData);
-    return this.http.post(this.pictureURL + '/' + imageName, formData).pipe(
+    return this.http.post(this.pictureURL + '/' + username + '/' +  imageName, formData).pipe(
       catchError(error => {
         // Handle the error here. You might want to log it or show a user-friendly message.
         console.error('There was an error!', error);

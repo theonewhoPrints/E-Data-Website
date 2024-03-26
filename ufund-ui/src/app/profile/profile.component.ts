@@ -24,6 +24,10 @@ export class ProfileComponent {
   imageToShow: any;
   selectedFile: File | null = null;
 
+  username = '';
+  userRole = '';
+
+
   constructor(
     private route: ActivatedRoute,
     private schemeService: SchemeService,
@@ -36,6 +40,11 @@ export class ProfileComponent {
 
   ngOnInit(): void {
     this.getUser();
+
+    this.storageService.user$.subscribe(user => {
+      this.username = user[1];
+      this.userRole = user[2];
+    });
   }
   
   getUser(): void {
@@ -73,7 +82,7 @@ export class ProfileComponent {
     this.messageService.add('Submitting: ' + this.selectedFile);
     if (this.selectedFile !== null) {
       formData.append("image", this.selectedFile, this.selectedFile.name);
-      this.pictureService.uploadPicture(this.selectedFile.name, formData).subscribe({
+      this.pictureService.uploadPicture(this.username, this.selectedFile.name, formData).subscribe({
         next: (response) => {
           // Handle the response here
         },
