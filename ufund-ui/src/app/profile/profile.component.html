@@ -1,3 +1,7 @@
 <img [src]="imageToShow" class="profile-picture">
+<form (submit)="onSubmit()">
+    <input type="file" (change)="onFileSelected($event)" />
+    <button type="submit">Upload</button>
+  </form>
 <p>{{name}}</p>
 <p>{{role}}</p>

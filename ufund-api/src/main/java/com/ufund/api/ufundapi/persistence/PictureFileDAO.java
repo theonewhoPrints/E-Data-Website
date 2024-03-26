@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import com.ufund.api.ufundapi.model.Picture;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Implements the functionality for file-based persistence for Pictures
@@ -53,21 +54,6 @@ public class PictureFileDAO implements PictureDAO {
     }
 
     @Override
-    public Picture savePicture(Picture picture) throws IOException {
-        // Generate a unique ID for the picture
-        String id = UUID.randomUUID().toString();
-
-        // Use the ID as the filename
-        Path filePath = Paths.get(PICTURE_DIRECTORY, id);
-        Files.write(filePath, picture.getData());
-
-        // Set the picture's ID to the generated ID
-        picture.setId(id);
-
-        return picture;
-    }
-
-    @Override
     public boolean deletePicture(String id) throws IOException {
         Path filePath = Paths.get(PICTURE_DIRECTORY, id);
         if (!Files.exists(filePath)) {
@@ -79,14 +65,30 @@ public class PictureFileDAO implements PictureDAO {
     }
 
     @Override
-    public Picture updatePicture(String id, Picture picture) throws IOException {
-        Path filePath = Paths.get(PICTURE_DIRECTORY, id);
+    public Picture updatePicture(String imageName, MultipartFile file) throws IOException {
+        Path filePath = Paths.get(PICTURE_DIRECTORY, imageName);
         if (!Files.exists(filePath)) {
-            throw new FileNotFoundException("No picture found with the given id: " + id);
+            throw new FileNotFoundException("No picture found with the given id: " + imageName);
         }
-        Files.write(filePath, picture.getData());
+        Files.write(filePath, file.getBytes());
 
-        picture.setId(id);
+        Picture picture = new Picture();
+        picture.setId(imageName);
+        picture.setData(file.getBytes()); // Assuming Picture has a setData method
+        return picture;
+    }
+
+    @Override
+    public Picture savePicture(String imageName, MultipartFile file) throws IOException {
+
+        // Use the ID as the filename
+        Path filePath = Paths.get(PICTURE_DIRECTORY, imageName);
+        Files.write(filePath, file.getBytes());
+
+        // Set the picture's ID to the generated ID
+        Picture picture = new Picture();
+        picture.setId(imageName);
+        picture.setData(file.getBytes());
         return picture;
     }
 }

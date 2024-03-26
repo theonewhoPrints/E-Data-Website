@@ -18,8 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.MediaType;
 import com.ufund.api.ufundapi.persistence.UserDAO;
 import com.ufund.api.ufundapi.model.User;
@@ -37,6 +38,10 @@ public class PictureController {
         this.userDao = userDao;
     }
 
+    /* 
+     * 
+     * example: http://localhost:8080/picture/image/default.jpg
+     */
     @GetMapping("/image/{imageName}")
     public ResponseEntity<byte[]> getPicture(@PathVariable String imageName) throws IOException {
         // Use the PictureFileDAO to get the Picture object
@@ -52,6 +57,10 @@ public class PictureController {
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(data);
     }
 
+    /* 
+     * 
+     * example: http://localhost:8080/picture/Evan
+    */
     @GetMapping("/{name}")
     public ResponseEntity<byte[]> getPictureByName(@PathVariable String name) throws IOException {
         LOG.info("GET /picture/" + name);
@@ -82,42 +91,36 @@ public class PictureController {
         }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Picture> updatePicture(@PathVariable String id, @RequestBody Picture picture) {
+    @PutMapping("/{imageName}")
+    public ResponseEntity<byte[]> updatePicture(@PathVariable String imageName, @RequestPart("image") MultipartFile image) {
+        LOG.info("PUT /picture/" + imageName);
         try {
-            Picture updatedPicture = pictureDao.updatePicture(id, picture);
-            if (updatedPicture != null)
-                return new ResponseEntity<>(updatedPicture, HttpStatus.OK);
-            else
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            Picture updatedPicture = pictureDao.updatePicture(imageName, image);
+            byte[] data;
+            if (updatedPicture != null) {
+                data = updatedPicture.getData();
+                // Return the image
+                return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(data);
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePicture(@PathVariable String id) {
+    @PostMapping("/{imageName}")
+    public ResponseEntity<byte[]> uploadPicture(@PathVariable String imageName, @RequestPart("image") MultipartFile image) {
+        LOG.info("POST /picture/" + imageName);
         try {
-            boolean deleted = pictureDao.deletePicture(id);
-            if (deleted)
-                return new ResponseEntity<>(HttpStatus.OK);
-            else
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } catch (IOException e) {
-            LOG.log(Level.SEVERE, e.getLocalizedMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @PostMapping("/")
-    public ResponseEntity<Picture> uploadPicture(@RequestBody Picture picture) {
-        try {
-            Picture uploadedPicture = pictureDao.savePicture(picture);
-            if (uploadedPicture != null)
-                return new ResponseEntity<>(uploadedPicture, HttpStatus.CREATED);
-            else
-                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            Picture uploadedPicture = pictureDao.savePicture(imageName, image);
+            byte[] data;
+            if (uploadedPicture != null) {
+                data = uploadedPicture.getData();
+                // Return the image
+                return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(data);
+            }
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

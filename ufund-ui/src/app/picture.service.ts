@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { throwError } from 'rxjs';
 
 import { User } from './user';
 import { MessageService } from './message.service';
@@ -52,6 +53,19 @@ export class PictureService {
 
   public getPictureByName(username: string): Observable<Blob> {
     return this.http.get(this.pictureURL + '/' + username, { responseType: 'blob' });
+  }
+
+  uploadPicture(imageName: string, formData: FormData): Observable<any> {
+    this.messageService.add('PictureService: uploading picture...');
+    this.messageService.add('URL: ' + this.pictureURL + '/' + imageName);
+    this.messageService.add('formData: ' + formData);
+    return this.http.post(this.pictureURL + '/' + imageName, formData).pipe(
+      catchError(error => {
+        // Handle the error here. You might want to log it or show a user-friendly message.
+        console.error('There was an error!', error);
+        return throwError('Something bad happened; please try again later.');
+      })
+    );
   }
 
 }

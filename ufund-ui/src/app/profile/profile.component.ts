@@ -22,6 +22,7 @@ export class ProfileComponent {
   role?: string;
   imgUrl?: string;
   imageToShow: any;
+  selectedFile: File | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -49,7 +50,6 @@ export class ProfileComponent {
   }
 
   getProfilePicture() {
-    this.messageService.add('Name is ' + this.name)
     this.pictureService.getPictureByName(this.name).subscribe(data => {
       let reader = new FileReader();
       reader.addEventListener("load", () => {
@@ -62,4 +62,31 @@ export class ProfileComponent {
     });
   }
 
+
+  onFileSelected(event: any) {
+    this.selectedFile = <File>event.target.files[0];
+    this.messageService.add('File selected: ' + this.selectedFile.name);
+  }
+
+  onSubmit() {
+    const formData = new FormData();
+    this.messageService.add('Submitting: ' + this.selectedFile);
+    if (this.selectedFile !== null) {
+      formData.append("image", this.selectedFile, this.selectedFile.name);
+      this.pictureService.uploadPicture(this.selectedFile.name, formData).subscribe({
+        next: (response) => {
+          // Handle the response here
+        },
+        error: (err) => {
+          // Handle the error here. This could be showing a user-friendly message or logging the error.
+          console.error('There was an error!', err);
+        }
+      /*
+      this.pictureService.uploadPicture(formData).subscribe(response => {
+        // Handle response here
+      });
+      */
+      });
+  }
+}
 }
