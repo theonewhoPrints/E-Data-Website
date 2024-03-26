@@ -44,9 +44,9 @@ public class VillainFileDAOTest {
     public void setupVillainFileDAO() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
         testSchemes = new Scheme[3];
-        testSchemes[0] = new Scheme(99,"Dr. Freeze", "Freeze America");
-        testSchemes[1] = new Scheme(100,"Agental00", "Freeze 2K20");
-        testSchemes[2] = new Scheme(101,"TSiftal", "waste all carbon emissions");
+        testSchemes[0] = new Scheme(99,"Dr. Freeze", "Freeze America", 36000);
+        testSchemes[1] = new Scheme(100,"Agental00", "Freeze 2K20", 34000);
+        testSchemes[2] = new Scheme(101,"TSiftal", "waste all carbon emissions", 32000);
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the villain array above
@@ -126,7 +126,7 @@ public class VillainFileDAOTest {
     @Test
     public void testCreateScheme() {
         // Setup
-        Scheme scheme = new Scheme(102, "clayman", "world to clay");
+        Scheme scheme = new Scheme(102, "clayman", "world to clay", 30000);
 
         // Invoke
         Scheme result = assertDoesNotThrow(() -> VillainFileDAO.createScheme(scheme),
@@ -146,7 +146,7 @@ public class VillainFileDAOTest {
     @Test
     public void testCreateSchemeWithExistingIdAndName() throws IOException {
         // Assuming that the ID 99 and name "Dr. Freeze" already exist
-        Scheme existingScheme = new Scheme(99, "Dr. Freeze", "Freeze America");
+        Scheme existingScheme = new Scheme(99, "Dr. Freeze", "Freeze America", 28000);
 
         // Invoke
         Scheme result = VillainFileDAO.createScheme(existingScheme);
@@ -162,7 +162,7 @@ public class VillainFileDAOTest {
     @Test
     public void testUpdateScheme() {
         // Setup
-        Scheme scheme = new Scheme(99,"Omni-Man", "Conquer Earth");
+        Scheme scheme = new Scheme(99,"Omni-Man", "Conquer Earth", 26000);
 
         // Invoke
         Scheme result = assertDoesNotThrow(() -> VillainFileDAO.updateScheme(scheme),
@@ -185,7 +185,7 @@ public class VillainFileDAOTest {
             .when(mockObjectMapper)
                 .writeValue(any(File.class),any(Scheme[].class));
 
-        Scheme scheme = new Scheme(102,"Wi-Fire", "spread fire");
+        Scheme scheme = new Scheme(102,"Wi-Fire", "spread fire", 24000);
 
         assertThrows(IOException.class,
                         () -> VillainFileDAO.createScheme(scheme),
@@ -227,7 +227,7 @@ public class VillainFileDAOTest {
     @Test
     public void testUpdateSchemeNotFound() {
         // Setup
-        Scheme scheme = new Scheme(98,"Bolt", "Destroy cats");
+        Scheme scheme = new Scheme(98,"Bolt", "Destroy cats", 22000);
 
         // Invoke
         Scheme result = assertDoesNotThrow(() -> VillainFileDAO.updateScheme(scheme), "Unexpected exception thrown");
