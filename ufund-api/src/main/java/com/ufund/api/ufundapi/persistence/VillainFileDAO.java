@@ -53,18 +53,17 @@ public class VillainFileDAO implements VillainDAO {
 
 
     @Override
-public Scheme[] findSchemesByNameAndTitle(String name, String title) throws IOException {
-    synchronized (schemes) {
-        ArrayList<Scheme> schemeList = new ArrayList<>();
-        for (Scheme scheme : schemes.values()) {
-            if ((scheme.getName() != null && scheme.getName().contains(name)) &&
-                (scheme.getTitle() != null && scheme.getTitle().contains(title))) {
-                schemeList.add(scheme);
-            }
+    public Scheme[] findSchemesByNameAndTitle(String name, String title) throws IOException {
+        if (name == null || title == null) {
+            return new Scheme[0]; // Return an empty array if either name or title is null
         }
-        return schemeList.toArray(new Scheme[0]);
+        synchronized (schemes) {
+            return schemes.values().stream()
+                    .filter(scheme -> scheme.getName().contains(name) && scheme.getTitle().contains(title))
+                    .toArray(Scheme[]::new);
+        }
     }
-}
+    
 
 
     /**
@@ -222,19 +221,17 @@ public Scheme[] findSchemesByNameAndTitle(String name, String title) throws IOEx
     @Override
     public Scheme createScheme(Scheme scheme) throws IOException {
         synchronized(schemes){
-            Scheme exists = getScheme(scheme.getId());
-            Scheme exists_name = getScheme_str(scheme.getName());
-            
-            if(exists == null || exists_name == null ){
-                Scheme newScheme = new Scheme(nextId(), scheme.getName(), scheme.getTitle(), scheme.getfundgoal());
-                schemes.put(newScheme.getId(), newScheme);
-                save();
-                return newScheme;
-            }else{
-                return null;
+            // Check for existing scheme with same ID or name
+            if(schemes.containsKey(scheme.getId()) || schemes.values().stream().anyMatch(s -> s.getName().equals(scheme.getName()))) {
+                return null; // Scheme with same ID or name exists
             }
+            Scheme newScheme = new Scheme(nextId(), scheme.getName(), scheme.getTitle(), scheme.getfundgoal());
+            schemes.put(newScheme.getId(), newScheme);
+            save();
+            return newScheme;
         }
     }
+    
 
     /**
     ** {@inheritDoc}
@@ -257,19 +254,16 @@ public Scheme[] findSchemesByNameAndTitle(String name, String title) throws IOEx
      */
     @Override
     public Scheme[] findSchemesByName(String name) throws IOException {
-        if (name == null) {
-            return new Scheme[0]; // Return an empty array if name is null
+        if (name == null || name.isEmpty()) {
+            return new Scheme[0]; // Return an empty array if name is null or empty
         }
         synchronized (schemes) {
-            ArrayList<Scheme> schemeList = new ArrayList<>();
-            for (Scheme scheme : schemes.values()) {
-                if(scheme.getName() != null && scheme.getName().contains(name)) {
-                    schemeList.add(scheme);
-                }   
-            }
-            return schemeList.toArray(new Scheme[0]);
+            return schemes.values().stream()
+                    .filter(scheme -> scheme.getName().contains(name))
+                    .toArray(Scheme[]::new);
         }
     }
+    
 
     /**
     ** {@inheritDoc}

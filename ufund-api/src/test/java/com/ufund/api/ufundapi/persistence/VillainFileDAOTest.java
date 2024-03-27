@@ -406,4 +406,49 @@ public class VillainFileDAOTest {
         // Analyze
         assertArrayEquals(expectedSchemes, foundSchemes);
     }
+
+    @Test
+    public void testFindSchemesByNameAndTitle_NullName() throws IOException {
+        String searchName = null;
+        String searchTitle = "Freeze";
+        Scheme[] expectedSchemes = {}; // Expecting empty array as null name should not match anything
+
+        Scheme[] foundSchemes = VillainFileDAO.findSchemesByNameAndTitle(searchName, searchTitle);
+
+        assertArrayEquals(expectedSchemes, foundSchemes, "Expected an empty array when name is null.");
+    }
+
+    @Test
+    public void testFindSchemesByNameAndTitle_NullTitle() throws IOException {
+        String searchName = "Dr. Freeze";
+        String searchTitle = null;
+        Scheme[] expectedSchemes = {}; // Expecting empty array as null title should not match anything
+
+        Scheme[] foundSchemes = VillainFileDAO.findSchemesByNameAndTitle(searchName, searchTitle);
+
+        assertArrayEquals(expectedSchemes, foundSchemes, "Expected an empty array when title is null.");
+    }
+
+    @Test
+    public void testCreateScheme_NewIdExistingName() throws IOException {
+        Scheme newScheme = new Scheme(104, "Dr. Freeze", "New World Order", 50000); // Existing name, new ID
+
+        Scheme result = VillainFileDAO.createScheme(newScheme);
+
+        assertNull(result, "Expected null as the scheme with the existing name should not be created.");
+    }
+
+    @Test
+    public void testFindSchemesByName_EmptyString() throws IOException {
+        String searchName = "";
+        Scheme[] expectedSchemes = {}; // Expecting empty array as no name should match the empty string
+    
+        Scheme[] foundSchemes = VillainFileDAO.findSchemesByName(searchName);
+    
+        assertArrayEquals(expectedSchemes, foundSchemes, "Expected an empty array for an empty search name.");
+    }
+
+
+
+
 }
