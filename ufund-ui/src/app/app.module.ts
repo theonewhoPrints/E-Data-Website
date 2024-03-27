@@ -1,6 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatSidenavModule, MatButtonModule, MatToolbarModule, MatIconModule, MatListModule ,MatMenuModule} from '@angular/material';
+import { MatButtonModule} from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { SchemesComponent } from './schemes/schemes.component';
@@ -26,7 +30,7 @@ import { HeaderComponent } from './filter/header/header.component';
 import { SidebarComponent } from './filter/sidebar/sidebar.component';
 import { Sidebar2Component } from './sidebar2/sidebar2.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MaterialModule } from './material.module';
 
 @NgModule({
   imports: [
@@ -35,16 +39,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-  
-    
-  ],
-
-  exports:[
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
     MatButtonModule,
-    MatIconModule
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule
+  ],
+  exports: [
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule
   ],
   declarations: [
     AppComponent,
@@ -69,3 +75,5 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 })
 export class AppModule {
  }
+
+export class MaterialModule {}
