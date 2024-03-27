@@ -12,60 +12,46 @@ export class DashboardComponent implements OnInit {
   schemes: Scheme[] = [];
   schemeTitles: string[] = [];
   selectedOrder: string = ''; // Track the selected sorting order
+  sortedSchemes: Scheme[] = []; // Track the sorted schemes
 
   constructor(private schemeService: SchemeService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.getSchemes();
-    
   }
 
   getSchemes(): void {
     this.schemeService.getSchemes()
       .subscribe(schemes => {
         // Apply sorting based on the selected order
-        if (this.selectedOrder === 'Price: High to Low') {
-          this.schemes = schemes.slice(0, 5).sort((a, b) => b.fundgoal - a.fundgoal);
-        } else if (this.selectedOrder === 'Price: Low to High') {
-          this.schemes = schemes.slice(0, 5).sort((a, b) => a.fundgoal - b.fundgoal);
-        } else {
-          this.schemes = schemes.slice(0, 5); // Default order
-        }
+        this.schemes = schemes;
+        this.sortSchemes();
       });
   }
 
+  sortSchemes(): void {
+    if (this.selectedOrder === 'Price: High to Low') {
+      this.sortedSchemes = this.schemes.slice().sort((a, b) => b.fundgoal - a.fundgoal);
+    } else if (this.selectedOrder === 'Price: Low to High') {
+      this.sortedSchemes = this.schemes.slice().sort((a, b) => a.fundgoal - b.fundgoal);
+    } else {
+      this.sortedSchemes = this.schemes.slice(); // Default order
+    }
+  }
 
-  addToCart(scheme : Scheme): void {
+  addToCart(scheme: Scheme): void {
     this.cartService.addToCart(scheme);
   }
 
-
-  onSortEvent(event: string): void {
-    // Handle sorting logic based on the emitted event
-    console.log('Sort event received:', event);
-    // Implement your sorting logic here, for example, call a service method with sort parameters
-    // You can implement sorting logic here based on the event received from the sort filter component
+  selectChangeHandler(event: any): void {
+    this.selectedOrder = event.target.value;
+    this.sortSchemes();
   }
 
-  orders=[
+  orders = [
     { id: '1', name: 'Price: High to Low' },
     { id: '2', name: 'Price: Low to High' },
     { id: '3', name: 'Most Relevant' },
     { id: '4', name: 'order 4' }
-  ]
-
-  selectedDay: string = '';
- 
-  selectChangeHandler (event: any) {
-    this.selectedOrder = event.target.value;
-    this.selectedDay = event.target.value;
-    
-  }
-
-
-
-
-
-
+  ];
 }
-
