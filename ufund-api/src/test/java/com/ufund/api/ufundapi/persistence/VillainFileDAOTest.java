@@ -294,6 +294,22 @@ public class VillainFileDAOTest {
     }
 
     @Test
+    public void testFindSchemesByTitle_WithTitleNull() throws IOException {
+        // Setup: Assuming one of the schemes has a null title, either add this to setup or mock it
+        Scheme schemeWithNullTitle = new Scheme(103, "NullTitleVillain", null, 25000);
+        VillainFileDAO.schemes.put(schemeWithNullTitle.getId(), schemeWithNullTitle);
+    
+        // Invoke
+        Scheme[] foundSchemes = VillainFileDAO.findSchemesByTitle("NonExistingTitle");
+    
+        // Analyze
+        // Ensure the scheme with a null title is not included in the results
+        for (Scheme scheme : foundSchemes) {
+            assertNotNull(scheme.getTitle(), "Scheme with null title should not be included in the results.");
+        }
+    }    
+
+    @Test
     public void testFindSchemesByName() throws IOException {
         // Setup
         String searchName = "Dr. Freeze";
@@ -448,7 +464,63 @@ public class VillainFileDAOTest {
         assertArrayEquals(expectedSchemes, foundSchemes, "Expected an empty array for an empty search name.");
     }
 
+    @Test
+    public void testGetScheme_str_Success() {
+        // Setup
+        String searchName = "Dr. Freeze";
+    
+        // Invoke
+        Scheme scheme = VillainFileDAO.getScheme_str(searchName);
+    
+        // Analyze
+        assertNotNull(scheme, "Expected to find a scheme with the name 'Dr. Freeze'.");
+        assertEquals(99, scheme.getId(), "The ID of the retrieved scheme does not match the expected value.");
+        assertEquals("Freeze America", scheme.getTitle(), "The title of the retrieved scheme does not match the expected value.");
+    }
+    
 
+    @Test
+    public void testGetScheme_str_NonExistingName() {
+        // Setup
+        String searchName = "NonExistingName";
+    
+        // Invoke
+        Scheme scheme = VillainFileDAO.getScheme_str(searchName);
+    
+        // Analyze
+        assertNull(scheme, "Expected null when trying to retrieve a scheme with a non-existing name.");
+    }
 
+    @Test
+    public void testGetScheme_str_NullName() {
+        // Setup
+        String searchName = null;
+    
+        // Invoke
+        Scheme scheme = VillainFileDAO.getScheme_str(searchName);
+    
+        // Analyze
+        assertNull(scheme, "Expected null when trying to retrieve a scheme with a null name.");
+    }
+    
+    //indirect testing
+    @Test
+    public void testFindSchemes_WithNullInput() {
+        Scheme[] allSchemes = VillainFileDAO.findSchemes(null); // Assuming null should return all schemes
+    
+        assertEquals(testSchemes.length, allSchemes.length, "Expected all schemes to be returned when input is null.");
+    }
 
+    //indirect
+    @Test
+    public void testFindSchemes_Filtering() {
+        String contains = "al"; // This string is present in the names of some test schemes
+        Scheme[] expectedSchemes = {testSchemes[1], testSchemes[2]}; // Schemes containing "al"
+    
+        Scheme[] foundSchemes = VillainFileDAO.findSchemes(contains);
+    
+        assertArrayEquals(expectedSchemes, foundSchemes, "Expected to find schemes with names containing 'al'.");
+    }
+    
+    
 }
