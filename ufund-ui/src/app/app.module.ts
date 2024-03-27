@@ -18,7 +18,6 @@ import { CheckoutComponent } from './checkout/checkout.component';
 
 //cupboard
 import { CupboardComponent } from './cupboard/cupboard.component';
-import { HeaderComponent } from './filter/header/header.component';
 import { SidebarComponent } from './filter/sidebar/sidebar.component';
 
 
@@ -49,7 +48,6 @@ import { MaterialModule } from './material.module';
     ProfileComponent,
     CupboardComponent,
     CheckoutComponent,
-    HeaderComponent,
     SidebarComponent,
    
     
