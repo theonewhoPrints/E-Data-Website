@@ -18,7 +18,6 @@ import { CheckoutComponent } from './checkout/checkout.component';
 
 //cupboard
 import { CupboardComponent } from './cupboard/cupboard.component';
-import { SidebarComponent } from './filter/sidebar/sidebar.component';
 
 
 //search filter
@@ -48,7 +47,6 @@ import { MaterialModule } from './material.module';
     ProfileComponent,
     CupboardComponent,
     CheckoutComponent,
-    SidebarComponent,
    
     
   ],
