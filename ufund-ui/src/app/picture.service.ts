@@ -7,6 +7,18 @@ import { User } from './user';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { from } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
+import {readAndCompressImage } from 'browser-image-resizer';
+
+const picConfig = {
+  quality: 1.0,
+  maxWidth: 1024,
+  maxHeight: 1024,
+  autoRotate: true,
+  debug: true
+};
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +67,8 @@ export class PictureService {
     return this.http.get(this.pictureURL + '/' + username, { responseType: 'blob' });
   }
 
+
+  /*
   uploadPicture(username: string, imageName: string, formData: FormData): Observable<any> {
     this.messageService.add('PictureService: uploading picture...');
     this.messageService.add('URL: ' + this.pictureURL + '/' + imageName);
@@ -67,5 +81,23 @@ export class PictureService {
       })
     );
   }
+  */
 
+  
+  uploadPicture(username: string, imageName: string, file: File): Observable<any> {
+    this.messageService.add('PictureService: uploading picture...');
+    return from(readAndCompressImage(file, picConfig)).pipe(
+      switchMap(compressedImage => {
+        const formData = new FormData();
+        formData.append('image', compressedImage, imageName);
+        return this.http.post(this.pictureURL + '/' + username + '/' +  imageName, formData);
+      }),
+      catchError(error => {
+        console.error('There was an error!', error);
+        return throwError('Something bad happened; please try again later.');
+      })
+    );
+  }
 }
+
+

@@ -1,4 +1,6 @@
-<img [src]="imageToShow" class="profile-picture">
+<div class="image-container">
+  <img [src]="imageToShow" class="profile-picture">
+</div>
 <form (submit)="onSubmit()">
     <input type="file" (change)="onFileSelected($event)" />
     <button type="submit">Upload</button>

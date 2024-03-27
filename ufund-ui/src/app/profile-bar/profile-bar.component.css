@@ -1,17 +1,18 @@
 .user-info {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    text-align: right;
-    display: flex;
-    align-items: center;
-  }
-  
-  .username {
-    margin-right: 10px;
-  }
-  
-  .profile-picture {
-    width: 25px; /* adjust as needed */
-    height: 25px; /* adjust as needed */
-  }
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  text-align: right;
+  display: flex;
+  align-items: center;
+}
+
+.username {
+  margin-right: 10px;
+}
+
+.profile-picture {
+  width: 25px; /* adjust as needed */
+  height: 25px; /* adjust as needed */
+  object-fit: cover; /* crop the image */
+}

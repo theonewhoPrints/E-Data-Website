@@ -1,0 +1,11 @@
+.image-container {
+    width: 200px; /* Set the desired width */
+    height: 200px; /* Set the desired height */
+    overflow: hidden; /* Hide any overflowing content */
+}
+
+.image-container img {
+    object-fit: cover; /* Crop the image to fit the container */
+    width: 100%; /* Make the image fill the container horizontally */
+    height: 100%; /* Make the image fill the container vertically */
+}

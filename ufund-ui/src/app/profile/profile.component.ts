@@ -1,14 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-
-import { Scheme } from '../scheme';
 import { SchemeService } from '../scheme.service';
 import { UserService } from '../user.service';
-import { Observable, Subject } from 'rxjs';
 import { StorageService } from 'src/_services/storage.service';
 import { PictureService } from '../picture.service';
 import { MessageService } from '../message.service';
+
+import {readAndCompressImage } from 'browser-image-resizer';
 
 @Component({
   selector: 'app-profile',
@@ -26,6 +24,8 @@ export class ProfileComponent {
 
   username = '';
   userRole = '';
+
+  
 
 
   constructor(
@@ -58,6 +58,8 @@ export class ProfileComponent {
     }
   }
 
+  
+
   getProfilePicture() {
     this.pictureService.getPictureByName(this.name).subscribe(data => {
       let reader = new FileReader();
@@ -81,8 +83,8 @@ export class ProfileComponent {
     const formData = new FormData();
     this.messageService.add('Submitting: ' + this.selectedFile);
     if (this.selectedFile !== null) {
-      formData.append("image", this.selectedFile, this.selectedFile.name);
-      this.pictureService.uploadPicture(this.username, this.selectedFile.name, formData).subscribe({
+      //formData.append("image", this.selectedFile, this.selectedFile.name);
+      this.pictureService.uploadPicture(this.username, this.selectedFile.name, this.selectedFile).subscribe({
         next: (response) => {
           // Handle the response here
         },
