@@ -49,9 +49,9 @@ export class DashboardComponent implements OnInit {
   }
 
   orders = [
-    { id: '1', name: 'Price: High to Low' },
-    { id: '2', name: 'Price: Low to High' },
-    { id: '3', name: 'Most Relevant' },
-    { id: '4', name: 'order 4' }
+    { id: '1', name: 'Default' },
+    { id: '2', name: 'Price: High to Low' },
+    { id: '3', name: 'Price: Low to High' },
+    { id: '4', name: 'Most Relevant' }
   ];
 }

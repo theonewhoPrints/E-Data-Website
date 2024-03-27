@@ -8,9 +8,8 @@
   </div>
 </div>
 
+<div class="sort-container">
+  <br> Sort By:<select (change)="selectChangeHandler($event)"> <option *ngFor="let order of orders" [ngValue]="order.name">{{ order.name }}</option> </select>
+</div>
+
 <app-scheme-search></app-scheme-search>
-<br>
-Sort By:
-<select (change)="selectChangeHandler($event)">
-  <option *ngFor="let order of orders" [ngValue]="order.name">{{ order.name }}</option>
-</select>
