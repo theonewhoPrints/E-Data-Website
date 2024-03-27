@@ -120,6 +120,7 @@ public class PictureController {
 
                 User user = userDao.findUser(username);
                 user.setImgUrl(imageName);
+                userDao.updateUser(user);
                 // Return the image
                 return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(data);
             }

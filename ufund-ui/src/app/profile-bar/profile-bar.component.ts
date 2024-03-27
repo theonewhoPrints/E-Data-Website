@@ -21,8 +21,8 @@ export class ProfileBarComponent implements OnInit{
 
   ngOnInit(): void {
     this.storageService.user$.subscribe(user => {
-      this.username = user[1];
-      this.role = user[2];
+      this.username = user.name;
+      this.role = user.role;
     });
 
     this.getProfilePicture();

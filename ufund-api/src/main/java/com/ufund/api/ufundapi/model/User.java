@@ -10,12 +10,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class User {
     private static final Logger LOG = Logger.getLogger(User.class.getName());
     // Package private for tests
-    static final String STRING_FORMAT = "User [id=%d, name=%s, role=%s, imgUrl=%s]";
+    static final String STRING_FORMAT = "User [id=%d, name=%s, role=%s, imgUrl=%s, description=%s]";
     
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
     @JsonProperty("role") private String role;
     @JsonProperty("imgUrl") private String imgUrl;
+    @JsonProperty("description") private String description;
 
     /**
      * Create a user with the given id and name. 
@@ -23,17 +24,20 @@ public class User {
      * @param name The name of the user
      * @param role The role of the user
      * @param imgUrl The image URL of the user
+     * @param description The description of the user
+     * 
      * 
      * {@literal @}JsonProperty is used in serialization and deserialization
      * of the JSON object to the Java object in mapping the fields.  If a field
      * is not provided in the JSON object, the Java field gets the default Java
      * value, i.e. 0 for int
      */
-    public User(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("role") String role, @JsonProperty("imgUrl") String imgUrl){
+    public User(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("role") String role, @JsonProperty("imgUrl") String imgUrl, @JsonProperty("description") String description){
         this.id = id;
         this.name = name;
         this.role = role;
         this.imgUrl = imgUrl;
+        this.description = description;
     }
 
     /**
@@ -84,13 +88,21 @@ public class User {
         this.imgUrl = imgUrl;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     /**
      * Returns a string representation of the configuration.
      * @return string representation.
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT, id, name, role);
+        return String.format(STRING_FORMAT, id, name, role, imgUrl, description);
     }
 
 }

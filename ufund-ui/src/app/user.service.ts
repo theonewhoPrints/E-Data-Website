@@ -62,12 +62,11 @@ export class UserService {
   }
 
   /** GET scheme by name. Will 404 if name not found */
-  getUser(name: string): Observable<string[]> {
+  getUser(name: string): Observable<User> {
     const url = `${this.userURL}/query?name=${name}`;
     return this.http.get<User>(url).pipe(
-      map(user => Object.values(user)), // Convert user object to an array of values
       tap(_ => this.log(`fetched user name=${name}`)),
-      catchError(this.handleError<string[]>(`getUser name=${name}`))
+      catchError(this.handleError<User>(`getUser name=${name}`))
     );
   }
 
@@ -92,6 +91,13 @@ export class UserService {
         this.log(`found users matching "${term}"`) :
         this.log(`no users matching "${term}"`)),
       catchError(this.handleError<User[]>('searchUsers', []))
+    );
+  }
+
+  updateUser(user: User): Observable<any> {
+    return this.http.put(this.userURL, user, this.httpOptions).pipe(
+      tap(_ => this.log(`updated user name=${user.name}`)),
+      catchError(this.handleError<any>('updateUser'))
     );
   }
 

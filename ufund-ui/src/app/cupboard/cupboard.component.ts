@@ -24,8 +24,8 @@ export class CupboardComponent {
     this.getSchemes();
 
     this.storageService.user$.subscribe(user => {
-      this.username = user[1];
-      this.role = user[2];
+      this.username = user.name;
+      this.role = user.role;
     });
 
     if(this.role == 'ROLE_HELPER') {

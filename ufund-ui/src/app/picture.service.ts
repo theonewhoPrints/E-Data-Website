@@ -14,8 +14,8 @@ import {readAndCompressImage } from 'browser-image-resizer';
 
 const picConfig = {
   quality: 1.0,
-  maxWidth: 1024,
-  maxHeight: 1024,
+  maxWidth: 512,
+  maxHeight: 512,
   autoRotate: true,
   debug: true
 };

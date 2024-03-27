@@ -1,9 +1,24 @@
 <div class="image-container">
   <img [src]="imageToShow" class="profile-picture">
 </div>
-<form (submit)="onSubmit()">
+
+<form *ngIf="this.username == profile.name" (submit)="onSubmit()">
     <input type="file" (change)="onFileSelected($event)" />
     <button type="submit">Upload</button>
   </form>
-<p>{{name}}</p>
-<p>{{role}}</p>
+
+
+<p>{{profile.name}}</p>
+<p>{{profile.role}}</p>
+
+<div *ngIf="this.username !== profile.name">
+  <h2>Description:</h2>
+  <p>{{profile.description}}</p>
+</div>
+
+
+<div *ngIf="this.username == profile.name">
+  <h2>Description:</h2>
+  <textarea id="description" [(ngModel)]="profile.description" placeholder="{{profile.description}}"></textarea><br>
+  <button type="button" (click)="save()">save</button>
+</div>

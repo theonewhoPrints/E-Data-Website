@@ -1,1 +1,1 @@
-[{"id": 1, "name": "Admin", "role": "ROLE_ADMIN", "imgUrl": "default.jpg"},{"id":2, "name": "Dr. Nefarious", "role": "ROLE_VILLAIN", "imgUrl": "nefario.jpg"}, {"id": 3, "name": "Evan", "role": "ROLE_HELPER", "imgUrl": "mario.jpg"}]
+[{"id":1,"name":"Admin","role":"ROLE_ADMIN","imgUrl":"default.jpg","description":null},{"id":2,"name":"Dr. Nefarious","role":"ROLE_VILLAIN","imgUrl":"nefario.jpg","description":"What's up guys, i love killing"},{"id":3,"name":"Evan","role":"ROLE_HELPER","imgUrl":"mario.jpg","description":null}]
