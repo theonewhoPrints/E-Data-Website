@@ -18,7 +18,6 @@ import { CheckoutComponent } from './checkout/checkout.component';
 
 //cupboard
 import { CupboardComponent } from './cupboard/cupboard.component';
-import { SortFilterComponent } from './sort-filter/sort-filter.component';
 import { HeaderComponent } from './filter/header/header.component';
 import { SidebarComponent } from './filter/sidebar/sidebar.component';
 import { Sidebar2Component } from './sidebar2/sidebar2.component';
@@ -50,7 +49,6 @@ import { MaterialModule } from './material.module';
     ProfileComponent,
     CupboardComponent,
     CheckoutComponent,
-    SortFilterComponent,
     HeaderComponent,
     SidebarComponent,
     Sidebar2Component,
