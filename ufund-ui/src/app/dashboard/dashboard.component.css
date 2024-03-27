@@ -52,15 +52,13 @@ a:hover {
 
 /* New styles for the sort container */
 .sort-container {
-  border: 2px solid #000; /* thicker border */
-  border-radius: 8px; /* rounder edges */
-  padding: 5px 10px; /* adjust padding as needed */
+  border: 2px solid #000; 
+  border-radius: 8px; 
+  padding: 5px 10px; 
   display: inline-block;
   margin-bottom: 0px;
-  line-height: 0px; /* adjust line height for vertical centering */
+  line-height: 0px; 
 }
-
-
 
 select{
   border: none;
