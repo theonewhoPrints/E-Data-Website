@@ -41,13 +41,7 @@
   <p>Here's how I would display helper tools, check app.component.html and good luck</p>
 </div>
 
-<br>
-<select (change)="selectChangeHandler($event)">
-  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-  <option *ngFor="let order of orders; " [ngValue]="order">
-                  {{order.name}}
-  </option>
-</select>
+
 
 <router-outlet></router-outlet>
 <app-messages></app-messages>
