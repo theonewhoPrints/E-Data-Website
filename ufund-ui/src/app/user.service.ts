@@ -64,6 +64,7 @@ export class UserService {
   /** GET scheme by name. Will 404 if name not found */
   getUser(name: string): Observable<User> {
     const url = `${this.userURL}/query?name=${name}`;
+    this.messageService.add(url);
     return this.http.get<User>(url).pipe(
       tap(_ => this.log(`fetched user name=${name}`)),
       catchError(this.handleError<User>(`getUser name=${name}`))
@@ -98,6 +99,13 @@ export class UserService {
     return this.http.put(this.userURL, user, this.httpOptions).pipe(
       tap(_ => this.log(`updated user name=${user.name}`)),
       catchError(this.handleError<any>('updateUser'))
+    );
+  }
+
+  updateAchievements(name: string, achievements: string[]): Observable<any> {
+    return this.http.put(`${this.userURL}/achievements?name=${name}`, achievements, this.httpOptions).pipe(
+      tap(_ => this.log(`updated achievements name=${name}`)),
+      catchError(this.handleError<any>('updateAchievements'))
     );
   }
 

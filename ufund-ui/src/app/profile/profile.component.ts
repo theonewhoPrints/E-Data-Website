@@ -64,6 +64,7 @@ export class ProfileComponent {
     if (name !== null) {
     this.userService.getUser(name).subscribe(user => {
       this.profile = user;
+      this.messageService.add('Achievements: ' + this.profile.achievements);
       this.getProfilePicture();
     });
     }
@@ -97,6 +98,7 @@ export class ProfileComponent {
   save(): void {
     if (this.profile) {
       this.userService.updateUser(this.profile).subscribe();
+      //this.userService.updateAchievements(this.profile.name, this.profile.achievements).subscribe();
     }
   }
 
@@ -141,8 +143,19 @@ export class ProfileComponent {
       });
       */
       });
+    }
   }
 
+  addAchievement() {
+    this.profile.achievements.push('');
+  }
 
-}
+  removeAchievement(index: number) {
+    this.profile.achievements.splice(index, 1);
+  }
+
+  // fixes achievement list rendering
+  trackByFn(index: any, item: any) {
+    return index;
+  }
 }

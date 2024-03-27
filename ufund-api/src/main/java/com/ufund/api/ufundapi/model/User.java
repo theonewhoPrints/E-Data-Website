@@ -1,4 +1,5 @@
 package com.ufund.api.ufundapi.model;
+import java.util.List;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,13 +11,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class User {
     private static final Logger LOG = Logger.getLogger(User.class.getName());
     // Package private for tests
-    static final String STRING_FORMAT = "User [id=%d, name=%s, role=%s, imgUrl=%s, description=%s]";
+    static final String STRING_FORMAT = "User [id=%d, name=%s, role=%s, imgUrl=%s, description=%s, achievements=%s]";
     
     @JsonProperty("id") private int id;
     @JsonProperty("name") private String name;
     @JsonProperty("role") private String role;
     @JsonProperty("imgUrl") private String imgUrl;
     @JsonProperty("description") private String description;
+    @JsonProperty("achievements") private List<String> achievements;
 
     /**
      * Create a user with the given id and name. 
@@ -32,12 +34,13 @@ public class User {
      * is not provided in the JSON object, the Java field gets the default Java
      * value, i.e. 0 for int
      */
-    public User(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("role") String role, @JsonProperty("imgUrl") String imgUrl, @JsonProperty("description") String description){
+    public User(@JsonProperty("id") int id, @JsonProperty("name") String name, @JsonProperty("role") String role, @JsonProperty("imgUrl") String imgUrl, @JsonProperty("description") String description, @JsonProperty("achievements") List<String> achievements){
         this.id = id;
         this.name = name;
         this.role = role;
         this.imgUrl = imgUrl;
         this.description = description;
+        this.achievements = achievements;
     }
 
     /**
@@ -96,13 +99,29 @@ public class User {
         this.description = description;
     }
 
+    public List<String> getAchievements() {
+        return achievements;
+    }
+
+    public void addAchievement(String achievement) {
+        this.achievements.add(achievement);
+    }
+
+    public void editAchievement(String achievement, int index) {
+        this.achievements.set(index, achievement);
+    }
+
+    public void removeAchievement(int index) {
+        this.achievements.remove(index);
+    }
+
     /**
      * Returns a string representation of the configuration.
      * @return string representation.
      */
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT, id, name, role, imgUrl, description);
+        return String.format(STRING_FORMAT, id, name, role, imgUrl, description, achievements);
     }
 
 }

@@ -14,11 +14,26 @@
 <div *ngIf="this.username !== profile.name">
   <h2>Description:</h2>
   <p>{{profile.description}}</p>
+
+  <h2>Achievements:</h2>
+  <li *ngFor="let achievement of profile.achievements">
+    {{achievement}}
+  </li>
 </div>
+
+
 
 
 <div *ngIf="this.username == profile.name">
   <h2>Description:</h2>
   <textarea id="description" [(ngModel)]="profile.description" placeholder="{{profile.description}}"></textarea><br>
-  <button type="button" (click)="save()">save</button>
+
+  <h2>Achievements:</h2>
+  <li *ngFor="let achievement of profile.achievements; let i = index; trackBy: trackByFn">
+    <input [(ngModel)]="profile.achievements[i]" placeholder="{{achievement}}"/>
+    <button id="remove-button" (click)="removeAchievement(i)">X</button><br>
+  </li>
+  <button (click)="addAchievement()">Add new achievement</button><br>
+
+  <button id="save-button" (click)="save()">Save Changes</button>
 </div>
