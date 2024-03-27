@@ -1,8 +1,11 @@
 <div class="slideshow-container">
   <div class="slides">
-    <div class="image" style="background-image: url(assets/Af.jpg);"></div>
     <div class="image" style="background-image: url(assets/Dv.jpg);"></div>
     <div class="image" style="background-image: url(assets/Gf.jpg);"></div>
+    <div class="image" style="background-image: url(assets/Of.jpg);"></div>
+    <div class="image" style="background-image: url(assets/Jf.webp);"></div>
+    <div class="image" style="background-image: url(assets/Sf.webp);"></div>
+    <div class="image" style="background-image: url(assets/Ff.jpg);"></div>
     <div class="image" style="background-image: url(assets/Pc.jpg);"></div>
   </div>
 </div>
@@ -15,3 +18,14 @@
     <button type="submit">Login</button>
   </form>
 </div>
+
+<div class='toggle' id='switch' (click)="toggleMusic()">
+  <div class='toggle-text-off'>OFF</div>
+  <div class='glow-comp'></div>
+  <div class='toggle-button'></div>
+  <div class='toggle-text-on'>ON</div>
+</div>
+
+<audio id="backgroundMusic" loop>
+<source src="assets/Dance_of_the_Knights.mp3" type="audio/mp3">
+</audio>
