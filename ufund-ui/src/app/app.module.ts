@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatButtonModule} from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
+// import { MatButtonModule} from '@angular/material/button';
+// import { MatCardModule } from '@angular/material/card';
+// import { MatMenuModule } from '@angular/material/menu';
+// import { MatToolbarModule } from '@angular/material/toolbar';
+// import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { SchemesComponent } from './schemes/schemes.component';
@@ -39,19 +39,10 @@ import { MaterialModule } from './material.module';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatCardModule
+    MaterialModule,
+  
   ],
-  exports: [
-    MatButtonModule,
-    MatMenuModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatCardModule
-  ],
+  
   declarations: [
     AppComponent,
     DashboardComponent,
@@ -76,4 +67,4 @@ import { MaterialModule } from './material.module';
 export class AppModule {
  }
 
-export class MaterialModule {}
+
