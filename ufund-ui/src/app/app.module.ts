@@ -20,7 +20,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { CupboardComponent } from './cupboard/cupboard.component';
 import { HeaderComponent } from './filter/header/header.component';
 import { SidebarComponent } from './filter/sidebar/sidebar.component';
-import { Sidebar2Component } from './sidebar2/sidebar2.component';
+
 
 //search filter
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -51,7 +51,7 @@ import { MaterialModule } from './material.module';
     CheckoutComponent,
     HeaderComponent,
     SidebarComponent,
-    Sidebar2Component,
+   
     
   ],
   providers: [],

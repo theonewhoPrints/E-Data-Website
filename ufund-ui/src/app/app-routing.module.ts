@@ -7,7 +7,6 @@ import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import { CupboardComponent } from './cupboard/cupboard.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { Sidebar2Component } from './sidebar2/sidebar2.component';
 import { SidebarComponent } from './filter/sidebar/sidebar.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -17,8 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'cupboard', component: CupboardComponent},
   { path: 'checkout', component: CheckoutComponent},
-  { path: 'link1', component: Sidebar2Component},
-  { path: 'link2', component: Sidebar2Component}
+  
 
 
 ];
