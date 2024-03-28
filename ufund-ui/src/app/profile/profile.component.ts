@@ -141,6 +141,9 @@ export class ProfileComponent {
 
   addAchievement() {
     // Add an empty achievement to the profile
+    if (this.profile.achievements === null) {
+      this.profile.achievements = [];
+    }
     this.profile.achievements.push('');
   }
 
