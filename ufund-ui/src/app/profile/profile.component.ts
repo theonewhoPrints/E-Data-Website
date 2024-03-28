@@ -45,18 +45,26 @@ export class ProfileComponent {
 
 
   ngOnInit(): void {
-    // Initialize the component
+    this.setup();
+
+    // Subscribe to changes in the route parameters to update the profile when the route changes
+    this.route.params.subscribe(params => {
+      this.setup();
+    });
+
+    // Subscribe to the pictureUploaded event to update the profile picture when a new picture is uploaded
+    this.pictureService.pictureUploaded.subscribe(() => {
+      this.getProfilePicture();
+    });
+  }
+
+  setup(): void {
     this.getUser();
 
     // Subscribe to changes in the user object from the storage service
     this.storageService.user$.subscribe(user => {
       this.username = user.name;
       this.userRole = user.role;
-    });
-
-    // Subscribe to the pictureUploaded event to update the profile picture when a new picture is uploaded
-    this.pictureService.pictureUploaded.subscribe(() => {
-      this.getProfilePicture();
     });
   }
 
