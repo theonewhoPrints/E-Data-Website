@@ -39,7 +39,7 @@ export class CartComponent implements OnInit {
 
   checkout(): void {
     for (let i = 0; i < this.cart.length; i++){
-      if (this.cart[i].donateAmount <= 0){return;}
+      if (this.cart[i].donateAmount <= 0 || this.cart[i].donateAmount > this.cart[i].scheme.fundgoal){return;}
     }
     for (let i = 0; i < this.cart.length; i++){
       this.schemeService.updateScheme({...this.cart[i].scheme, fundgoal: this.cart[i].scheme.fundgoal - this.cart[i].donateAmount} as Scheme).subscribe();

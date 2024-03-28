@@ -6,6 +6,7 @@
     <button (click)="removeFromCart(cartItem.scheme); ">x</button>
     <div *ngIf="cartItem.donateAmount == 0">*Please enter a donate amount</div>
     <div *ngIf="cartItem.donateAmount < 0">*Donate amount must be positive</div>
+    <div *ngIf="cartItem.donateAmount > cartItem.scheme.fundgoal">*Donate amount must be at most the funding goal</div>
     
   </div>
   <button *ngIf="cart.length > 0" (click)="checkout();">Checkout</button>
