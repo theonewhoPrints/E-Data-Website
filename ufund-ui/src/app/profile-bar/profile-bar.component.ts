@@ -1,6 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { StorageService } from 'src/_services/storage.service';
 import { PictureService } from '../picture.service';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-profile-bar',
@@ -27,6 +28,11 @@ export class ProfileBarComponent implements OnInit{
     });
 
     this.getProfilePicture();
+
+    // Subscribe to the pictureUploaded event to update the profile picture when a new picture is uploaded
+    this.pictureService.pictureUploaded.subscribe(() => {
+      this.getProfilePicture();
+    });
   }
 
   getProfilePicture() {

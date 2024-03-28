@@ -11,6 +11,7 @@ import { from } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import {readAndCompressImage } from 'browser-image-resizer';
+import { Subject } from 'rxjs';
 
 const picConfig = {
   quality: 1.0,
@@ -31,6 +32,8 @@ export class PictureService {
   
   
   private pictureURL = 'http://localhost:8080/picture';  // URL to pictures
+
+
 
 
   /** Log a UserService message with the MessageService */
@@ -67,30 +70,19 @@ export class PictureService {
     return this.http.get(this.pictureURL + '/' + username, { responseType: 'blob' });
   }
 
-
-  /*
-  uploadPicture(username: string, imageName: string, formData: FormData): Observable<any> {
-    this.messageService.add('PictureService: uploading picture...');
-    this.messageService.add('URL: ' + this.pictureURL + '/' + imageName);
-    this.messageService.add('formData: ' + formData);
-    return this.http.post(this.pictureURL + '/' + username + '/' +  imageName, formData).pipe(
-      catchError(error => {
-        // Handle the error here. You might want to log it or show a user-friendly message.
-        console.error('There was an error!', error);
-        return throwError('Something bad happened; please try again later.');
-      })
-    );
-  }
-  */
-
-  
+  // Event to emit when a picture is uploaded
+  pictureUploaded = new Subject<void>();
   uploadPicture(username: string, imageName: string, file: File): Observable<any> {
     this.messageService.add('PictureService: uploading picture...');
     return from(readAndCompressImage(file, picConfig)).pipe(
       switchMap(compressedImage => {
         const formData = new FormData();
         formData.append('image', compressedImage, imageName);
-        return this.http.post(this.pictureURL + '/' + username + '/' +  imageName, formData);
+        return this.http.post(this.pictureURL + '/' + username + '/' +  imageName, formData, { responseType: 'blob' });
+      }),
+      tap(() => {
+        // Add this line to emit an event when a picture is uploaded
+        this.pictureUploaded.next();
       }),
       catchError(error => {
         console.error('There was an error!', error);

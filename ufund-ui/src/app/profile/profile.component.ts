@@ -53,6 +53,11 @@ export class ProfileComponent {
       this.username = user.name;
       this.userRole = user.role;
     });
+
+    // Subscribe to the pictureUploaded event to update the profile picture when a new picture is uploaded
+    this.pictureService.pictureUploaded.subscribe(() => {
+      this.getProfilePicture();
+    });
   }
 
   /** Log a SchemeService message with the MessageService */
