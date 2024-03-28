@@ -45,34 +45,35 @@ export class ProfileComponent {
 
 
   ngOnInit(): void {
+    // Initialize the component
     this.getUser();
 
+    // Subscribe to changes in the user object from the storage service
     this.storageService.user$.subscribe(user => {
       this.username = user.name;
       this.userRole = user.role;
     });
   }
 
-  
   /** Log a SchemeService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`Profile: ${message}`);
   }
   
   getUser(): void {
+    // Get the name parameter from the route
     const name = this.route.snapshot.paramMap.get('name');
     if (name !== null) {
-    this.userService.getUser(name).subscribe(user => {
-      this.profile = user;
-      this.messageService.add('Achievements: ' + this.profile.achievements);
-      this.getProfilePicture();
-    });
+      // Fetch the user data from the UserService
+      this.userService.getUser(name).subscribe(user => {
+        this.profile = user;
+        this.getProfilePicture();
+      });
     }
   }
 
-  
-
   getProfilePicture() {
+    // Fetch the profile picture for the user
     this.pictureService.getPictureByName(this.profile.name).subscribe(data => {
       let reader = new FileReader();
       reader.addEventListener("load", () => {
@@ -85,24 +86,19 @@ export class ProfileComponent {
     });
   }
 
-
   onFileSelected(event: any) {
+    // Handle the file selection event
     this.selectedFile = <File>event.target.files[0];
     this.messageService.add('File selected: ' + this.selectedFile.name);
   }
 
-  goBack(): void {
-    this.location.back();
-  }
-
   save(): void {
+    // Save the user profile
     if (this.profile) {
       this.userService.updateUser(this.profile).subscribe();
-      //this.userService.updateAchievements(this.profile.name, this.profile.achievements).subscribe();
     }
   }
 
-  
   /**
   * Handle Http operation that failed.
   * Let the app continue.
@@ -125,32 +121,26 @@ export class ProfileComponent {
   }
 
   onSubmit() {
+    // Handle the form submission
     const formData = new FormData();
     this.messageService.add('Submitting: ' + this.selectedFile);
     if (this.selectedFile !== null) {
-      //formData.append("image", this.selectedFile, this.selectedFile.name);
       this.pictureService.uploadPicture(this.username, this.selectedFile.name, this.selectedFile).subscribe({
-        next: (response) => {
-          // Handle the response here
-        },
+        next: (response) => {},
         error: (err) => {
-          // Handle the error here. This could be showing a user-friendly message or logging the error.
           console.error('There was an error!', err);
         }
-      /*
-      this.pictureService.uploadPicture(formData).subscribe(response => {
-        // Handle response here
-      });
-      */
       });
     }
   }
 
   addAchievement() {
+    // Add an empty achievement to the profile
     this.profile.achievements.push('');
   }
 
   removeAchievement(index: number) {
+    // Remove an achievement from the profile
     this.profile.achievements.splice(index, 1);
   }
 

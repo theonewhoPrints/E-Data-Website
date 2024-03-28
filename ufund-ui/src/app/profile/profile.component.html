@@ -2,6 +2,8 @@
   <img [src]="imageToShow" class="profile-picture">
 </div>
 
+
+<!-- What the user sees when viewing their own profile -->
 <form *ngIf="this.username == profile.name" (submit)="onSubmit()">
     <input type="file" (change)="onFileSelected($event)" />
     <button type="submit">Upload</button>
@@ -11,6 +13,8 @@
 <p>{{profile.name}}</p>
 <p>{{profile.role}}</p>
 
+
+<!-- What all other users see -->
 <div *ngIf="this.username !== profile.name">
   <h2>Description:</h2>
   <p>{{profile.description}}</p>
@@ -22,8 +26,7 @@
 </div>
 
 
-
-
+<!-- What the user sees when viewing their own profile -->
 <div *ngIf="this.username == profile.name">
   <h2>Description:</h2>
   <textarea id="description" [(ngModel)]="profile.description" placeholder="{{profile.description}}"></textarea><br>

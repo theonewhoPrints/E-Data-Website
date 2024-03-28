@@ -20,6 +20,7 @@ export class ProfileBarComponent implements OnInit{
   imageToShow: any;
 
   ngOnInit(): void {
+    // Subscribe to the user$ observable to get the latest user data
     this.storageService.user$.subscribe(user => {
       this.username = user.name;
       this.role = user.role;

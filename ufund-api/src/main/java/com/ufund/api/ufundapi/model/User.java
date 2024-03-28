@@ -1,6 +1,5 @@
 package com.ufund.api.ufundapi.model;
 import java.util.List;
-import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 /**
@@ -9,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author Evan Kinsey
  */
 public class User {
-    private static final Logger LOG = Logger.getLogger(User.class.getName());
     // Package private for tests
     static final String STRING_FORMAT = "User [id=%d, name=%s, role=%s, imgUrl=%s, description=%s, achievements=%s]";
     
@@ -67,7 +65,7 @@ public class User {
         return role;
     }
 
-     /**
+    /**
      * Sets the name of the user - necessary for JSON object to Java object deserialization
      * @param name The name of the user
      */
@@ -83,34 +81,67 @@ public class User {
         this.role = role;
     }
 
+    /**
+     * Retrieves the image URL of the user
+     * @return The image URL of the user
+     */
     public String getImgUrl() {
         return imgUrl;
     }
 
+    /**
+     * Sets the image URL of the user
+     * @param imgUrl The image URL of the user
+     */
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
 
+    /**
+     * Retrieves the description of the user
+     * @return The description of the user
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Sets the description of the user
+     * @param description The description of the user
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     * Retrieves the list of achievements of the user
+     * @return The list of achievements of the user
+     */
     public List<String> getAchievements() {
         return achievements;
     }
 
+    /**
+     * Adds an achievement to the user's list of achievements
+     * @param achievement The achievement to be added
+     */
     public void addAchievement(String achievement) {
         this.achievements.add(achievement);
     }
 
+    /**
+     * Edits an achievement in the user's list of achievements
+     * @param achievement The edited achievement
+     * @param index The index of the achievement to be edited
+     */
     public void editAchievement(String achievement, int index) {
         this.achievements.set(index, achievement);
     }
 
+    /**
+     * Removes an achievement from the user's list of achievements
+     * @param index The index of the achievement to be removed
+     */
     public void removeAchievement(int index) {
         this.achievements.remove(index);
     }

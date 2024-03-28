@@ -64,13 +64,17 @@ export class UserService {
   /** GET scheme by name. Will 404 if name not found */
   getUser(name: string): Observable<User> {
     const url = `${this.userURL}/query?name=${name}`;
-    this.messageService.add(url);
     return this.http.get<User>(url).pipe(
       tap(_ => this.log(`fetched user name=${name}`)),
       catchError(this.handleError<User>(`getUser name=${name}`))
     );
   }
 
+  /**
+   * Get the name of a user.
+   * @param name - The name of the user.
+   * @returns An observable of the user's name.
+   */
   getUserName(name: string): Observable<string> {
     const url = `${this.userURL}/query?name=${name}`;
     return this.http.get<User>(url).pipe(
@@ -95,6 +99,11 @@ export class UserService {
     );
   }
 
+  /**
+   * Update a user.
+   * @param user - The user object to update.
+   * @returns An observable of the updated user.
+   */
   updateUser(user: User): Observable<any> {
     return this.http.put(this.userURL, user, this.httpOptions).pipe(
       tap(_ => this.log(`updated user name=${user.name}`)),
@@ -102,12 +111,16 @@ export class UserService {
     );
   }
 
+  /**
+   * Update a user's achievements.
+   * @param name - The name of the user.
+   * @param achievements - The array of achievements to update.
+   * @returns An observable of the updated achievements.
+   */
   updateAchievements(name: string, achievements: string[]): Observable<any> {
     return this.http.put(`${this.userURL}/achievements?name=${name}`, achievements, this.httpOptions).pipe(
       tap(_ => this.log(`updated achievements name=${name}`)),
       catchError(this.handleError<any>('updateAchievements'))
     );
   }
-
-
 }

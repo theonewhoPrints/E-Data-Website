@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.UUID;
 
 import com.ufund.api.ufundapi.model.Picture;
 import org.springframework.stereotype.Component;
@@ -21,6 +20,13 @@ public class PictureFileDAO implements PictureDAO {
     private static final String PICTURE_DIRECTORY = "data/pictures";
     private static final String PICTURE_JSON_DIRECTORY = "data/pictures.json";
 
+    /**
+     * Retrieves a picture by its ID.
+     *
+     * @param id The ID of the picture to retrieve.
+     * @return The Picture object if found, or null if not found.
+     * @throws IOException If an I/O error occurs while reading the picture file.
+     */
     @Override
     public Picture getPicture(String id) throws IOException {
         Path filePath = Paths.get(PICTURE_DIRECTORY, id);
@@ -37,6 +43,13 @@ public class PictureFileDAO implements PictureDAO {
         return picture;
     }
 
+    /**
+     * Retrieves a picture by the user ID.
+     *
+     * @param userId The ID of the user associated with the picture.
+     * @return The Picture object if found, or null if not found.
+     * @throws IOException If an I/O error occurs while reading the picture file.
+     */
     @Override
     public Picture getPictureById(String userId) throws IOException {
         Path filePath = Paths.get(PICTURE_JSON_DIRECTORY, userId);
@@ -53,6 +66,13 @@ public class PictureFileDAO implements PictureDAO {
         return picture;
     }
 
+    /**
+     * Deletes a picture by its ID.
+     *
+     * @param id The ID of the picture to delete.
+     * @return true if the picture is successfully deleted, false if the picture does not exist.
+     * @throws IOException If an I/O error occurs while deleting the picture file.
+     */
     @Override
     public boolean deletePicture(String id) throws IOException {
         Path filePath = Paths.get(PICTURE_DIRECTORY, id);
@@ -64,6 +84,15 @@ public class PictureFileDAO implements PictureDAO {
         return true;
     }
 
+    /**
+     * Updates a picture with the given image name and file.
+     *
+     * @param imageName The name of the image to update.
+     * @param file      The new file containing the updated picture data.
+     * @return The updated Picture object.
+     * @throws IOException            If an I/O error occurs while updating the picture file.
+     * @throws FileNotFoundException If the picture file with the given image name does not exist.
+     */
     @Override
     public Picture updatePicture(String imageName, MultipartFile file) throws IOException {
         Path filePath = Paths.get(PICTURE_DIRECTORY, imageName);
@@ -78,6 +107,14 @@ public class PictureFileDAO implements PictureDAO {
         return picture;
     }
 
+    /**
+     * Saves a picture with the given image name and file.
+     *
+     * @param imageName The name of the image to save.
+     * @param file      The file containing the picture data to save.
+     * @return The saved Picture object.
+     * @throws IOException If an I/O error occurs while saving the picture file.
+     */
     @Override
     public Picture savePicture(String imageName, MultipartFile file) throws IOException {
 

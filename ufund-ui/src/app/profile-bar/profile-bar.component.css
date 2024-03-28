@@ -14,5 +14,5 @@
 .profile-picture {
   width: 25px; /* adjust as needed */
   height: 25px; /* adjust as needed */
-  object-fit: cover; /* crop the image */
+  object-fit: cover;
 }
