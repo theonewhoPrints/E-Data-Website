@@ -1,11 +1,14 @@
 <div *ngIf="scheme">
   <h2>{{scheme.title}}</h2>
+  <h3>${{scheme.fundgoal}}</h3>
   <div><span>Villain: </span>{{scheme.name}}</div>
   <div *ngIf="(role == 'ROLE_VILLAIN' && this.username == scheme.name) ||  role == 'ROLE_ADMIN'">
     <label for="name-of-villain">Name of Villain: </label>
     <input id="name-of-villain" [(ngModel)]="scheme.name" placeholder="Scheme name"/><br>
     <label for="scheme-title">Title of Scheme: </label>
-    <input id="scheme-title" [(ngModel)]="scheme.title" placeholder="Scheme title"/>
+    <input id="scheme-title" [(ngModel)]="scheme.title" placeholder="Scheme title"/><br>
+    <label for="scheme-fund-goal">Fund Goal: </label>
+    <input type='number' id="scheme-fund-goal" [(ngModel)]="scheme.fundgoal" placeholder="$"/>
   </div>
   <button type="button" (click)="goBack()">go back</button>
   <button type="button" (click)="save()" *ngIf="role == 'ROLE_ADMIN' || (role == 'ROLE_VILLAIN' && this.username == scheme.name)">save</button>

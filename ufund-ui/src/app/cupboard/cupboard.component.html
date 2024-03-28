@@ -1,13 +1,19 @@
 <h2>My Schemes</h2>
 
 <div>
-  <label for="new-scheme">Scheme name: </label>
-  <input id="new-schemes" #schemeName />
-
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button type="button" class="add-button" (click)="add(schemeName.value); schemeName.value=''">
-    Add scheme
-  </button>
+  <table>
+    <tr>
+      <td><label for="new-scheme">Scheme Name: </label>
+      <td><input id="new-schemes" #schemeName />
+    </tr><tr>
+      <td><label for="new-scheme">Fund Goal: </label>
+      <td><input type='number' min="0" id="new-schemes" #schemeFundGoal />
+    </tr>
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button type="button" class="add-button" (click)="add(schemeName.value, schemeFundGoal.valueAsNumber); schemeName.value=''">
+      Add scheme
+    </button>
+  </table>
 </div>
 
 

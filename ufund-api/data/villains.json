@@ -1,4 +1,1 @@
-[
-  {"id":11,"name":"Dr. Update Successful","title":"I want to kill people","addedToCart":false, "fundgoal": 36000},
-  {"id":19,"name":"Dr. Bomb","title":"BOMBS", "fundgoal": 36000}
-]
+[{"id":11,"name":"Dr. Update Successful","title":"I want to kill people","fundgoal":36000,"addedToCart":false},{"id":19,"name":"Dr. Bomb","title":"BOMBS","fundgoal":36000,"addedToCart":false},{"id":26,"name":"Admin","title":"I need money","fundgoal":56000,"addedToCart":false},{"id":29,"name":"Dr. Nefarious","title":"I want to remove all windows everywhere","fundgoal":12000,"addedToCart":false}]

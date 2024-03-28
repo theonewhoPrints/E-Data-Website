@@ -3,7 +3,7 @@
 <ul class="schemes">
   <li *ngFor="let scheme of schemes">
     <a routerLink="/detail/{{scheme.id}}">
-      <span class="badge">{{scheme.id}}</span> {{scheme.title}}
+      <span class="badge">{{scheme.id}}</span> {{scheme.title}} | $ {{scheme.fundgoal}}
     </a>
   </li>
 </ul>

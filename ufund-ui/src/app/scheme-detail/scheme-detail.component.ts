@@ -48,7 +48,7 @@ export class SchemeDetailComponent implements OnInit{
   }
 
   save(): void {
-    if (this.scheme) {
+    if (this.scheme && this.scheme.fundgoal > 0) {
       this.schemeService.updateScheme(this.scheme)
         .subscribe(() => this.goBack());
     }
