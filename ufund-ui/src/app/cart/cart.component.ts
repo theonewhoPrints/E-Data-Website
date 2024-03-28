@@ -42,7 +42,11 @@ export class CartComponent implements OnInit {
       if (this.cart[i].donateAmount <= 0 || this.cart[i].donateAmount > this.cart[i].scheme.fundgoal){return;}
     }
     for (let i = 0; i < this.cart.length; i++){
-      this.schemeService.updateScheme({...this.cart[i].scheme, fundgoal: this.cart[i].scheme.fundgoal - this.cart[i].donateAmount} as Scheme).subscribe();
+      if(this.cart[i].scheme.fundgoal - this.cart[i].donateAmount == 0){
+        this.schemeService.deleteScheme(this.cart[i].scheme.id).subscribe();
+      }else{
+        this.schemeService.updateScheme({...this.cart[i].scheme, fundgoal: this.cart[i].scheme.fundgoal - this.cart[i].donateAmount} as Scheme).subscribe();
+      }
     }
     this.cartService.clearCart();
     this.getCart(); // Refresh the cart display
