@@ -25,6 +25,7 @@ public class User {
      * @param role The role of the user
      * @param imgUrl The image URL of the user
      * @param description The description of the user
+     * @param achievements The list of achievements of the user
      * 
      * 
      * {@literal @}JsonProperty is used in serialization and deserialization

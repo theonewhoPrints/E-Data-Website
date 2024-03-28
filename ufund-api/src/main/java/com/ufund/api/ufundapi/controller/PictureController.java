@@ -88,11 +88,13 @@ public class PictureController {
 
         try {
             User user = userDao.findUser(name);
-            String img = user.getImgUrl();
 
-            if (img == null){
-                img = "default.jpg";
+            if (user == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
+
+            String img = user.getImgUrl();
+            
             // Use the PictureFileDAO to get the Picture object
             Picture picture = pictureDao.getPicture(img);
 
@@ -107,31 +109,6 @@ public class PictureController {
 
         }
         catch (IOException e) {
-            LOG.log(Level.SEVERE, e.getLocalizedMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    /**
-        * Updates the picture with the given imageName using the provided image file.
-        *
-        * @param imageName The name of the picture to update.
-        * @param image The image file to update the picture with.
-        * @return A ResponseEntity containing the updated picture data if successful, or a NOT_FOUND status if the picture does not exist.
-        */
-    @PutMapping("/{imageName}")
-    public ResponseEntity<byte[]> updatePicture(@PathVariable String imageName, @RequestPart("image") MultipartFile image) {
-        LOG.info("PUT /picture/" + imageName);
-        try {
-            Picture updatedPicture = pictureDao.updatePicture(imageName, image);
-            byte[] data;
-            if (updatedPicture != null) {
-                data = updatedPicture.getData();
-                // Return the image
-                return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(data);
-            }
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
