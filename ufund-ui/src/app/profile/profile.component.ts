@@ -40,7 +40,7 @@ export class ProfileComponent {
   ) 
   {
     // necessary to avoid null pointer exception
-    this.profile = new UserImpl(-1, '', '', '', []); 
+    this.profile = new UserImpl(-1, '', '', '', '', []); 
   }
 
 
@@ -139,11 +139,13 @@ export class ProfileComponent {
     this.messageService.add('Submitting: ' + this.selectedFile);
     if (this.selectedFile !== null) {
       this.pictureService.uploadPicture(this.username, this.selectedFile.name, this.selectedFile).subscribe({
-        next: (response) => {},
+        next: (response) => {
+        },
         error: (err) => {
           console.error('There was an error!', err);
         }
       });
+      this.profile.imgUrl = this.selectedFile.name;
     }
   }
 
