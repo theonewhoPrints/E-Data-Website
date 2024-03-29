@@ -5,9 +5,12 @@
     <tr>
       <td><label for="new-scheme">Scheme Name: </label>
       <td><input id="new-schemes" #schemeName />
+      <td>
     </tr><tr>
       <td><label for="new-scheme">Fund Goal: </label>
       <td><input type='number' min="0" id="new-schemes" #schemeFundGoal />
+      <td *ngIf="schemeFundGoal.valueAsNumber <= 0">*Value must be greater than 0</td>
+      <td *ngIf="schemeFundGoal.valueAsNumber > 2147483647">*Value must be under 2147483648</td> 
     </tr>
     <!-- (click) passes input value to add() and then clears the input -->
     <button type="button" class="add-button" (click)="add(schemeName.value, schemeFundGoal.valueAsNumber); schemeName.value=''">
