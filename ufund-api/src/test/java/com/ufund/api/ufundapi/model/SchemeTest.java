@@ -25,4 +25,24 @@ public class SchemeTest {
         String expectedString = "Scheme [id=100, name=Spike Spiegel, title=See You Space Cowboy, fundgoal= 32000]";
         assertEquals(expectedString, scheme.toString());
     }
+
+    @Test
+    public void testSetFundgoal() {
+        Scheme scheme = new Scheme(101, "Samuel L Jackson", "Wheres my villain", 5000);
+        scheme.setFundgoal(25000); 
+        assertEquals(25000, scheme.getfundgoal(), "The fundgoal should be updated to 25000");
+    }
+
+    @Test
+    public void testIsAddedToCartDefault() {
+        Scheme scheme = new Scheme(102, "Eugenius", "Just flew in", 0);
+        assertFalse(scheme.isAddedToCart(), "By default, addedToCart should be false");
+    }
+
+    @Test
+    public void testSetAddedToCart() {
+        Scheme scheme = new Scheme(103, "Omar", "Syndicate Leader", 100000);
+        scheme.setAddedToCart(true); 
+        assertTrue(scheme.isAddedToCart(), "After setting addedToCart to true, isAddedToCart should return true");
+    }
 }

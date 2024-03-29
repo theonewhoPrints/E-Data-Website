@@ -32,8 +32,8 @@ export class SchemeDetailComponent implements OnInit{
     this.getScheme();
     
     this.storageService.user$.subscribe(user => {
-      this.username = user[1];
-      this.role = user[2];
+      this.username = user.name;
+      this.role = user.role;
   });
   }
   
@@ -48,7 +48,7 @@ export class SchemeDetailComponent implements OnInit{
   }
 
   save(): void {
-    if (this.scheme) {
+    if (this.scheme && this.scheme.fundgoal > 0) {
       this.schemeService.updateScheme(this.scheme)
         .subscribe(() => this.goBack());
     }

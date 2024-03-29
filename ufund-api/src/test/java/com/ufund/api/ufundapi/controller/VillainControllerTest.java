@@ -381,4 +381,36 @@ public void testSearchVillainsByNameAndTitle() throws IOException {
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
+
+    @Test
+    public void testSearchVillainsWithNoParameters() throws IOException {
+        // Setup
+        Scheme[] expectedVillains = new Scheme[] {
+            new Scheme(1, "Dr. Generic", "Generic Plan", 20000),
+            new Scheme(2, "Ms. Generic", "Another Generic Plan", 21000)
+        };
+        when(mockVillainDAO.getSchemes()).thenReturn(expectedVillains);
+
+        // Invoke
+        ResponseEntity<Scheme[]> response = villainController.searchVillains(null, null);
+
+        // Analyze
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(expectedVillains, response.getBody(), "The method should return all villains when no parameters are given.");
+    }
+
+    @Test
+    public void testSearchVillainsByTitleOnly() throws IOException {
+        // Setup
+        String title = "Global Warming";
+        Scheme[] expectedVillains = { new Scheme(3, "Dr. Warm", title, 25000) };
+        when(mockVillainDAO.findSchemesByTitle(title)).thenReturn(expectedVillains);
+
+        // Invoke
+        ResponseEntity<Scheme[]> response = villainController.searchVillains(null, title);
+
+        // Analyze
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(expectedVillains, response.getBody(), "The method should return villains matching the title only.");
+    }
 }

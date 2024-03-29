@@ -1,5 +1,25 @@
 [
-  {"id":11,"name":"Dr. Update Successful","title":"I want to kill and rob people","addedToCart":false, "fundgoal": 36000},
-  {"id":19,"name":"Dr. Bomb","title":"BOMBS and kill with rob and steal", "fundgoal": 20000},{"id":20,"name":"Dr. yoyo","title":"TWLS", "fundgoal": 400000},
-  {"id":21,"name":"P. Diddy","title":"steal", "fundgoal": 220000}
-  ]
+
+    {
+        "id": 11,
+        "name": "Dr. Update Successful",
+        "title": "I want to kill people",
+        "fundgoal": 36000,
+        "addedToCart": false
+    },
+    {
+        "id": 19,
+        "name": "Dr. Bomb",
+        "title": "BOMBS",
+        "fundgoal": 36000,
+        "addedToCart": false
+    },
+    {
+        "id": 20,
+        "name": "Dr. Nefarious",
+        "title": "Being evil",
+        "fundgoal": 0,
+        "addedToCart": false
+    }
+]
+

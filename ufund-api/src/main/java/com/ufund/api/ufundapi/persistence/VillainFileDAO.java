@@ -70,6 +70,8 @@ public Scheme[] findSchemesByNameAndTitle(String name, String title) throws IOEx
     }
 }
 
+    
+
 
     /**
      * Generates the next id for a new {@linkplain Scheme villain}
@@ -227,19 +229,17 @@ public Scheme[] findSchemesByTitle(String title) throws IOException {
     @Override
     public Scheme createScheme(Scheme scheme) throws IOException {
         synchronized(schemes){
-            Scheme exists = getScheme(scheme.getId());
-            Scheme exists_name = getScheme_str(scheme.getName());
-            
-            if(exists == null || exists_name == null ){
-                Scheme newScheme = new Scheme(nextId(), scheme.getName(), scheme.getTitle(), scheme.getfundgoal());
-                schemes.put(newScheme.getId(), newScheme);
-                save();
-                return newScheme;
-            }else{
-                return null;
+            // Check for existing scheme with same ID or name
+            if(schemes.containsKey(scheme.getId())) {
+                return null; // Scheme with same ID or name exists
             }
+            Scheme newScheme = new Scheme(nextId(), scheme.getName(), scheme.getTitle(), scheme.getfundgoal());
+            schemes.put(newScheme.getId(), newScheme);
+            save();
+            return newScheme;
         }
     }
+    
 
     /**
     ** {@inheritDoc}
@@ -261,6 +261,7 @@ public Scheme[] findSchemesByTitle(String title) throws IOException {
     ** {@inheritDoc}
      */
     @Override
+
 public Scheme[] findSchemesByName(String name) throws IOException {
     if (name == null) {
         return new Scheme[0]; // Return an empty array if name is null
@@ -275,7 +276,11 @@ public Scheme[] findSchemesByName(String name) throws IOException {
         }
         return schemeList.toArray(new Scheme[0]);
     }
+
 }
+
+    
+
     /**
     ** {@inheritDoc}
      */

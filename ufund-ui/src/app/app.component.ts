@@ -28,8 +28,8 @@ export class AppComponent implements OnInit{
     }
       
     this.storageService.user$.subscribe(user => {
-        this.username = user[1];
-        this.role = user[2];
+        this.username = user.name;
+        this.role = user.role;
     });
 
   }

@@ -9,15 +9,13 @@ import com.ufund.api.ufundapi.persistence.UserDAO;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 
 /**
  * Handles the REST API requests for the Villain User resource
@@ -88,6 +86,29 @@ public class UserController {
         try {
             User user = userDao.findUser(name);
             return new ResponseEntity<>(user, HttpStatus.OK);
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+    * Updates a user.
+    *
+    * @param user The user object containing the updated information.
+    * @return ResponseEntity<User> The response entity containing the updated user if successful,
+    *         or HttpStatus.NOT_FOUND if the user is not found, or HttpStatus.INTERNAL_SERVER_ERROR
+    *         if an error occurs during the update process.
+    */
+    @PutMapping("")
+    public ResponseEntity<User> updateUser(@RequestBody User user) {
+        LOG.info("PUT /users/" + user);
+        try {
+            User updatedUser = userDao.updateUser(user);
+            if (updatedUser != null)
+                return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

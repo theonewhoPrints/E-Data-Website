@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.TreeMap;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ufund.api.ufundapi.model.Scheme;
 import com.ufund.api.ufundapi.model.User;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -80,7 +81,19 @@ public class UserFileDAO implements UserDAO {
         ++nextId;
         return true;
     }
-
+    
+    /**
+     * Saves the {@linkplain Scheme villains} from the map into the file as an array of JSON objects
+     * 
+     * @return true if the {@link Scheme villains} were written successfully
+     * 
+     * @throws IOException when file cannot be accessed or written to
+     */
+    private boolean save() throws IOException {
+        User[] schemeArray = getUsersArray();
+        objectMapper.writeValue(new File(filename), schemeArray);
+        return true;
+    }
     /**
     ** {@inheritDoc}
      */
@@ -104,6 +117,22 @@ public class UserFileDAO implements UserDAO {
             }
             // If user not found, return null or throw an exception
             return null;
+        }
+    }
+
+    /**
+    ** {@inheritDoc}
+     */
+    @Override
+    public User updateUser(User user) throws IOException {
+        synchronized (users) {
+            if (users.containsKey(user.getId())) {
+                users.put(user.getId(), user);
+                save();
+                return user;
+            } else {
+                return null;
+            }
         }
     }
 }
