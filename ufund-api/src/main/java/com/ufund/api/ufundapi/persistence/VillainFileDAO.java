@@ -221,17 +221,14 @@ public class VillainFileDAO implements VillainDAO {
     @Override
     public Scheme createScheme(Scheme scheme) throws IOException {
         synchronized(schemes){
-            Scheme exists = getScheme(scheme.getId());
-            Scheme exists_name = getScheme_str(scheme.getName());
-            
-            if(exists == null || exists_name == null ){
-                Scheme newScheme = new Scheme(nextId(), scheme.getName(), scheme.getTitle(), scheme.getfundgoal());
-                schemes.put(newScheme.getId(), newScheme);
-                save();
-                return newScheme;
-            }else{
-                return null;
+            // Check for existing scheme with same ID or name
+            if(schemes.containsKey(scheme.getId())) {
+                return null; // Scheme with same ID or name exists
             }
+            Scheme newScheme = new Scheme(nextId(), scheme.getName(), scheme.getTitle(), scheme.getfundgoal());
+            schemes.put(newScheme.getId(), newScheme);
+            save();
+            return newScheme;
         }
     }
     
