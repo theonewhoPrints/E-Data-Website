@@ -24,8 +24,8 @@ export class CupboardComponent {
     this.getSchemes();
 
     this.storageService.user$.subscribe(user => {
-      this.username = user[1];
-      this.role = user[2];
+      this.username = user.name;
+      this.role = user.role;
     });
 
     if(this.role == 'ROLE_HELPER') {
@@ -39,10 +39,11 @@ export class CupboardComponent {
     .subscribe(scheme => this.schemes = scheme);
   }
 
-  add(title: string): void {
+  add(title: string, fundgoal: number): void {
     title = title.trim();
     if (!title) { return; }
-    this.schemeService.addScheme({ name: this.username, title: title } as Scheme)
+    if (!fundgoal || fundgoal <= 0) { return; }
+    this.schemeService.addScheme({ name: this.username, title: title, fundgoal: fundgoal} as Scheme)
       .subscribe(scheme => {
         this.schemes.push(scheme);
       });

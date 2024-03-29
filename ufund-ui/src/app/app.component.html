@@ -9,6 +9,9 @@
   <!-- Other meta tags, CSS links, or JavaScript imports can go here -->
 </head>
 
+<h1 id="custom-title">{{title}}</h1>
+
+
 <header *ngIf="router.url !== '/login'">
   <div class="title-container">
   <nav>
@@ -39,7 +42,7 @@
   <p>Here's how I would display helper tools, check app.component.html and good luck</p>
 </div>
 
+<app-profile-bar *ngIf="router.url !== '/login'"></app-profile-bar>
 <router-outlet></router-outlet>
 <app-messages></app-messages>
-<app-profile></app-profile>
 

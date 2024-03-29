@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit, OnDestroy{
     if (!name) { return; }
     
     this.userService.getUser(name).subscribe(user => {
-      if (user[1] === name) {
+      if (user.name === name) {
         this.router.navigate(['/dashboard']);
         this.storageService.saveUser(user);
       } else {

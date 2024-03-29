@@ -1,6 +1,7 @@
 package com.ufund.api.ufundapi.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -42,8 +43,8 @@ public class VillainControllerTest {
     public void testGetSchemes() throws IOException { // getSchemes may throw IOException
         // Setup
         Scheme[] schemes = new Scheme[2];
-        schemes[0] = new Scheme(99,"Dr. Silly", "I want to drop banana peels everywhere");
-        schemes[1] = new Scheme(100,"Dr. Man", "I DON'T want world peace");
+        schemes[0] = new Scheme(99,"Dr. Silly", "I want to drop banana peels everywhere", 44000);
+        schemes[1] = new Scheme(100,"Dr. Man", "I DON'T want world peace", 42000);
         // When getSchemes is called return the schemes created above
         when(mockVillainDAO.getSchemes()).thenReturn(schemes);
 
@@ -72,7 +73,7 @@ public class VillainControllerTest {
     @Test
     public void testGetScheme() throws IOException {  // getScheme may throw IOException
         // Setup
-        Scheme scheme = new Scheme(99,"Mr. Frozen", "I must freeze all of the people on earth!!");
+        Scheme scheme = new Scheme(99,"Mr. Frozen", "I must freeze all of the people on earth!!", 40000);
         // When the same id is passed in, our mock Villain DAO will return the Scheme object
         when(mockVillainDAO.getScheme(scheme.getId())).thenReturn(scheme);
 
@@ -102,9 +103,9 @@ public class VillainControllerTest {
         // when findSchemesByName is called, it will return the name created below
         String searchName = "Dr. Sin";
         Scheme[] schemes = {
-            new Scheme(141, "Dr. Sin", "I like to tp houses"),
-            new Scheme(12, "Wonderful", "hello"),
-            new Scheme(11, "Dr. Nefarious", "I want to kill people")
+            new Scheme(141, "Dr. Sin", "I like to tp houses", 38000),
+            new Scheme(12, "Wonderful", "hello", 36000),
+            new Scheme(11, "Dr. Nefarious", "I want to kill people", 34000)
         };
     
         // Mock behavior of findSchemesByName method
@@ -122,7 +123,7 @@ public class VillainControllerTest {
     public void testSearchVillainSchemesByNameSuccess() throws IOException {
         // Setup
         String searchName = "Dr. Evil";
-        Scheme[] expectedSchemes = { new Scheme(1, "Dr. Evil", "World domination") };
+        Scheme[] expectedSchemes = { new Scheme(1, "Dr. Evil", "World domination", 32000) };
         when(mockVillainDAO.findSchemesByName(searchName)).thenReturn(expectedSchemes);
 
         // Invoke
@@ -167,7 +168,7 @@ public class VillainControllerTest {
     @Test
     public void testCreateScheme() throws IOException {  // createScheme may throw IOException
         // Setup
-        Scheme schemes = new Scheme(13,"Sukuna","Save me Mahoraga!");
+        Scheme schemes = new Scheme(13,"Sukuna","Save me Mahoraga!", 30000);
         // when createScheme is called, return true simulating successful
         // creation and save
         when(mockVillainDAO.createScheme(schemes)).thenReturn(schemes);
@@ -186,7 +187,7 @@ public class VillainControllerTest {
     @Test
     public void testCreateSchemeFailed() throws IOException {  // createScheme may throw IOException
         // Setup
-        Scheme schemes = new Scheme(99,"Gojo", "Nah I'd win");
+        Scheme schemes = new Scheme(99,"Gojo", "Nah I'd win", 36000);
         // when createScheme is called, return false simulating failed
         // creation and save
         when(mockVillainDAO.createScheme(schemes)).thenReturn(null);
@@ -204,7 +205,7 @@ public class VillainControllerTest {
     @Test
     public void testCreateSchemeHandleException() throws IOException {  // createScheme may throw IOException
         // Setup
-        Scheme schemes = new Scheme(99,"Aizen","Part of the plan");
+        Scheme schemes = new Scheme(99,"Aizen","Part of the plan", 34000);
 
 
         // When createScheme is called on the Mock Villain DAO, throw an IOException
@@ -276,7 +277,7 @@ public class VillainControllerTest {
     @Test
     public void testUpdateScheme() throws IOException { // updateScheme may throw IOException
         // Setup
-        Scheme scheme = new Scheme(99,"Wi-Fire", "I'm going to destroy the internet");
+        Scheme scheme = new Scheme(99,"Wi-Fire", "I'm going to destroy the internet", 32000);
         // when updateScheme is called, return true simulating successful
         // update and save
         when(mockVillainDAO.updateScheme(scheme)).thenReturn(scheme);
@@ -294,7 +295,7 @@ public class VillainControllerTest {
     @Test
     public void testUpdateSchemeFailed() throws IOException { // updateScheme may throw IOException
         // Setup
-        Scheme scheme = new Scheme(99,"Galactic Agent", "I will eat the galaxy");
+        Scheme scheme = new Scheme(99,"Galactic Agent", "I will eat the galaxy", 30000);
         // when updateScheme is called, return true simulating successful
         // update and save
         when(mockVillainDAO.updateScheme(scheme)).thenReturn(null);
@@ -309,7 +310,7 @@ public class VillainControllerTest {
     @Test
     public void testUpdateSchemeHandleException() throws IOException { // updateScheme may throw IOException
         // Setup
-        Scheme hero = new Scheme(99,"Galactic Agent", "I will eat the galaxy");
+        Scheme hero = new Scheme(99,"Galactic Agent", "I will eat the galaxy", 28000);
         // When updateScheme is called on the Mock Villain DAO, throw an IOException
         doThrow(new IOException()).when(mockVillainDAO).updateScheme(hero);
 
@@ -321,50 +322,53 @@ public class VillainControllerTest {
     }
 
     @Test
-    public void testSearchVillainsByName() throws IOException {
-        // Setup
-        String name = "Dr. Evil";
-        Scheme[] expectedVillains = { new Scheme(1, name, "Take over the world") };
-        when(mockVillainDAO.findSchemesByName(name)).thenReturn(expectedVillains);
+public void testSearchVillainsByName() throws IOException {
+    // Setup
+    String name = "Dr. Evil";
+    Scheme[] expectedVillains = { new Scheme(1, name, "take over the world", 26000) };
+    when(mockVillainDAO.findSchemesByName(name.toLowerCase())).thenReturn(expectedVillains);
 
-        // Invoke
-        ResponseEntity<Scheme[]> response = villainController.searchVillains(name, null);
+    // Invoke
+    ResponseEntity<Scheme[]> response = villainController.searchVillains(name.toLowerCase(), null);
 
-        // Analyze
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(expectedVillains, response.getBody());
-    }
+    // Analyze
+    assertEquals(HttpStatus.OK, response.getStatusCode());
+    assertEquals(expectedVillains, response.getBody());
+}
 
-    @Test
-    public void testSearchVillainsByTitle() throws IOException {
-        // Setup
-        String title = "World Domination";
-        Scheme[] expectedVillains = { new Scheme(1, "Dr. Evil", title) };
-        when(mockVillainDAO.findSchemesByTitle(title)).thenReturn(expectedVillains);
-
-        // Invoke
-        ResponseEntity<Scheme[]> response = villainController.searchVillains(null, title);
-
-        // Analyze
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(expectedVillains, response.getBody());
-    }
 
     @Test
-    public void testSearchVillainsByNameAndTitle() throws IOException {
-        // Setup
-        String name = "Dr. Evil";
-        String title = "World Domination";
-        Scheme[] expectedVillains = { new Scheme(1, name, title) };
-        when(mockVillainDAO.findSchemesByNameAndTitle(name, title)).thenReturn(expectedVillains);
+public void testSearchVillainsByTitle() throws IOException {
+    // Setup
+    String title = "World Domination";
+    Scheme[] expectedVillains = { new Scheme(1, "Dr. Evil", title, 24000) };
+    when(mockVillainDAO.findSchemesByTitle(title.toLowerCase())).thenReturn(expectedVillains);
 
-        // Invoke
-        ResponseEntity<Scheme[]> response = villainController.searchVillains(name, title);
+    // Invoke
+    ResponseEntity<Scheme[]> response = villainController.searchVillains(null, title.toLowerCase()); // Ensure the title is converted to lowercase as done in the frontend
 
-        // Analyze
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(expectedVillains, response.getBody());
-    }
+    // Analyze
+    assertEquals(HttpStatus.OK, response.getStatusCode());
+    assertEquals(expectedVillains, response.getBody());
+}
+
+
+    @Test
+public void testSearchVillainsByNameAndTitle() throws IOException {
+    // Setup
+    String name = "Dr. Evil";
+    String title = "World Domination";
+    Scheme[] expectedVillains = { new Scheme(1, name, title, 22000) };
+    when(mockVillainDAO.findSchemesByNameAndTitle(eq(name.toLowerCase()), eq(title.toLowerCase()))).thenReturn(expectedVillains);
+
+    // Invoke
+    ResponseEntity<Scheme[]> response = villainController.searchVillains(name, title);
+
+    // Analyze
+    assertEquals(HttpStatus.OK, response.getStatusCode());
+    assertEquals(expectedVillains, response.getBody());
+}
+
 
     @Test
     public void testSearchVillainsException() throws IOException {
@@ -377,4 +381,38 @@ public class VillainControllerTest {
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
+
+    @Test
+    public void testSearchVillainsWithNoParameters() throws IOException {
+        // Setup
+        Scheme[] expectedVillains = new Scheme[] {
+            new Scheme(1, "Dr. Generic", "Generic Plan", 20000),
+            new Scheme(2, "Ms. Generic", "Another Generic Plan", 21000)
+        };
+        when(mockVillainDAO.getSchemes()).thenReturn(expectedVillains);
+
+        // Invoke
+        ResponseEntity<Scheme[]> response = villainController.searchVillains(null, null);
+
+        // Analyze
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(expectedVillains, response.getBody(), "The method should return all villains when no parameters are given.");
+    }
+
+    @Test
+public void testSearchVillainsByTitleOnly() throws IOException {
+    // Setup
+    String title = "Global Warming";
+    Scheme[] expectedVillains = { new Scheme(3, "Dr. Warm", title, 25000) };
+    // Mocking case-insensitive search behavior
+    when(mockVillainDAO.findSchemesByTitle(title.toLowerCase())).thenReturn(expectedVillains);
+
+    // Invoke
+    ResponseEntity<Scheme[]> response = villainController.searchVillains(null, title);
+
+    // Analyze
+    assertEquals(HttpStatus.OK, response.getStatusCode());
+    assertEquals(expectedVillains, response.getBody(), "The method should return villains matching the title only.");
+}
+
 }

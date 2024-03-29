@@ -1,11 +1,11 @@
 <div id="search-component">
   <label for="search-box">Scheme Search</label>
-  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" placeholder="eg. search for villain or scheme" />
 
   <ul class="search-result">
     <li *ngFor="let scheme of schemes$ | async" >
       <a routerLink="/detail/{{scheme.id}}">
-        {{scheme.title}} | {{scheme.name}}
+        {{scheme.title}} | {{scheme.name}} | ${{scheme.fundgoal}}
       </a>
     </li>
     <li *ngIf="(schemes$ | async)?.length== 0" >
