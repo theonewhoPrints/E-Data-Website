@@ -6,38 +6,51 @@ label {
     font-size: 1.2rem;
     margin-top: 1rem;
     margin-bottom: .5rem;
-  
   }
+  
   input {
     padding: .5rem;
     width: 100%;
     max-width: 600px;
     box-sizing: border-box;
     display: block;
+    color: white;
+    background-color: #800000;
   }
   
   input:focus {
-    outline: #336699 auto 1px;
+    outline: #800000
+    auto 1px;
   }
   
   li {
     list-style-type: none;
   }
+
+  .scheme-search-label {
+    color: red;
+  }
+
+  #search-box::placeholder {
+    color: white;
+  }
+
   .search-result li a {
-    border-bottom: 1px solid gray;
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
+    border-bottom: 2px solid #000000;
+    border-left: 2px solid #000000;
+    border-right: 2px solid #000000;
     display: inline-block;
     width: 100%;
     max-width: 600px;
     padding: .5rem;
     box-sizing: border-box;
     text-decoration: none;
-    color: black;
+    color: white;
+    background-color: #800000;
   }
   
   .search-result li a:hover {
-    background-color: #435A60;
+    background-color: #000000;
     color: white;
   }
   

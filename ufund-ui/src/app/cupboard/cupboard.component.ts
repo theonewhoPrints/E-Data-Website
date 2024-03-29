@@ -29,6 +29,7 @@ export class CupboardComponent {
     });
 
     if(this.role == 'ROLE_HELPER') {
+      
       this.messageService.add(`RESTRICTED ACCESS`);
       this.router.navigate(['/dashboard']);
     }

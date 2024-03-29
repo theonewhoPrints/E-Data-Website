@@ -1,7 +1,8 @@
 /* DashboardComponent's private CSS styles */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
-h2 {
+#scheme-title {
+  color: red; /* Change the color as desired */
   text-align: center;
 }
 
@@ -9,58 +10,63 @@ h2 {
   padding: 0;
   margin: auto;
   max-width: 1000px;
-
-  /* flexbox */
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-content: flex-start;
-  align-items: flex-start;
+}
+
+.scheme-card {
+  background-color: #800000;
+  border-radius: 10px;
+  margin: 0.5rem 0;
+  overflow: hidden;
+}
+
+.scheme-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  color: white;
+}
+
+.scheme-title, .scheme-villain, .scheme-fundgoal {
+  flex-basis: 33%; /* Divides the space evenly */
+  text-align: center;
+  margin: 0 5px; /* for spacing */
+}
+
+select option {
+  color: white;
+  background-color: #800000;
 }
 
 a {
-  background-color: #3f525c;
-  border-radius: 2px;
-  padding: 1rem;
-  font-size: 1.2rem;
   text-decoration: none;
-  display: inline-block;
-  color: #fff;
-  text-align: center;
-  width: 100%;
-  min-width: 70px;
-  margin: .5rem auto;
-  box-sizing: border-box;
-
-  /* flexbox */
-  order: 0;
-  flex: 0 1 auto;
-  align-self: auto;
-}
-
-@media (min-width: 600px) {
-  a {
-    width: 100%;
-    box-sizing: content-box;
-  }
+  display: block; /* Make the link take the whole area of the card */
 }
 
 a:hover {
-  background-color: #000;
+  background-color: #000000;
 }
 
-/* New styles for the sort container */
+/* Styles for the sort container */
 .sort-container {
-  border: 2px solid #000; 
-  border-radius: 8px; 
+  border: 2px solid #800000; 
+  border-radius: 10px; 
   padding: 5px 10px; 
   display: inline-block;
-  margin-bottom: 0px;
-  line-height: 0px; 
+  margin-bottom: 10px;
+  background-color: #800000;
+  color: white;
 }
 
-select{
+select {
   border: none;
   outline: none;
+}
+
+@media (min-width: 768px) {
+  .scheme-details {
+    padding: 1rem 2rem;
+  }
 }

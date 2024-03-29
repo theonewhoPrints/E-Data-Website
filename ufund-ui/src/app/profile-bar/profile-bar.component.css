@@ -2,17 +2,23 @@
   position: fixed;
   top: 20px;
   right: 20px;
-  text-align: right;
   display: flex;
-  align-items: center;
+  flex-direction: column-reverse; /* stack items vertically */
+  align-items: center; /* center items horizontally since it's now a column */
 }
 
 .username {
   margin-right: 10px;
+  font-size: large;
+  color: red;
 }
 
 .profile-picture {
-  width: 25px; /* adjust as needed */
-  height: 25px; /* adjust as needed */
+  width: 100px; /* adjust as needed */
+  height: 100px; /* adjust as needed */
   object-fit: cover;
+  border-radius: 10px; /* all corners will be rounded with a 10px radius */
+  object-fit: cover;
+  border-radius: 10%;
+  border: 2px solid red;
 }

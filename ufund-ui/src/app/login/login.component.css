@@ -195,35 +195,13 @@
   transition: opacity 1s;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 html, body {
     height: 100%;
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden; /* Prevent scrolling */
 }
 
   /* login.component.css */
@@ -235,23 +213,22 @@ html, body {
   }
   
   .login-container {
-    position: relative;
+    position: fixed; /* Positioned relative to the viewport */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Offset the container by half its width and height */
     z-index: 1;
     text-align: center;
-    margin-top: 25vh;
     padding: 40px;
     border: 2px solid #ccc;
     border-radius: 10px;
-    background-color: transparent; /* Set background color to transparent */
+    background-color: transparent;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: fit-content;
-    margin: auto;
-    margin-top: 20vh;
-    backdrop-filter: blur(10px); /* Adds a blur effect */
-    opacity: 0.9; /* Adjust the opacity as needed */
-    mix-blend-mode: screen; /* Adjust blend mode for better blending */
-}
-
+    width: fit-content; /* Adjust the width as needed */
+    backdrop-filter: blur(10px);
+    opacity: 0.9;
+    mix-blend-mode: screen;
+  }
   
   form {
     display: flex;

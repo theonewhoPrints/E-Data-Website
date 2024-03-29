@@ -10,6 +10,7 @@ h1 {
     font-weight: lighter;
   }
   body {
+    background-color: white;
     margin: 2em;
   }
   button {

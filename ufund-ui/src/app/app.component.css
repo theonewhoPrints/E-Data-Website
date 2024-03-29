@@ -1,5 +1,9 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
+header a[href] {
+  color: red;
+  margin-left: 300px;
+}
 
 
 #custom-title {
@@ -40,7 +44,7 @@ header {
   .cart-icon {
     position: fixed;
     top: 100px;
-    right: 20px;
+    left: 20px;
   }
   
   nav {
