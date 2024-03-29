@@ -82,18 +82,19 @@ export class UserService {
 
 
   /* GET users whose name contains search term */
-  searchUsers(term: string): Observable<User[]> {
-    if (!term.trim()) {
-      // if not search term, return empty user array.
-      return of([]);
-    }
-    return this.http.get<User[]>(`${this.userURL}/query?name=${term}`).pipe(
-      tap(x => x.length ?
-        this.log(`found users matching "${term}"`) :
-        this.log(`no users matching "${term}"`)),
-      catchError(this.handleError<User[]>('searchUsers', []))
-    );
+searchUsers(term: string): Observable<User[]> {
+  if (!term.trim()) {
+    // if not search term, return empty user array.
+    return of([]);
   }
+  const lowercaseTerm = term.toLowerCase(); // Convert search term to lowercase
+  return this.http.get<User[]>(`${this.userURL}/query?name=${lowercaseTerm}`).pipe(
+    tap(x => x.length ?
+      this.log(`found users matching "${term}"`) :
+      this.log(`no users matching "${term}"`)),
+    catchError(this.handleError<User[]>('searchUsers', []))
+  );
+}
 
 
 }

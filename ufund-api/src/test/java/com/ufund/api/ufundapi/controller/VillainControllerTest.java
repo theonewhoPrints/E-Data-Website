@@ -1,6 +1,7 @@
 package com.ufund.api.ufundapi.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -321,50 +322,53 @@ public class VillainControllerTest {
     }
 
     @Test
-    public void testSearchVillainsByName() throws IOException {
-        // Setup
-        String name = "Dr. Evil";
-        Scheme[] expectedVillains = { new Scheme(1, name, "Take over the world", 26000) };
-        when(mockVillainDAO.findSchemesByName(name)).thenReturn(expectedVillains);
+public void testSearchVillainsByName() throws IOException {
+    // Setup
+    String name = "Dr. Evil";
+    Scheme[] expectedVillains = { new Scheme(1, name, "take over the world", 26000) };
+    when(mockVillainDAO.findSchemesByName(name.toLowerCase())).thenReturn(expectedVillains);
 
-        // Invoke
-        ResponseEntity<Scheme[]> response = villainController.searchVillains(name, null);
+    // Invoke
+    ResponseEntity<Scheme[]> response = villainController.searchVillains(name.toLowerCase(), null);
 
-        // Analyze
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(expectedVillains, response.getBody());
-    }
+    // Analyze
+    assertEquals(HttpStatus.OK, response.getStatusCode());
+    assertEquals(expectedVillains, response.getBody());
+}
 
-    @Test
-    public void testSearchVillainsByTitle() throws IOException {
-        // Setup
-        String title = "World Domination";
-        Scheme[] expectedVillains = { new Scheme(1, "Dr. Evil", title, 24000) };
-        when(mockVillainDAO.findSchemesByTitle(title)).thenReturn(expectedVillains);
-
-        // Invoke
-        ResponseEntity<Scheme[]> response = villainController.searchVillains(null, title);
-
-        // Analyze
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(expectedVillains, response.getBody());
-    }
 
     @Test
-    public void testSearchVillainsByNameAndTitle() throws IOException {
-        // Setup
-        String name = "Dr. Evil";
-        String title = "World Domination";
-        Scheme[] expectedVillains = { new Scheme(1, name, title, 22000) };
-        when(mockVillainDAO.findSchemesByNameAndTitle(name, title)).thenReturn(expectedVillains);
+public void testSearchVillainsByTitle() throws IOException {
+    // Setup
+    String title = "World Domination";
+    Scheme[] expectedVillains = { new Scheme(1, "Dr. Evil", title, 24000) };
+    when(mockVillainDAO.findSchemesByTitle(title.toLowerCase())).thenReturn(expectedVillains);
 
-        // Invoke
-        ResponseEntity<Scheme[]> response = villainController.searchVillains(name, title);
+    // Invoke
+    ResponseEntity<Scheme[]> response = villainController.searchVillains(null, title.toLowerCase()); // Ensure the title is converted to lowercase as done in the frontend
 
-        // Analyze
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(expectedVillains, response.getBody());
-    }
+    // Analyze
+    assertEquals(HttpStatus.OK, response.getStatusCode());
+    assertEquals(expectedVillains, response.getBody());
+}
+
+
+    @Test
+public void testSearchVillainsByNameAndTitle() throws IOException {
+    // Setup
+    String name = "Dr. Evil";
+    String title = "World Domination";
+    Scheme[] expectedVillains = { new Scheme(1, name, title, 22000) };
+    when(mockVillainDAO.findSchemesByNameAndTitle(eq(name.toLowerCase()), eq(title.toLowerCase()))).thenReturn(expectedVillains);
+
+    // Invoke
+    ResponseEntity<Scheme[]> response = villainController.searchVillains(name, title);
+
+    // Analyze
+    assertEquals(HttpStatus.OK, response.getStatusCode());
+    assertEquals(expectedVillains, response.getBody());
+}
+
 
     @Test
     public void testSearchVillainsException() throws IOException {
