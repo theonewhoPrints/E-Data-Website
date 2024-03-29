@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import java.util.List;
 
 
 /**
@@ -43,8 +44,8 @@ public class UserControllerTest {
     public void testGetUsers() throws IOException { // getUsers may throw IOException
         // Setup
         User[] users = new User[2];
-        users[0] = new User(1,"Spike Spiegel", "ROLE_HELPER");
-        users[1] = new User(2,"Vicious", "ROLE_VILLAIN");
+        users[0] = new User(1,"Spike Spiegel", "ROLE_HELPER", "", "", List.of("Bounty Hunter"));
+        users[1] = new User(2,"Vicious", "ROLE_VILLAIN", "", "", List.of("Bounty Hunter"));
         // When getUsers is called return the users created above
         when(mockUserDAO.getUsers()).thenReturn(users);
 
@@ -74,9 +75,9 @@ public class UserControllerTest {
         // Setup
         // when findUser is called, it will return the name created below
         User[] users = {
-            new User(1, "Spike Spiegel", "ROLE_HELPER"),
-            new User(2, "Faye Valentine", "ROLE_HELPER"),
-            new User(3, "Jet Black", "ROLE_HELPER")
+            new User(1, "Spike Spiegel", "ROLE_HELPER", "", "", List.of("Bounty Hunter")),
+            new User(2, "Faye Valentine", "ROLE_HELPER", "", "", List.of("Bounty Hunter")),
+            new User(3, "Jet Black", "ROLE_HELPER", "", "", List.of("Bounty Hunter"))
         };
     
         // Mock behavior of findUser method
@@ -101,6 +102,49 @@ public class UserControllerTest {
 
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
+    }
+
+    @Test
+    void updateUser_Success() throws IOException {
+        User testUser = new User(0, null, null, null, null, null);
+        when(mockUserDAO.updateUser(testUser)).thenReturn(testUser);
+
+        UserController controller = new UserController(mockUserDAO);
+
+        // Act
+        ResponseEntity<User> response = controller.updateUser(testUser);
+
+        // Assert
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(testUser, response.getBody());
+    }
+
+    @Test
+    void updateUser_NotFound() throws IOException {
+        User testUser = new User(0, null, null, null, null, null);
+        when(mockUserDAO.updateUser(testUser)).thenReturn(null);
+
+        UserController controller = new UserController(mockUserDAO);
+
+        // Act
+        ResponseEntity<User> response = controller.updateUser(testUser);
+
+        // Assert
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+    }
+
+    @Test
+    void updateUser_Error() throws IOException {
+        User testUser = new User(0, null, null, null, null, null);
+        when(mockUserDAO.updateUser(testUser)).thenThrow(IOException.class);
+
+        UserController controller = new UserController(mockUserDAO);
+
+        // Act
+        ResponseEntity<User> response = controller.updateUser(testUser);
+
+        // Assert
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
 
 }

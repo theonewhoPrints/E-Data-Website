@@ -1,6 +1,7 @@
 <div *ngIf="scheme">
   <h2>{{scheme.title}}</h2>
-  <div><span>Villain: </span>{{scheme.name}}</div>
+  <!-- Link to profile -->
+  <a routerLink="/profile/{{scheme.name}}" class="villain-name">{{scheme.name}}</a><br>
   <div *ngIf="(role == 'ROLE_VILLAIN' && this.username == scheme.name) ||  role == 'ROLE_ADMIN'">
     <label for="name-of-villain">Name of Villain: </label>
     <input id="name-of-villain" [(ngModel)]="scheme.name" placeholder="Scheme name"/><br>

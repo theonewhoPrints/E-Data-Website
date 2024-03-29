@@ -13,13 +13,13 @@ import { CartComponent } from './cart/cart.component';
 
 // log in
 import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileBarComponent } from './profile-bar/profile-bar.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 
 //cupboard
 import { CupboardComponent } from './cupboard/cupboard.component';
 import { SortFilterComponent } from './sort-filter/sort-filter.component';
-
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   imports: [
@@ -37,11 +37,11 @@ import { SortFilterComponent } from './sort-filter/sort-filter.component';
     SchemeSearchComponent,
     CartComponent,
     LoginComponent,
-    ProfileComponent,
+    ProfileBarComponent,
     CupboardComponent,
     CheckoutComponent,
     SortFilterComponent,
-    
+    ProfileComponent,
   ],
   providers: [],
   bootstrap: [ AppComponent ]

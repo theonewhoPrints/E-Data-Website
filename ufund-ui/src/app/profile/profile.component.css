@@ -1,6 +1,28 @@
-.user-info {
-    position: fixed;
-    top: 0;
-    right: 20px;
-    text-align: right;   
+.image-container {
+    width: 256px; /* Set the desired width */
+    height: 256px; /* Set the desired height */
+    overflow: hidden; /* Hide any overflowing content */
+}
+
+.image-container img {
+    object-fit: cover; /* Crop the image to fit the container */
+    width: 100%; /* Make the image fill the container horizontally */
+    height: 100%; /* Make the image fill the container vertically */
+}
+
+#description {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
+
+#remove-button {
+    width: 20px;
+    height: 10px;
+    text-align: center;
+    line-height: 0px; /* Center the text vertically */
 }

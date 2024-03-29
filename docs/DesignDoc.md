@@ -138,6 +138,7 @@ This section describes the web interface flow; this is how the user views and in
 ### ViewModel Tier
 - VillainController: Directs VillainDAO to manipulate data
 - UserController: Directs UserDAO to manipulate data
+- PictureController: Directs PictureDAO to manipulate data
 
 > _**[Sprint 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
@@ -155,6 +156,9 @@ This section describes the web interface flow; this is how the user views and in
 - User: Logic for a User object, used for log in
 - UserDAO: Interface for UserFileDAO
 - UserFileDAO: Logic to get data in users.json
+- Picture: Logic for a Picture object, stores the picture's name and byte string of data
+- PictureDAO: Interface for PictureFileDAO
+- PictureFileDAO: Logic to get and save pictures into the data/pictures folder
 
 > _**[Sprint 2, 3 & 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
