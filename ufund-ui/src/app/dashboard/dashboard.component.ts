@@ -34,6 +34,14 @@ export class DashboardComponent implements OnInit {
       this.sortedSchemes = this.schemes.slice().sort((a, b) => b.fundgoal - a.fundgoal);
     } else if (this.selectedOrder === 'Price: Low to High') {
       this.sortedSchemes = this.schemes.slice().sort((a, b) => a.fundgoal - b.fundgoal);
+    } else if (this.selectedOrder === 'Most Relevant') {
+      // Custom sorting based on keyword relevance
+      this.sortedSchemes = this.schemes.slice().sort((a, b) => {
+        const keywords = ['blow up','freeze', 'burn', 'kidnap', 'rule', 'enslave', 'capture', 'destroy', 'annihilate', 'kill', 'rob', 'steal', 'assault', 'attack', 'murder', 'bomb', 'hostage', 'extort'];
+        const countA = keywords.reduce((acc, keyword) => acc + (a.title.toLowerCase().includes(keyword) ? 1 : 0), 0);
+        const countB = keywords.reduce((acc, keyword) => acc + (b.title.toLowerCase().includes(keyword) ? 1 : 0), 0);
+        return countB - countA; // Sort in descending order of keyword count
+      });
     } else {
       this.sortedSchemes = this.schemes.slice(); // Default order
     }
