@@ -1,4 +1,42 @@
-<div class="user-info">
-    <p>{{username}}</p>
-    <p>{{role}}</p>
+<div class="image-container">
+  <img [src]="imageToShow" class="profile-picture">
+</div>
+
+
+<!-- What the user sees when viewing their own profile -->
+<form *ngIf="this.username == profile.name" (submit)="onSubmit()">
+    <input type="file" (change)="onFileSelected($event)" />
+    <button type="submit">Upload</button>
+</form>
+
+
+<p>{{profile.name}}</p>
+<p>{{profile.role}}</p>
+
+
+<!-- What all other users see -->
+<div *ngIf="this.username !== profile.name">
+  <h2>Description:</h2>
+  <p>{{profile.description}}</p>
+
+  <h2>Achievements:</h2>
+  <li *ngFor="let achievement of profile.achievements">
+    {{achievement}}
+  </li>
+</div>
+
+
+<!-- What the user sees when viewing their own profile -->
+<div *ngIf="this.username == profile.name">
+  <h2>Description:</h2>
+  <textarea id="description" [(ngModel)]="profile.description" placeholder="{{profile.description}}"></textarea><br>
+
+  <h2>Achievements:</h2>
+  <li *ngFor="let achievement of profile.achievements; let i = index; trackBy: trackByFn">
+    <input [(ngModel)]="profile.achievements[i]" placeholder="{{achievement}}"/>
+    <button id="remove-button" (click)="removeAchievement(i)">X</button><br>
+  </li>
+  <button (click)="addAchievement()">Add new achievement</button><br>
+
+  <button id="save-button" (click)="save()">Save Changes</button>
 </div>

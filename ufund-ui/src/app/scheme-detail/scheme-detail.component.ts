@@ -32,8 +32,8 @@ export class SchemeDetailComponent implements OnInit{
     this.getScheme();
     
     this.storageService.user$.subscribe(user => {
-      this.username = user[1];
-      this.role = user[2];
+      this.username = user.name;
+      this.role = user.role;
   });
   }
   

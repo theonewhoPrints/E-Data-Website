@@ -32,4 +32,15 @@ public interface UserDAO {
      * @throws IOException if an issue with underlying storage
      */
     User findUser(String name) throws IOException;
+
+    /**
+     * Updates a {@linkplain User user} with the given name
+     * 
+     * @param user The {@link User user} to update
+     * 
+     * @return The updated {@link User user} object
+     * 
+     * @throws IOException if an issue with underlying storage
+     */
+    User updateUser(User user) throws IOException;
 }

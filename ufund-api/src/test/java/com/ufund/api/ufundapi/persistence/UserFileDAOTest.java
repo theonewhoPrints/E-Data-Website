@@ -5,10 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.doThrow;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ufund.api.ufundapi.model.User;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,8 +30,8 @@ public class UserFileDAOTest {
     public void setup() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
         testUsers = new User[]{
-            new User(1, "John Doe", "johndoe@example.com"),
-            new User(2, "Jane Doe", "janedoe@example.com")
+            new User(1, "John Doe", "johndoe@example.com", "", "", List.of("")),
+            new User(2, "Jane Doe", "janedoe@example.com", "", "", List.of(""))
         };
 
         when(mockObjectMapper.readValue(new File("users.json"), User[].class))
@@ -65,6 +69,31 @@ public class UserFileDAOTest {
 
         assertThrows(IOException.class, () -> new UserFileDAO("users.json", mockObjectMapper),
                      "Loading users should throw IOException on file read failure");
+    }
+
+        @Test
+    void updateUser_UserExists() throws IOException {
+        // Arrange
+        User user = new User(1, "test", "test", "test", "test", List.of("test"));
+        user.setImgUrl("hello");
+
+        // Act
+        User updatedUser = userFileDAO.updateUser(user);
+
+        // Assert
+        assertEquals("hello", updatedUser.getImgUrl());
+    }
+
+    @Test
+    void updateUser_UserDoesNotExist() throws IOException {
+        // Arrange
+        User user = new User(99, "idNotInMock", "test", "test", "test", List.of("test"));
+
+        // Act
+        User updatedUser = userFileDAO.updateUser(user);
+
+        // Assert
+        assertNull(updatedUser);
     }
 
 }
