@@ -400,17 +400,19 @@ public void testSearchVillainsByNameAndTitle() throws IOException {
     }
 
     @Test
-    public void testSearchVillainsByTitleOnly() throws IOException {
-        // Setup
-        String title = "Global Warming";
-        Scheme[] expectedVillains = { new Scheme(3, "Dr. Warm", title, 25000) };
-        when(mockVillainDAO.findSchemesByTitle(title)).thenReturn(expectedVillains);
+public void testSearchVillainsByTitleOnly() throws IOException {
+    // Setup
+    String title = "Global Warming";
+    Scheme[] expectedVillains = { new Scheme(3, "Dr. Warm", title, 25000) };
+    // Mocking case-insensitive search behavior
+    when(mockVillainDAO.findSchemesByTitle(title.toLowerCase())).thenReturn(expectedVillains);
 
-        // Invoke
-        ResponseEntity<Scheme[]> response = villainController.searchVillains(null, title);
+    // Invoke
+    ResponseEntity<Scheme[]> response = villainController.searchVillains(null, title);
 
-        // Analyze
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(expectedVillains, response.getBody(), "The method should return villains matching the title only.");
-    }
+    // Analyze
+    assertEquals(HttpStatus.OK, response.getStatusCode());
+    assertEquals(expectedVillains, response.getBody(), "The method should return villains matching the title only.");
+}
+
 }

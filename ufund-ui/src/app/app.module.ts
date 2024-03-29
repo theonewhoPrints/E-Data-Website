@@ -18,7 +18,6 @@ import { CheckoutComponent } from './checkout/checkout.component';
 
 //cupboard
 import { CupboardComponent } from './cupboard/cupboard.component';
-import { SortFilterComponent } from './sort-filter/sort-filter.component';
 import { ProfileComponent } from './profile/profile.component';
 
 //search filter
@@ -48,7 +47,6 @@ import { MaterialModule } from './material.module';
     ProfileBarComponent,
     CupboardComponent,
     CheckoutComponent,
-    SortFilterComponent,
     ProfileComponent,
   ],
   providers: [],
