@@ -53,16 +53,23 @@ public class VillainFileDAO implements VillainDAO {
 
 
     @Override
-    public Scheme[] findSchemesByNameAndTitle(String name, String title) throws IOException {
-        if (name == null || title == null) {
-            return new Scheme[0]; // Return an empty array if either name or title is null
+public Scheme[] findSchemesByNameAndTitle(String name, String title) throws IOException {
+    synchronized (schemes) {
+        ArrayList<Scheme> schemeList = new ArrayList<>();
+        String lowercaseName = name != null ? name.toLowerCase() : null; // Convert search terms to lowercase
+        String lowercaseTitle = title != null ? title.toLowerCase() : null;
+        for (Scheme scheme : schemes.values()) {
+            String schemeName = scheme.getName() != null ? scheme.getName().toLowerCase() : null;
+            String schemeTitle = scheme.getTitle() != null ? scheme.getTitle().toLowerCase() : null;
+            if ((lowercaseName == null || schemeName.contains(lowercaseName)) &&
+                (lowercaseTitle == null || schemeTitle.contains(lowercaseTitle))) {
+                schemeList.add(scheme);
+            }
         }
-        synchronized (schemes) {
-            return schemes.values().stream()
-                    .filter(scheme -> scheme.getName().contains(name) && scheme.getTitle().contains(title))
-                    .toArray(Scheme[]::new);
-        }
+        return schemeList.toArray(new Scheme[0]);
     }
+}
+
     
 
 
@@ -174,20 +181,21 @@ public class VillainFileDAO implements VillainDAO {
     ** {@inheritDoc}
      */
     @Override
-    public Scheme[] findSchemesByTitle(String title) {
-        if (title == null) {
-            return new Scheme[0]; // Return an empty array if title is null
-        }
-        synchronized (schemes) {
-            ArrayList<Scheme> schemeList = new ArrayList<>();
-            for (Scheme scheme : schemes.values()) {
-                if (scheme.getTitle() != null && scheme.getTitle().toLowerCase().contains(title.toLowerCase())) {
-                    schemeList.add(scheme);
-                }
-            }
-            return schemeList.toArray(new Scheme[0]);
-        }
+public Scheme[] findSchemesByTitle(String title) throws IOException {
+    if (title == null) {
+        return new Scheme[0]; // Return an empty array if title is null
     }
+    synchronized (schemes) {
+        ArrayList<Scheme> schemeList = new ArrayList<>();
+        String lowercaseTitle = title.toLowerCase(); // Convert search term to lowercase
+        for (Scheme scheme : schemes.values()) {
+            if (scheme.getTitle() != null && scheme.getTitle().toLowerCase().contains(lowercaseTitle)) {
+                schemeList.add(scheme);
+            }
+        }
+        return schemeList.toArray(new Scheme[0]);
+    }
+}
 
     /**
     ** {@inheritDoc}
@@ -253,16 +261,24 @@ public class VillainFileDAO implements VillainDAO {
     ** {@inheritDoc}
      */
     @Override
-    public Scheme[] findSchemesByName(String name) throws IOException {
-        if (name == null || name.isEmpty()) {
-            return new Scheme[0]; // Return an empty array if name is null or empty
-        }
-        synchronized (schemes) {
-            return schemes.values().stream()
-                    .filter(scheme -> scheme.getName().contains(name))
-                    .toArray(Scheme[]::new);
-        }
+
+public Scheme[] findSchemesByName(String name) throws IOException {
+    if (name == null) {
+        return new Scheme[0]; // Return an empty array if name is null
     }
+    synchronized (schemes) {
+        ArrayList<Scheme> schemeList = new ArrayList<>();
+        String lowercaseName = name.toLowerCase(); // Convert search term to lowercase
+        for (Scheme scheme : schemes.values()) {
+            if (scheme.getName() != null && scheme.getName().toLowerCase().contains(lowercaseName)) {
+                schemeList.add(scheme);
+            }
+        }
+        return schemeList.toArray(new Scheme[0]);
+    }
+
+}
+
     
 
     /**

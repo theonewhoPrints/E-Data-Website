@@ -1,15 +1,15 @@
+<h2>Scheme | Villain | FundGoal</h2>
 
-
-
-<h2>Scheme      |          Villain</h2>        
 <div class="schemes-menu">
-  <div *ngFor="let scheme of schemes">
+  <div *ngFor="let scheme of sortedSchemes">
     <a routerLink="/detail/{{scheme.id}}">
       <span>{{ scheme.title }}  </span> | <span>{{ scheme.name}}</span> | <span>{{ scheme.fundgoal}}</span>
     </a>
   </div>
 </div>
-<app-sort-filter (sortEvent)="onSortEvent($event)"></app-sort-filter> <!-- Include the sorting filter here -->
-<app-scheme-search></app-scheme-search>
-<app-schemes></app-schemes>
 
+<div class="sort-container">
+  <br> Sort By:<select (change)="selectChangeHandler($event)"> <option *ngFor="let order of orders" [ngValue]="order.name">{{ order.name }}</option> </select>
+</div>
+
+<app-scheme-search></app-scheme-search>

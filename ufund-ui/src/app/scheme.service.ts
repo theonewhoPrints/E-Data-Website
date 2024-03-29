@@ -105,9 +105,9 @@ export class SchemeService {
   
     return this.http.get<Scheme[]>(this.schemesUrl).pipe(
       map(schemes => {
-        // Filter schemes where either name or title contains the search term
+        // Filter schemes where either name or title contains the search term (case-insensitive)
         return schemes.filter(scheme => {
-          return scheme.name.includes(term) || scheme.title.includes(term);
+          return scheme.name.toLowerCase().includes(term.toLowerCase()) || scheme.title.toLowerCase().includes(term.toLowerCase());
         });
       }),
       tap(filteredSchemes => {
@@ -119,5 +119,6 @@ export class SchemeService {
       catchError(this.handleError<Scheme[]>('searchSchemes', []))
     );
   }
+  
   
 }

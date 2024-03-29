@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { SchemesComponent } from './schemes/schemes.component';
 import { SchemeDetailComponent } from './scheme-detail/scheme-detail.component';
@@ -21,13 +21,21 @@ import { CupboardComponent } from './cupboard/cupboard.component';
 import { SortFilterComponent } from './sort-filter/sort-filter.component';
 import { ProfileComponent } from './profile/profile.component';
 
+//search filter
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material.module';
+
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+  
   ],
+  
   declarations: [
     AppComponent,
     DashboardComponent,
@@ -48,3 +56,5 @@ import { ProfileComponent } from './profile/profile.component';
 })
 export class AppModule {
  }
+
+

@@ -108,26 +108,27 @@ public class VillainController {
      */
 
      @GetMapping("/")
-     public ResponseEntity<Scheme[]> searchVillains(@RequestParam(required = false) String name,
-                                                    @RequestParam(required = false) String title) {
-         LOG.info("GET /villains/?name=" + name + "&title=" + title);
-         try {
-             Scheme[] villains;
-             if (name != null && title != null) {
-                 villains = villainDao.findSchemesByNameAndTitle(name, title);
-             } else if (name != null) {
-                 villains = villainDao.findSchemesByName(name);
-             } else if (title != null) {
-                 villains = villainDao.findSchemesByTitle(title);
-             } else {
-                 villains = villainDao.getSchemes(); // sub-in method().
-             }
-             return new ResponseEntity<>(villains, HttpStatus.OK);
-         } catch (IOException e) {
-             LOG.log(Level.SEVERE, e.getLocalizedMessage());
-             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-         }
-     }
+public ResponseEntity<Scheme[]> searchVillains(@RequestParam(required = false) String name,
+                                                @RequestParam(required = false) String title) {
+    LOG.info("GET /villains/?name=" + name + "&title=" + title);
+    try {
+        Scheme[] villains;
+        if (name != null && title != null) {
+            villains = villainDao.findSchemesByNameAndTitle(name.toLowerCase(), title.toLowerCase());
+        } else if (name != null) {
+            villains = villainDao.findSchemesByName(name.toLowerCase());
+        } else if (title != null) {
+            villains = villainDao.findSchemesByTitle(title.toLowerCase());
+        } else {
+            villains = villainDao.getSchemes(); // sub-in method().
+        }
+        return new ResponseEntity<>(villains, HttpStatus.OK);
+    } catch (IOException e) {
+        LOG.log(Level.SEVERE, e.getLocalizedMessage());
+        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}
+
      
 
     
