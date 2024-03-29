@@ -3,22 +3,52 @@
   top: 20px;
   right: 20px;
   display: flex;
-  flex-direction: column-reverse; /* stack items vertically */
-  align-items: center; /* center items horizontally since it's now a column */
+  flex-direction: column-reverse; 
+  align-items: center;
+}
+
+.cupboard-link {
+  color: red;
+}
+
+.cart-link {
+  color: red;
+}
+
+.cupboard-container {
+  color: red;
+  margin-left: 1595px;
+  margin-top: 60px;
+  font-size: large;
+}
+
+.logout-container {
+  color: red;
+  margin-left: 1605px;
+  margin-top: 5px;
+  font-size: large;
+}
+
+.cart-container {
+  margin-left: 1615px;
+  margin-top: 5px;
+  font-size: large;
 }
 
 .username {
   margin-right: 10px;
   font-size: large;
   color: red;
+
 }
 
 .profile-picture {
-  width: 100px; /* adjust as needed */
-  height: 100px; /* adjust as needed */
+  width: 100px;
+  height: 100px; 
   object-fit: cover;
-  border-radius: 10px; /* all corners will be rounded with a 10px radius */
+  border-radius: 10px;
   object-fit: cover;
   border-radius: 10%;
   border: 2px solid red;
 }
+

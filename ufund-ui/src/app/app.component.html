@@ -12,23 +12,9 @@
 
 
 <header *ngIf="router.url !== '/login'">
-  <div class="title-container">
-  <nav>
-    <a routerLink="/dashboard" id = "custom-dashboard">Our Villains</a>
-    <div *ngIf="role !== 'ROLE_HELPER'">
-      <a routerLink="/cupboard">Cupboard</a><br>
-    </div>
-    
-    
-  <a (click) = "logout()" href>Logout</a>
-  </nav>
-  <div class="cart-icon" *ngIf="role == 'ROLE_HELPER'">
-    <a routerLink="/cart"><i class="fas fa-shopping-cart"></i></a>
+  <div class = "title-container">
+    <a routerLink="/dashboard" id="custom-dashboard" class="title">Our Villains</a>
   </div>
-  <div *ngIf="role == 'ROLE_HELPER'" class="checkout-button">
-    <!-- Placeholder for checkout button -->
-  </div>
-</div>
 </header>
 <!--
 <div *ngIf="role == 'ROLE_ADMIN'">

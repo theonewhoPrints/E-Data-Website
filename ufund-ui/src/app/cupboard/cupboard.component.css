@@ -1,10 +1,65 @@
 /* SchemesComponent's private CSS styles */
+
+.error-message {
+  color: red; 
+}
+
+.label-text {
+  color: red;
+}
+
+h2 {
+  color: red;
+}
+
+.a1 {
+  position: relative;
+  top: 10px;
+  left: 1120px;
+}
+
+.a2 {
+  position: relative;
+  top: 10px;
+  left: 180px; 
+}
+
+
+.scheme-heading {
+  display: flex;
+}
+
+.delete {
+  background-color: #800000;
+  color: white; 
+  border: none;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.input-box {
+  border: 1px solid #800000;
+  padding: 5px;
+  border-radius: 10px;
+  color: white;
+  background-color: #800000;
+}
+
+.add-button {
+  background-color: #800000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
 .schemes {
     margin: 0 0 2em 0;
     list-style-type: none;
     padding: 0;
     width: 25em;
   }
+
   .schemes li {
     position: relative;
     cursor: pointer;
@@ -15,24 +70,25 @@
   }
   
   .schemes a {
-    color: #333;
+    color: white;
     text-decoration: none;
-    background-color: #EEE;
+    background-color: #800000;
     margin: .5em;
     padding: .3em 0;
     border-radius: 4px;
     display: inline-block;
     width: 75%;
+    
   }
   
   .schemes a:hover {
-    color: #2c3a41;
-    background-color: #e6e6e6;
+    color: white;
+    background-color: #000000;
   }
   
   .schemes a:active {
-    background-color: #525252;
-    color: #fafafa;
+    background-color: #800000;
+    color: white;
   }
   
   .schemes .badge {
@@ -40,7 +96,7 @@
     font-size: small;
     color: white;
     padding: 0.8em 0.7em 0 0.7em;
-    background-color: #405061;
+    background-color: #000000;
     line-height: 1em;
     position: relative;
     left: -1px;
@@ -52,3 +108,16 @@
     border-radius: 4px 0 0 4px;
 
   }
+
+.container {
+  display: flex;
+
+  
+}
+
+.add {
+  padding-top: 1%;
+  padding-left: 15%;
+  padding-right: 25%;
+
+}

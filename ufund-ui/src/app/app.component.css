@@ -1,11 +1,5 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
-header a[href] {
-  color: red;
-  margin-left: 300px;
-}
-
-
 #custom-title {
     font-family: 'Great Vibes', cursive;
     color: #990000;
