@@ -3,7 +3,7 @@
 <div class="schemes-menu">
   <div *ngFor="let scheme of sortedSchemes">
     <a routerLink="/detail/{{scheme.id}}">
-      <span>{{ scheme.title }}  </span> | <span>{{ scheme.name}}</span> | <span>{{ scheme.fundgoal}}</span>
+      <span>{{ scheme.title }}  </span> | <span>{{ scheme.name}}</span> | $<span>{{ scheme.fundgoal}}</span>
     </a>
   </div>
 </div>
