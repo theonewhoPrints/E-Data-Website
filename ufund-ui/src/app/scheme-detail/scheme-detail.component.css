@@ -1,0 +1,19 @@
+/* Changes the color and adds a border to the h2 elements */
+h2 {
+    color: red;
+  }
+  
+  a.villain-name {
+    color: red;
+  }
+  
+  button {
+    background-color: #800000;
+    color: white;
+  }
+  
+  button:hover {
+    background-color: black;
+  }
+  
+  
