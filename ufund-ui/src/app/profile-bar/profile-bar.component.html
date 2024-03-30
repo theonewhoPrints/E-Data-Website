@@ -1,22 +1,11 @@
 <div class="container">
   <div class="user-info">
-    <a routerLink="/profile/{{username}}" class="username">{{username}}</a>
     <img [src]="imageToShow" class="profile-picture">
-  </div>
-
-  <div class="title-container">
-    <nav class="navigation">
-      <div class="cupboard-container">
-        <a routerLink="/cupboard" class="cupboard-link">Cupboard</a>
-      </div>
-      <div class="logout-container">
-        <a (click)="logout()" class="logout-link">Logout</a>
-      </div>
-      <div class="cart-container">
-        <a routerLink="/cart" class="cart-link">Cart</a>
-      </div>
-    </nav>
-    <div *ngIf="role === 'ROLE_HELPER'" class="helper-actions">
+    <a routerLink="/profile/{{username}}" class="username">{{username}}</a>
+    <div class="navigation">
+      <a routerLink="/cupboard" class="cupboard-link">Cupboard</a>
+      <a (click)="logout()" class="logout-link">Logout</a>
+      <a routerLink="/cart" class="cart-link">Cart</a>
     </div>
   </div>
 </div>
