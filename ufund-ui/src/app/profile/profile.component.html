@@ -4,39 +4,31 @@
 
 
 <!-- What the user sees when viewing their own profile -->
-<form *ngIf="this.username == profile.name" (submit)="onSubmit()">
-    <input type="file" (change)="onFileSelected($event)" />
-    <button type="submit">Upload</button>
+<form *ngIf="this.username == profile.name" (submit)="onSubmit()" class="upload-form">
+  <input type="file" (change)="onFileSelected($event)" class="upload-input" />
+  <button type="submit" class="upload-button">Upload</button>
 </form>
 
 
-<p>{{profile.name}}</p>
-<p>{{profile.role}}</p>
-
-
-<!-- What all other users see -->
-<div *ngIf="this.username !== profile.name">
-  <h2>Description:</h2>
-  <p>{{profile.description}}</p>
-
-  <h2>Achievements:</h2>
-  <li *ngFor="let achievement of profile.achievements">
-    {{achievement}}
-  </li>
+<div class="profile-info">
+  <p>{{profile.name}}</p>
+  <p>{{profile.role}}</p>
 </div>
 
+<!-- Container for Description and Achievements for the user -->
+<div class="own-profile-section">
+  <div *ngIf="this.username == profile.name">
+    <h2>Description:</h2>
+    <textarea id="description" [(ngModel)]="profile.description" placeholder="{{profile.description}}"></textarea><br>
 
-<!-- What the user sees when viewing their own profile -->
-<div *ngIf="this.username == profile.name">
-  <h2>Description:</h2>
-  <textarea id="description" [(ngModel)]="profile.description" placeholder="{{profile.description}}"></textarea><br>
-
-  <h2>Achievements:</h2>
-  <li *ngFor="let achievement of profile.achievements; let i = index; trackBy: trackByFn">
-    <input [(ngModel)]="profile.achievements[i]" placeholder="{{achievement}}"/>
-    <button id="remove-button" (click)="removeAchievement(i)">X</button><br>
-  </li>
-  <button (click)="addAchievement()">Add new achievement</button><br>
-
-  <button id="save-button" (click)="save()">Save Changes</button>
+    <h2>Achievements:</h2>
+    <ul>
+      <li *ngFor="let achievement of profile.achievements; let i = index; trackBy: trackByFn">
+        <input [(ngModel)]="profile.achievements[i]" placeholder="{{achievement}}"/>
+        <button id="remove-button" (click)="removeAchievement(i)">X</button><br>
+      </li>
+    </ul>
+    <button (click)="addAchievement()">Add new achievement</button><br>
+    <button id="save-button" (click)="save()">Save Changes</button>
+  </div>
 </div>

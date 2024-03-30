@@ -1,14 +1,28 @@
 /* DashboardComponent's private CSS styles */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
-#scheme-title {
-  color: red; /* Change the color as desired */
-  text-align: center;
+app-scheme-search {
+  width: 50%; /* Adjust width as needed */
+  max-width: 600px; /* Optional, ensures it doesn't get too wide */
+  height: 40px; /* Adjust height as needed */
+  margin: auto; /* Center it horizontally */
+  margin-top: 10px;
 }
 
+/* Ensure the .container is styled to handle flex row correctly */
+.container {
+  display: flex;
+  flex-direction: row; 
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  margin-left: 15px;
+}
+
+
 .schemes-menu {
-  padding: 0;
-  margin: auto;
+  margin:auto;
   max-width: 1000px;
   display: flex;
   flex-direction: column;
@@ -35,11 +49,6 @@
   margin: 0 5px; /* for spacing */
 }
 
-select option {
-  color: white;
-  background-color: #800000;
-}
-
 a {
   text-decoration: none;
   display: block; /* Make the link take the whole area of the card */
@@ -63,6 +72,8 @@ a:hover {
 select {
   border: none;
   outline: none;
+  color: #800000;
+  background-color: white;
 }
 
 @media (min-width: 768px) {

@@ -16,12 +16,12 @@
     color: #990000;
     font-weight: bold;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 40px;
   }
 
   #custom-dashboard::after{
     content: '\2620';
-    font-size: 40px;
+    font-size: 60px;
   }
 header {
     display: flex;
@@ -31,7 +31,9 @@ header {
   }
   
   .title-container {
+    flex-grow: 1; /* Allows the title container to take up maximum space for center alignment */
     display: flex;
+    justify-content: center; /* Center the title text within the container */
     align-items: center;
   }
   

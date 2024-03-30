@@ -1,0 +1,38 @@
+.cart-title {
+    color: red;
+  }
+
+.item-title, .item-name, .item-fundgoal {
+    color: white;
+    border: 5px solid #800000;
+    background-color: #800000;
+  }
+  
+.donate-amount {
+    color: white;
+    border: 5px solid #800000;
+    background-color: #800000;
+    margin-right: 10px;
+    padding: 5px;
+  }
+
+.item-fundgoal {
+    margin-right: 13px;
+}
+  
+
+.donation-warning {
+    color: red;
+  }
+  
+.checkout-button {
+    background-color: #800000;
+    color: white;
+  }
+  
+.checkout-message {
+    color: red;
+  }
+  
+
+  

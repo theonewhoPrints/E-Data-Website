@@ -1,17 +1,3 @@
-<h2 id="scheme-title">Schemes</h2>
-
-<div class="schemes-menu">
-  <div *ngFor="let scheme of sortedSchemes" class="scheme-card">
-    <a routerLink="/detail/{{scheme.id}}">
-      <div class="scheme-details">
-        <span class="scheme-title">{{ scheme.title }}</span>
-        <span class="scheme-villain">{{ scheme.name }}</span>
-        <span class="scheme-fundgoal">$ {{ scheme.fundgoal | number }}</span>
-      </div>
-    </a>
-  </div>
-</div>
-
 <div class="sort-container">
   Sort By:
   <select (change)="selectChangeHandler($event)">
@@ -19,4 +5,18 @@
   </select>
 </div>
 
-<app-scheme-search></app-scheme-search>
+<div class="container">
+  <div class="schemes-menu">
+    <div *ngFor="let scheme of sortedSchemes" class="scheme-card">
+      <a routerLink="/detail/{{scheme.id}}">
+        <div class="scheme-details">
+          <span class="scheme-title">{{ scheme.title }}</span>
+          <span class="scheme-villain">{{ scheme.name }}</span>
+          <span class="scheme-fundgoal">$ {{ scheme.fundgoal | number }}</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <app-scheme-search></app-scheme-search>
+</div>
