@@ -16,6 +16,17 @@ label {
     display: block;
     color: white;
     background-color: #800000;
+    justify-content: center;
+
+  }
+
+  #search-component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    width: 100%;
+    padding-top: 1rem;
   }
   
   input:focus {
@@ -29,11 +40,14 @@ label {
 
   .scheme-search-label {
     color: red;
+    text-align: center;
   }
 
   #search-box::placeholder {
     color: white;
   }
+
+
 
   .search-result li a {
     border-bottom: 2px solid #000000;
@@ -47,6 +61,7 @@ label {
     text-decoration: none;
     color: white;
     background-color: #800000;
+
   }
   
   .search-result li a:hover {

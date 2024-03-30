@@ -1,32 +1,29 @@
 /* DashboardComponent's private CSS styles */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
-app-scheme-search {
-  width: 50%; /* Adjust width as needed */
-  max-width: 600px; /* Optional, ensures it doesn't get too wide */
-  height: 40px; /* Adjust height as needed */
-  margin: auto; /* Center it horizontally */
-  margin-top: 10px;
-}
-
-/* Ensure the .container is styled to handle flex row correctly */
+/* Global settings */
 .container {
   display: flex;
-  flex-direction: row; 
-  align-items: flex-start;
-  justify-content: flex-start;
-  margin-top: 10px;
   flex-wrap: wrap;
-  margin-left: 15px;
+  margin-top: 20px;
 }
 
-
+.sort-container, 
 .schemes-menu {
-  margin:auto;
-  max-width: 1000px;
-  display: flex;
-  flex-direction: column;
+  flex: 1; 
 }
+
+.sort-container {
+  margin-left: 12%;
+  border: 2px solid #800000;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #800000;
+  color: white;
+  width: 200px;
+  box-sizing: border-box;
+}
+
 
 .scheme-card {
   background-color: #800000;
@@ -44,40 +41,15 @@ app-scheme-search {
 }
 
 .scheme-title, .scheme-villain, .scheme-fundgoal {
-  flex-basis: 33%; /* Divides the space evenly */
+  flex-basis: 33%;
   text-align: center;
-  margin: 0 5px; /* for spacing */
+  margin: 0 5px;
 }
 
-a {
-  text-decoration: none;
-  display: block; /* Make the link take the whole area of the card */
-}
-
-a:hover {
-  background-color: #000000;
-}
-
-/* Styles for the sort container */
-.sort-container {
-  border: 2px solid #800000; 
-  border-radius: 10px; 
-  padding: 5px 10px; 
-  display: inline-block;
-  margin-bottom: 10px;
-  background-color: #800000;
-  color: white;
-}
 
 select {
   border: none;
   outline: none;
   color: #800000;
   background-color: white;
-}
-
-@media (min-width: 768px) {
-  .scheme-details {
-    padding: 1rem 2rem;
-  }
 }
