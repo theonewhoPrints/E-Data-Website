@@ -8,7 +8,7 @@
         {{scheme.title}} | {{scheme.name}} | ${{scheme.fundgoal}}
       </a>
     </li>
-    <li *ngIf="(schemes$ | async)?.length== 0" >
+    <li *ngIf="(schemes$ | async)?.length == 0 && searchBox.value.trim() !== ''" >
       <a>No results</a>
     </li>
   </ul>
