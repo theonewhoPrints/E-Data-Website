@@ -22,6 +22,10 @@
   font-size: large;
 }
 
+.logout-link {
+  text-decoration: underline;
+}
+
 .username {
   color: white;
   font-style: italic; 

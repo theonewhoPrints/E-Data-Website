@@ -20,3 +20,6 @@ h2 {
     margin-left:50px;
   }
   
+  label {
+    color: red;
+  }
