@@ -1,6 +1,5 @@
 <div class="scheme-search-container">
   <div class="scheme-search-title">
-    Scheme Search
     <app-scheme-search></app-scheme-search>
   </div>
 </div>
@@ -13,6 +12,11 @@
 
 <div class="container">
   <div class="schemes-menu">
+    <div class="scheme-details scheme-card">
+      <span class="scheme-title bold">Scheme</span>
+      <span class="scheme-villain bold">Villain</span>
+      <span class="scheme-fundgoal bold">FundGoal</span>
+    </div>
     <div *ngFor="let scheme of sortedSchemes" class="scheme-card">
       <a routerLink="/detail/{{scheme.id}}">
         <div class="scheme-details">
