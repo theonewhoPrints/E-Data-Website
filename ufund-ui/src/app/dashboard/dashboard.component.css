@@ -68,5 +68,6 @@ select {
 .bold {
   font-weight: bold;
   font-size: 16px; /* Adjust the font size as needed */
+  text-decoration: underline;
 }
 

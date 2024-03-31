@@ -1,11 +1,18 @@
 <div class="container">
   <div class="user-info">
     <img [src]="imageToShow" class="profile-picture">
-    <a routerLink="/profile/{{username}}" class="username">{{username}}</a>
+  <div class ="schemes-header">
+    <a routerLink="/profile/{{username}}" class="username">Welcome {{username}}</a>
+  </div>
     <div class="navigation">
+      <div class ="schemes-header">
       <a routerLink="/cupboard" class="cupboard-link">Cupboard</a>
+    </div>
+    <div class ="schemes-header">
       <a (click)="logout()" class="logout-link">Logout</a>
-      <a routerLink="/cart" class="cart-link">Cart</a>
+    </div>
+    <div class="schemes-header" *ngIf="role !== 'ROLE_ADMIN'">
+      <a routerLink="/cart" class="cart-link">My Cart</a>
     </div>
   </div>
 </div>

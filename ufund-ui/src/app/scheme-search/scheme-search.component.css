@@ -15,10 +15,12 @@ label {
     max-width: 600px;
     box-sizing: border-box;
     display: block;
-    color: 800;
+    color: white;
     background-color: #800000;
     justify-content: center;
     border-radius: 20px; /* Add this line for rounded edges */
+    font-size: 14px; /* Adjust font size as needed */
+    font-weight: bold; /* Set font weight to bold */
 
   }
 
