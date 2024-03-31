@@ -10,6 +10,11 @@
     height: 100%; /* Make the image fill the container vertically */
 }
 
+/* Quick fix to display text in achievements and description */
+.own-profile-section {
+    color: red;
+}
+
 #description {
     margin-top: 10px;
     width: 40%;

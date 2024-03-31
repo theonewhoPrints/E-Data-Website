@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SchemeService } from '../scheme.service';
 import { UserService } from '../user.service';
@@ -18,6 +18,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
+  @Input() data: any;
   profile: User;
 
   imageToShow: any;
@@ -75,7 +76,17 @@ export class ProfileComponent {
   
   getUser(): void {
     // Get the name parameter from the route
-    const name = this.route.snapshot.paramMap.get('name');
+    let name = this.route.snapshot.paramMap.get('name');
+
+    if (name === null) {
+      // If the name parameter is not present, use the data input
+      name = this.data;
+      if (name !== null) {
+        name = name.trim();
+        name = encodeURIComponent(name);
+      }
+    }
+    
     if (name !== null) {
       // Fetch the user data from the UserService
       this.userService.getUser(name).subscribe(user => {

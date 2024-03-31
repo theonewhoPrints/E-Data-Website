@@ -17,4 +17,6 @@
     {{ scheme.addedToCart ? 'Added' : 'Add to cart' }}
   </button>
   <p>{{ message }}</p>
+
+  <app-profile [data]="scheme.name"></app-profile>
 </div>
