@@ -1,7 +1,7 @@
 <div *ngIf="scheme">
   <h2>{{scheme.title}}</h2>
   <!-- Link to profile -->
-  <a routerLink="/profile/{{scheme.name}}" class="villain-name">{{scheme.name}}</a><br>
+  <!-- <a routerLink="/profile/{{scheme.name}}" class="villain-name">{{scheme.name}}</a><br> -->
   <h3>${{scheme.fundgoal}}</h3>
   <div *ngIf="(role == 'ROLE_VILLAIN' && this.username == scheme.name) ||  role == 'ROLE_ADMIN'">
     <label for="name-of-villain">Name of Villain: </label>
