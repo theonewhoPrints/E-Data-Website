@@ -1,0 +1,6 @@
+projectKey=onlyvillains-app
+serverUrl=http://localhost:9000
+serverVersion=10.4.1.88267
+dashboardUrl=http://localhost:9000/dashboard?id=onlyvillains-app
+ceTaskId=3769d54c-6641-4aab-9178-7656b3dd890e
+ceTaskUrl=http://localhost:9000/api/ce/task?id=3769d54c-6641-4aab-9178-7656b3dd890e
