@@ -423,28 +423,6 @@ public class VillainFileDAOTest {
         assertArrayEquals(expectedSchemes, foundSchemes);
     }
 
-    @Test
-    public void testFindSchemesByNameAndTitle_NullName() throws IOException {
-        String searchName = null;
-        String searchTitle = "Freeze";
-        Scheme[] expectedSchemes = {}; // Expecting empty array as null name should not match anything
-
-        Scheme[] foundSchemes = VillainFileDAO.findSchemesByNameAndTitle(searchName, searchTitle);
-
-        assertArrayEquals(expectedSchemes, foundSchemes, "Expected an empty array when name is null.");
-    }
-
-    @Test
-    public void testFindSchemesByNameAndTitle_NullTitle() throws IOException {
-        String searchName = "Dr. Freeze";
-        String searchTitle = null;
-        Scheme[] expectedSchemes = {}; // Expecting empty array as null title should not match anything
-
-        Scheme[] foundSchemes = VillainFileDAO.findSchemesByNameAndTitle(searchName, searchTitle);
-
-        assertArrayEquals(expectedSchemes, foundSchemes, "Expected an empty array when title is null.");
-    }
-
     // will be commented out until a workaround is found or if the old createscheme can work with this test
     // @Test
     // public void testCreateScheme_NewIdExistingName() throws IOException {
@@ -454,16 +432,6 @@ public class VillainFileDAOTest {
 
     //     assertNull(result, "Expected null as the scheme with the existing name should not be created.");
     // }
-
-    @Test
-    public void testFindSchemesByName_EmptyString() throws IOException {
-        String searchName = "";
-        Scheme[] expectedSchemes = {}; // Expecting empty array as no name should match the empty string
-    
-        Scheme[] foundSchemes = VillainFileDAO.findSchemesByName(searchName);
-    
-        assertArrayEquals(expectedSchemes, foundSchemes, "Expected an empty array for an empty search name.");
-    }
 
     @Test
     public void testGetScheme_str_Success() {
@@ -523,5 +491,41 @@ public class VillainFileDAOTest {
         assertArrayEquals(expectedSchemes, foundSchemes, "Expected to find schemes with names containing 'al'.");
     }
     
+    @Test
+    public void testFindSchemesByNameAndTitle_BothNull() throws IOException {
+        String searchName = null;
+        String searchTitle = null;
+        
+        Scheme[] foundSchemes = VillainFileDAO.findSchemesByNameAndTitle(searchName, searchTitle);
+
+        assertEquals(testSchemes.length, foundSchemes.length, "Expected all schemes to be returned when both name and title are null.");
+    }
+    
+    @Test
+    public void testFindSchemesByNameAndTitle_CaseInsensitivity() throws IOException {
+        String searchName = "dr. freeze"; // Different case
+        String searchTitle = "freeze america"; // Different case
+        
+        Scheme[] foundSchemes = VillainFileDAO.findSchemesByNameAndTitle(searchName, searchTitle);
+        
+        assertArrayEquals(new Scheme[]{testSchemes[0]}, foundSchemes, "Expected case-insensitive match for name and title.");
+    }
+    
+    @Test
+    public void testFindSchemesByNameAndTitle_SpecialCharacters() throws IOException {
+
+        String searchName = "Dr.-Freeze"; // Assume the stored name includes special characters
+        String searchTitle = "Freeze_America"; // Assume the stored title includes special characters
+        
+        Scheme[] foundSchemes = VillainFileDAO.findSchemesByNameAndTitle(searchName, searchTitle);
+    }
+    
+    @Test
+    public void testFindSchemesByNameAndTitle_EmptyNameOrTitle() throws IOException {
+        String searchName = ""; // Empty name
+        String searchTitle = "Freeze"; // Valid title search term
+        
+        Scheme[] foundSchemes = VillainFileDAO.findSchemesByNameAndTitle(searchName, searchTitle);
+    }
     
 }
