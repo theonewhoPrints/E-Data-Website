@@ -33,7 +33,9 @@ The goal of this project is to create a functional website that enables users to
 | Term | Definition |
 |------|------------|
 | SPA | Single Page |
-
+| API | Application Programming Interface |
+| JSON | JavaScript Object Notation |
+| DAO | Data Access Object |
 
 ## Requirements
 
@@ -50,13 +52,20 @@ The MVP of this onlyvillains website includes the following core features:
 * A search bar enabling users to find schemes by name
 * Capability to create their schemes and add them to the website
 * Notifications alerting users if they already have a scheme in their cart or when they add a scheme to the cart
+* Administrative backend for managing users and content
 
 ### MVP Features
 >  _**[Sprint 4]** Provide a list of top-level Epics and/or Stories of the MVP._
+* User Account Management: Register/Login/Logout
+* Scheme Catalog: Browse/Search/View schemes
+* Funding Transactions: Add to cart/Checkout/Donate
+* Villain Dashboard: Create/Manage schemes
+* Admin Control Panel: User and Scheme management
 
 ### Enhancements
 > _**[Sprint 4]** Describe what enhancements you have implemented for the project._
-
+* Ability to edit profile picture
+* Ability to add achievements/descriptions in the profile
 
 ## Application Domain
 
@@ -116,12 +125,16 @@ This section describes the web interface flow; this is how the user views and in
 
 > _Provide a summary of the application's user interface.  Describe, from the user's perspective, the flow of the pages in the web application._
 
+The user interface flow is designed to be intuitive and efficient, guiding users through the process of exploring, funding schemes, and managing their accounts or schemes based on their role (villain, helper, or manager).
+
 
 ### View Tier
 > _**[Sprint 4]** Provide a summary of the View Tier UI of your architecture.
 > Describe the types of components in the tier and describe their
 > responsibilities.  This should be a narrative description, i.e. it has
 > a flow or "story line" that the reader can follow._
+
+The View Tier, built as a SPA, provides a dynamic and responsive user experience. Components include pages for user registration, scheme browsing, and account management, with calls to the ViewModel for data.
 
 > _**[Sprint 4]** You must  provide at least **2 sequence diagrams** as is relevant to a particular aspects 
 > of the design that you are describing.  (**For example**, in a shopping experience application you might create a 
@@ -139,6 +152,8 @@ This section describes the web interface flow; this is how the user views and in
 - VillainController: Directs VillainDAO to manipulate data
 - UserController: Directs UserDAO to manipulate data
 - PictureController: Directs PictureDAO to manipulate data
+
+Manages the interaction between the View and Model tiers, processing user requests, executing business logic, and returning data. Controllers like VillainController and UserController facilitate these interactions.
 
 > _**[Sprint 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
