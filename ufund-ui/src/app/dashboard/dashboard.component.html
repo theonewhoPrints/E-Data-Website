@@ -1,20 +1,22 @@
 <div class="scheme-search-container">
   <div class="scheme-search-title">
-    Scheme Search
     <app-scheme-search></app-scheme-search>
   </div>
 </div>
 
 
 <div class="sort-container">
-  Sort By:
-  <select (change)="selectChangeHandler($event)">
-    <option *ngFor="let order of orders" [ngValue]="order.name">{{ order.name }}</option>
-  </select>
+  <br> Sort By:<select (change) ="selectChangeHandler($event)"> <option *ngFor="let order of orders" [ngValue]="order.name">{{order.name}}</option> </select>
+  
 </div>
 
 <div class="container">
   <div class="schemes-menu">
+    <div class="scheme-details scheme-card">
+      <span class="scheme-title bold">Scheme</span>
+      <span class="scheme-villain bold">Villain</span>
+      <span class="scheme-fundgoal bold">FundGoal</span>
+    </div>
     <div *ngFor="let scheme of sortedSchemes" class="scheme-card">
       <a routerLink="/detail/{{scheme.id}}">
         <div class="scheme-details">

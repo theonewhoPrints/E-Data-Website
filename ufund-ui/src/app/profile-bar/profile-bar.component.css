@@ -1,3 +1,4 @@
+
 .user-info {
   position: fixed;
   top: 20px;
@@ -14,13 +15,21 @@
 }
 
 .cupboard-link, .logout-link, .cart-link {
-  color: red;
+  color: white;
   margin: 5px 0;
+  font-style: italic; 
+  font-family:  cursive;
   font-size: large;
 }
 
+.logout-link {
+  text-decoration: underline;
+}
+
 .username {
-  color: red;
+  color: white;
+  font-style: italic; 
+  font-family:  cursive;
   font-size: large;
   margin: 5px 0;
 }
@@ -32,4 +41,14 @@
   border-radius: 10%;
   border: 2px solid red;
   margin-bottom: 10px;
+}
+
+.schemes-header {
+  background-color: #800000;
+  border-radius: 10px;
+  margin: 0.5rem 0;
+  overflow: hidden;
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
 }

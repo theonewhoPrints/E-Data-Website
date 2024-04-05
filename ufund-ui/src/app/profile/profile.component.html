@@ -1,3 +1,4 @@
+<div class="all">
 <div class="image-container">
   <img [src]="imageToShow" class="profile-picture">
 </div>
@@ -12,11 +13,25 @@
 
 <div class="profile-info">
   <p>{{profile.name}}</p>
-  <p>{{profile.role}}</p>
+  <!-- <p>{{profile.role}}</p> -->
+</div>
+
+<div class="own-profile-section"> 
+  <!-- What all other users see -->
+  <div *ngIf="this.username !== profile.name">
+    <h2>Description:</h2>
+    <p>{{profile.description}}</p>
+
+    <h2>Achievements:</h2>
+    <li *ngFor="let achievement of profile.achievements">
+      {{achievement}}
+    </li>
+  </div>
 </div>
 
 <!-- Container for Description and Achievements for the user -->
 <div class="own-profile-section">
+
   <div *ngIf="this.username == profile.name">
     <h2>Description:</h2>
     <textarea id="description" [(ngModel)]="profile.description" placeholder="{{profile.description}}"></textarea><br>
@@ -31,4 +46,5 @@
     <button (click)="addAchievement()">Add new achievement</button><br>
     <button id="save-button" (click)="save()">Save Changes</button>
   </div>
+</div>
 </div>

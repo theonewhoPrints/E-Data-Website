@@ -23,6 +23,11 @@
     content: '\2620';
     font-size: 60px;
   }
+
+  #custom-dashboard::before{
+    content: '\2620';
+    font-size: 60px;
+  }
 header {
     display: flex;
     align-items: center;

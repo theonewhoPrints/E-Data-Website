@@ -1,15 +1,17 @@
-<h2 class="cart-title">Shopping Cart</h2>
-<div class="cart-items">
-  <div *ngFor="let cartItem of cart" class="cart-item">
-    <span class="item-title">{{ cartItem.scheme.title }}</span> |
-    <span class="item-name">{{ cartItem.scheme.name }}</span> |
-    <span class="item-fundgoal">$ {{ cartItem.scheme.fundgoal }}</span>
-    <input type="number" class="donate-amount" [(ngModel)]="cartItem.donateAmount" placeholder="$">
-    <button class="remove-item" (click)="removeFromCart(cartItem.scheme);">x</button>
-    <div *ngIf="cartItem.donateAmount == 0" class="donation-warning">*Please enter a donate amount</div>
-    <div *ngIf="cartItem.donateAmount < 0" class="donation-warning">*Donate amount must be positive</div>
-    <div *ngIf="cartItem.donateAmount > cartItem.scheme.fundgoal" class="donation-warning">*Donate amount must be at most the funding goal</div>
+<div class="all">
+  <h2 class="cart-title">Shopping Cart</h2>
+  <div class="cart-items">
+    <div *ngFor="let cartItem of cart" class="cart-item">
+      <span class="item-title">{{ cartItem.scheme.title }}</span> |
+      <span class="item-name">{{ cartItem.scheme.name }}</span> |
+      <span class="item-fundgoal">$ {{ cartItem.scheme.fundgoal }}</span>
+      <input type="number" class="donate-amount" [(ngModel)]="cartItem.donateAmount" placeholder="$">
+      <button class="remove-item" (click)="removeFromCart(cartItem.scheme);">x</button>
+      <div *ngIf="cartItem.donateAmount == 0" class="donation-warning">*Please enter a donate amount</div>
+      <div *ngIf="cartItem.donateAmount < 0" class="donation-warning">*Donate amount must be positive</div>
+      <div *ngIf="cartItem.donateAmount > cartItem.scheme.fundgoal" class="donation-warning">*Donate amount must be at most the funding goal</div>
+    </div>
+    <button *ngIf="cart.length > 0" class="checkout-button" (click)="checkout();">Checkout</button>
   </div>
-  <button *ngIf="cart.length > 0" class="checkout-button" (click)="checkout();">Checkout</button>
+  <p *ngIf="checkoutSuccess" class="checkout-message">Donation successful!</p>
 </div>
-<p *ngIf="checkoutSuccess" class="checkout-message">Donation successful!</p>
