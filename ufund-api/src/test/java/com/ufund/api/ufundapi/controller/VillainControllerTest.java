@@ -38,7 +38,13 @@ public class VillainControllerTest {
         villainController = new VillainController(mockVillainDAO);
     }
 
-  
+    /**
+     * Tests retrieving all schemes successfully from {@link VillainController}.
+     * <p>
+     * Verifies that the correct schemes are returned and the HTTP status is OK.
+     * 
+     * @throws IOException if an I/O error occurs during scheme retrieval
+     */
     @Test
     public void testGetSchemes() throws IOException { // getSchemes may throw IOException
         // Setup
@@ -56,7 +62,13 @@ public class VillainControllerTest {
         assertEquals(schemes,response.getBody());
     }
 
-  
+    /**
+     * Tests exception handling in {@link VillainController#getSchemes()} when an I/O error occurs.
+     * <p>
+     * Simulates an IOException and checks if the HTTP status is INTERNAL_SERVER_ERROR.
+     * 
+     * @throws IOException if an I/O error occurs during scheme retrieval
+     */
     @Test
     public void testGetSchemesHandleException() throws IOException { // getSchemes may throw IOException
         // Setup
@@ -70,6 +82,13 @@ public class VillainControllerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
+    /**
+     * Tests retrieving a specific scheme by ID in {@link VillainController}.
+     * <p>
+     * Verifies that the correct scheme is returned and the HTTP status is OK.
+     * 
+     * @throws IOException if an I/O error occurs during scheme retrieval
+     */
     @Test
     public void testGetScheme() throws IOException {  // getScheme may throw IOException
         // Setup
@@ -85,6 +104,13 @@ public class VillainControllerTest {
         assertEquals(scheme,response.getBody());
     }
 
+    /**
+     * Tests retrieving a scheme by ID when the scheme is not found.
+     * <p>
+     * Ensures that the HTTP status is NOT_FOUND when the requested scheme does not exist.
+     * 
+     * @throws Exception if an error occurs during scheme retrieval
+     */
     @Test
     public void testGetSchemeNotFound() throws Exception { // createScheme may throw IOException
         // Setup
@@ -97,6 +123,13 @@ public class VillainControllerTest {
         ResponseEntity<Scheme> response = villainController.getVillain(schemeID);
     }
 
+    /**
+     * Tests searching schemes by name successfully in {@link VillainController}.
+     * <p>
+     * Verifies that the correct schemes are returned and the HTTP status is OK.
+     * 
+     * @throws IOException if an I/O error occurs during the search
+     */
     @Test
     public void testSearchVillainSchemesByName() throws IOException { // findSchemesByName may throw IOException
         // Setup
@@ -119,6 +152,13 @@ public class VillainControllerTest {
         assertEquals(schemes, response.getBody());
     }
 
+    /**
+     * Tests searching schemes by name when schemes are found.
+     * <p>
+     * Verifies that the correct schemes are returned and the HTTP status is OK.
+     * 
+     * @throws IOException if an I/O error occurs during the search
+     */
     @Test
     public void testSearchVillainSchemesByNameSuccess() throws IOException {
         // Setup
@@ -134,6 +174,13 @@ public class VillainControllerTest {
         assertEquals(expectedSchemes, response.getBody());
     }
 
+    /**
+     * Tests searching schemes by name when no schemes are found.
+     * <p>
+     * Verifies that an empty array is returned and the HTTP status is OK.
+     * 
+     * @throws IOException if an I/O error occurs during the search
+     */
     @Test
     public void testSearchVillainSchemesByNameNotFound() throws IOException {
         // Setup
@@ -148,6 +195,13 @@ public class VillainControllerTest {
         assertEquals(0, response.getBody().length);
     }
 
+    /**
+     * Tests exception handling in searching schemes by name in {@link VillainController}.
+     * <p>
+     * Simulates an IOException and checks if the HTTP status is INTERNAL_SERVER_ERROR.
+     * 
+     * @throws IOException if an I/O error occurs during the search
+     */
     @Test
     public void testSearchVillainSchemesByNameException() throws IOException {
         // Setup
@@ -161,10 +215,13 @@ public class VillainControllerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
 
-
-
-  
-  
+    /**
+     * Tests creating a scheme successfully in {@link VillainController}.
+     * <p>
+     * Verifies that a scheme is created successfully and the HTTP status is CREATED.
+     * 
+     * @throws IOException if an I/O error occurs during scheme creation
+     */
     @Test
     public void testCreateScheme() throws IOException {  // createScheme may throw IOException
         // Setup
@@ -183,7 +240,13 @@ public class VillainControllerTest {
         assertEquals(schemes,response.getBody());
     }
 
-
+    /**
+     * Tests creating a scheme in {@link VillainController} when the creation fails.
+     * <p>
+     * Simulates a scenario where scheme creation fails and checks if the HTTP status is CONFLICT.
+     * 
+     * @throws IOException if an I/O error occurs during scheme creation
+     */
     @Test
     public void testCreateSchemeFailed() throws IOException {  // createScheme may throw IOException
         // Setup
@@ -201,7 +264,13 @@ public class VillainControllerTest {
         assertEquals(HttpStatus.CONFLICT,response.getStatusCode());
     }
 
-
+    /**
+     * Tests exception handling in {@link VillainController#createVillain(Scheme)} when an error occurs.
+     * <p>
+     * Simulates an IOException and checks if the HTTP status is INTERNAL_SERVER_ERROR.
+     * 
+     * @throws IOException if an I/O error occurs during scheme creation
+     */
     @Test
     public void testCreateSchemeHandleException() throws IOException {  // createScheme may throw IOException
         // Setup
@@ -217,6 +286,13 @@ public class VillainControllerTest {
 
     }
     
+    /**
+     * Tests deleting a scheme successfully in {@link VillainController}.
+     * <p>
+     * Verifies that a scheme is deleted successfully and the HTTP status is OK.
+     * 
+     * @throws IOException if an I/O error occurs during scheme deletion
+     */
     @Test
     public void testDeleteScheme() throws IOException { // deleteScheme may throw IOException
         // Setup
@@ -231,7 +307,13 @@ public class VillainControllerTest {
         assertEquals(HttpStatus.OK,response.getStatusCode());
     }
 
-      
+    /**
+     * Tests deleting a scheme in {@link VillainController} when the scheme does not exist.
+     * <p>
+     * Simulates a scenario where scheme deletion fails due to non-existence and checks if the HTTP status is NOT_FOUND.
+     * 
+     * @throws IOException if an I/O error occurs during scheme deletion
+     */
     @Test
     public void testDeleteHeroNotFound() throws IOException { // deleteScheme may throw IOException
         // Setup
@@ -246,6 +328,13 @@ public class VillainControllerTest {
         assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
     }
 
+    /**
+     * Tests exception handling in {@link VillainController#getVillain(int)} when an error occurs.
+     * <p>
+     * Simulates an IOException and checks if the HTTP status is INTERNAL_SERVER_ERROR.
+     * 
+     * @throws Exception if an error occurs during scheme retrieval
+     */
     @Test
     public void testGetSchemeHandleException() throws Exception { // createHero may throw IOException
         // Setup
@@ -260,6 +349,13 @@ public class VillainControllerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
+    /**
+     * Tests exception handling in {@link VillainController#deleteVillain(int)} when an error occurs.
+     * <p>
+     * Simulates an IOException and checks if the HTTP status is INTERNAL_SERVER_ERROR.
+     * 
+     * @throws IOException if an I/O error occurs during scheme deletion
+     */
     @Test
     public void testDeleteHeroHandleException() throws IOException { // deleteScheme may throw IOException
         // Setup
@@ -274,6 +370,13 @@ public class VillainControllerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
+    /**
+     * Tests updating a scheme successfully in {@link VillainController}.
+     * <p>
+     * Verifies that a scheme is updated successfully and the HTTP status is OK.
+     * 
+     * @throws IOException if an I/O error occurs during scheme update
+     */
     @Test
     public void testUpdateScheme() throws IOException { // updateScheme may throw IOException
         // Setup
@@ -292,6 +395,13 @@ public class VillainControllerTest {
         assertEquals(scheme,response.getBody());
     }
 
+    /**
+     * Tests updating a scheme in {@link VillainController} when the update fails.
+     * <p>
+     * Simulates a scenario where scheme update fails and checks if the HTTP status is NOT_FOUND.
+     * 
+     * @throws IOException if an I/O error occurs during scheme update
+     */
     @Test
     public void testUpdateSchemeFailed() throws IOException { // updateScheme may throw IOException
         // Setup
@@ -307,6 +417,13 @@ public class VillainControllerTest {
         assertEquals(HttpStatus.NOT_FOUND,response.getStatusCode());
     }
 
+    /**
+     * Tests exception handling in {@link VillainController#updateVillain(Scheme)} when an error occurs.
+     * <p>
+     * Simulates an IOException and checks if the HTTP status is INTERNAL_SERVER_ERROR.
+     * 
+     * @throws IOException if an I/O error occurs during scheme update
+     */
     @Test
     public void testUpdateSchemeHandleException() throws IOException { // updateScheme may throw IOException
         // Setup
@@ -321,55 +438,80 @@ public class VillainControllerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
+    /**
+     * Tests searching for villains by name in {@link VillainController}.
+     * <p>
+     * Verifies that the correct schemes are returned when searched by name and the HTTP status is OK.
+     * 
+     * @throws IOException if an I/O error occurs during the search
+     */
     @Test
-public void testSearchVillainsByName() throws IOException {
-    // Setup
-    String name = "Dr. Evil";
-    Scheme[] expectedVillains = { new Scheme(1, name, "take over the world", 26000) };
-    when(mockVillainDAO.findSchemesByName(name.toLowerCase())).thenReturn(expectedVillains);
+    public void testSearchVillainsByName() throws IOException {
+        // Setup
+        String name = "Dr. Evil";
+        Scheme[] expectedVillains = { new Scheme(1, name, "take over the world", 26000) };
+        when(mockVillainDAO.findSchemesByName(name.toLowerCase())).thenReturn(expectedVillains);
 
-    // Invoke
-    ResponseEntity<Scheme[]> response = villainController.searchVillains(name.toLowerCase(), null);
+        // Invoke
+        ResponseEntity<Scheme[]> response = villainController.searchVillains(name.toLowerCase(), null);
 
-    // Analyze
-    assertEquals(HttpStatus.OK, response.getStatusCode());
-    assertEquals(expectedVillains, response.getBody());
-}
+        // Analyze
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(expectedVillains, response.getBody());
+    }
 
-
+    /**
+     * Tests searching for schemes by title in {@link VillainController}.
+     * <p>
+     * Verifies that the correct schemes are returned when searched by title and the HTTP status is OK.
+     * 
+     * @throws IOException if an I/O error occurs during the search
+     */
     @Test
-public void testSearchVillainsByTitle() throws IOException {
-    // Setup
-    String title = "World Domination";
-    Scheme[] expectedVillains = { new Scheme(1, "Dr. Evil", title, 24000) };
-    when(mockVillainDAO.findSchemesByTitle(title.toLowerCase())).thenReturn(expectedVillains);
+    public void testSearchVillainsByTitle() throws IOException {
+        // Setup
+        String title = "World Domination";
+        Scheme[] expectedVillains = { new Scheme(1, "Dr. Evil", title, 24000) };
+        when(mockVillainDAO.findSchemesByTitle(title.toLowerCase())).thenReturn(expectedVillains);
 
-    // Invoke
-    ResponseEntity<Scheme[]> response = villainController.searchVillains(null, title.toLowerCase()); // Ensure the title is converted to lowercase as done in the frontend
+        // Invoke
+        ResponseEntity<Scheme[]> response = villainController.searchVillains(null, title.toLowerCase()); // Ensure the title is converted to lowercase as done in the frontend
 
-    // Analyze
-    assertEquals(HttpStatus.OK, response.getStatusCode());
-    assertEquals(expectedVillains, response.getBody());
-}
+        // Analyze
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(expectedVillains, response.getBody());
+    }
 
-
+    /**
+     * Tests searching for schemes by both name and title in {@link VillainController}.
+     * <p>
+     * Verifies that the correct schemes are returned when searched by both name and title and the HTTP status is OK.
+     * 
+     * @throws IOException if an I/O error occurs during the search
+     */
     @Test
-public void testSearchVillainsByNameAndTitle() throws IOException {
-    // Setup
-    String name = "Dr. Evil";
-    String title = "World Domination";
-    Scheme[] expectedVillains = { new Scheme(1, name, title, 22000) };
-    when(mockVillainDAO.findSchemesByNameAndTitle(eq(name.toLowerCase()), eq(title.toLowerCase()))).thenReturn(expectedVillains);
+    public void testSearchVillainsByNameAndTitle() throws IOException {
+        // Setup
+        String name = "Dr. Evil";
+        String title = "World Domination";
+        Scheme[] expectedVillains = { new Scheme(1, name, title, 22000) };
+        when(mockVillainDAO.findSchemesByNameAndTitle(eq(name.toLowerCase()), eq(title.toLowerCase()))).thenReturn(expectedVillains);
 
-    // Invoke
-    ResponseEntity<Scheme[]> response = villainController.searchVillains(name, title);
+        // Invoke
+        ResponseEntity<Scheme[]> response = villainController.searchVillains(name, title);
 
-    // Analyze
-    assertEquals(HttpStatus.OK, response.getStatusCode());
-    assertEquals(expectedVillains, response.getBody());
-}
+        // Analyze
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(expectedVillains, response.getBody());
+    }
 
-
+    /**
+     * Tests exception handling in {@link VillainController#searchVillains(String, String)} when an error occurs.
+     * <p>
+     * Simulates an IOException and checks if the HTTP status is INTERNAL_SERVER_ERROR.
+     * 
+     * @throws IOException if an I/O error occurs during the search
+     */
     @Test
     public void testSearchVillainsException() throws IOException {
         // Setup
@@ -382,6 +524,13 @@ public void testSearchVillainsByNameAndTitle() throws IOException {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
 
+    /**
+     * Tests searching for villains with no parameters in {@link VillainController}.
+     * <p>
+     * Verifies that all available schemes are returned and the HTTP status is OK.
+     * 
+     * @throws IOException if an I/O error occurs during the search
+     */
     @Test
     public void testSearchVillainsWithNoParameters() throws IOException {
         // Setup
@@ -399,20 +548,27 @@ public void testSearchVillainsByNameAndTitle() throws IOException {
         assertEquals(expectedVillains, response.getBody(), "The method should return all villains when no parameters are given.");
     }
 
+    /**
+     * Tests searching for schemes by title only in {@link VillainController}.
+     * <p>
+     * Verifies that schemes matching the title are returned and the HTTP status is OK.
+     * 
+     * @throws IOException if an I/O error occurs during the search
+     */
     @Test
-public void testSearchVillainsByTitleOnly() throws IOException {
-    // Setup
-    String title = "Global Warming";
-    Scheme[] expectedVillains = { new Scheme(3, "Dr. Warm", title, 25000) };
-    // Mocking case-insensitive search behavior
-    when(mockVillainDAO.findSchemesByTitle(title.toLowerCase())).thenReturn(expectedVillains);
+    public void testSearchVillainsByTitleOnly() throws IOException {
+        // Setup
+        String title = "Global Warming";
+        Scheme[] expectedVillains = { new Scheme(3, "Dr. Warm", title, 25000) };
+        // Mocking case-insensitive search behavior
+        when(mockVillainDAO.findSchemesByTitle(title.toLowerCase())).thenReturn(expectedVillains);
 
-    // Invoke
-    ResponseEntity<Scheme[]> response = villainController.searchVillains(null, title);
+        // Invoke
+        ResponseEntity<Scheme[]> response = villainController.searchVillains(null, title);
 
-    // Analyze
-    assertEquals(HttpStatus.OK, response.getStatusCode());
-    assertEquals(expectedVillains, response.getBody(), "The method should return villains matching the title only.");
-}
+        // Analyze
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(expectedVillains, response.getBody(), "The method should return villains matching the title only.");
+    }
 
 }

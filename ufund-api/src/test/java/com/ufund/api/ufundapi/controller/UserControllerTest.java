@@ -39,7 +39,13 @@ public class UserControllerTest {
         userController = new UserController(mockUserDAO);
     }
 
-  
+    /**
+     * Tests retrieving all users successfully from {@link UserController}.
+     * 
+     * Verifies that the correct users are returned and the HTTP status is OK.
+     * 
+     * @throws IOException if an I/O error occurs during user retrieval
+     */
     @Test
     public void testGetUsers() throws IOException { // getUsers may throw IOException
         // Setup
@@ -57,6 +63,13 @@ public class UserControllerTest {
         assertEquals(users,response.getBody());
     }
 
+    /**
+     * Tests the exception handling in {@link UserController#getUsers()} method.
+     * 
+     * Simulates an IOException and checks if the HTTP status is INTERNAL_SERVER_ERROR.
+     * 
+     * @throws IOException if an I/O error occurs during user retrieval
+     */
     @Test
     public void testGetUsersHandleException() throws IOException { // getUsers may throw IOException
         // Setup
@@ -70,6 +83,13 @@ public class UserControllerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
+    /**
+     * Tests finding a specific user by name in {@link UserController}.
+     * 
+     * Verifies that the correct user is returned and the HTTP status is OK.
+     * 
+     * @throws IOException if an I/O error occurs during user search
+     */
     @Test
     public void testFindUser() throws IOException {  // findUser may throw IOException
         // Setup
@@ -91,6 +111,13 @@ public class UserControllerTest {
         assertEquals(users[0], response.getBody());
     }
 
+    /**
+     * Tests the exception handling in {@link UserController#findUser(String)} method.
+     * 
+     * Simulates an IOException and checks if the HTTP status is INTERNAL_SERVER_ERROR.
+     * 
+     * @throws Exception if an error occurs during user search
+     */
     @Test
     public void testFindUserHandleException() throws Exception { // findUser may throw IOException
         // Setup
@@ -104,6 +131,13 @@ public class UserControllerTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
+    /**
+     * Tests updating a user successfully in {@link UserController}.
+     * 
+     * Verifies that the user is updated correctly and the HTTP status is OK.
+     * 
+     * @throws IOException if an I/O error occurs during user update
+     */
     @Test
     void updateUser_Success() throws IOException {
         User testUser = new User(0, null, null, null, null, null);
@@ -119,6 +153,13 @@ public class UserControllerTest {
         assertEquals(testUser, response.getBody());
     }
 
+    /**
+     * Tests updating a user in {@link UserController} when the user is not found.
+     * 
+     * Verifies that the HTTP status is NOT_FOUND when the user does not exist.
+     * 
+     * @throws IOException if an I/O error occurs during user update
+     */
     @Test
     void updateUser_NotFound() throws IOException {
         User testUser = new User(0, null, null, null, null, null);
@@ -133,6 +174,13 @@ public class UserControllerTest {
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
+    /**
+     * Tests the exception handling in {@link UserController#updateUser(User)} method.
+     * 
+     * Simulates an IOException and checks if the HTTP status is INTERNAL_SERVER_ERROR.
+     * 
+     * @throws IOException if an I/O error occurs during user update
+     */
     @Test
     void updateUser_Error() throws IOException {
         User testUser = new User(0, null, null, null, null, null);

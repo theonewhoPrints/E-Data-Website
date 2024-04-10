@@ -29,6 +29,14 @@ class PictureControllerTest {
     private PictureDAO mockPictureDao;
     private UserDAO mockUserDao;
 
+    /**
+     * Sets up the environment for testing {@link PictureController}.
+     * Initializes mocks for {@link PictureDAO} and {@link UserDAO}.
+     *
+     * @throws StreamReadException if a streaming read error occurs
+     * @throws DatabindException if a data binding error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @BeforeEach
     void setupPictureController() throws StreamReadException, DatabindException, IOException {
         mockPictureDao = mock(PictureDAO.class);
@@ -36,6 +44,13 @@ class PictureControllerTest {
         controller = new PictureController(mockPictureDao, mockUserDao);
     }
 
+    /**
+     * Tests successful change of user's picture in {@link PictureController}.
+     * 
+     * This method simulates a successful update of a user's picture and checks the response status and body.
+     *
+     * @throws IOException if an I/O error occurs
+     */
     @Test
     void changeUserPicture_Success() throws IOException {
         // Setup
@@ -56,6 +71,13 @@ class PictureControllerTest {
         assertArrayEquals(testPicture.getData(), response.getBody());
     }
 
+    /**
+     * Tests changing a user's picture when the picture data is not found in {@link PictureDAO}.
+     * 
+     * Simulates a scenario where the picture to be saved is not found, expecting a NOT_FOUND response status.
+     *
+     * @throws IOException if an I/O error occurs
+     */
     @Test
     void changeUserPicture_NotFound() throws IOException {
         // Setup
@@ -70,6 +92,13 @@ class PictureControllerTest {
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
+    /**
+     * Tests error handling in {@link PictureController} when changing a user's picture fails due to an I/O exception.
+     * 
+     * Verifies that an INTERNAL_SERVER_ERROR status is returned when an {@link IOException} is thrown.
+     *
+     * @throws IOException if an I/O error occurs
+     */
     @Test
     void changeUserPicture_Error() throws IOException {
         // Setup
@@ -83,6 +112,14 @@ class PictureControllerTest {
         // Assert
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
     }
+
+    /**
+     * Tests retrieving a picture from {@link PictureDAO} when the picture exists.
+     * 
+     * Checks that the correct picture data is returned with an OK status when the picture is available.
+     *
+     * @throws IOException if an I/O error occurs
+     */
     @Test
     void getPicture_PictureExists() throws IOException {
         // Arrange
@@ -100,6 +137,13 @@ class PictureControllerTest {
         assertArrayEquals(picture.getData(), response.getBody());
     }
 
+    /**
+     * Tests the retrieval of a non-existing picture from {@link PictureDAO}.
+     * 
+     * Ensures that a NOT_FOUND status is returned when the requested picture does not exist.
+     *
+     * @throws IOException if an I/O error occurs
+     */
     @Test
     void getPicture_PictureDoesNotExist() throws IOException {
         // Arrange
@@ -113,6 +157,13 @@ class PictureControllerTest {
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
+    /**
+     * Tests getting a picture by user name when both the user and the picture exist in {@link PictureDAO} and {@link UserDAO}.
+     * 
+     * Verifies that the correct picture data is returned with an OK status for a valid user name.
+     *
+     * @throws IOException if an I/O error occurs
+     */
     @Test
     void getPictureByName_UserExists_PictureExists() throws IOException {
         // Arrange
@@ -133,6 +184,13 @@ class PictureControllerTest {
         assertArrayEquals(picture.getData(), response.getBody());
     }
 
+    /**
+     * Tests getting a picture by user name when the user exists but the picture does not in {@link PictureDAO}.
+     * 
+     * Checks that a NOT_FOUND status is returned when the picture associated with the user is not found.
+     *
+     * @throws IOException if an I/O error occurs
+     */
     @Test
     void getPictureByName_UserExists_PictureDoesNotExist() throws IOException {
         // Arrange
@@ -149,6 +207,13 @@ class PictureControllerTest {
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
+    /**
+     * Tests the retrieval of a picture by user name when the user does not exist in {@link UserDAO}.
+     * 
+     * Asserts that a NOT_FOUND status is returned when no user is found for the given name.
+     *
+     * @throws IOException if an I/O error occurs
+     */
     @Test
     void getPictureByName_UserDoesNotExist() throws IOException {
         // Arrange
@@ -162,6 +227,13 @@ class PictureControllerTest {
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
+    /**
+     * Tests exception handling in {@code getPictureByName(String)} when an error occurs.
+     * <p>
+     * Verifies that an INTERNAL_SERVER_ERROR status is returned when an {@link IOException} is thrown.
+     *
+     * @throws IOException if an I/O error occurs
+     */
     @Test
     void getPictureByName_HandleException() throws IOException {
         // Arrange
