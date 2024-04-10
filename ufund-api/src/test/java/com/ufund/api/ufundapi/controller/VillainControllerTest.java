@@ -40,7 +40,7 @@ public class VillainControllerTest {
 
     /**
      * Tests retrieving all schemes successfully from {@link VillainController}.
-     * <p>
+     * 
      * Verifies that the correct schemes are returned and the HTTP status is OK.
      * 
      * @throws IOException if an I/O error occurs during scheme retrieval
@@ -64,7 +64,7 @@ public class VillainControllerTest {
 
     /**
      * Tests exception handling in {@link VillainController#getSchemes()} when an I/O error occurs.
-     * <p>
+     * 
      * Simulates an IOException and checks if the HTTP status is INTERNAL_SERVER_ERROR.
      * 
      * @throws IOException if an I/O error occurs during scheme retrieval
@@ -84,7 +84,7 @@ public class VillainControllerTest {
 
     /**
      * Tests retrieving a specific scheme by ID in {@link VillainController}.
-     * <p>
+     * 
      * Verifies that the correct scheme is returned and the HTTP status is OK.
      * 
      * @throws IOException if an I/O error occurs during scheme retrieval
@@ -106,7 +106,7 @@ public class VillainControllerTest {
 
     /**
      * Tests retrieving a scheme by ID when the scheme is not found.
-     * <p>
+     * 
      * Ensures that the HTTP status is NOT_FOUND when the requested scheme does not exist.
      * 
      * @throws Exception if an error occurs during scheme retrieval
@@ -125,7 +125,7 @@ public class VillainControllerTest {
 
     /**
      * Tests searching schemes by name successfully in {@link VillainController}.
-     * <p>
+     * 
      * Verifies that the correct schemes are returned and the HTTP status is OK.
      * 
      * @throws IOException if an I/O error occurs during the search
@@ -154,7 +154,7 @@ public class VillainControllerTest {
 
     /**
      * Tests searching schemes by name when schemes are found.
-     * <p>
+     * 
      * Verifies that the correct schemes are returned and the HTTP status is OK.
      * 
      * @throws IOException if an I/O error occurs during the search
@@ -176,7 +176,7 @@ public class VillainControllerTest {
 
     /**
      * Tests searching schemes by name when no schemes are found.
-     * <p>
+     * 
      * Verifies that an empty array is returned and the HTTP status is OK.
      * 
      * @throws IOException if an I/O error occurs during the search
@@ -197,7 +197,7 @@ public class VillainControllerTest {
 
     /**
      * Tests exception handling in searching schemes by name in {@link VillainController}.
-     * <p>
+     * 
      * Simulates an IOException and checks if the HTTP status is INTERNAL_SERVER_ERROR.
      * 
      * @throws IOException if an I/O error occurs during the search
@@ -217,7 +217,7 @@ public class VillainControllerTest {
 
     /**
      * Tests creating a scheme successfully in {@link VillainController}.
-     * <p>
+     * 
      * Verifies that a scheme is created successfully and the HTTP status is CREATED.
      * 
      * @throws IOException if an I/O error occurs during scheme creation
@@ -242,7 +242,7 @@ public class VillainControllerTest {
 
     /**
      * Tests creating a scheme in {@link VillainController} when the creation fails.
-     * <p>
+     * 
      * Simulates a scenario where scheme creation fails and checks if the HTTP status is CONFLICT.
      * 
      * @throws IOException if an I/O error occurs during scheme creation
@@ -266,7 +266,7 @@ public class VillainControllerTest {
 
     /**
      * Tests exception handling in {@link VillainController#createVillain(Scheme)} when an error occurs.
-     * <p>
+     * 
      * Simulates an IOException and checks if the HTTP status is INTERNAL_SERVER_ERROR.
      * 
      * @throws IOException if an I/O error occurs during scheme creation
@@ -288,7 +288,7 @@ public class VillainControllerTest {
     
     /**
      * Tests deleting a scheme successfully in {@link VillainController}.
-     * <p>
+     * 
      * Verifies that a scheme is deleted successfully and the HTTP status is OK.
      * 
      * @throws IOException if an I/O error occurs during scheme deletion
@@ -309,7 +309,7 @@ public class VillainControllerTest {
 
     /**
      * Tests deleting a scheme in {@link VillainController} when the scheme does not exist.
-     * <p>
+     * 
      * Simulates a scenario where scheme deletion fails due to non-existence and checks if the HTTP status is NOT_FOUND.
      * 
      * @throws IOException if an I/O error occurs during scheme deletion
@@ -330,7 +330,7 @@ public class VillainControllerTest {
 
     /**
      * Tests exception handling in {@link VillainController#getVillain(int)} when an error occurs.
-     * <p>
+     * 
      * Simulates an IOException and checks if the HTTP status is INTERNAL_SERVER_ERROR.
      * 
      * @throws Exception if an error occurs during scheme retrieval
@@ -351,7 +351,7 @@ public class VillainControllerTest {
 
     /**
      * Tests exception handling in {@link VillainController#deleteVillain(int)} when an error occurs.
-     * <p>
+     * 
      * Simulates an IOException and checks if the HTTP status is INTERNAL_SERVER_ERROR.
      * 
      * @throws IOException if an I/O error occurs during scheme deletion
@@ -372,7 +372,7 @@ public class VillainControllerTest {
 
     /**
      * Tests updating a scheme successfully in {@link VillainController}.
-     * <p>
+     * 
      * Verifies that a scheme is updated successfully and the HTTP status is OK.
      * 
      * @throws IOException if an I/O error occurs during scheme update
@@ -397,7 +397,7 @@ public class VillainControllerTest {
 
     /**
      * Tests updating a scheme in {@link VillainController} when the update fails.
-     * <p>
+     * 
      * Simulates a scenario where scheme update fails and checks if the HTTP status is NOT_FOUND.
      * 
      * @throws IOException if an I/O error occurs during scheme update
@@ -419,7 +419,7 @@ public class VillainControllerTest {
 
     /**
      * Tests exception handling in {@link VillainController#updateVillain(Scheme)} when an error occurs.
-     * <p>
+     * 
      * Simulates an IOException and checks if the HTTP status is INTERNAL_SERVER_ERROR.
      * 
      * @throws IOException if an I/O error occurs during scheme update
@@ -440,7 +440,7 @@ public class VillainControllerTest {
 
     /**
      * Tests searching for villains by name in {@link VillainController}.
-     * <p>
+     * 
      * Verifies that the correct schemes are returned when searched by name and the HTTP status is OK.
      * 
      * @throws IOException if an I/O error occurs during the search
@@ -462,7 +462,7 @@ public class VillainControllerTest {
 
     /**
      * Tests searching for schemes by title in {@link VillainController}.
-     * <p>
+     * 
      * Verifies that the correct schemes are returned when searched by title and the HTTP status is OK.
      * 
      * @throws IOException if an I/O error occurs during the search
@@ -484,7 +484,7 @@ public class VillainControllerTest {
 
     /**
      * Tests searching for schemes by both name and title in {@link VillainController}.
-     * <p>
+     * 
      * Verifies that the correct schemes are returned when searched by both name and title and the HTTP status is OK.
      * 
      * @throws IOException if an I/O error occurs during the search
@@ -507,7 +507,7 @@ public class VillainControllerTest {
 
     /**
      * Tests exception handling in {@link VillainController#searchVillains(String, String)} when an error occurs.
-     * <p>
+     * 
      * Simulates an IOException and checks if the HTTP status is INTERNAL_SERVER_ERROR.
      * 
      * @throws IOException if an I/O error occurs during the search
@@ -526,7 +526,7 @@ public class VillainControllerTest {
 
     /**
      * Tests searching for villains with no parameters in {@link VillainController}.
-     * <p>
+     * 
      * Verifies that all available schemes are returned and the HTTP status is OK.
      * 
      * @throws IOException if an I/O error occurs during the search
@@ -550,7 +550,7 @@ public class VillainControllerTest {
 
     /**
      * Tests searching for schemes by title only in {@link VillainController}.
-     * <p>
+     * 
      * Verifies that schemes matching the title are returned and the HTTP status is OK.
      * 
      * @throws IOException if an I/O error occurs during the search
