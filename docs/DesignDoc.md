@@ -82,10 +82,10 @@ This section describes the application domain.
 
 Domain Entities
 * Evil Basket: This entity is a container that holds a collection of schemes added from a Helper or Villain to be Checked-out.
-* Schemes: This is a entity that represents a plan of malicious purpose, it includes the name of the villain, the scheme's name and funding goal.
+* Schemes: This is an entity that represents a plan of malicious purpose, it includes the name of the villain, the scheme's name and funding goal.
 * Evil Cupboard: This entity is a storage location for all the schemes in the system as well as user displays such as the search bar, dashboard per role of user, cart(Evil Basket), and profile.
 * Manager: This is a type of user with access who reviews submitted schemes, manages Evil Baskets, and has full access to the Evil Cupboard.
-* Villiain: This is a type of user who can submit schemes to be funded and have custom profile components such as a main profile and description alongisde achievements.
+* Villain: This is a type of user who can submit schemes to be funded and have custom profile components such as a main profile and description alongside achievements.
 * Helper: This is a type of user who can search schemes and check them out in the Evil Basket who has a basic profile. 
 * Server: This entity is the backend system that stores information about users, schemes, Evil Baskets, and other aspects of the system.
 * File: This entity is the files on the server that store the data used by the system.
@@ -96,9 +96,9 @@ Relationship
 * Manager adds/removes schemes to/from Evil Basket: A manager can add schemes to and remove schemes from Evil Baskets.
 * Manager has all schemes in Evil Cupboard: A manager has all the schemes displayed in the Evil Cupboard.
 * Manager checks schemes: A manager checks schemes.
-* Manager/Villiain/Helper identifies with username: All three users have usernames that they use to identify themselves with the system.
-* Scheme is a type of need: A scheme can be viewed by users and display the backround information about it.
-* Villiain submits schemes: Villiains can submit schemes to be funded.
+* Manager/Villain/Helper identifies with username: All three users have usernames that they use to identify themselves with the system.
+* Scheme is a type of need: A scheme can be viewed by users and display the background information about it.
+* Villain submits schemes: Villains can submit schemes to be funded.
 * Helper searches through schemes: A Helper can search through schemes.
 * Helper checks out Evil Basket: A Helper can checkout schemes in their Evil Basket to fund. 
 * Evil Basket has schemes: An Evil Basket contains Schemes chosen by a Helper or Villain.
@@ -119,9 +119,9 @@ The following Tiers/Layers model shows a high-level view of the webapp's archite
 
 ![The Tiers & Layers of the Architecture](architecture-tiers-and-layers.png)
 
-The web application, is built using the Model–View–ViewModel (MVVM) architecture pattern. 
+The web application is built using the Model–View–ViewModel (MVVM) architecture pattern. 
 
-The Model stores the application data objects including any functionality to provide persistance. 
+The Model stores the application data objects including any functionality to provide persistence. 
 
 The View is the client-side SPA built with Angular utilizing HTML, CSS and TypeScript. The ViewModel provides RESTful APIs to the client (View) as well as any logic required to manipulate the data objects from the Model.
 
@@ -136,7 +136,7 @@ This section describes the web interface flow; this is how the user views and in
 
 As a user access's our website, they are first introduced with a login page. Once a login is successful, a user is on the cupboard, in short the home-page for OnlyVillains. This page will display for the user certain buttons depending on permissions the user's role has and does not have. All users can see all schemes, and search + filter schemes accordingly. All users can additionally click on a scheme to show the details of the scheme, and logout whenever. They can all also edit their profile in the dashboard component from the cupboard.
 
-A Helper and Villain(if he's in a helping mood- can't fund his own scheme of course) will have the option to add an item to the evil basket(cart) once viewing the scheme details of a Villain's scheme from schemes from the Cupboard once logged in. The evil basket can then be accessed from the cupboard, where the specified users' can then add checkout and donate to a evil scheme. 
+A Helper and Villain(if he's in a helping mood- can't fund his own scheme of course) will have the option to add an item to the evil basket(cart) once viewing the scheme details of a Villain's scheme from schemes from the Cupboard once logged in. The evil basket can then be accessed from the cupboard, where the specified users' can then add checkout and donate to an evil scheme. 
 
 Villain's and Managers(Admin) will have the option to access special dashboard components from the cupboard that a User doesn't have after logged in. A Villain and Manager can edit schemes from their dashboard page when clicked. A Manager can remove or edit any scheme, while also being able to add one, while a Villain can edit their own schemes, and add new schemes of their own. 
 
@@ -159,7 +159,7 @@ The View Tier, built as a SPA, provides a dynamic and responsive user experience
 
 > _**[Sprint 4]** To adequately show your system, you will need to present the **class diagrams** where relevant in your design. Some additional tips:_
  >* _Class diagrams only apply to the **ViewModel** and **Model** Tier_
->* _A single class diagram of the entire system will not be effective. You may start with one, but will be need to break it down into smaller sections to account for requirements of each of the Tier static models below._
+>* _A single class diagram of the entire system will not be effective. You may start with one, but will need to break it down into smaller sections to account for requirements of each of the Tier static models below._
  >* _Correct labeling of relationships with proper notation for the relationship type, multiplicities, and navigation information will be important._
  >* _Include other details such as attributes and method signatures that you think are needed to support the level of detail in your discussion._
 
@@ -168,7 +168,7 @@ The View Tier, built as a SPA, provides a dynamic and responsive user experience
 - UserController: Directs UserDAO to manipulate data of users 
 - PictureController: Directs PictureDAO to manipulate data of profile photos
 
-Manages the interaction between the View and Model tiers, processing user request for schemes and users, executing logic of getter functions, and returning data. Controllers like VillainController and UserController facilitate these to get certain data for the Schemes(Villain Controller) and Users(UserController). PictureController stores seperate data of images uploaded to a user's profile.
+Manages the interaction between the View and Model tiers, processing user requests for schemes and users, executing logic of getter functions, and returning data. Controllers like VillainController and UserController facilitate these to get certain data for the Schemes(Villain Controller) and Users(UserController). PictureController stores separate data of images uploaded to a user's profile.
 
 > _**[Sprint 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
@@ -253,7 +253,7 @@ UserDAO <|-- |Interface Implemented by| UserFileDAO
 
 > _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
 
-* Single Responsibility: Each class represent a single entity such as Manager, Helper, Funding Basket, Scheme, Evil Basket. It has a clear responsibility like Manager class handles user authentication and managing Funding Baskets).
+* Single Responsibility: Each class represents a single entity such as Manager, Helper, Funding Basket, Scheme, Evil Basket. It has a clear responsibility like Manager class handles user authentication and managing Funding Baskets).
 
 * High Cohesion: This aligns with the way entities relate in the ER diagrams. Classes representing entities Manager and Funding Basket, Helper and Scheme are together to achieve specific functionalities like creating funding baskets, submitting schemes.
 
@@ -294,8 +294,8 @@ incompleted methods but was later fixed.
 >_**[Sprint 2 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
 > those._
 * ![Code Coverage report](image.png)
-* The only thing we have are some methods that are missing test case to cover a single branch, however we have a 99 percent 
-complete coverage on missed intrusctions. 
+* The only thing we have are some methods that are missing test cases to cover a single branch, however we have a 99 percent 
+complete coverage on missed instructions.
 
 ## Ongoing Rationale
 >_**[Sprint 1, 2, 3 & 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**mayor**_ team decisions or design milestones/changes and corresponding justification._
