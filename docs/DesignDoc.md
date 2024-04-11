@@ -134,7 +134,13 @@ This section describes the web interface flow; this is how the user views and in
 
 > _Provide a summary of the application's user interface.  Describe, from the user's perspective, the flow of the pages in the web application._
 
-The user interface flow is designed to be intuitive and efficient, guiding users through the process of exploring, funding schemes, and managing their accounts or schemes based on their role (villain, helper, or manager).
+As a user access's our website, they are first introduced with a login page. Once a login is successful, a user is on the cupboard, in short the home-page for OnlyVillains. This page will display for the user certain buttons depending on permissions the user's role has and does not have. All users can see all schemes, and search + filter schemes accordingly. All users can additionally click on a scheme to show the details of the scheme, and logout whenever. They can all also edit their profile in the dashboard component from the cupboard.
+
+A Helper and Villain(if he's in a helping mood- can't fund his own scheme of course) will have the option to add an item to the evil basket(cart) once viewing the scheme details of a Villain's scheme from schemes from the Cupboard once logged in. The evil basket can then be accessed from the cupboard, where the specified users' can then add checkout and donate to a evil scheme. 
+
+Villain's and Managers(Admin) will have the option to access special dashboard components from the cupboard that a User doesn't have after logged in. A Villain and Manager can edit schemes from their dashboard page when clicked. A Manager can remove or edit any scheme, while also being able to add one, while a Villain can edit their own schemes, and add new schemes of their own. 
+
+All User's have the ability to access the cupboard again when they click on the top title " !!! CLICK FOR OUR VILLAINS !!! " when logged in. 
 
 
 ### View Tier
@@ -158,11 +164,11 @@ The View Tier, built as a SPA, provides a dynamic and responsive user experience
  >* _Include other details such as attributes and method signatures that you think are needed to support the level of detail in your discussion._
 
 ### ViewModel Tier
-- VillainController: Directs VillainDAO to manipulate data
-- UserController: Directs UserDAO to manipulate data
-- PictureController: Directs PictureDAO to manipulate data
+- VillainController: Directs VillainDAO to manipulate data of schemes
+- UserController: Directs UserDAO to manipulate data of users 
+- PictureController: Directs PictureDAO to manipulate data of profile photos
 
-Manages the interaction between the View and Model tiers, processing user requests, executing business logic, and returning data. Controllers like VillainController and UserController facilitate these interactions.
+Manages the interaction between the View and Model tiers, processing user request for schemes and users, executing logic of getter functions, and returning data. Controllers like VillainController and UserController facilitate these to get certain data for the Schemes(Villain Controller) and Users(UserController). PictureController stores seperate data of images uploaded to a user's profile.
 
 > _**[Sprint 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
@@ -193,7 +199,7 @@ Manages the interaction between the View and Model tiers, processing user reques
 * Data Modeling:
 The Scheme and User classes represents the core data structures of the application. These classes encapsulate the attributes and behaviors associated with a scheme or a user.
 * Data Access Abstraction:
-The VillainDAO and UserDAO interfaces define contracts for accessing and manipulating villain and user data. This separation allows loose coupling and easier implementation changes without affecting dependent parts of the application.
+The VillainDAO and UserDAO interfaces define contracts for accessing and manipulating scheme and user data. This separation allows loose coupling and easier implementation changes without affecting dependent parts of the application.
 * Data Access Implementation:
 The VillainFileDAO and UserFileDAO classes implement the data access logic specific to the JSON files. These classes handle reading from and writing to the respective JSON files villains.json and users.json.
 
@@ -230,6 +236,7 @@ VillainDAO <|-- |Interface Implemented by| VillainFileDAO
 UserDAO <|-- |Interface Implemented by| UserFileDAO
 
 ![Replace with your Model Tier class diagram 1, etc.](model-placeholder.png)
+
 
 ## OO Design Principles
 
