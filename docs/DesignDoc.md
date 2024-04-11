@@ -71,7 +71,7 @@ The MVP of this onlyvillains website includes the following core features:
 
 This section describes the application domain.
 
-![Domain Model](DomainAnalysis2.png)
+![Domain Model](DomainAnalysis3.png)
 
 > _**[Sprint 2 & 4]** Provide a high-level overview of the domain for this application. You
 > can discuss the more important domain entities and their relationship to each other._
@@ -278,7 +278,7 @@ incompleted methods but was later fixed.
 >_**[Sprint 2 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
 > those._
 * ![Code Coverage report](image.png)
-* The only thing we have are some methods that are missing test case to cover a single branch, however we have a 100 percent 
+* The only thing we have are some methods that are missing test case to cover a single branch, however we have a 99 percent 
 complete coverage on missed intrusctions. 
 
 ## Ongoing Rationale
