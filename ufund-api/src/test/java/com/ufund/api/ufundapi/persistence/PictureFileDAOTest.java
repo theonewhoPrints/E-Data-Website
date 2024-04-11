@@ -13,17 +13,33 @@ import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test class for {@link PictureFileDAO}.
+ * Tests cover various scenarios for saving and retrieving pictures.
+ * 
+ * @author Evan Kinsey
+ */
 class PictureFileDAOTest {
 
     private PictureFileDAO pictureFileDAO;
     private static final String PICTURE_DIRECTORY = "src/test/resources/pictures";
 
+    /**
+     * Sets up {@link PictureFileDAO} with a specified picture directory before each test.
+     */
     @BeforeEach
     void setupPictureFileDAO() {
         pictureFileDAO = new PictureFileDAO();
         pictureFileDAO.setPictureDirectory(PICTURE_DIRECTORY);
     }
 
+    /**
+     * Tests retrieving a picture that exists.
+     * 
+     * Verifies that the correct picture data and id are returned when the picture exists in the directory.
+     *
+     * @throws IOException if an I/O error occurs during picture retrieval
+     */
     @Test
     void getPicture_PictureExists() throws IOException {
         // Arrange
@@ -39,6 +55,13 @@ class PictureFileDAOTest {
         assertArrayEquals(data, picture.getData());
     }
 
+    /**
+     * Tests retrieving a picture that does not exist.
+     * 
+     * Verifies that {@code null} is returned when the picture does not exist in the directory.
+     *
+     * @throws IOException if an I/O error occurs during picture retrieval
+     */
     @Test
     void getPicture_PictureDoesNotExist() throws IOException{
         // Arrange
@@ -51,6 +74,13 @@ class PictureFileDAOTest {
         assertNull(picture);
     }
 
+    /**
+     * Tests saving a picture successfully.
+     * 
+     * Verifies that the picture is saved correctly and the same picture data is returned.
+     *
+     * @throws IOException if an I/O error occurs during picture saving
+     */
     @Test
     void savePicture_Success() throws IOException {
         // Arrange
@@ -66,6 +96,11 @@ class PictureFileDAOTest {
         assertArrayEquals(file.getBytes(), picture.getData());
     }
 
+    /**
+     * Tests error handling in saving a picture when an error occurs.
+     * 
+     * Verifies that an {@link IOException} is thrown when trying to save a picture to an invalid directory.
+     */
     @Test
     void savePicture_Error() {
         // Arrange

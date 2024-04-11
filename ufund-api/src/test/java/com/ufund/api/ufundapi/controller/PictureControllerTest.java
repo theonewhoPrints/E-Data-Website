@@ -229,7 +229,7 @@ class PictureControllerTest {
 
     /**
      * Tests exception handling in {@code getPictureByName(String)} when an error occurs.
-     * <p>
+     * 
      * Verifies that an INTERNAL_SERVER_ERROR status is returned when an {@link IOException} is thrown.
      *
      * @throws IOException if an I/O error occurs

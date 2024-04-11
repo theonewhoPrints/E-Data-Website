@@ -19,13 +19,24 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-
+/**
+ * Test class for {@link UserFileDAO}.
+ * Tests cover various scenarios for users.
+ * 
+ * @author Evan Kinsey
+ */
 @Tag("Persistence-tier")
 public class UserFileDAOTest {
     private UserFileDAO userFileDAO;
     private ObjectMapper mockObjectMapper;
     private User[] testUsers;
 
+    /**
+     * Sets up the testing environment before each test.
+     * This includes preparing a mock {@link ObjectMapper} and initializing test user data.
+     *
+     * @throws IOException if there is an issue setting up the mock data
+     */
     @BeforeEach
     public void setup() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
@@ -40,12 +51,22 @@ public class UserFileDAOTest {
         userFileDAO = new UserFileDAO("users.json", mockObjectMapper);
     }
 
+    /**
+     * Tests retrieval of all users from storage.
+     * 
+     * Verifies that the retrieved users match the expected test users array.
+     */
     @Test
     public void testGetUsers() {
         User[] users = userFileDAO.getUsers();
         assertArrayEquals(testUsers, users, "The returned users should match the test users.");
     }
 
+    /**
+     * Tests finding an existing user by name.
+     * 
+     * Verifies that the correct user is returned when searching for an existing user name.
+     */
     @Test
     public void testFindUser_Existing() {
         String name = "John Doe";
@@ -54,6 +75,11 @@ public class UserFileDAOTest {
         assertEquals(name, user.getName(), "The found user should have the name " + name);
     }
 
+    /**
+     * Tests the behavior when searching for a non-existing user.
+     * 
+     * Verifies that {@code null} is returned when searching for a user name that does not exist.
+     */
     @Test
     public void testFindUser_NonExisting() {
         String name = "Non Existing User";
@@ -61,6 +87,11 @@ public class UserFileDAOTest {
         assertNull(user, "No user should be found with the name " + name);
     }
 
+    /**
+     * Tests the behavior when an IOException occurs during user data loading.
+     * 
+     * Verifies that an {@link IOException} is thrown when there is an issue reading the user file.
+     */
     @Test
     public void testLoad_IOException() throws IOException {
         doThrow(new IOException("Failed to read file"))
@@ -71,7 +102,12 @@ public class UserFileDAOTest {
                      "Loading users should throw IOException on file read failure");
     }
 
-        @Test
+    /**
+     * Tests updating a user that exists in the storage.
+     * 
+     * Verifies that the user's data is updated correctly and the new data is reflected in the returned user object.
+     */
+    @Test
     void updateUser_UserExists() throws IOException {
         // Arrange
         User user = new User(1, "test", "test", "test", "test", List.of("test"));
@@ -84,6 +120,11 @@ public class UserFileDAOTest {
         assertEquals("hello", updatedUser.getImgUrl());
     }
 
+    /**
+     * Tests updating a user that does not exist in the storage.
+     * 
+     * Verifies that {@code null} is returned when attempting to update a user that does not exist.
+     */
     @Test
     void updateUser_UserDoesNotExist() throws IOException {
         // Arrange

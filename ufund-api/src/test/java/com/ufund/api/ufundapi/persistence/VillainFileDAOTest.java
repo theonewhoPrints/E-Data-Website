@@ -25,7 +25,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test the Villain File DAO class
  * 
- * @author Isaac Soares & Nadeem Mustafa 
+ * @author Isaac Soares, Nadeem Mustafa, Jacky Chan
  */
 
 
@@ -143,6 +143,11 @@ public class VillainFileDAOTest {
         assertEquals(scheme.getTitle(), actual.getTitle());
     }
 
+    /**
+     * Tests creating a scheme with an existing ID and name in {@link VillainFileDAO}, expecting no duplication.
+     * 
+     * @throws IOException
+     */
     @Test
     public void testCreateSchemeWithExistingIdAndName() throws IOException {
         // Assuming that the ID 99 and name "Dr. Freeze" already exist
@@ -261,6 +266,11 @@ public class VillainFileDAOTest {
                         "IOException not thrown");
     }
 
+    /**
+     * Tests the retrieval of schemes by their title.
+     * 
+     * @throws IOException if an input/output error occurs
+     */
     @Test
     public void testFindSchemesByTitle() throws IOException {
         // Setup
@@ -277,6 +287,13 @@ public class VillainFileDAOTest {
         }
     }
 
+    /**
+     * Tests the behavior of finding schemes by title with a {@code null} title.
+     * 
+     * Expect to find no schemes as the title is null.
+     * 
+     * @throws IOException if an input/output error occurs
+     */
     @Test
     public void testFindSchemesByTitle_NullTitle() throws IOException {
         // Setup
@@ -293,6 +310,13 @@ public class VillainFileDAOTest {
         }
     }
 
+    /**
+     * Tests finding schemes by title where a scheme with a {@code null} title exists.
+     * 
+     * Ensures that schemes with null titles are not included in the results.
+     * 
+     * @throws IOException if an input/output error occurs
+     */
     @Test
     public void testFindSchemesByTitle_WithTitleNull() throws IOException {
         // Setup: Assuming one of the schemes has a null title, either add this to setup or mock it
@@ -309,6 +333,11 @@ public class VillainFileDAOTest {
         }
     }    
 
+    /**
+     * Tests finding schemes by exact name match.
+     * 
+     * @throws IOException if an input/output error occurs
+     */
     @Test
     public void testFindSchemesByName() throws IOException {
         // Setup
@@ -325,6 +354,13 @@ public class VillainFileDAOTest {
         }
     }
 
+    /**
+     * Tests the behavior of finding schemes by name with a {@code null} name.
+     * <br>
+     * Expect to find no schemes as the name is null.
+     * 
+     * @throws IOException if an input/output error occurs
+     */
     @Test
     public void testFindSchemesByName_NullName() throws IOException {
         // Setup
@@ -341,6 +377,13 @@ public class VillainFileDAOTest {
         }
     }
 
+    /**
+     * Tests the retrieval of schemes by a name that does not exist.
+     * <br>
+     * Verifies that no schemes are returned for a non-existing name.
+     * 
+     * @throws IOException if an input/output error occurs
+     */
     @Test
     public void testFindSchemesByName_NotFound() throws IOException {
         // Setup: a name that does not exist in any Scheme
@@ -354,6 +397,13 @@ public class VillainFileDAOTest {
         assertArrayEquals(expectedSchemes, foundSchemes, "Expected an empty array when no schemes with the given name are found");
     }
 
+    /**
+     * Tests finding schemes by a unique string in the name that does not exist.
+     * <br>
+     * Verifies that no schemes are found for a unique, non-existing name.
+     * 
+     * @throws IOException if an input/output error occurs
+     */
     @Test
     public void testFindSchemesByName_UniqueStringNotFound() throws IOException {
         // Setup: Use a highly unique search string that is guaranteed not to be in any scheme names
@@ -367,6 +417,11 @@ public class VillainFileDAOTest {
         assertArrayEquals(expectedSchemes, foundSchemes, "Expected an empty array when no schemes with the given unique string are found");
     }
     
+    /**
+     * Tests finding schemes where both the name and title match the search criteria.
+     * 
+     * @throws IOException if an input/output error occurs
+     */
     @Test
     public void testFindSchemesByNameAndTitle_BothMatch() throws IOException {
         // Setup
@@ -381,6 +436,11 @@ public class VillainFileDAOTest {
         assertArrayEquals(expectedSchemes, foundSchemes);
     }
 
+    /**
+     * Tests finding schemes where only the name matches, but the title does not.
+     * 
+     * @throws IOException if an input/output error occurs
+     */
     @Test
     public void testFindSchemesByNameAndTitle_OnlyNameMatches() throws IOException {
         // Setup
@@ -395,6 +455,11 @@ public class VillainFileDAOTest {
         assertArrayEquals(expectedSchemes, foundSchemes);
     }
 
+    /**
+     * Tests finding schemes where only the title matches, but the name does not.
+     * 
+     * @throws IOException if an input/output error occurs
+     */
     @Test
     public void testFindSchemesByNameAndTitle_OnlyTitleMatches() throws IOException {
         // Setup
@@ -409,6 +474,11 @@ public class VillainFileDAOTest {
         assertArrayEquals(expectedSchemes, foundSchemes);
     }
 
+    /**
+     * Tests finding schemes where neither the name nor the title matches.
+     * 
+     * @throws IOException if an input/output error occurs
+     */
     @Test
     public void testFindSchemesByNameAndTitle_NeitherMatches() throws IOException {
         // Setup
@@ -423,16 +493,14 @@ public class VillainFileDAOTest {
         assertArrayEquals(expectedSchemes, foundSchemes);
     }
 
-    // will be commented out until a workaround is found or if the old createscheme can work with this test
-    // @Test
-    // public void testCreateScheme_NewIdExistingName() throws IOException {
-    //     Scheme newScheme = new Scheme(104, "Dr. Freeze", "New World Order", 50000); // Existing name, new ID
-
-    //     Scheme result = VillainFileDAO.createScheme(newScheme);
-
-    //     assertNull(result, "Expected null as the scheme with the existing name should not be created.");
-    // }
-
+    /**
+     * Tests successful retrieval of a scheme by a specific name. This test ensures that
+     * {@link VillainFileDAO#getScheme_str(String)} correctly retrieves a scheme when
+     * provided with a valid name.
+     * 
+     * Verifies that the retrieved scheme is not null and checks if the ID and title of the
+     * scheme match the expected values.
+     */
     @Test
     public void testGetScheme_str_Success() {
         // Setup
@@ -447,7 +515,11 @@ public class VillainFileDAOTest {
         assertEquals("Freeze America", scheme.getTitle(), "The title of the retrieved scheme does not match the expected value.");
     }
     
-
+    /**
+     * Tests the retrieval of a scheme with a name that does not exist. Ensures that
+     * {@link VillainFileDAO#getScheme_str(String)} returns {@code null} when searching
+     * for a non-existing name.
+     */
     @Test
     public void testGetScheme_str_NonExistingName() {
         // Setup
@@ -460,6 +532,11 @@ public class VillainFileDAOTest {
         assertNull(scheme, "Expected null when trying to retrieve a scheme with a non-existing name.");
     }
 
+    /**
+     * Tests the retrieval of a scheme with a null name. Verifies that
+     * {@link VillainFileDAO#getScheme_str(String)} returns {@code null} when called with a
+     * null name, reflecting that no scheme can be found with a null identifier.
+     */
     @Test
     public void testGetScheme_str_NullName() {
         // Setup
@@ -472,7 +549,11 @@ public class VillainFileDAOTest {
         assertNull(scheme, "Expected null when trying to retrieve a scheme with a null name.");
     }
     
-    //indirect testing
+    /**
+     * Tests the behavior of {@link VillainFileDAO#findSchemes(String)} when called with a null input.
+     * This indirectly tests the method's ability to return all schemes in the absence of a filter.
+     *
+     */
     @Test
     public void testFindSchemes_WithNullInput() {
         Scheme[] allSchemes = VillainFileDAO.findSchemes(null); // Assuming null should return all schemes
@@ -480,7 +561,13 @@ public class VillainFileDAOTest {
         assertEquals(testSchemes.length, allSchemes.length, "Expected all schemes to be returned when input is null.");
     }
 
-    //indirect
+    /**
+     * Tests the filtering functionality of {@link VillainFileDAO#findSchemes(String)} by passing
+     * a substring that should be contained within some scheme names.
+     * <br>
+     * Verifies that only schemes containing the specified substring in their names are returned.
+     *
+     */
     @Test
     public void testFindSchemes_Filtering() {
         String contains = "al"; // This string is present in the names of some test schemes
@@ -491,6 +578,13 @@ public class VillainFileDAOTest {
         assertArrayEquals(expectedSchemes, foundSchemes, "Expected to find schemes with names containing 'al'.");
     }
     
+    /**
+     * Tests finding schemes with both name and title parameters as null using
+     * {@link VillainFileDAO#findSchemesByNameAndTitle(String, String)}.
+     * This should return all schemes as it implies no filtering is applied.
+     *
+     * @throws IOException if an input/output error occurs during the operation
+     */
     @Test
     public void testFindSchemesByNameAndTitle_BothNull() throws IOException {
         String searchName = null;
@@ -501,6 +595,12 @@ public class VillainFileDAOTest {
         assertEquals(testSchemes.length, foundSchemes.length, "Expected all schemes to be returned when both name and title are null.");
     }
     
+    /**
+     * Tests the case insensitivity of the {@link VillainFileDAO#findSchemesByNameAndTitle(String, String)}
+     * method. Ensures that schemes can be found regardless of the case sensitivity of the name and title.
+     *
+     * @throws IOException if an input/output error occurs during the operation
+     */
     @Test
     public void testFindSchemesByNameAndTitle_CaseInsensitivity() throws IOException {
         String searchName = "dr. freeze"; // Different case
@@ -511,6 +611,13 @@ public class VillainFileDAOTest {
         assertArrayEquals(new Scheme[]{testSchemes[0]}, foundSchemes, "Expected case-insensitive match for name and title.");
     }
     
+    /**
+     * Tests the ability of {@link VillainFileDAO#findSchemesByNameAndTitle(String, String)}
+     * to handle special characters in the search for name and title.
+     * Verifies that schemes can be found even when the search terms contain special characters.
+     *
+     * @throws IOException if an input/output error occurs during the operation
+     */
     @Test
     public void testFindSchemesByNameAndTitle_SpecialCharacters() throws IOException {
 
@@ -520,6 +627,13 @@ public class VillainFileDAOTest {
         Scheme[] foundSchemes = VillainFileDAO.findSchemesByNameAndTitle(searchName, searchTitle);
     }
     
+    /**
+     * Tests the behavior of {@link VillainFileDAO#findSchemesByNameAndTitle(String, String)}
+     * when one of the parameters (name or title) is empty. This tests the method's ability to
+     * filter schemes based on a non-empty parameter while ignoring the empty one.
+     *
+     * @throws IOException if an input/output error occurs during the operation
+     */
     @Test
     public void testFindSchemesByNameAndTitle_EmptyNameOrTitle() throws IOException {
         String searchName = ""; // Empty name
