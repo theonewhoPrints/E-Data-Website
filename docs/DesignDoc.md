@@ -19,23 +19,22 @@ geometry: margin=1in
 
 ## Executive Summary   
 
-OnlyVillains is a client-for website! Changing the direction of power and fairness us villains have in our schemes, solving the inequality they have when versing 'heroes' and 'figures of authority', by giving a way for people to help support our cause of sinisterness through donating to villain schemes so they can be more successful! This platform will be open to use for all people who want to donate to a villain's schemes, and villains as well who pass through the admin's requirements to post their schemes to get funding for.
-
-
 ### Purpose
 >  _**[Sprint 2 & 4]** 
 Provide a very brief statement about the project and the most important user group and user goals._
-The goal of this project is to create a functional website that enables users to register an account and log in. The primary purpose of the website is to assist villainous schemes by allowing users to add items to their cart and proceed to checkout by making donations. Additionally, the website should provide functionality for villains to establish their own accounts, enabling them to create schemes directly on the platform. These schemes will then be managed by administrators who also have their own accounts. Each user account will have specific permissions, with administrators possessing the highest level of access among the three user.
+
+OnlyVillains is a web platform dedicated to empowering villains by providing a means for supporters to contribute to their schemes. By facilitating donations and enabling villains to post schemes for funding, the platform aims to level the playing field and promote success in villainous endeavors. Open to all donors and qualified villains, OnlyVillains seeks to reshape the narrative of power and fairness in favor of the sinister cause, through donating to make a villain's scheme possible, you are funding and making villain schemes around the world a better possibility. 
 
 ### Glossary and Acronyms
 > _**[Sprint 2 & 4]** Provide a table of terms and acronyms._
 
 | Term | Definition |
 |------|------------|
-| SPA | Single Page |
-| API | Application Programming Interface |
-| JSON | JavaScript Object Notation |
-| DAO | Data Access Object |
+| SPA | Single Page Application - A web application that loads a single HTML page and dynamically updates the content as the user interacts with the app. |
+| API | Application Programming Interface - A set of rules and protocols for building and interacting with software applications. |
+| JSON | JavaScript Object Notation - A lightweight data-interchange format that is easy for humans to read and write and easy for machines to parse and generate.|
+| DAO | Data Access Object - A design pattern used to abstract the data access logic, providing an interface for accessing data from a data source. |
+| MVP | Minimum Viable Product - The basic version of a product with enough features to satisfy early users and provide feedback for future development. |
 
 ## Requirements
 
@@ -48,11 +47,16 @@ This section describes the features of the application.
 ### Definition of MVP
 > _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
 The MVP of this onlyvillains website includes the following core features:
-* User registration and login functionality
-* A search bar enabling users to find schemes by name
-* Capability to create their schemes and add them to the website
-* Notifications alerting users if they already have a scheme in their cart or when they add a scheme to the cart
+* Users, including helpers and U-fund Managers, can log in or out of the application. Managers can log in using the reserved username "admin," while any other username is assumed to belong to a helper or villain. Usernames must be unique.
+* State of funding baskets and cupboard is persisted, ensuring continuity of user interactions across sessions.
+* Helpers can view a list of needs in the cupboard.
+* Search and filtering capabilities allow helpers to find specific needs.
 * Administrative backend for managing users and content
+* Helpers can add and remove needs from their funding basket.
+* The ability to "checkout" enables helpers to commit to all needs in their funding basket.
+* U-fund Managers have the authority to add, remove, and edit need data in the cupboard.
+* While U-fund Managers do not have access to funding baskets, they may be granted access to certain general U-fund statistics.
+
 
 ### MVP Features
 >  _**[Sprint 4]** Provide a list of top-level Epics and/or Stories of the MVP._
@@ -77,26 +81,31 @@ This section describes the application domain.
 > can discuss the more important domain entities and their relationship to each other._
 
 Domain Entities
-* Evil Basket: This entity is a container that holds a collection of schemes.
-* Schemes: This is a entity that represents a plan of malicious purpose.
-* Evil Cupboard: This entity is a storage location for all the schemes in the system.
+* Evil Basket: This entity is a container that holds a collection of schemes added from a Helper or Villain to be Checked-out.
+* Schemes: This is a entity that represents a plan of malicious purpose, it includes the name of the villain, the scheme's name and funding goal.
+* Evil Cupboard: This entity is a storage location for all the schemes in the system as well as user displays such as the search bar, dashboard per role of user, cart(Evil Basket), and profile.
 * Manager: This is a type of user with access who reviews submitted schemes, manages Evil Baskets, and has full access to the Evil Cupboard.
-* Villiain: This is a type of user who can submit schemes.
-* Helper: This is a type of user who can search schemes and check them out in the Evil Basket.
+* Villiain: This is a type of user who can submit schemes to be funded and have custom profile components such as a main profile and description alongisde achievements.
+* Helper: This is a type of user who can search schemes and check them out in the Evil Basket who has a basic profile. 
 * Server: This entity is the backend system that stores information about users, schemes, Evil Baskets, and other aspects of the system.
 * File: This entity is the files on the server that store the data used by the system.
+* User: This is the base class for all roles in the server, containing the features of a username, description, and profile. 
+* Login: This entity is the front page entrance on the ui, which takes the name of a villain, helper or manager to then log in as. 
 
 Relationship 
 * Manager adds/removes schemes to/from Evil Basket: A manager can add schemes to and remove schemes from Evil Baskets.
-* Manager has all schemes in Evil Cupboard: A manager has all the schemes in the Evil Cupboard.
+* Manager has all schemes in Evil Cupboard: A manager has all the schemes displayed in the Evil Cupboard.
 * Manager checks schemes: A manager checks schemes.
 * Manager/Villiain/Helper identifies with username: All three users have usernames that they use to identify themselves with the system.
-* Scheme is a type of ranking profile: A scheme can be ranked that can be viewed by users.
-* Villiain submits schemes: Villiains can submit schemes.
+* Scheme is a type of need: A scheme can be viewed by users and display the backround information about it.
+* Villiain submits schemes: Villiains can submit schemes to be funded.
 * Helper searches through schemes: A Helper can search through schemes.
-* Helper checks out Evil Basket: A Helper can checkout schemes in their Evil Basket.
-* Evil Basket has schemes: An Evil Basket contains Schemes.
+* Helper checks out Evil Basket: A Helper can checkout schemes in their Evil Basket to fund. 
+* Evil Basket has schemes: An Evil Basket contains Schemes chosen by a Helper or Villain.
 * Server saves to/loads from File: The server saves information to files and loads information from files.
+* Villains/Helpers/Managers have a profile: all users have a profile that can be viewed to find out general information about a user, Villain profiles' have special features to stand out the schemes they want funded. 
+* Login directs to Evil Cupboard: Once a successful login is complete, a user can be expected to be displayed the cupboard showing the components they're allowed to interact with based on role restrictions. 
+
 
 
 ## Architecture and Design
