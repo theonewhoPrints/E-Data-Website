@@ -6,7 +6,21 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests for the {@link User} class.
+ * 
+ * Provides test cases to verify the functionality of constructors, getters, setters, and
+ * toString methods in the {@link User} class.
+ * 
+ * @author Evan Kinsey
+ */
 public class UserTest {
+    /**
+     * Tests the constructor of the {@link User} class.
+     * 
+     * Verifies that a {@link User} object created with specific values returns those values
+     * through its getter methods.
+     */
     @Test
     public void testConstructor() {
         User spike = new User(1, "Spike Spiegel", "ROLE_HELPER", "", "", List.of("Bounty Hunter"));
@@ -18,6 +32,11 @@ public class UserTest {
         assertEquals(List.of("Bounty Hunter"), spike.getAchievements());
     }
 
+    /**
+     * Tests the getter methods of the {@link User} class.
+     * 
+     * Ensures that the getter methods return the correct values set during object creation.
+     */
     @Test
     public void testGetters() {
         User spike = new User(1, "Faye Valentine", "ROLE_HELPER", "", "", List.of("Bounty Hunter"));
@@ -29,6 +48,12 @@ public class UserTest {
         assertEquals(List.of("Bounty Hunter"), spike.getAchievements());
     }
 
+    /**
+     * Tests the setter methods of the {@link User} class.
+     * 
+     * Verifies that the setter methods correctly update the properties of the {@link User} object
+     * and that these updated values are correctly retrieved by the getter methods.
+     */
     @Test
     public void testSetters() {
         User spike = new User(1, "PLACEHOLDER", "ROLE_HELPER", "", "", new ArrayList<>(List.of("Bounty Hunter")));
@@ -48,6 +73,12 @@ public class UserTest {
         assertEquals(List.of("Villain"), spike.getAchievements());
     }
 
+    /**
+     * Tests the {@link User#toString()} method.
+     * 
+     * Verifies that the {@link User#toString()} method returns a string representation
+     * of the {@link User} object that matches the expected format.
+     */
     @Test
     public void testToString() {
         User spike = new User(1, "Jet Black", "ROLE_HELPER", "", "", List.of("Bounty Hunter"));
