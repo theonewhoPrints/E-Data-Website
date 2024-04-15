@@ -164,11 +164,29 @@ The View Tier, built as a SPA, provides a dynamic and responsive user experience
  >* _Include other details such as attributes and method signatures that you think are needed to support the level of detail in your discussion._
 
 ### ViewModel Tier
-- VillainController: Directs VillainDAO to manipulate data of schemes
-- UserController: Directs UserDAO to manipulate data of users 
-- PictureController: Directs PictureDAO to manipulate data of profile photos
+Let's take a look at the ViewModel Tier, the bridge between the View and Model Tiers.
 
-Manages the interaction between the View and Model tiers, processing user requests for schemes and users, executing logic of getter functions, and returning data. Controllers like VillainController and UserController facilitate these to get certain data for the Schemes(Villain Controller) and Users(UserController). PictureController stores separate data of images uploaded to a user's profile.
+When a user interacts with our website, they're engaging with the View Tier. They might request information, like details about a villain's scheme or a user's profile. This is where the ViewModel Tier steps in.
+
+![Sprint 4 UML Class Diagram](ViewModel-Class-Diagram.png)
+
+The ViewModel Tier takes these requests and translates them into commands for the Data Access Objects (DAOs) in the Model Tier. These DAOs perform the necessary CRUD operations (Create, Read, Update, & Delete) to fetch or manipulate the data.
+
+#### Meet the Controllers
+
+Let's introduce the key players in the ViewModel Tier: the Controllers.
+
+![Villain Controller](VillainController.png)
+
+First up, we have the Villain Controller. This controller is the mastermind behind managing our villains' schemes. It directs the VillainDAO to perform operations such as creating a new villain with `createVillain()`, fetching villain details with `getVillain()`, or updating a villain's information with `updateVillain()`.
+
+![User Controller](UserController.png)
+
+Next, we have the User Controller. This controller is the guardian of our user data. It directs the UserDAO to handle operations related to our users, who could be regular users, villains, or even the admin. It can fetch user details with `getUsers()`, find a specific user with `findUser()`, or update a user's information with `updateUser()`.
+
+![Picture Controller](PictureController.png)
+
+Finally, we have the Picture Controller. This controller is the curator of our users' profile pictures. It directs the PictureDAO to fetch profile pictures from storage and uses the UserDAO to update a user's assigned profile picture when a new one is chosen. It can fetch a picture with `getPicture()`, find a picture by name with `getPictureByName()`, or change a user's assigned picture with `changeUserPicture()`.
 
 > _**[Sprint 4]** Provide a summary of this tier of your architecture. This
 > section will follow the same instructions that are given for the View
@@ -177,7 +195,7 @@ Manages the interaction between the View and Model tiers, processing user reques
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
 > 
-![Replace with your ViewModel Tier class diagram 1, etc.](model-placeholder.png)
+
 
 ### Model Tier
 - Scheme: Logic for a Scheme object 
