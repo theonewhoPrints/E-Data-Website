@@ -263,9 +263,8 @@ UserDAO <|-- |Interface Implemented by| UserFileDAO
 ## OO Design Principles
 
 - Single Responsibility: Each class in our architecture has a clear and singular purpose; for instance, the ViewModel solely manages the presentation logic, while the Model handles data manipulation and storage.
-- High Cohesion: Components within the ViewModel and Model are closely related and work together efficiently to achieve specific functionalities, promoting better maintainability and readability of the codebase.
-- Information Expert: Responsibilities are assigned to the classes that possess the necessary information and expertise to fulfill them; for instance, the VillainDAO handles database interactions, leveraging its knowledge of data access.
-- Low Coupling: Our design minimizes the dependencies between classes, ensuring changes in one component do not heavily impact others, enhancing the system's flexibility and scalability.
+
+
 - Law of Demeter: Objects interact with closely-related neighbors only, reducing the ripple effects of changes and promoting a more modular and maintainable design.
 - Dependency Inversion: Higher-level modules depend on abstractions rather than concrete implementations, facilitating easier integration and testing while promoting code reusability and flexibility.
 - Controller: The VillainController acts as an intermediary between the ViewModel and Model, facilitating user interactions and ensuring separation of concerns.
@@ -303,9 +302,19 @@ UserDAO <|-- |Interface Implemented by| UserFileDAO
 > acceptance criteria tests, the number that have some acceptance
 > criteria tests failing, and the number of user stories that
 > have not had any testing yet. Highlight the issues found during
-> acceptance testing and if there are any concerns._
-* All the user stories has passed all their acceptance criteria tests. The only issue found during acceptance testing were
-incompleted methods but was later fixed. 
+> acceptance testing and if there are any concerns.
+    * User Stories that Passed All Tests:
+* In Sprint 2, all the user stories listed passed their acceptance criteria.
+* In Sprint 4, all user stories except for two passed all of their acceptance criteria.
+    * User Stories with Some Tests Failing:
+* In Sprint 2, there were no user stories with failing acceptance criteria.
+* In Sprint 4, there were two instances of acceptance criteria failing related to the role not being displayed for a user after logging in.
+    * User Stories Not Tested:
+* There are no user stories that have not been tested in both sprints.
+    * Issues Highlighted During Acceptance Testing:
+* The main issue highlighted in Sprint 4 was the missing role information in the session storage 
+* and the profile view after a user logs in. This issue was noted twice, however this was due to the
+* name of the user roles deleted in the css.
 
 ### Unit Testing and Code Coverage
 > _**[Sprint 4]** Discuss your unit testing strategy. Report on the code coverage
