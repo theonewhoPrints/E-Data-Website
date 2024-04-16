@@ -303,9 +303,19 @@ UserDAO <|-- |Interface Implemented by| UserFileDAO
 > acceptance criteria tests, the number that have some acceptance
 > criteria tests failing, and the number of user stories that
 > have not had any testing yet. Highlight the issues found during
-> acceptance testing and if there are any concerns._
-* All the user stories has passed all their acceptance criteria tests. The only issue found during acceptance testing were
-incompleted methods but was later fixed. 
+> acceptance testing and if there are any concerns.
+    * User Stories that Passed All Tests:
+* In Sprint 2, all the user stories listed passed their acceptance criteria.
+* In Sprint 4, all user stories except for two passed all of their acceptance criteria.
+    * User Stories with Some Tests Failing:
+* In Sprint 2, there were no user stories with failing acceptance criteria.
+* In Sprint 4, there were two instances of acceptance criteria failing related to the role not being displayed for a user after logging in.
+    * User Stories Not Tested:
+* There are no user stories that have not been tested in both sprints.
+    * Issues Highlighted During Acceptance Testing:
+* The main issue highlighted in Sprint 4 was the missing role information in the session storage 
+* and the profile view after a user logs in. This issue was noted twice, however this was due to the
+* name of the user roles deleted in the css.
 
 ### Unit Testing and Code Coverage
 > _**[Sprint 4]** Discuss your unit testing strategy. Report on the code coverage
