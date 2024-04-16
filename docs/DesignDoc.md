@@ -263,24 +263,21 @@ UserDAO <|-- |Interface Implemented by| UserFileDAO
 ## OO Design Principles
 
 - Single Responsibility: Each class in our architecture has a clear and singular purpose; for instance, the ViewModel solely manages the presentation logic, while the Model handles data manipulation and storage.
-
-
 - Law of Demeter: Objects interact with closely-related neighbors only, reducing the ripple effects of changes and promoting a more modular and maintainable design.
 - Dependency Inversion: Higher-level modules depend on abstractions rather than concrete implementations, facilitating easier integration and testing while promoting code reusability and flexibility.
 - Controller: The VillainController acts as an intermediary between the ViewModel and Model, facilitating user interactions and ensuring separation of concerns.
 - Open/Closed: Our design allows for extension through inheritance or composition without modifying existing code, promoting code reuse and ensuring stability.
 - Pure Fabrication: When necessary, we introduce classes that do not represent real-world concepts but are created solely to enable separation of concerns and enhance maintainability.
 - Polymorphism: Through interfaces and inheritance, our design allows objects of different types to be treated uniformly, promoting flexibility and extensibility in handling various data types and behaviors.
+- Information Expert: Assigning functionalities based on information ownership. For example, the Cart class would include methods like `getCart()` and `checkout()` because it has the property `cart: CartItem[]`, the information about what schemes are inside the user's cart.
+
+- ![Information Expert example: Cart](Cart.png)
+- High Cohesion: This aligns with the way entities relate in the ER diagrams. Classes representing entities Manager and Funding Basket, Helper and Scheme are together to achieve specific functionalities like creating funding baskets, submitting schemes.
+- Low Coupling: Minimizing dependencies between classes is crucial in an OO design. Classes like Manager shouldn't cause major changes in another class like Funding Basket.
 
 > _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
 
-* Single Responsibility: Each class represents a single entity such as Manager, Helper, Funding Basket, Scheme, Evil Basket. It has a clear responsibility like Manager class handles user authentication and managing Funding Baskets).
 
-* High Cohesion: This aligns with the way entities relate in the ER diagrams. Classes representing entities Manager and Funding Basket, Helper and Scheme are together to achieve specific functionalities like creating funding baskets, submitting schemes.
-
-* Information Expert: Assigning functionalities based on information ownership. For example, FundingBasket class would own methods to add/remove Needs requests because it has the information about what Needs are associated with it.
-
-* Low Coupling: Minimizing dependencies between classes is crucial in an OO design. Classes like Manager shouldn't cause major changes in another class like Funding Basket.
 
 
 > _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
