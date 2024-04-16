@@ -495,15 +495,18 @@ public class VillainControllerTest {
         String name = "Dr. Evil";
         String title = "World Domination";
         Scheme[] expectedVillains = { new Scheme(1, name, title, 22000) };
-        when(mockVillainDAO.findSchemesByNameAndTitle(eq(name.toLowerCase()), eq(title.toLowerCase()))).thenReturn(expectedVillains);
-
+        
+        // Refactored stubbing
+        when(mockVillainDAO.findSchemesByNameAndTitle(name.toLowerCase(), title.toLowerCase())).thenReturn(expectedVillains);
+    
         // Invoke
         ResponseEntity<Scheme[]> response = villainController.searchVillains(name, title);
-
+    
         // Analyze
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(expectedVillains, response.getBody());
     }
+    
 
     /**
      * Tests exception handling in {@link VillainController#searchVillains(String, String)} when an error occurs.
