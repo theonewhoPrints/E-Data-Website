@@ -263,9 +263,8 @@ UserDAO <|-- |Interface Implemented by| UserFileDAO
 ## OO Design Principles
 
 - Single Responsibility: Each class in our architecture has a clear and singular purpose; for instance, the ViewModel solely manages the presentation logic, while the Model handles data manipulation and storage.
-- High Cohesion: Components within the ViewModel and Model are closely related and work together efficiently to achieve specific functionalities, promoting better maintainability and readability of the codebase.
-- Information Expert: Responsibilities are assigned to the classes that possess the necessary information and expertise to fulfill them; for instance, the VillainDAO handles database interactions, leveraging its knowledge of data access.
-- Low Coupling: Our design minimizes the dependencies between classes, ensuring changes in one component do not heavily impact others, enhancing the system's flexibility and scalability.
+
+
 - Law of Demeter: Objects interact with closely-related neighbors only, reducing the ripple effects of changes and promoting a more modular and maintainable design.
 - Dependency Inversion: Higher-level modules depend on abstractions rather than concrete implementations, facilitating easier integration and testing while promoting code reusability and flexibility.
 - Controller: The VillainController acts as an intermediary between the ViewModel and Model, facilitating user interactions and ensuring separation of concerns.
