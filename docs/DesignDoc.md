@@ -68,7 +68,11 @@ The MVP of this onlyvillains website includes the following core features:
 
 ### Enhancements
 > _**[Sprint 4]** Describe what enhancements you have implemented for the project._
-* Ability to edit profile picture
+
+#### Profiles
+All users can personalize their profiles with custom pictures, achievements, and descriptions. Other users can view but not edit them. Villains' profiles are linked to their schemes for a better connection to their helpers.
+
+
 * Ability to add achievements/descriptions in the profile
 
 ## Application Domain
