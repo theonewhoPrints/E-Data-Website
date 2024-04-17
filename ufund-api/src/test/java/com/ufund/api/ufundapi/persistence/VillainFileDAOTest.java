@@ -586,7 +586,7 @@ public class VillainFileDAOTest {
      * @throws IOException if an input/output error occurs during the operation
      */
     @Test
-    public void testFindSchemesByNameAndTitle_BothNull() throws IOException {
+    void testFindSchemesByNameAndTitle_BothNull() throws IOException {
         String searchName = null;
         String searchTitle = null;
         
@@ -602,7 +602,7 @@ public class VillainFileDAOTest {
      * @throws IOException if an input/output error occurs during the operation
      */
     @Test
-    public void testFindSchemesByNameAndTitle_CaseInsensitivity() throws IOException {
+    void testFindSchemesByNameAndTitle_CaseInsensitivity() throws IOException {
         String searchName = "dr. freeze"; // Different case
         String searchTitle = "freeze america"; // Different case
         
@@ -619,12 +619,11 @@ public class VillainFileDAOTest {
      * @throws IOException if an input/output error occurs during the operation
      */
     @Test
-    public void testFindSchemesByNameAndTitle_SpecialCharacters() throws IOException {
-
-        String searchName = "Dr.-Freeze"; // Assume the stored name includes special characters
-        String searchTitle = "Freeze_America"; // Assume the stored title includes special characters
-        
-        Scheme[] foundSchemes = VillainFileDAO.findSchemesByNameAndTitle(searchName, searchTitle);
+    void testFindSchemesWithSpecialCharacters() throws IOException{
+        Scheme[] result = VillainFileDAO.findSchemesByNameAndTitle("Agental00", "Freeze 2K20");
+        assertEquals(1, result.length);
+        assertEquals("Agental00", result[0].getName());
+        assertEquals("Freeze 2K20", result[0].getTitle());
     }
     
     /**
@@ -635,11 +634,9 @@ public class VillainFileDAOTest {
      * @throws IOException if an input/output error occurs during the operation
      */
     @Test
-    public void testFindSchemesByNameAndTitle_EmptyNameOrTitle() throws IOException {
-        String searchName = ""; // Empty name
-        String searchTitle = "Freeze"; // Valid title search term
-        
-        Scheme[] foundSchemes = VillainFileDAO.findSchemesByNameAndTitle(searchName, searchTitle);
+    void testFindSchemesByEmptyName() throws IOException{
+        Scheme[] result = VillainFileDAO.findSchemesByNameAndTitle("", "Freeze America");
+        assertEquals(1, result.length);
+        assertEquals("Dr. Freeze", result[0].getName());
     }
-    
 }

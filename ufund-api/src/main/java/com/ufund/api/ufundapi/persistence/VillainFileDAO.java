@@ -53,22 +53,23 @@ public class VillainFileDAO implements VillainDAO {
 
 
     @Override
-public Scheme[] findSchemesByNameAndTitle(String name, String title) throws IOException {
-    synchronized (schemes) {
-        ArrayList<Scheme> schemeList = new ArrayList<>();
-        String lowercaseName = name != null ? name.toLowerCase() : null; // Convert search terms to lowercase
-        String lowercaseTitle = title != null ? title.toLowerCase() : null;
-        for (Scheme scheme : schemes.values()) {
-            String schemeName = scheme.getName() != null ? scheme.getName().toLowerCase() : null;
-            String schemeTitle = scheme.getTitle() != null ? scheme.getTitle().toLowerCase() : null;
-            if ((lowercaseName == null || schemeName.contains(lowercaseName)) &&
-                (lowercaseTitle == null || schemeTitle.contains(lowercaseTitle))) {
-                schemeList.add(scheme);
+    public Scheme[] findSchemesByNameAndTitle(String name, String title) throws IOException {
+        synchronized (schemes) {
+            ArrayList<Scheme> schemeList = new ArrayList<>();
+            String lowercaseName = name != null ? name.toLowerCase() : null; 
+            String lowercaseTitle = title != null ? title.toLowerCase() : null;
+            for (Scheme scheme : schemes.values()) {
+                String schemeName = scheme.getName() != null ? scheme.getName().toLowerCase() : null;
+                String schemeTitle = scheme.getTitle() != null ? scheme.getTitle().toLowerCase() : null;
+                if ((lowercaseName == null || (schemeName != null && schemeName.contains(lowercaseName))) &&
+                    (lowercaseTitle == null || (schemeTitle != null && schemeTitle.contains(lowercaseTitle)))) {
+                    schemeList.add(scheme);
+                }
             }
+            return schemeList.toArray(new Scheme[0]);
         }
-        return schemeList.toArray(new Scheme[0]);
     }
-}
+    
 
     
 
