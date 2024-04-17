@@ -167,11 +167,15 @@ Right above the dashboard is the scheme search component. This allows you to inp
 
 The profile bar component sits outside of the routing module and like the header appears on every page. This has options for navigating the website, including the link to the profile component, a link to the dashboard component if you are a helper (which is a link to the cupboard component if you are not a helper), a logout button that takes you back to the login page and a link to the cart component if you are not an admin.
 
+![Sequence Diagram of Login](Login.png)
+
 Let's say you want to edit your profile. You then click on the profile bar component to take you to the profile component. The profile component shows your profile details, including your profile picture, your description and your achievements, as well as allowing you to edit them. Once you are done, you can navigate away using the profile bar component. 
 
 Lets say you then want to donate to a few schemes. You navigate to the dashboard and click on a scheme. This brings you to the scheme detail component. This shows details about the scheme, allowing you to edit them if you are either the villain who owns the scheme or an admin. This shows an add to cart button instead if you are a helper, or a villain who does not own this scheme.
 
 After adding a few schemes to your cart, you want to check out. You go to the profile bar component and click the cart component link. This brings you to the cart component, where the cart and checkout is handled. The cart component shows all the schemes you have added to your cart, allowing you to enter a donation amount that is at least 1 and at most the schemes fund goal. You can also remove an item from your cart here. Once you have filled in an amount for all items in your cart, you can hit checkout, and the amounts get donated to the schemes you selected.
+
+![Sequence Diagram of Checkout](Checkout.png)
 
 Now, instead of being a helper, let's say instead that you are a villain. You log in the same way, and see the dashboard. Suppose you want to edit an existing scheme, or create a scheme. You go to the profile bar component and click thecuboard link. The cupbaord component shows the schemes that you added to the website, and allows you to naviagte to them. If you were an admin, it would allow you to edit all of the schemes on the website. Whether you were and admin or villain it would also allow you to enter information for an entirely new scheme. It would also allow you to entirely remove a scheme.
 
