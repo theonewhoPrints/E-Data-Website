@@ -159,18 +159,25 @@ Let's say you are a user, a helper particularly. Just being on the site shows th
 
 First you would log in. This interacts with the first component : the login component. This contains the entire login page, and handles logging in as well as collecting the user's information for permisions across the site. If you enter an incorrect login you stay at the login page, but if you enter a correct login you continue to the dashboard.
 
-Once you are logged in the app component shows the header, the profile bar component and the dashboard component. The dashboard component is beneath it, and the header redirects to the dashboard. The dashbaord component is alo contained within the routing module, through with other parts of the page are displayed. The dashboard component displays a list of available schemes, their titles, associated villain names and prices, as well as a drop down menu to sort them by.
+Once you are logged in the app component shows the header, the profile bar component the dashboard component and the scheme search component. The dashboard component is beneath it, and the header redirects to the dashboard. The dashbaord component is alo contained within the routing module, through with other parts of the page are displayed. The dashboard component displays a list of available schemes, their titles, associated villain names and prices, as well as a drop down menu to sort them by.
 
-The profile bar component sits outside of the routing module and like the header appears on every page. This has options for navigating the website, including the link to the profile component, another link to the dashboard component, a logout button that takes you back to the login page, a link to the cart component if you are not an admin, and a link to the cupboard component if you are not a helper. 
+Right above the dashboard is the scheme search component. This allows you to input a phrase to searchfor, and lists a bunch of schemes that contain that string in either their villain name or their title. 
+
+The profile bar component sits outside of the routing module and like the header appears on every page. This has options for navigating the website, including the link to the profile component, a link to the dashboard component if you are a helper (which is a link to the cupboard component if you are not a helper), a logout button that takes you back to the login page and a link to the cart component if you are not an admin.
 
 Let's say you want to edit your profile. You then click on the profile bar component to take you to the profile component. The profile component shows your profile details, including your profile picture, your description and your achievements, as well as allowing you to edit them. Once you are done, you can navigate away using the profile bar component. 
 
+Lets say you then want to donate to a few schemes. You navigate to the dashboard and click on a scheme. This brings you to the scheme detail component. This shows details about the scheme, allowing you to edit them if you are either the villain who owns the scheme or an admin. This shows an add to cart button instead if you are a helper, or a villain who does not own this scheme.
+
+After adding a few schemes to your cart, you want to check out. You go to the profile bar component and click the cart component link. This brings you to the cart component, where the cart and checkout is handled. The cart component shows all the schemes you have added to your cart, allowing you to enter a donation amount that is at least 1 and at most the schemes fund goal. You can also remove an item from your cart here. Once you have filled in an amount for all items in your cart, you can hit checkout, and the amounts get donated to the schemes you selected.
+
+Now, instead of being a helper, let's say instead that you are a villain. You log in the same way, and see the dashboard. Suppose you want to edit an existing scheme, or create a scheme. You go to the profile bar component and click thecuboard link. The cupbaord component shows the schemes that you added to the website, and allows you to naviagte to them. If you were an admin, it would allow you to edit all of the schemes on the website. Whether you were and admin or villain it would also allow you to enter information for an entirely new scheme. It would also allow you to entirely remove a scheme.
 
 
 > _**[Sprint 4]** You must  provide at least **2 sequence diagrams** as is relevant to a particular aspects 
 > of the design that you are describing.  (**For example**, in a shopping experience application you might create a 
 > sequence diagram of a customer searching for an item and adding to their cart.)
-> As these can span multiple tiers, be sure to include an relevant HTTP requests from the client-side to the server-side 
+> As these can span multiple tiers, be sure to include any relevant HTTP requests from the client-side to the server-side 
 > to help illustrate the end-to-end flow._
 
 > _**[Sprint 4]** To adequately show your system, you will need to present the **class diagrams** where relevant in your design. Some additional tips:_
