@@ -298,6 +298,7 @@ UserDAO <|-- |Interface Implemented by| UserFileDAO
 - ![Pure Fabrication example: Picture](Picture.png)
 
 - Polymorphism: Through interfaces and inheritance, our design allows objects of different types to be treated uniformly, promoting flexibility and extensibility in handling various data types and behaviors.
+- ![Polymorphism example: Picture](polymorphism.png)
 
 - Information Expert: Assigning functionalities based on information ownership. For example, the Cart class would include methods like `getCart()` and `checkout()` because it has the property `cart: CartItem[]`, the information about what schemes are inside the user's cart.
 - ![Information Expert example: Cart](Cart.png)
