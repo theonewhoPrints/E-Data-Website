@@ -361,7 +361,8 @@ Throughout the sprint, our team aimed for a minimum code coverage threshold of 9
 
 Performance Against Targets:
 We're pleased to report that our code coverage for Sprint 4 surpassed our expectations. We achieved a commendable 99% coverage combined, indicating thorough testing of our codebase. This instills stability of our application.
-
+>_**[Sprint 2 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
+> those._
 Anomalies - Sprint 4:
 As shown from our latest Code Coverage earlier, we didn't have any major Anomalies or missed test cases. However, we did miss a few branches in our persistence tier.
 ![Sprint4 AnomolaiesTier](sprint4persistencetier.png)
@@ -374,14 +375,17 @@ The lack of coverage in these methods can be attributed to:
 While this method performs filtering based on the provided name and title parameters, the testing didn't cover all possible scenarios, especially edge cases.
 2. load():
 Although this method is crucial for initializing the schemes map from the JSON file, the coverage analysis revealed that certain code paths were not exercised during testing. This indicates gaps in our testing strategy, particularly in handling file I/O exceptions or unexpected file formats.
+Anomalies - Sprint 2:
+![Sprint2 CodeCoverage](sprint2codecoverage.png)
+Shown in the code coverage above, there were issues in the persistence tier with a low score of 85% coverage. The main cause for this low tier was the small coverage we attained in the elements below:
+![Sprint2 Anamolies](sprint2anamolies.png)
+1. createScheme(Scheme scheme):
+The method performed checks to ensure uniqueness based on both the scheme ID and name. However, our tests may not have accounted for scenarios where a scheme with the same ID and name already exists. As a result, certain branches handling these scenarios might not have been fully exercised during testing, leading to lower coverage.
+2. findSchemesByName(String name):
+While the method aims to retrieve schemes based on name, paths related to name matching and filtering simutaneously, may not have been thoroughly tested.not covering various permutations of input names and edge cases.
 
 
 
->_**[Sprint 2 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
-> those._
-* ![Code Coverage report](image.png)
-* The only thing we have are some methods that are missing test cases to cover a single branch, however we have a 99 percent 
-complete coverage on missed instructions.
 
 ## Ongoing Rationale
 >_**[Sprint 1, 2, 3 & 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**major**_ team decisions or design milestones/changes and corresponding justification._
