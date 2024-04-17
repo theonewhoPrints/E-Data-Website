@@ -312,6 +312,8 @@ UserDAO <|-- |Interface Implemented by| UserFileDAO
 > _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
 
 ## Static Code Analysis/Future Design Improvements
+
+- ![Sonarqube response: Picture](sonarqube.png)
 Several methods within our API have been identified as prime candidates for conversion to static methods. This recommendation arises from their independence from instance variables, indicating a lack of side effects and rendering them ideal for static typing. By refactoring these methods to static, we aim to enhance maintainability and predictability in future iterations. This adjustment not only fosters a cleaner codebase but also bolsters performance by mitigating the overhead associated with object creation and garbage collection.
 
 Inconsistencies in the utilization of built-in formatting options for string construction have been noted, potentially leading to errors and decreased code readability and maintainability. To address this, future refactoring endeavors will focus on standardizing string formatting through the utilization of tools such as String.format(). This standardized approach will significantly enhance code readability, making it easier to maintain and debug.
