@@ -155,6 +155,18 @@ All User's have the ability to access the cupboard again when they click on the 
 
 The View Tier, built as a SPA, provides a dynamic and responsive user experience. Components include pages for user registration, scheme browsing, and account management, with calls to the ViewModel for data.
 
+Let's say you are a user, a helper particularly. Just being on the site shows the app component. This acts as a container for the rest of the site, containing the header and a routing module that shows other components.
+
+First you would log in. This interacts with the first component : the login component. This contains the entire login page, and handles logging in as well as collecting the user's information for permisions across the site. If you enter an incorrect login you stay at the login page, but if you enter a correct login you continue to the dashboard.
+
+Once you are logged in the app component shows the header, the profile bar component and the dashboard component. The dashboard component is beneath it, and the header redirects to the dashboard. The dashbaord component is alo contained within the routing module, through with other parts of the page are displayed. The dashboard component displays a list of available schemes, their titles, associated villain names and prices, as well as a drop down menu to sort them by.
+
+The profile bar component sits outside of the routing module and like the header appears on every page. This has options for navigating the website, including the link to the profile component, another link to the dashboard component, a logout button that takes you back to the login page, a link to the cart component if you are not an admin, and a link to the cupboard component if you are not a helper. 
+
+Let's say you want to edit your profile. You then click on the profile bar component to take you to the profile component. The profile component shows your profile details, including your profile picture, your description and your achievements, as well as allowing you to edit them. Once you are done, you can navigate away using the profile bar component. 
+
+
+
 > _**[Sprint 4]** You must  provide at least **2 sequence diagrams** as is relevant to a particular aspects 
 > of the design that you are describing.  (**For example**, in a shopping experience application you might create a 
 > sequence diagram of a customer searching for an item and adding to their cart.)
