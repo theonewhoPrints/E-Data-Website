@@ -68,12 +68,14 @@ The MVP of this onlyvillains website includes the following core features:
 
 ### Enhancements
 > _**[Sprint 4]** Describe what enhancements you have implemented for the project._
+Villain Profile - 
 
 #### Profiles
 All users can personalize their profiles with custom pictures, achievements, and descriptions. Other users can view but not edit them. Villains' profiles are linked to their schemes for a better connection to their helpers.
-
-
 * Ability to add achievements/descriptions in the profile
+#### Sorting by Relevance 
+All users can enhance their method of searching for villain's schemes on the cupboard by selecting search by relevance. This will reveal to a user the most vllanous schemes, by cross tagging strings in the scheme title that contain the most villanous actions to be at the top of the given results. 
+* Ability to sort schemes by text of titles with the most villanous words. 
 
 ## Application Domain
 
@@ -383,9 +385,6 @@ Shown in the code coverage above, there were issues in the persistence tier with
 The method performed checks to ensure uniqueness based on both the scheme ID and name. However, our tests may not have accounted for scenarios where a scheme with the same ID and name already exists. As a result, certain branches handling these scenarios might not have been fully exercised during testing, leading to lower coverage.
 2. findSchemesByName(String name):
 While the method aims to retrieve schemes based on name, paths related to name matching and filtering simutaneously, may not have been thoroughly tested.not covering various permutations of input names and edge cases.
-
-
-
 
 ## Ongoing Rationale
 >_**[Sprint 1, 2, 3 & 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**major**_ team decisions or design milestones/changes and corresponding justification._
