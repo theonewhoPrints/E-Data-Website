@@ -264,7 +264,8 @@ UserDAO <|-- |Interface Implemented by| UserFileDAO
 
 - Single Responsibility: Each class in our architecture has a clear and singular purpose; for instance, the ViewModel solely manages the presentation logic, while the Model handles data manipulation and storage. Each component in our system is dedicated to a single aspect of the application: Controllers manage HTTP request handling and delegate business operations, Models encapsulate the application data, and DAOs provide a specific interface for persistent data storage and retrieval. [![Single Responsibility](Main.png)]
 
-- Law of Demeter: Objects interact with closely-related neighbors only, reducing the ripple effects of changes and promoting a more modular and maintainable design.
+- Law of Demeter: Objects interact with closely-related neighbors only, reducing the ripple effects of changes and promoting a more modular and maintainable design. For example, UserController should interact only with User and UserDAO, not with any deeper components within UserDAO.
+- ![Law of Demeter example: User](User.png)
 
 - Dependency Inversion: Higher-level modules depend on abstractions rather than concrete implementations, facilitating easier integration and testing while promoting code reusability and flexibility.
 
@@ -272,7 +273,8 @@ UserDAO <|-- |Interface Implemented by| UserFileDAO
 
 - Open/Closed: Our design allows for extension through inheritance or composition without modifying existing code, promoting code reuse and ensuring stability.
 
-- Pure Fabrication: When necessary, we introduce classes that do not represent real-world concepts but are created solely to enable separation of concerns and enhance maintainability.
+- Pure Fabrication: When necessary, we introduce classes that do not represent real-world concepts but are created solely to enable separation of concerns and enhance maintainability. For example, introducing classes like PictureService are essential for organizing and managing functionality within the application. The PictureService class, for instance, encapsulates image-related operations, such as uploading, retrieving, and handling errors, promoting separation of concerns and maintainability in the codebase.
+- ![Pure Fabrication example: Picture](Picture.png)
 
 - Polymorphism: Through interfaces and inheritance, our design allows objects of different types to be treated uniformly, promoting flexibility and extensibility in handling various data types and behaviors.
 
