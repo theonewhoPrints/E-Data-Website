@@ -346,10 +346,36 @@ Within our UI code, the existence of empty constructors devoid of any functional
 * name of the user roles deleted in the css.
 
 ### Unit Testing and Code Coverage
+
 > _**[Sprint 4]** Discuss your unit testing strategy. Report on the code coverage
 > achieved from unit testing of the code base. Discuss the team's
 > coverage targets, why you selected those values, and how well your
 > code coverage met your targets._
+
+![Code Coverage report](sprint4codecoverage.png)
+
+Our unit testing strategy revolved around ensuring robust code coverage to minimize the likelihood of bugs and enhance code quality. We utilized Jacoco for generating unit testing reports, integrating well with our Maven build process.
+
+Coverage Targets:
+Throughout the sprint, our team aimed for a minimum code coverage threshold of 90%. We selected this value based on industry best practices and that being the threshold requirements for each sprint. Achieving this level of coverage helped ensure sufficient testing of critical components while still developing. 
+
+Performance Against Targets:
+We're pleased to report that our code coverage for Sprint 4 surpassed our expectations. We achieved a commendable 99% coverage combined, indicating thorough testing of our codebase. This instills stability of our application.
+
+Anomalies - Sprint 4:
+As shown from our latest Code Coverage earlier, we didn't have any major Anomalies or missed test cases. However, we did miss a few branches in our persistence tier.
+![Sprint4 AnomolaiesTier](sprint4persistencetier.png)
+
+ Inside VillainFileDAO in persistence, we only see a 89% coverage, which is due to the Elements below not covering all branches:
+![Sprint4 Anomolies](sprint4persistancemissedcov.png)
+Specifically, within the VillainFileDAO class in the persistence tier, we observed that the findSchemesbyNameAndTitle(String, String) and load() methods did not achieve full coverage.
+The lack of coverage in these methods can be attributed to:
+1. findSchemesbyNameAndTitle(String, String):
+While this method performs filtering based on the provided name and title parameters, the testing didn't cover all possible scenarios, especially edge cases.
+2. load():
+Although this method is crucial for initializing the schemes map from the JSON file, the coverage analysis revealed that certain code paths were not exercised during testing. This indicates gaps in our testing strategy, particularly in handling file I/O exceptions or unexpected file formats.
+
+
 
 >_**[Sprint 2 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
 > those._
