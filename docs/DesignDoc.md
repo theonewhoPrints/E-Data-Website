@@ -316,10 +316,12 @@ UserDAO <|-- |Interface Implemented by| UserFileDAO
 
 ## Static Code Analysis/Future Design Improvements
 
-- ![Sonarqube response: Picture](sonarqube.png)
+![Sonarqube response: Picture](sonarqube.png)
 Several methods within our API have been identified as prime candidates for conversion to static methods. This recommendation arises from their independence from instance variables, indicating a lack of side effects and rendering them ideal for static typing. By refactoring these methods to static, we aim to enhance maintainability and predictability in future iterations. This adjustment not only fosters a cleaner codebase but also bolsters performance by mitigating the overhead associated with object creation and garbage collection.
+![Sonarqube response: static](static.png)
 
 Inconsistencies in the utilization of built-in formatting options for string construction have been noted, potentially leading to errors and decreased code readability and maintainability. To address this, future refactoring endeavors will focus on standardizing string formatting through the utilization of tools such as String.format(). This standardized approach will significantly enhance code readability, making it easier to maintain and debug.
+![Sonarqube response: built](built.png)
 
 The presence of several unused fields across different classes contributes to codebase clutter, hindering efficiency and potentially causing confusion. To mitigate this issue, future considerations involve the removal of all unused fields, following a thorough review process to ensure their redundancy. Furthermore, automation of this cleanup process in future sprints will enable continuous codebase refinement.
 
