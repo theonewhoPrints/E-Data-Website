@@ -283,12 +283,13 @@ UserDAO <|-- |Interface Implemented by| UserFileDAO
 > _**[Sprint 3 & 4]** OO Design Principles should span across **all tiers.**_
 
 ## Static Code Analysis/Future Design Improvements
-> _**[Sprint 4]** With the results from the Static Code Analysis exercise, 
-> **Identify 3-4** areas within your code that have been flagged by the Static Code 
-> Analysis Tool (SonarQube) and provide your analysis and recommendations.  
-> Include any relevant screenshot(s) with each area._
+Several methods within our API have been identified as prime candidates for conversion to static methods. This recommendation arises from their independence from instance variables, indicating a lack of side effects and rendering them ideal for static typing. By refactoring these methods to static, we aim to enhance maintainability and predictability in future iterations. This adjustment not only fosters a cleaner codebase but also bolsters performance by mitigating the overhead associated with object creation and garbage collection.
 
-> _**[Sprint 4]** Discuss **future** refactoring and other design improvements your team would explore if the team had additional time._
+Inconsistencies in the utilization of built-in formatting options for string construction have been noted, potentially leading to errors and decreased code readability and maintainability. To address this, future refactoring endeavors will focus on standardizing string formatting through the utilization of tools such as String.format(). This standardized approach will significantly enhance code readability, making it easier to maintain and debug.
+
+The presence of several unused fields across different classes contributes to codebase clutter, hindering efficiency and potentially causing confusion. To mitigate this issue, future considerations involve the removal of all unused fields, following a thorough review process to ensure their redundancy. Furthermore, automation of this cleanup process in future sprints will enable continuous codebase refinement.
+
+Within our UI code, the existence of empty constructors devoid of any functionality has been identified. These constructors, while seemingly linked to specific requirements, serve no meaningful purpose and contribute to codebase complexity. Future refactoring efforts will focus on eliminating these empty constructors to streamline the codebase, thereby eliminating confusion and ensuring the maintenance of only meaningful code segments.
 
 ## Testing
 > _This section will provide information about the testing performed
