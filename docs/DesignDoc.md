@@ -292,9 +292,19 @@ UserDAO <|-- |Interface Implemented by| UserFileDAO
 - Law of Demeter: Objects interact with closely-related neighbors only, reducing the ripple effects of changes and promoting a more modular and maintainable design. For example, UserController should interact only with User and UserDAO, not with any deeper components within UserDAO.
 - ![Law of Demeter example: User](User.png)
 
-- Dependency Inversion: Higher-level modules depend on abstractions rather than concrete implementations, facilitating easier integration and testing while promoting code reusability and flexibility.
+- Dependency Inversion: Dependency inversion is a method of loosening coupling between objects. In essence,
+instead of depending on a specific object, a class depends on interfaces or abstract classes, so that
+other implementations may be provided. A common method in which this is done is dependency
+injection, in which a higher level class that uses a lower level class instantiates classes beneath the
+lower class and inserts them into it. For example, our Villain Controller uses a VillainDAO interface, into which the VillainFileDAO is injected using Spring.
 
-- Controller: The VillainController acts as an intermediary between the ViewModel and Model, facilitating user interactions and ensuring separation of concerns.
+![Dependancy Inversion](DependancyInversion.png)
+
+- Controller: A controller is a way of separating the UI and the system, often used in the
+Model-View-Controller framework. What a controller does is it receives the system messages
+(button clicks mostly) and it tells the model (the data storage and management) to update, or do
+something based on that. This allows the UI to just handle updating itself when the model
+updates, and allows the model to work without requiring direct interference from the UI. For example, we use 3 different controllers to interface with 3 different DAOs. Each of them handles the CURL calls and uses the DAO as the model, grbbing data from it and returning it.
 
 - Open/Closed: Our design allows for extension through inheritance or composition without modifying existing code, promoting code reuse and ensuring stability.
 
