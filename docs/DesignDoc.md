@@ -253,34 +253,6 @@ The VillainFileDAO and UserFileDAO classes implement the data access logic speci
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
 
-classDiagram
-class Scheme {
-    // Attributes and methods related to Scheme data
-}
-
-class User {
-    // Attributes and methods related to User data
-}
-
-interface VillainDAO {
-    // Methods for accessing and manipulating Villain data
-}
-
-interface UserDAO {
-    // Methods for accessing and manipulating User data
-}
-
-class VillainFileDAO implements VillainDAO {
-    // Methods for accessing and manipulating villains.json
-}
-
-class UserFileDAO implements UserDAO {
-    // Methods for accessing and manipulating users.json
-}
-
-Scheme <--> |Uses| User
-VillainDAO <|-- |Interface Implemented by| VillainFileDAO
-UserDAO <|-- |Interface Implemented by| UserFileDAO
 
 ![Replace with your Model Tier class diagram 1, etc.](model-placeholder.png)
 
@@ -406,5 +378,18 @@ While the method aims to retrieve schemes based on name, paths related to name m
 ## Ongoing Rationale
 >_**[Sprint 1, 2, 3 & 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**major**_ team decisions or design milestones/changes and corresponding justification._
 
+* **(2024/2/1) First Sprint and Demo Complete!** Officially finishing our first demo video and sprint, we are all relieved and adjusted now to the workload. The way we filmed the demo was a intersting choice, that can definitely be improved in the future with perhaps a larger time frame, as well as going into more details. This spring has set up our backend with the necessary DAO files and services we need right now, we might however have to add some in the future. This spring is one for the books and hopefully our next ones will be as smooth as this one. 
+
+
 * **(2024/3/7) Sprint 2 Login Start** Currently have one type of user: user. It only contains id and name right now. Maybe in the future every user will have a permissions identifer we recognize on log-in and give different views from that.
 * **(2024/3/12 Sprint 2 Login Roles)** Users now have a "role". Unlike other websites, we will not redirect different roles (Helper, Villain, Admin) to different dashboards. Instead, we will show certain components based on what their role should be able to do.
+
+* **(2024/3/20 Sprint 3 Sort Filtering Starts)** Currently implementing two basic componenets to filter schemes on the cupboard for users, from high to low and low to high. The quantities in parameter for the low and high adjusting are the fund goals for each villain's scheme, with low being the lowest fund goal and highest being the highest fund goal. For the enhancement will try to add a sort by relevance, but still trying to figure out how we'll do that. 
+
+* **(2024/3/20 Sprint 3 Sort Filtering Ends)** We have finished implementing how the sort filter works, we now have a completed low-high high-low and relevance. How me(Isaac) decided to implement relevance was to search for words in scheme titles with the most villanous attributes, and rank those strings by level of evileness to then be at the upmost top of the schemes in the cupboard. We agreed to go with this instead of ranking the villains on other components, such as their achievements and descriptions because schemes data(villain.json), such as name, villain, and fund goal was a seperate json file than the villains components(users.json) that contained the achievements and descriptions of villains. Doing it this way was the best in the time crunch we had, as well as a way to not change the backend too much with how the components were being stored seperately. 
+
+* **(2024/3/29 Sprint 3 Design Website Starts )** As approaching the task of making our ui more attractive and better for users, we first drafted on how we would create the websites' designs. The group had some advanced ideas such as using figma, and other online html editors to make different website components. However, realizing the simplicity of this project was important to highlight that such a advanced tool wouldn't be needed, and doing html & css by hand would be more appropiate. We then created a mock draft on pen and paper of the ui design alongside a color theme,and are now deciding to implement with the help of Nadeem's html backround. 
+
+* **(2024/4/05 Sprint 3 Design Website Ends )** With the website's design finally complete with Nadeem and Isaac implementing the ui they drew out, we have an amazing website that shows a cool villanous layoug that matches the theme of this api project. We will further discuss future implementations based on the feedback we get for this sprint, but as of now we are adequate with the coloring and format style we've chosen. 
+
+* **(2024/4/16 Sprint 4 Final Wrap Up )** Just finishing Spring 4 has given us time to reflect and ponder on this group project, we will all miss working with eachother and the amazing website we built. Going into this sprint we decided to make quick slides with features that will grab our audiences, with lots of visuals(diagrams) and fun prompts and trivia at the end of our slide we hope to portray the fun and insighftul information we learned on this journey to our fellow classmates. 
