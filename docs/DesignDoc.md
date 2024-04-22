@@ -253,12 +253,21 @@ The VillainFileDAO, UserFileDAO and Picture DAO classes implement the data acces
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
 
+#### Meet the Models
+
+Let's introduce the components in the Model Tier
+
+![Villain_model](Villain_model.png)
+
+The Villain Model serves as the blueprint for our nefarious characters, defining their attributes and behaviors within the system. It encapsulates properties such as name, powers, and motives. In conjunction with the VillainDAO, it handles crucial operations like creating new villains through createVillain(), retrieving villain details via getVillain(), and updating existing villain data using updateVillain().
 
 ![User_model](User_model.png)
-![Villain_model](Villain_model.png)
+
+At the heart of our user management system lies the User Model, a representation of individuals interacting with our platform. This model encompasses various user types, including regular users, villains, and administrators, and stores essential information like usernames, passwords, and roles. Working in tandem with the UserDAO, it facilitates operations such as fetching user data with getUsers(), locating specific users through findUser(), and updating user details via updateUser().
+
 ![picture_model](picture_model.png)
 
-
+The Picture Model acts as the repository for our users' profile images, ensuring an aesthetically pleasing experience. It manages the storage and retrieval of profile pictures, maintaining associations with respective users. Collaborating with the PictureDAO, this model handles tasks like fetching profile images from storage and utilizing the UserDAO to update a user's assigned picture.
 
 ## OO Design Principles
 
