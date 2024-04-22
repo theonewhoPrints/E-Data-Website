@@ -74,8 +74,8 @@ Villain Profile -
 All users can personalize their profiles with custom pictures, achievements, and descriptions. Other users can view but not edit them. Villains' profiles are linked to their schemes for a better connection to their helpers.
 * Ability to add achievements/descriptions in the profile
 #### Sorting by Relevance 
-All users can enhance their method of searching for villain's schemes on the cupboard by selecting search by relevance. This will reveal to a user the most vllanous schemes, by cross tagging strings in the scheme title that contain the most villanous actions to be at the top of the given results. 
-* Ability to sort schemes by text of titles with the most villanous words. 
+All users can enhance their method of searching for villain's schemes on the cupboard by selecting search by relevance. This will reveal to a user the most villainous schemes, by cross tagging strings in the scheme title that contain the most villainous actions to be at the top of the given results. 
+* Ability to sort schemes by text of titles with the most villainous words. 
 
 ## Application Domain
 
@@ -161,9 +161,9 @@ Let's say you are a user, a helper particularly. Just being on the site shows th
 
 First you would log in. This interacts with the first component : the login component. This contains the entire login page, and handles logging in as well as collecting the user's information for permisions across the site. If you enter an incorrect login you stay at the login page, but if you enter a correct login you continue to the dashboard.
 
-Once you are logged in the app component shows the header, the profile bar component the dashboard component and the scheme search component. The dashboard component is beneath it, and the header redirects to the dashboard. The dashbaord component is alo contained within the routing module, through with other parts of the page are displayed. The dashboard component displays a list of available schemes, their titles, associated villain names and prices, as well as a drop down menu to sort them by.
+Once you are logged in the app component shows the header, the profile bar component the dashboard component and the scheme search component. The dashboard component is beneath it, and the header redirects to the dashboard. The dashboard component is also contained within the routing module, through with other parts of the page are displayed. The dashboard component displays a list of available schemes, their titles, associated villain names and prices, as well as a drop down menu to sort them by.
 
-Right above the dashboard is the scheme search component. This allows you to input a phrase to searchfor, and lists a bunch of schemes that contain that string in either their villain name or their title. 
+Right above the dashboard is the scheme search component. This allows you to input a phrase to search for, and lists a bunch of schemes that contain that string in either their villain name or their title. 
 
 The profile bar component sits outside of the routing module and like the header appears on every page. This has options for navigating the website, including the link to the profile component, a link to the dashboard component if you are a helper (which is a link to the cupboard component if you are not a helper), a logout button that takes you back to the login page and a link to the cart component if you are not an admin.
 
@@ -177,7 +177,7 @@ After adding a few schemes to your cart, you want to check out. You go to the pr
 
 ![Sequence Diagram of Checkout](Checkout.png)
 
-Now, instead of being a helper, let's say instead that you are a villain. You log in the same way, and see the dashboard. Suppose you want to edit an existing scheme, or create a scheme. You go to the profile bar component and click thecuboard link. The cupbaord component shows the schemes that you added to the website, and allows you to naviagte to them. If you were an admin, it would allow you to edit all of the schemes on the website. Whether you were and admin or villain it would also allow you to enter information for an entirely new scheme. It would also allow you to entirely remove a scheme.
+Now, instead of being a helper, let's say instead that you are a villain. You log in the same way, and see the dashboard. Suppose you want to edit an existing scheme, or create a scheme. You go to the profile bar component and click the cupboard link. The cupboard component shows the schemes that you added to the website, and allows you to navigate to them. If you were an admin, it would allow you to edit all of the schemes on the website. Whether you were and admin or villain it would also allow you to enter information for an entirely new scheme. It would also allow you to entirely remove a scheme.
 
 
 > _**[Sprint 4]** You must  provide at least **2 sequence diagrams** as is relevant to a particular aspects 
@@ -246,15 +246,18 @@ Finally, we have the Picture Controller. This controller is the curator of our u
 * Data Modeling:
 The Scheme and User classes represents the core data structures of the application. These classes encapsulate the attributes and behaviors associated with a scheme or a user.
 * Data Access Abstraction:
-The VillainDAO and UserDAO interfaces define contracts for accessing and manipulating scheme and user data. This separation allows loose coupling and easier implementation changes without affecting dependent parts of the application.
+The VillainDAO,User DAO and Picture DAO interfaces define contracts for accessing and manipulating scheme and user data. This separation allows loose coupling and easier implementation changes without affecting dependent parts of the application.
 * Data Access Implementation:
-The VillainFileDAO and UserFileDAO classes implement the data access logic specific to the JSON files. These classes handle reading from and writing to the respective JSON files villains.json and users.json.
+The VillainFileDAO, UserFileDAO and Picture DAO classes implement the data access logic specific to the JSON files. These classes handle reading from and writing to the respective JSON files villains.json and users.json.
 
 > _At appropriate places as part of this narrative provide **one** or more updated and **properly labeled**
 > static models (UML class diagrams) with some details such as critical attributes and methods._
 
 
-![Replace with your Model Tier class diagram 1, etc.](model-placeholder.png)
+![User_model](User_model.png)
+![Villain_model](Villain_model.png)
+![picture_model](picture_model.png)
+
 
 
 ## OO Design Principles
@@ -264,9 +267,9 @@ The VillainFileDAO and UserFileDAO classes implement the data access logic speci
 - Law of Demeter: Objects interact with closely-related neighbors only, reducing the ripple effects of changes and promoting a more modular and maintainable design. For example, UserController should interact only with User and UserDAO, not with any deeper components within UserDAO.
 - ![Law of Demeter example: User](User.png)
 
-- Dependency Inversion: Dependency inversion is a method of loosening coupling between objects. In essence,
+- Dependancy Inversion: Dependancy inversion is a method of loosening coupling between objects. In essence,
 instead of depending on a specific object, a class depends on interfaces or abstract classes, so that
-other implementations may be provided. A common method in which this is done is dependency
+other implementations may be provided. A common method in which this is done is dependancy
 injection, in which a higher level class that uses a lower level class instantiates classes beneath the
 lower class and inserts them into it. For example, our Villain Controller uses a VillainDAO interface, into which the VillainFileDAO is injected using Spring.
 
@@ -276,7 +279,7 @@ lower class and inserts them into it. For example, our Villain Controller uses a
 Model-View-Controller framework. What a controller does is it receives the system messages
 (button clicks mostly) and it tells the model (the data storage and management) to update, or do
 something based on that. This allows the UI to just handle updating itself when the model
-updates, and allows the model to work without requiring direct interference from the UI. For example, we use 3 different controllers to interface with 3 different DAOs. Each of them handles the CURL calls and uses the DAO as the model, grbbing data from it and returning it.
+updates, and allows the model to work without requiring direct interference from the UI. For example, we use 3 different controllers to interface with 3 different DAOs. Each of them handles the CURL calls and uses the DAO as the model, grabbing data from it and returning it.
 
 - Open/Closed: Our design allows for extension through inheritance or composition without modifying existing code, promoting code reuse and ensuring stability.
 
@@ -293,7 +296,7 @@ updates, and allows the model to work without requiring direct interference from
 
 - Low Coupling: Minimizing dependencies between classes is crucial in an OO design. Classes like Manager shouldn't cause major changes in another class like Funding Basket.
 
-> _**[Sprint 2, 3 & 4]** Will eventually address upto **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
+> _**[Sprint 2, 3 & 4]** Will eventually address up to **4 key OO Principles** in your final design. Follow guidance in augmenting those completed in previous Sprints as indicated to you by instructor. Be sure to include any diagrams (or clearly refer to ones elsewhere in your Tier sections above) to support your claims._
 
 
 
@@ -369,11 +372,11 @@ Although this method is crucial for initializing the schemes map from the JSON f
 Anomalies - Sprint 2:
 ![Sprint2 CodeCoverage](sprint2codecoverage.png)
 Shown in the code coverage above, there were issues in the persistence tier with a low score of 85% coverage. The main cause for this low tier was the small coverage we attained in the elements below:
-![Sprint2 Anamolies](sprint2anamolies.png)
+![Sprint2 Anomolies](sprint2anamolies.png)
 1. createScheme(Scheme scheme):
 The method performed checks to ensure uniqueness based on both the scheme ID and name. However, our tests may not have accounted for scenarios where a scheme with the same ID and name already exists. As a result, certain branches handling these scenarios might not have been fully exercised during testing, leading to lower coverage.
 2. findSchemesByName(String name):
-While the method aims to retrieve schemes based on name, paths related to name matching and filtering simutaneously, may not have been thoroughly tested.not covering various permutations of input names and edge cases.
+While the method aims to retrieve schemes based on name, paths related to name matching and filtering simultaneously, may not have been thoroughly tested.not covering various permutations of input names and edge cases.
 
 ## Ongoing Rationale
 >_**[Sprint 1, 2, 3 & 4]** Throughout the project, provide a time stamp **(yyyy/mm/dd): Sprint # and description** of any _**major**_ team decisions or design milestones/changes and corresponding justification._
@@ -381,15 +384,15 @@ While the method aims to retrieve schemes based on name, paths related to name m
 * **(2024/2/1) First Sprint and Demo Complete!** Officially finishing our first demo video and sprint, we are all relieved and adjusted now to the workload. The way we filmed the demo was a intersting choice, that can definitely be improved in the future with perhaps a larger time frame, as well as going into more details. This spring has set up our backend with the necessary DAO files and services we need right now, we might however have to add some in the future. This spring is one for the books and hopefully our next ones will be as smooth as this one. 
 
 
-* **(2024/3/7) Sprint 2 Login Start** Currently have one type of user: user. It only contains id and name right now. Maybe in the future every user will have a permissions identifer we recognize on log-in and give different views from that.
+* **(2024/3/7) Sprint 2 Login Start** Currently have one type of user: user. It only contains id and name right now. Maybe in the future every user will have a permissions identifier we recognize on log-in and give different views from that.
 * **(2024/3/12 Sprint 2 Login Roles)** Users now have a "role". Unlike other websites, we will not redirect different roles (Helper, Villain, Admin) to different dashboards. Instead, we will show certain components based on what their role should be able to do.
 
-* **(2024/3/20 Sprint 3 Sort Filtering Starts)** Currently implementing two basic componenets to filter schemes on the cupboard for users, from high to low and low to high. The quantities in parameter for the low and high adjusting are the fund goals for each villain's scheme, with low being the lowest fund goal and highest being the highest fund goal. For the enhancement will try to add a sort by relevance, but still trying to figure out how we'll do that. 
+* **(2024/3/20 Sprint 3 Sort Filtering Starts)** Currently implementing two basic components to filter schemes on the cupboard for users, from high to low and low to high. The quantities in parameter for the low and high adjusting are the fund goals for each villain's scheme, with low being the lowest fund goal and highest being the highest fund goal. For the enhancement will try to add a sort by relevance, but still trying to figure out how we'll do that. 
 
-* **(2024/3/20 Sprint 3 Sort Filtering Ends)** We have finished implementing how the sort filter works, we now have a completed low-high high-low and relevance. How me(Isaac) decided to implement relevance was to search for words in scheme titles with the most villanous attributes, and rank those strings by level of evileness to then be at the upmost top of the schemes in the cupboard. We agreed to go with this instead of ranking the villains on other components, such as their achievements and descriptions because schemes data(villain.json), such as name, villain, and fund goal was a seperate json file than the villains components(users.json) that contained the achievements and descriptions of villains. Doing it this way was the best in the time crunch we had, as well as a way to not change the backend too much with how the components were being stored seperately. 
+* **(2024/3/20 Sprint 3 Sort Filtering Ends)** We have finished implementing how the sort filter works, we now have a completed low-high high-low and relevance. How me(Isaac) decided to implement relevance was to search for words in scheme titles with the most villainous attributes, and rank those strings by level of evilness to then be at the utmost top of the schemes in the cupboard. We agreed to go with this instead of ranking the villains on other components, such as their achievements and descriptions because schemes data(villain.json), such as name, villain, and fund goal was a separate json file than the villains components(users.json) that contained the achievements and descriptions of villains. Doing it this way was the best in the time crunch we had, as well as a way to not change the backend too much with how the components were being stored separately. 
 
-* **(2024/3/29 Sprint 3 Design Website Starts )** As approaching the task of making our ui more attractive and better for users, we first drafted on how we would create the websites' designs. The group had some advanced ideas such as using figma, and other online html editors to make different website components. However, realizing the simplicity of this project was important to highlight that such a advanced tool wouldn't be needed, and doing html & css by hand would be more appropiate. We then created a mock draft on pen and paper of the ui design alongside a color theme,and are now deciding to implement with the help of Nadeem's html backround. 
+* **(2024/3/29 Sprint 3 Design Website Starts )** As approaching the task of making our ui more attractive and better for users, we first drafted on how we would create the websites' designs. The group had some advanced ideas such as using figma, and other online html editors to make different website components. However, realizing the simplicity of this project was important to highlight that such a advanced tool wouldn't be needed, and doing html & css by hand would be more appropriate. We then created a mock draft on pen and paper of the ui design alongside a color theme,and are now deciding to implement with the help of Nadeem's html background. 
 
-* **(2024/4/05 Sprint 3 Design Website Ends )** With the website's design finally complete with Nadeem and Isaac implementing the ui they drew out, we have an amazing website that shows a cool villanous layoug that matches the theme of this api project. We will further discuss future implementations based on the feedback we get for this sprint, but as of now we are adequate with the coloring and format style we've chosen. 
+* **(2024/4/05 Sprint 3 Design Website Ends )** With the website's design finally complete with Nadeem and Isaac implementing the ui they drew out, we have an amazing website that shows a cool villainous layout that matches the theme of this api project. We will further discuss future implementations based on the feedback we get for this sprint, but as of now we are adequate with the coloring and format style we've chosen. 
 
-* **(2024/4/16 Sprint 4 Final Wrap Up )** Just finishing Spring 4 has given us time to reflect and ponder on this group project, we will all miss working with eachother and the amazing website we built. Going into this sprint we decided to make quick slides with features that will grab our audiences, with lots of visuals(diagrams) and fun prompts and trivia at the end of our slide we hope to portray the fun and insighftul information we learned on this journey to our fellow classmates. 
+* **(2024/4/16 Sprint 4 Final Wrap Up )** Just finishing Spring 4 has given us time to reflect and ponder on this group project, we will all miss working with eachother and the amazing website we built. Going into this sprint we decided to make quick slides with features that will grab our audiences, with lots of visuals(diagrams) and fun prompts and trivia at the end of our slide we hope to portray the fun and insightful information we learned on this journey to our fellow classmates. 
