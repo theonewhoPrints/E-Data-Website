@@ -274,7 +274,7 @@ The Picture Model acts as the repository for our users' profile images, ensuring
 - Single Responsibility: Each class in our architecture has a clear and singular purpose; for instance, the ViewModel solely manages the presentation logic, while the Model handles data manipulation and storage. Each component in our system is dedicated to a single aspect of the application: Controllers manage HTTP request handling and delegate business operations, Models encapsulate the application data, and DAOs provide a specific interface for persistent data storage and retrieval. [![Single Responsibility](Main.png)]
 
 - Law of Demeter: Objects interact with closely-related neighbors only, reducing the ripple effects of changes and promoting a more modular and maintainable design. For example, UserController should interact only with User and UserDAO, not with any deeper components within UserDAO.
-- ![Law of Demeter example: User](User.png)
+![Law of Demeter example: User](User.png)
 
 - Dependancy Inversion: Dependancy inversion is a method of loosening coupling between objects. In essence,
 instead of depending on a specific object, a class depends on interfaces or abstract classes, so that
@@ -293,13 +293,13 @@ updates, and allows the model to work without requiring direct interference from
 - Open/Closed: Our design allows for extension through inheritance or composition without modifying existing code, promoting code reuse and ensuring stability.
 
 - Pure Fabrication: When necessary, we introduce classes that do not represent real-world concepts but are created solely to enable separation of concerns and enhance maintainability. For example, introducing classes like PictureService are essential for organizing and managing functionality within the application. The PictureService class, for instance, encapsulates image-related operations, such as uploading, retrieving, and handling errors, promoting separation of concerns and maintainability in the codebase.
-- ![Pure Fabrication example: Picture](Picture.png)
+![Pure Fabrication example: Picture](Picture.png)
 
 - Polymorphism: Through interfaces and inheritance, our design allows objects of different types to be treated uniformly, promoting flexibility and extensibility in handling various data types and behaviors.
-- ![Polymorphism example: Picture](polymorphism.png)
+![Polymorphism example: Picture](polymorphism.png)
 
 - Information Expert: Assigning functionalities based on information ownership. For example, the Cart class would include methods like `getCart()` and `checkout()` because it has the property `cart: CartItem[]`, the information about what schemes are inside the user's cart.
-- ![Information Expert example: Cart](Cart.png)
+![Information Expert example: Cart](Cart.png)
 
 - High Cohesion: This aligns with the way entities relate in the ER diagrams. Classes representing entities Manager and Funding Basket, Helper and Scheme are together to achieve specific functionalities like creating funding baskets, submitting schemes. Our User and Scheme classes demonstrate high cohesion by encapsulating all the necessary properties and behaviors of their respective domain entities, ensuring that related data and functions are grouped together for specific business functionalities. [![High Cohesion](Model.png)]
 
@@ -316,9 +316,11 @@ updates, and allows the model to work without requiring direct interference from
 
 ![Sonarqube response: Picture](sonarqube.png)
 Several methods within our API have been identified as prime candidates for conversion to static methods. This recommendation arises from their independence from instance variables, indicating a lack of side effects and rendering them ideal for static typing. By refactoring these methods to static, we aim to enhance maintainability and predictability in future iterations. This adjustment not only fosters a cleaner codebase but also bolsters performance by mitigating the overhead associated with object creation and garbage collection.
+
 ![Sonarqube response: static](static.png)
 
 Inconsistencies in the utilization of built-in formatting options for string construction have been noted, potentially leading to errors and decreased code readability and maintainability. To address this, future refactoring endeavors will focus on standardizing string formatting through the utilization of tools such as String.format(). This standardized approach will significantly enhance code readability, making it easier to maintain and debug.
+
 ![Sonarqube response: built](built.png)
 
 The presence of several unused fields across different classes contributes to codebase clutter, hindering efficiency and potentially causing confusion. To mitigate this issue, future considerations involve the removal of all unused fields, following a thorough review process to ensure their redundancy. Furthermore, automation of this cleanup process in future sprints will enable continuous codebase refinement.
@@ -366,7 +368,8 @@ Performance Against Targets:
 We're pleased to report that our code coverage for Sprint 4 surpassed our expectations. We achieved a commendable 99% coverage combined, indicating thorough testing of our codebase. This instills stability of our application.
 >_**[Sprint 2 & 4]** **Include images of your code coverage report.** If there are any anomalies, discuss
 > those._
-Anomalies - Sprint 4:
+
+### Anomalies - Sprint 4:
 As shown from our latest Code Coverage earlier, we didn't have any major Anomalies or missed test cases. However, we did miss a few branches in our persistence tier.
 ![Sprint4 AnomolaiesTier](sprint4persistencetier.png)
 
@@ -378,7 +381,8 @@ The lack of coverage in these methods can be attributed to:
 While this method performs filtering based on the provided name and title parameters, the testing didn't cover all possible scenarios, especially edge cases.
 2. load():
 Although this method is crucial for initializing the schemes map from the JSON file, the coverage analysis revealed that certain code paths were not exercised during testing. This indicates gaps in our testing strategy, particularly in handling file I/O exceptions or unexpected file formats.
-Anomalies - Sprint 2:
+
+### Anomalies - Sprint 2:
 ![Sprint2 CodeCoverage](sprint2codecoverage.png)
 Shown in the code coverage above, there were issues in the persistence tier with a low score of 85% coverage. The main cause for this low tier was the small coverage we attained in the elements below:
 ![Sprint2 Anomolies](sprint2anamolies.png)
