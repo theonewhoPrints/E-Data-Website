@@ -27,12 +27,20 @@ OnlyVillains is a web platform dedicated to empowering villains by providing a m
 | DAO | Data Access Object - A design pattern used to abstract the data access logic, providing an interface for accessing data from a data source. |
 | MVP | Minimum Viable Product - The basic version of a product with enough features to satisfy early users and provide feedback for future development. |
 
-## Requirements
+nooo
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+## Requirements      
+
 
 
 ### Definition of MVP
-> _**[Sprint 2 & 4]** Provide a simple description of the Minimum Viable Product._
-The MVP of this onlyvillains website includes the following core features:
+nah
 * Users, including helpers and U-fund Managers, can log in or out of the application. Managers can log in using the reserved username "admin," while any other username is assumed to belong to a helper or villain. Usernames must be unique.
 * State of funding baskets and cupboard is persisted, ensuring continuity of user interactions across sessions.
 * Helpers can view a list of needs in the cupboard.
@@ -45,7 +53,7 @@ The MVP of this onlyvillains website includes the following core features:
 
 
 ### MVP Features
->  _**[Sprint 4]** Provide a list of top-level Epics and/or Stories of the MVP._
+
 * User Account Management: Register/Login/Logout
 * Scheme Catalog: Browse/Search/View schemes
 * Funding Transactions: Add to cart/Checkout/Donate
@@ -61,8 +69,13 @@ All users can personalize their profiles with custom pictures, achievements, and
 All users can enhance their method of searching for villain's schemes on the cupboard by selecting search by relevance. This will reveal to a user the most villainous schemes, by cross tagging strings in the scheme title that contain the most villainous actions to be at the top of the given results. 
 * Ability to sort schemes by text of titles with the most villainous words. 
 
-## Application Domain
 
+
+
+
+
+
+## Application Domain
 ![Domain Model](DomainAnalysis3.png)
 
 Domain Entities
@@ -76,6 +89,10 @@ Domain Entities
 * File: This entity is the files on the server that store the data used by the system.
 * User: This is the base class for all roles in the server, containing the features of a username, description, and profile. 
 * Login: This entity is the front page entrance on the ui, which takes the name of a villain, helper or manager to then log in as. 
+
+
+
+
 
 Relationship 
 * Manager adds/removes schemes to/from Evil Basket: A manager can add schemes to and remove schemes from Evil Baskets.
@@ -161,9 +178,7 @@ The ViewModel Tier takes these requests and translates them into commands for th
 #### Meet the Controllers
 
 Let's introduce the key players in the ViewModel Tier: the Controllers.
-
 ![Villain Controller](VillainController.png)
-
 First up, we have the Villain Controller. This controller is the mastermind behind managing our villains' schemes. It directs the VillainDAO to perform operations such as creating a new villain with `createVillain()`, fetching villain details with `getVillain()`, or updating a villain's information with `updateVillain()`.
 
 ![User Controller](UserController.png)
@@ -198,9 +213,7 @@ The VillainDAO,User DAO and Picture DAO interfaces define contracts for accessin
 The VillainFileDAO, UserFileDAO and Picture DAO classes implement the data access logic specific to the JSON files. These classes handle reading from and writing to the respective JSON files villains.json and users.json.
 
 #### Meet the Models
-
 Let's introduce the components in the Model Tier
-
 ![Villain_model](Villain_model.png)
 
 The Villain Model serves as the blueprint for our nefarious characters, defining their attributes and behaviors within the system. It encapsulates properties such as name, powers, and motives. In conjunction with the VillainDAO, it handles crucial operations like creating new villains through createVillain(), retrieving villain details via getVillain(), and updating existing villain data using updateVillain().
@@ -249,8 +262,11 @@ updates, and allows the model to work without requiring direct interference from
 
 - Low Coupling: Minimizing dependencies between classes is crucial in an OO design. Classes like Manager shouldn't cause major changes in another class like Funding Basket.
 
-## Static Code Analysis/Future Design Improvements
 
+
+
+
+## Static Code Analysis/Future Design Improvements
 ![Sonarqube response: Picture](sonarqube.png)
 Several methods within our API have been identified as prime candidates for conversion to static methods. This recommendation arises from their independence from instance variables, indicating a lack of side effects and rendering them ideal for static typing. By refactoring these methods to static, we aim to enhance maintainability and predictability in future iterations. This adjustment not only fosters a cleaner codebase but also bolsters performance by mitigating the overhead associated with object creation and garbage collection.
 
@@ -312,6 +328,11 @@ Shown in the code coverage above, there were issues in the persistence tier with
 The method performed checks to ensure uniqueness based on both the scheme ID and name. However, our tests may not have accounted for scenarios where a scheme with the same ID and name already exists. As a result, certain branches handling these scenarios might not have been fully exercised during testing, leading to lower coverage.
 2. findSchemesByName(String name):
 While the method aims to retrieve schemes based on name, paths related to name matching and filtering simultaneously, may not have been thoroughly tested.not covering various permutations of input names and edge cases.
+
+
+
+
+
 
 ## Ongoing Rationale
 
