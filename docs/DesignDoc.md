@@ -27,20 +27,21 @@ OnlyVillains is a web platform dedicated to empowering villains by providing a m
 | DAO | Data Access Object - A design pattern used to abstract the data access logic, providing an interface for accessing data from a data source. |
 | MVP | Minimum Viable Product - The basic version of a product with enough features to satisfy early users and provide feedback for future development. |
 
-nooo
-&nbsp;
 
 &nbsp;
 
 &nbsp;
 
 &nbsp;
+
+&nbsp;
+
+&nbsp;
+
 ## Requirements      
 
-
-
 ### Definition of MVP
-nah
+
 * Users, including helpers and U-fund Managers, can log in or out of the application. Managers can log in using the reserved username "admin," while any other username is assumed to belong to a helper or villain. Usernames must be unique.
 * State of funding baskets and cupboard is persisted, ensuring continuity of user interactions across sessions.
 * Helpers can view a list of needs in the cupboard.
@@ -69,11 +70,11 @@ All users can personalize their profiles with custom pictures, achievements, and
 All users can enhance their method of searching for villain's schemes on the cupboard by selecting search by relevance. This will reveal to a user the most villainous schemes, by cross tagging strings in the scheme title that contain the most villainous actions to be at the top of the given results. 
 * Ability to sort schemes by text of titles with the most villainous words. 
 
+&nbsp;
 
+&nbsp;
 
-
-
-
+&nbsp;
 
 ## Application Domain
 ![Domain Model](DomainAnalysis3.png)
@@ -175,6 +176,26 @@ When a user interacts with our website, they're engaging with the View Tier. The
 
 The ViewModel Tier takes these requests and translates them into commands for the Data Access Objects (DAOs) in the Model Tier. These DAOs perform the necessary CRUD operations (Create, Read, Update, & Delete) to fetch or manipulate the data.
 
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 #### Meet the Controllers
 
 Let's introduce the key players in the ViewModel Tier: the Controllers.
@@ -211,6 +232,30 @@ The Scheme and User classes represents the core data structures of the applicati
 The VillainDAO,User DAO and Picture DAO interfaces define contracts for accessing and manipulating scheme and user data. This separation allows loose coupling and easier implementation changes without affecting dependent parts of the application.
 * Data Access Implementation:
 The VillainFileDAO, UserFileDAO and Picture DAO classes implement the data access logic specific to the JSON files. These classes handle reading from and writing to the respective JSON files villains.json and users.json.
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
 
 #### Meet the Models
 Let's introduce the components in the Model Tier
@@ -255,6 +300,16 @@ updates, and allows the model to work without requiring direct interference from
 - Polymorphism: Through interfaces and inheritance, our design allows objects of different types to be treated uniformly, promoting flexibility and extensibility in handling various data types and behaviors.
 ![Polymorphism example: Picture](polymorphism.png)
 
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
 - Information Expert: Assigning functionalities based on information ownership. For example, the Cart class would include methods like `getCart()` and `checkout()` because it has the property `cart: CartItem[]`, the information about what schemes are inside the user's cart.
 ![Information Expert example: Cart](Cart.png)
 
@@ -262,9 +317,21 @@ updates, and allows the model to work without requiring direct interference from
 
 - Low Coupling: Minimizing dependencies between classes is crucial in an OO design. Classes like Manager shouldn't cause major changes in another class like Funding Basket.
 
+&nbsp;
 
+&nbsp;
 
+&nbsp;
 
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
 
 ## Static Code Analysis/Future Design Improvements
 ![Sonarqube response: Picture](sonarqube.png)
@@ -329,10 +396,9 @@ The method performed checks to ensure uniqueness based on both the scheme ID and
 2. findSchemesByName(String name):
 While the method aims to retrieve schemes based on name, paths related to name matching and filtering simultaneously, may not have been thoroughly tested.not covering various permutations of input names and edge cases.
 
+&nbsp;
 
-
-
-
+&nbsp;
 
 ## Ongoing Rationale
 
